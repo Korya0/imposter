@@ -6,23 +6,19 @@ class AppTextWidget extends StatelessWidget {
     super.key,
     required this.title,
     this.style,
+    this.textAlign,
   });
 
   final String title;
   final TextStyle? style;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: (style ?? AppTextStyles.font24BoldSecondary).copyWith(
-        leadingDistribution: TextLeadingDistribution.even,
-      ),
-      textAlign: TextAlign.center,
-      // this is for the text height important for AppButton Dont Edit
-      textHeightBehavior: const TextHeightBehavior(
-        applyHeightToFirstAscent: false,
-      ),
+      style: style ?? AppTextStyles.font18W800Primary,
+      textAlign: textAlign ?? TextAlign.center,
     );
   }
 }

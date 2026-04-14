@@ -11,3 +11,4 @@ linter:
     always_put_required_named_parameters_first: false
     sort_constructors_first: false
     sort_pub_dependencies: false
+    eol_at_end_of_file: false

@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
-import 'package:imposter/core/widgets/app_text_widget.dart';
 
-/// The default styled text label used inside [AppButton].
-/// Can be reused when passing a custom [child] to [AppButton]
-/// to maintain the same visual text style and centering.
 class AppButtonLabel extends StatelessWidget {
   const AppButtonLabel({
     super.key,
@@ -23,13 +19,18 @@ class AppButtonLabel extends StatelessWidget {
       padding: const EdgeInsets.only(left: 24, right: 24, bottom: 4),
       child: Center(
         child: Transform.translate(
-          // Lifts Arabic text to visual center, compensating for font baseline gap
           offset: const Offset(0, -12),
           child: FittedBox(
             fit: BoxFit.scaleDown,
-            child: AppTextWidget(
-              title: title,
-              style: style ?? AppTextStyles.font34BoldSecondary,
+            child: Text(
+              title,
+              style: (style ?? AppTextStyles.font34BoldSecondary).copyWith(
+                leadingDistribution: TextLeadingDistribution.even,
+              ),
+              textAlign: TextAlign.center,
+              textHeightBehavior: const TextHeightBehavior(
+                applyHeightToFirstAscent: false,
+              ),
             ),
           ),
         ),
@@ -76,7 +77,7 @@ class AppButton extends StatelessWidget {
               Positioned.fill(
                 child: SvgPicture.asset(
                   AppSvgs.paper,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
               ),
 

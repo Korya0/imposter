@@ -11,10 +11,11 @@ class AppTextStyles {
     fontSize: 50,
     fontWeight: FontWeight.w800,
   );
-  static TextStyle font24BoldSecondary = fontApp.copyWith(
-    color: AppColors.secondary,
-    fontSize: 24,
+
+  static TextStyle font18W800Primary = fontApp.copyWith(
     fontWeight: FontWeight.w800,
+    color: AppColors.primary,
+    fontSize: 18,
   );
 
   static TextStyle font34BoldSecondary = fontApp.copyWith(
