@@ -34,6 +34,7 @@ class HomeButtonsSection extends StatelessWidget {
           height: buttonHeight.toDouble(),
           title: AppStrings.letsGo,
         ),
+
         ClipRect(
           child: Banner(
             message: '🔒',
