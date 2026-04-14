@@ -1,0 +1,45 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:imposter/core/di/app_initializer.dart';
+import 'package:imposter/core/router/app_routes.dart';
+
+class SplashView extends StatefulWidget {
+  const SplashView({super.key});
+
+  @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      unawaited(_initialize());
+    });
+  }
+
+  Future<void> _initialize() async {
+    final essentialFuture = AppInitializer.initEssential();
+    final minimumDelayFuture = Future<void>.delayed(
+      const Duration(seconds: 2),
+    );
+
+    await Future.wait([essentialFuture, minimumDelayFuture]);
+
+    if (mounted) {
+      context.go(AppRoutes.home);
+      unawaited(AppInitializer.initBackground());
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text('Splash'),
+      ),
+    );
+  }
+}
