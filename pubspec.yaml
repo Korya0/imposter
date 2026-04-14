@@ -41,3 +41,8 @@ flutter:
 
   # assets:
   #   - images/a_dot_ham.jpeg
+  
+  fonts:
+    - family: NotoNastaliqUrdu
+      fonts:
+        - asset: assets/font/NotoNastaliqUrdu-VariableFont_wght.ttf
