@@ -46,3 +46,27 @@ flutter:
     - family: NotoNastaliqUrdu
       fonts:
         - asset: assets/font/NotoNastaliqUrdu-VariableFont_wght.ttf
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/images/logo_splash_icon.png"
+  web:
+    generate: true
+    image_path: "assets/images/logo_splash_icon.png"
+    background_color: "#000000"
+    theme_color: "#000000"
+  adaptive_icon_background: "#000000"
+  adaptive_icon_foreground: "assets/images/logo_splash_icon.png"
+
+flutter_native_splash:
+  color: "#000000"
+  image: "assets/images/logo_splash_icon.png"
+  android_12:
+    image: "assets/images/logo_splash_icon.png"
+    color: "#000000"
+  web: true
+  fullscreen: false
+
+
