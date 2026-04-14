@@ -39,8 +39,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # assets:
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/svgs/
+    - assets/images/
   
   fonts:
     - family: NotoNastaliqUrdu
