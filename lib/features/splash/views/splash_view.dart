@@ -1,8 +1,11 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/di/app_initializer.dart';
 import 'package:imposter/core/router/app_routes.dart';
+import 'package:imposter/features/splash/widgets/app_name_and_logo.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -36,9 +39,12 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Splash'),
+        child: const AppNameAndLogo().animate().fadeIn(
+          duration: 2200.ms,
+          curve: Curves.easeInOut,
+        ),
       ),
     );
   }
