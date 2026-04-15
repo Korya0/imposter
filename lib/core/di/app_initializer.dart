@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/di/di.dart';
 import 'package:imposter/core/theme/system_ui_config.dart';
 import 'package:imposter/core/utils/app_bloc_observer.dart';
@@ -14,11 +12,6 @@ class AppInitializer {
       await SystemUiConfig.setup();
 
       await setupEssentialDI();
-
-      await Future.wait<void>([
-        vg.loadPicture(const SvgAssetLoader(AppSvgs.paper), null),
-        vg.loadPicture(const SvgAssetLoader(AppSvgs.logo), null),
-      ]);
 
       Bloc.observer = AppBlocObserver();
 

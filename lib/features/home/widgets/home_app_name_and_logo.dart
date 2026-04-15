@@ -15,7 +15,7 @@ class HomeAppNameAndLogo extends StatelessWidget {
       children: [
         SizedBox(height: (context.height * 0.05).clamp(14, 40)),
         AppTextWidget(
-          title: AppStrings.spy,
+          AppStrings.spy,
           style: AppTextStyles.font50BoldPrimary,
         ),
         SizedBox(height: (context.height * 0.05).clamp(14, 40)),

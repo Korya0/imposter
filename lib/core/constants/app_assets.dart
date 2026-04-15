@@ -6,7 +6,6 @@ abstract class AppSvgs {
   static const String food = '$_baseSvg/Food.svg';
   static const String incognito = '$_baseSvg/incognito.svg';
   static const String logo = '$_baseSvg/logo.svg';
-  static const String paper = '$_baseSvg/paper.svg';
   static const String peopleGroup = '$_baseSvg/people-group.svg';
   static const String places = '$_baseSvg/Places.svg';
   static const String play = '$_baseSvg/play.svg';
@@ -21,4 +20,5 @@ abstract class AppImages {
   static const String _baseImage = 'assets/images';
 
   static const String logoSplashIcon = '$_baseImage/logo_splash_icon.png';
+  static const String paperWebp = '$_baseImage/paper-converted-from-svg.webp';
 }

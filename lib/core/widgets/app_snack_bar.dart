@@ -1,104 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
 import 'package:imposter/core/widgets/app_text_widget.dart';
+import 'package:toastification/toastification.dart';
 
-enum AppSnackBarPosition { top, bottom }
+enum ToastPosition { top, bottom }
 
-class AppSnackBarContent extends StatelessWidget {
-  const AppSnackBarContent({
-    super.key,
-    required this.message,
-    required this.position,
-    required this.onDismiss,
-  });
+class AppToast {
+  static DateTime? _lastToastTime;
+  static String? _lastMessage;
 
-  final String message;
-  final AppSnackBarPosition position;
-  final VoidCallback onDismiss;
+  static void show(
+    BuildContext context,
+    String message, {
+    ToastPosition position = ToastPosition.top,
+    int? seconds,
+  }) {
+    final now = DateTime.now();
 
-  @override
-  Widget build(BuildContext context) {
-    final isTop = position == AppSnackBarPosition.top;
+    // De-bounce logic: Prevent identical message within 2 seconds
+    if (_lastToastTime != null &&
+        _lastMessage == message &&
+        now.difference(_lastToastTime!) < const Duration(seconds: 2)) {
+      return;
+    }
+    _lastToastTime = now;
+    _lastMessage = message;
 
-    return Positioned(
-      top: isTop ? 0 : null,
-      bottom: isTop ? null : 0,
-      left: 0,
-      right: 0,
-      child:
-          SafeArea(
-                bottom: !isTop,
-                top: isTop,
-                child: Padding(
-                  padding: AppPaddings.all16,
-                  child: _AppSnackBarCard(
-                    message: message,
-                    onClose: onDismiss,
-                  ),
-                ),
-              )
-              .animate()
-              .fadeIn(duration: 400.ms)
-              .slideY(
-                begin: isTop ? -0.5 : 0.5,
-                end: 0,
-                duration: 400.ms,
-                curve: Curves.easeOutBack,
-              ),
-    );
-  }
-}
-
-class _AppSnackBarCard extends StatelessWidget {
-  const _AppSnackBarCard({
-    required this.message,
-    required this.onClose,
-  });
-
-  final String message;
-  final VoidCallback onClose;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          color: AppColors.background,
-          borderRadius: BorderRadius.circular(14),
-          border: const Border(
-            top: BorderSide(color: AppColors.primary, width: 0.8),
-            bottom: BorderSide(color: AppColors.primary, width: 0.8),
-            left: BorderSide(color: AppColors.primary, width: 4),
-            right: BorderSide(color: AppColors.primary, width: 4),
-          ),
+    toastification
+      ..dismissAll()
+      ..show(
+        context: context,
+        style: ToastificationStyle.minimal,
+        direction: TextDirection.rtl,
+        title: AppTextWidget(
+          message,
+          style: AppTextStyles.font18W800Primary,
         ),
-        child: Row(
-          spacing: 8,
-          children: [
-            Expanded(
-              child: AppTextWidget(
-                title: message,
-                style: AppTextStyles.font18W800Primary,
-                textAlign: TextAlign.center,
-              ),
-            ),
-            GestureDetector(
-              onTap: onClose,
-              behavior: HitTestBehavior.opaque,
-              child: const Icon(
-                Icons.close_rounded,
-                color: AppColors.primary,
-                size: 22,
-              ),
-            ),
-          ],
+        alignment: position == ToastPosition.top
+            ? Alignment.topCenter
+            : Alignment.bottomCenter,
+        autoCloseDuration: Duration(seconds: seconds ?? 2),
+        borderRadius: BorderRadius.circular(16),
+        primaryColor: AppColors.primary,
+        backgroundColor: AppColors.background,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 12,
         ),
-      ),
-    );
+        margin: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 32,
+        ),
+        showProgressBar: false,
+        closeButton: const ToastCloseButton(showType: CloseButtonShowType.none),
+        dragToClose: true,
+        applyBlurEffect: false,
+
+        borderSide: BorderSide(color: AppColors.primary.withValues(alpha: 0.3)),
+      );
   }
 }

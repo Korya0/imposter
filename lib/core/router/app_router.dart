@@ -17,27 +17,44 @@ final GoRouter appRouter = GoRouter(
       pageBuilder: (context, state) => AppTransitions.fade(
         state: state,
         child: const SplashView(),
+        context: context,
       ),
     ),
     GoRoute(
       path: AppRoutes.home,
       name: AppRoutes.home,
-      builder: (context, state) => const HomeView(),
+      pageBuilder: (context, state) => AppTransitions.slideFromRight(
+        state: state,
+        child: const HomeView(),
+        context: context,
+      ),
     ),
     GoRoute(
       path: AppRoutes.topicsSelection,
       name: AppRoutes.topicsSelection,
-      builder: (context, state) => const TopicsSelectionView(),
+      pageBuilder: (context, state) => AppTransitions.slideFromRight(
+        context: context,
+        state: state,
+        child: const TopicsSelectionView(),
+      ),
     ),
     GoRoute(
       path: AppRoutes.gameSettings,
       name: AppRoutes.gameSettings,
-      builder: (context, state) => const GameSettingsView(),
+      pageBuilder: (context, state) => AppTransitions.slideFromRight(
+        context: context,
+        state: state,
+        child: const GameSettingsView(),
+      ),
     ),
     GoRoute(
       path: AppRoutes.game,
       name: AppRoutes.game,
-      builder: (context, state) => const GameView(),
+      pageBuilder: (context, state) => AppTransitions.slideFromRight(
+        context: context,
+        state: state,
+        child: const GameView(),
+      ),
     ),
   ],
   errorBuilder: (context, state) => const Scaffold(

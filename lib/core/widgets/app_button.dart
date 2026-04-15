@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/widgets/app_button_label.dart';
 
@@ -48,13 +47,11 @@ class AppButton extends StatelessWidget {
                   right: 0,
                   top: _depth,
                   bottom: 0,
-                  child: SvgPicture.asset(
-                    AppSvgs.paper,
+                  child: Image.asset(
+                    AppImages.paperWebp,
                     fit: BoxFit.fill,
-                    colorFilter: ColorFilter.mode(
-                      Colors.white.withValues(alpha: 0.35),
-                      BlendMode.modulate,
-                    ),
+                    color: Colors.white.withValues(alpha: 0.35),
+                    colorBlendMode: BlendMode.modulate,
                   ),
                 ),
                 // Static Main layer
@@ -67,8 +64,8 @@ class AppButton extends StatelessWidget {
                     alignment: Alignment.center,
                     children: [
                       Positioned.fill(
-                        child: SvgPicture.asset(
-                          AppSvgs.paper,
+                        child: Image.asset(
+                          AppImages.paperWebp,
                           fit: BoxFit.fill,
                         ),
                       ),

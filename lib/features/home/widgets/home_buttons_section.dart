@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/theme/app_colors.dart';
-import 'package:imposter/core/utils/app_snack_bar_helper.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/widgets/app_button.dart';
+import 'package:imposter/core/widgets/app_snack_bar.dart';
 
 class HomeButtonsSection extends StatelessWidget {
   const HomeButtonsSection({super.key});
@@ -21,9 +21,9 @@ class HomeButtonsSection extends StatelessWidget {
               child: AppButton(
                 height: buttonHeight.toDouble(),
                 title: AppStrings.howToPlay,
-                onTap: () => AppSnackBarHelper.show(
+                onTap: () => AppToast.show(
                   context,
-                  message: AppStrings.comingSoon,
+                  AppStrings.comingSoon,
                 ),
               ),
             ),
@@ -31,9 +31,9 @@ class HomeButtonsSection extends StatelessWidget {
               child: AppButton(
                 height: buttonHeight.toDouble(),
                 title: AppStrings.drawer,
-                onTap: () => AppSnackBarHelper.show(
+                onTap: () => AppToast.show(
                   context,
-                  message: AppStrings.comingSoon,
+                  AppStrings.comingSoon,
                 ),
               ),
             ),
@@ -42,9 +42,9 @@ class HomeButtonsSection extends StatelessWidget {
         AppButton(
           height: buttonHeight.toDouble(),
           title: AppStrings.letsGo,
-          onTap: () => AppSnackBarHelper.show(
+          onTap: () => AppToast.show(
             context,
-            message: AppStrings.comingSoon,
+            AppStrings.comingSoon,
           ),
         ),
         ClipRect(
@@ -54,11 +54,12 @@ class HomeButtonsSection extends StatelessWidget {
             color: AppColors.background,
             textStyle: const TextStyle(fontSize: 22),
             child: AppButton(
+              width: double.infinity,
               height: buttonHeight.toDouble(),
               title: AppStrings.online,
-              onTap: () => AppSnackBarHelper.show(
+              onTap: () => AppToast.show(
                 context,
-                message: AppStrings.comingSoon,
+                AppStrings.comingSoon,
               ),
             ),
           ),

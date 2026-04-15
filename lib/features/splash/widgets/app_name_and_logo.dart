@@ -22,7 +22,7 @@ class AppNameAndLogo extends StatelessWidget {
           height: (context.height * 0.11).clamp(80, 100),
         ),
         AppTextWidget(
-          title: AppStrings.spy,
+          AppStrings.spy,
           style: AppTextStyles.font50BoldPrimary,
         ),
       ],
