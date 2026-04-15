@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/router/app_routes.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/widgets/app_sketchy_card/app_sketchy_card.dart';
 
 class TopicsItemsSection extends StatelessWidget {
@@ -22,11 +23,11 @@ class TopicsItemsSection extends StatelessWidget {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
-        childAspectRatio: 0.7,
+        childAspectRatio: (context.width / 2) / (context.height * 0.4),
       ),
       itemCount: topics.length,
       itemBuilder: (context, index) {

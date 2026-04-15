@@ -4,7 +4,7 @@ abstract class AppSvgs {
   static const String animals = '$_baseSvg/animals.svg';
   static const String fingerprint = '$_baseSvg/fingerprint.svg';
   static const String food = '$_baseSvg/Food.svg';
-  static const String incognito = '$_baseSvg/incognito.svg';
+  static const String spy = '$_baseSvg/incognito.svg';
   static const String logo = '$_baseSvg/logo.svg';
   static const String peopleGroup = '$_baseSvg/people-group.svg';
   static const String places = '$_baseSvg/Places.svg';

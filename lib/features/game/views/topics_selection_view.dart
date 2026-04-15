@@ -13,7 +13,6 @@ class TopicsSelectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: CustomAppBar(),
       body: SafeArea(
         child: Padding(
           padding: AppPaddings.h18,
@@ -31,19 +30,24 @@ class _TopicsSelectionViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        SizedBox(height: (context.height * 0.03).clamp(20, 100)),
-        Center(
-          child: AppTextWidget(
-            AppStrings.comingWithYou,
-            style: AppTextStyles.font22W200Primary,
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: (context.height * 0.05).clamp(12, 32),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          const CustomAppBar(),
+
+          Center(
+            child: AppTextWidget(
+              AppStrings.comingWithYou,
+              style: AppTextStyles.font22W200Primary,
+            ),
           ),
-        ),
-        const TopicsItemsSection(),
-        const SizedBox(height: 30),
-      ],
+          const TopicsItemsSection(),
+        ],
+      ),
     );
   }
 }

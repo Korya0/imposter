@@ -12,7 +12,6 @@ class HomeButtonsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //   final buttonHeight = (context.height * 0.08).clamp(60, 90);
     return Column(
       spacing: 18,
       children: [
@@ -21,7 +20,6 @@ class HomeButtonsSection extends StatelessWidget {
               children: [
                 Expanded(
                   child: AppButton(
-                    // height: buttonHeight.toDouble(),
                     title: AppStrings.howToPlay,
                     onTap: () => AppToast.show(
                       context,
@@ -31,7 +29,6 @@ class HomeButtonsSection extends StatelessWidget {
                 ),
                 Expanded(
                   child: AppButton(
-                    //  height: buttonHeight.toDouble(),
                     title: AppStrings.drawer,
                     onTap: () => AppToast.show(
                       context,
@@ -48,7 +45,6 @@ class HomeButtonsSection extends StatelessWidget {
               end: 0,
             ),
         AppButton(
-              //   height: buttonHeight.toDouble(),
               title: AppStrings.letsGo,
               onTap: () => context.pushNamed(AppRoutes.topicsSelection),
             )
@@ -70,7 +66,6 @@ class HomeButtonsSection extends StatelessWidget {
                 textStyle: const TextStyle(fontSize: 22),
                 child: AppButton(
                   width: double.infinity,
-                  //   height: buttonHeight.toDouble(),
                   title: AppStrings.online,
                   onTap: () => AppToast.show(
                     context,

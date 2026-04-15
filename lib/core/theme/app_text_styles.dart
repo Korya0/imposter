@@ -29,14 +29,20 @@ class AppTextStyles {
     color: AppColors.secondary,
   );
 
+  static TextStyle font30W800Background = fontApp.copyWith(
+    fontSize: 30,
+    fontWeight: LateefWeight.w800.weight,
+    color: AppColors.background,
+  );
+
   static TextStyle font24W800Primary = fontApp.copyWith(
     fontWeight: LateefWeight.w800.weight,
     color: AppColors.primary,
     fontSize: 24,
   );
 
-  static TextStyle font28W800Primary = fontApp.copyWith(
-    fontSize: 28,
+  static TextStyle font36W800Primary = fontApp.copyWith(
+    fontSize: 36,
     fontWeight: LateefWeight.w800.weight,
     color: AppColors.primary,
   );

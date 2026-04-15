@@ -15,7 +15,6 @@ class HomeAppNameAndLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: (context.height * 0.05).clamp(14, 40)),
         AppTextWidget(
               AppStrings.spy,
               style: AppTextStyles.ruqaa60BoldPrimary,
