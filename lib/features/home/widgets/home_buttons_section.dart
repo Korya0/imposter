@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
@@ -15,55 +16,73 @@ class HomeButtonsSection extends StatelessWidget {
       spacing: 18,
       children: [
         Row(
-          spacing: 8,
-          children: [
-            Expanded(
-              child: AppButton(
-                height: buttonHeight.toDouble(),
-                title: AppStrings.howToPlay,
-                onTap: () => AppToast.show(
-                  context,
-                  AppStrings.comingSoon,
+              spacing: 8,
+              children: [
+                Expanded(
+                  child: AppButton(
+                    height: buttonHeight.toDouble(),
+                    title: AppStrings.howToPlay,
+                    onTap: () => AppToast.show(
+                      context,
+                      AppStrings.comingSoon,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Expanded(
-              child: AppButton(
-                height: buttonHeight.toDouble(),
-                title: AppStrings.drawer,
-                onTap: () => AppToast.show(
-                  context,
-                  AppStrings.comingSoon,
+                Expanded(
+                  child: AppButton(
+                    height: buttonHeight.toDouble(),
+                    title: AppStrings.drawer,
+                    onTap: () => AppToast.show(
+                      context,
+                      AppStrings.comingSoon,
+                    ),
+                  ),
                 ),
-              ),
+              ],
+            )
+            .animate()
+            .fadeIn(delay: 600.ms, duration: 600.ms)
+            .slideY(
+              begin: 0.2,
+              end: 0,
             ),
-          ],
-        ),
         AppButton(
-          height: buttonHeight.toDouble(),
-          title: AppStrings.letsGo,
-          onTap: () => AppToast.show(
-            context,
-            AppStrings.comingSoon,
-          ),
-        ),
-        ClipRect(
-          child: Banner(
-            message: '🔒',
-            location: BannerLocation.topStart,
-            color: AppColors.background,
-            textStyle: const TextStyle(fontSize: 22),
-            child: AppButton(
-              width: double.infinity,
               height: buttonHeight.toDouble(),
-              title: AppStrings.online,
+              title: AppStrings.letsGo,
               onTap: () => AppToast.show(
                 context,
                 AppStrings.comingSoon,
               ),
+            )
+            .animate()
+            .fadeIn(delay: 800.ms, duration: 600.ms)
+            .slideY(
+              begin: 0.2,
+              end: 0,
             ),
-          ),
-        ),
+        ClipRect(
+              child: Banner(
+                message: '🔒',
+                location: BannerLocation.topStart,
+                color: AppColors.background,
+                textStyle: const TextStyle(fontSize: 22),
+                child: AppButton(
+                  width: double.infinity,
+                  height: buttonHeight.toDouble(),
+                  title: AppStrings.online,
+                  onTap: () => AppToast.show(
+                    context,
+                    AppStrings.comingSoon,
+                  ),
+                ),
+              ),
+            )
+            .animate()
+            .fadeIn(delay: 1000.ms, duration: 600.ms)
+            .slideY(
+              begin: 0.2,
+              end: 0,
+            ),
       ],
     );
   }
