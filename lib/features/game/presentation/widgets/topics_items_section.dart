@@ -18,6 +18,8 @@ class TopicsItemsSection extends StatelessWidget {
       {'title': AppStrings.food, 'icon': AppSvgs.food},
       {'title': AppStrings.professions, 'icon': AppSvgs.professions},
       {'title': AppStrings.animals, 'icon': AppSvgs.animals},
+      {'title': AppStrings.egyptianLeague, 'icon': AppSvgs.trophy},
+      {'title': AppStrings.things, 'icon': AppSvgs.things},
     ];
 
     return GridView.builder(
@@ -27,7 +29,8 @@ class TopicsItemsSection extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
-        childAspectRatio: (context.width / 2) / (context.height * 0.4),
+
+        childAspectRatio: (context.width / 2) / (context.height * 0.27),
       ),
       itemCount: topics.length,
       itemBuilder: (context, index) {
@@ -38,6 +41,8 @@ class TopicsItemsSection extends StatelessWidget {
               },
               watermark: SvgPicture.asset(
                 topics[index]['icon']!,
+                width: 100,
+                height: 100,
               ),
             )
             .animate()

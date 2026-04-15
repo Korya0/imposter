@@ -1,35 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_assets.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/widgets/custom_app_bar.dart';
-import 'package:imposter/features/game/widgets/game_setting_item.dart';
-import 'package:imposter/features/game/widgets/start_button.dart';
+import 'package:imposter/features/game/presentation/widgets/game_setting_item.dart';
+import 'package:imposter/features/game/presentation/widgets/start_button.dart';
+import 'package:go_router/go_router.dart';
 
-class GameSettingsView extends StatelessWidget {
-  const GameSettingsView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: AppPaddings.h18,
-          child: SingleChildScrollView(
-            child: _GameSettingsView(),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _GameSettingsView extends StatelessWidget {
-  const _GameSettingsView();
+class GameSettingsViewBody extends StatelessWidget {
+  const GameSettingsViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

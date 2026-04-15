@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/router/app_transitions.dart';
-import 'package:imposter/features/game/views/game_settings_view.dart';
-import 'package:imposter/features/game/views/game_view.dart';
-import 'package:imposter/features/game/views/topics_selection_view.dart';
-import 'package:imposter/features/home/views/home_view.dart';
-import 'package:imposter/features/splash/views/splash_view.dart';
+import 'package:imposter/features/game/presentation/views/game_settings_view.dart';
+import 'package:imposter/features/game/presentation/views/game_view.dart';
+import 'package:imposter/features/game/presentation/views/topics_selection_view.dart';
+import 'package:imposter/features/home/presentation/views/home_view.dart';
+import 'package:imposter/features/splash/presentation/views/splash_view.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: AppRoutes.splash,

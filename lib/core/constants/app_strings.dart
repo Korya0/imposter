@@ -9,6 +9,7 @@ abstract class AppStrings {
   static const String professions = 'وظائف';
   static const String animals = 'حيوانات';
   static const String things = 'اشياء';
+  static const String egyptianLeague = 'دوري مصري';
   static const String numberOfPlayers = 'عدد الاعبين';
   static const String numberOfSpies = 'عدد الجواسيس';
   static const String numberOfMinutes = 'عدد الدقائق';

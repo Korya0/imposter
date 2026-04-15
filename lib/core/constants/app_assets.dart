@@ -13,6 +13,7 @@ abstract class AppSvgs {
   static const String question = '$_baseSvg/question.svg';
   static const String redo = '$_baseSvg/redo.svg';
   static const String things = '$_baseSvg/Things.svg';
+  static const String trophy = '$_baseSvg/trophy.svg';
   static const String timeOclock = '$_baseSvg/time-oclock.svg';
   static const String backIcon = '$_baseSvg/back_icon.svg';
   static const String arrowLineLong = '$_baseSvg/arrow_line_long.svg';

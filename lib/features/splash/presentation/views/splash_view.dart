@@ -5,7 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/di/app_initializer.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/features/splash/widgets/app_name_and_logo.dart';
+import 'package:imposter/features/splash/presentation/widgets/app_name_and_logo.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
