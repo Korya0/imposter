@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/widgets/app_button.dart';
 import 'package:imposter/core/widgets/app_text_widget.dart';
 
@@ -29,6 +30,7 @@ class GameSettingItem extends StatelessWidget {
       children: [
         AppButton(
           width: 250,
+          height: (context.height * 0.08).clamp(40, 70),
           child: Padding(
             padding: AppPaddings.h18,
             child: Row(
@@ -52,7 +54,7 @@ class GameSettingItem extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: (context.height * 0.02).clamp(6, 12)),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/widgets/app_button.dart';
 import 'package:imposter/core/widgets/app_text_widget.dart';
 
@@ -17,20 +18,20 @@ class StartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppButton(
           width: 250,
-          height: 70,
+          height: (context.height * 0.1).clamp(50, 70),
           onTap: onTap,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(
                 AppSvgs.play,
-                height: 32,
+                height: (context.height * 0.04).clamp(28, 30),
               ),
               const SizedBox(width: 12),
               AppTextWidget(
                 AppStrings.start,
                 style: AppTextStyles.font30W800Background.copyWith(
-                  fontSize: 50,
+                  fontSize: (context.height * 0.05).clamp(40, 50),
                 ),
               ),
             ],

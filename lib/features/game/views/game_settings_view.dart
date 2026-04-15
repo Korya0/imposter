@@ -50,7 +50,7 @@ class _GameSettingsView extends StatelessWidget {
               .fadeIn(delay: 100.ms, duration: 600.ms)
               .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
 
-          const SizedBox(height: 16),
+          SizedBox(height: (context.height * 0.05).clamp(12, 32)),
 
           const GameSettingItem(
                 iconPath: AppSvgs.spy,
@@ -61,7 +61,7 @@ class _GameSettingsView extends StatelessWidget {
               .fadeIn(delay: 250.ms, duration: 600.ms)
               .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
 
-          const SizedBox(height: 16),
+          SizedBox(height: (context.height * 0.01).clamp(12, 32)),
 
           const GameSettingItem(
                 iconPath: AppSvgs.timeOclock,
@@ -72,7 +72,7 @@ class _GameSettingsView extends StatelessWidget {
               .fadeIn(delay: 400.ms, duration: 600.ms)
               .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
 
-          const SizedBox(height: 32),
+          SizedBox(height: (context.height * 0.05).clamp(18, 42)),
 
           StartButton(
             onTap: () => context.pushNamed(AppRoutes.game),

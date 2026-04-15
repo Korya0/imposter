@@ -34,7 +34,7 @@ class _ScanViewBodyState extends State<ScanViewBody> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        bottom: (context.height * 0.05).clamp(12, 32),
+        bottom: (context.height * 0.1).clamp(12, 50),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
