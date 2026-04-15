@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/constants/app_strings.dart';
@@ -35,26 +36,35 @@ class _GameSettingsView extends StatelessWidget {
         const CustomAppBar(),
 
         const GameSettingItem(
-          iconPath: AppSvgs.peopleGroup,
-          title: AppStrings.numberOfPlayers,
-          value: '4',
-        ),
+              iconPath: AppSvgs.peopleGroup,
+              title: AppStrings.numberOfPlayers,
+              value: '4',
+            )
+            .animate()
+            .fadeIn(delay: 100.ms, duration: 600.ms)
+            .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
 
         const SizedBox(height: 16),
 
         const GameSettingItem(
-          iconPath: AppSvgs.spy,
-          title: AppStrings.numberOfSpies,
-          value: '1',
-        ),
+              iconPath: AppSvgs.spy,
+              title: AppStrings.numberOfSpies,
+              value: '1',
+            )
+            .animate()
+            .fadeIn(delay: 250.ms, duration: 600.ms)
+            .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
 
         const SizedBox(height: 16),
 
         const GameSettingItem(
-          iconPath: AppSvgs.timeOclock,
-          title: AppStrings.numberOfMinutes,
-          value: '5',
-        ),
+              iconPath: AppSvgs.timeOclock,
+              title: AppStrings.numberOfMinutes,
+              value: '5',
+            )
+            .animate()
+            .fadeIn(delay: 400.ms, duration: 600.ms)
+            .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
 
         const SizedBox(height: 32),
 
