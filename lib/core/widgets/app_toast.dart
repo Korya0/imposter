@@ -35,7 +35,7 @@ class AppToast {
         direction: TextDirection.rtl,
         title: AppTextWidget(
           message,
-          style: AppTextStyles.font18W800Primary,
+          style: AppTextStyles.font22W800Primary,
         ),
         alignment: position == ToastPosition.top
             ? Alignment.topCenter
@@ -51,7 +51,6 @@ class AppToast {
         ),
         margin: const EdgeInsets.symmetric(
           horizontal: 16,
-          vertical: 32,
         ),
         showProgressBar: false,
         closeButton: const ToastCloseButton(showType: CloseButtonShowType.none),

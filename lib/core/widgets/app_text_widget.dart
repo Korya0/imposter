@@ -17,7 +17,7 @@ class AppTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: style ?? AppTextStyles.font18W800Primary,
+      style: style ?? AppTextStyles.font22W800Primary,
       textAlign: textAlign ?? TextAlign.center,
     );
   }

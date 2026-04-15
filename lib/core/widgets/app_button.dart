@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_assets.dart';
-import 'package:imposter/core/widgets/app_button_label.dart';
+import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/widgets/app_text_widget.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({
@@ -32,16 +33,26 @@ class AppButton extends StatelessWidget {
         onTap: onTap,
         behavior: HitTestBehavior.opaque,
         child: Container(
-          width: width ?? double.infinity,
-          height: height ?? 70,
+          width: width,
+          height: height ?? 60,
+          padding: width == null
+              ? const EdgeInsets.symmetric(horizontal: 12)
+              : null,
           alignment: Alignment.center,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(AppImages.paperWebp),
+              image: AssetImage(
+                AppImages.paperWebp,
+              ),
               fit: BoxFit.fill,
             ),
           ),
-          child: child ?? AppButtonLabel(title: title!, style: style),
+          child:
+              child ??
+              AppTextWidget(
+                title!,
+                style: style ?? AppTextStyles.font45W800Secondary,
+              ),
         ),
       ),
     );

@@ -23,7 +23,7 @@ class AppNameAndLogo extends StatelessWidget {
         ),
         AppTextWidget(
           AppStrings.spy,
-          style: AppTextStyles.font50BoldPrimary,
+          style: AppTextStyles.ruqaa60BoldPrimary,
         ),
       ],
     );

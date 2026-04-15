@@ -18,7 +18,7 @@ class HomeAppNameAndLogo extends StatelessWidget {
         SizedBox(height: (context.height * 0.05).clamp(14, 40)),
         AppTextWidget(
               AppStrings.spy,
-              style: AppTextStyles.font50BoldPrimary,
+              style: AppTextStyles.ruqaa60BoldPrimary,
             )
             .animate()
             .fadeIn(duration: 800.ms, curve: Curves.easeOut)

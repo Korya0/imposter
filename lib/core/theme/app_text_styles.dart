@@ -1,27 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/theme/app_colors.dart';
+import 'package:imposter/core/theme/app_fonts.dart';
 
 class AppTextStyles {
-  static const String primaryFont = 'NotoNastaliqUrdu';
+  static const TextStyle fontApp = AppFonts.lateefBase;
+  static const TextStyle fontRuqaa = AppFonts.arefRuqaaBase;
 
-  static const TextStyle fontApp = TextStyle(fontFamily: primaryFont);
-
-  static TextStyle font50BoldPrimary = fontApp.copyWith(
+  static TextStyle ruqaa60BoldPrimary = fontRuqaa.copyWith(
     color: AppColors.primary,
-    fontSize: 50,
-    fontWeight: FontWeight.w800,
+    fontSize: 60,
+    fontWeight: RuqaaWeight.w700.weight,
+  );
+  static TextStyle ruqaa45BoldPrimary = fontRuqaa.copyWith(
+    color: AppColors.primary,
+    fontSize: 45,
+    fontWeight: RuqaaWeight.w700.weight,
   );
 
-  static TextStyle font18W800Primary = fontApp.copyWith(
-    fontWeight: FontWeight.w800,
+  static TextStyle font22W800Primary = fontApp.copyWith(
+    fontWeight: LateefWeight.w800.weight,
     color: AppColors.primary,
     fontSize: 18,
   );
 
-  static TextStyle font34BoldSecondary = fontApp.copyWith(
-    fontSize: 34,
-    fontWeight: FontWeight.w800,
-    fontFamily: primaryFont,
+  static TextStyle font45W800Secondary = fontApp.copyWith(
+    fontSize: 45,
+    fontWeight: LateefWeight.w800.weight,
     color: AppColors.secondary,
+  );
+
+  static TextStyle font24W800Primary = fontApp.copyWith(
+    fontWeight: LateefWeight.w800.weight,
+    color: AppColors.primary,
+    fontSize: 24,
+  );
+
+  static TextStyle font28W800Primary = fontApp.copyWith(
+    fontSize: 28,
+    fontWeight: LateefWeight.w800.weight,
+    color: AppColors.primary,
+  );
+
+  static TextStyle font22W200Primary = fontApp.copyWith(
+    fontSize: 22,
+    fontWeight: LateefWeight.w200.weight,
+    color: AppColors.primary,
   );
 }

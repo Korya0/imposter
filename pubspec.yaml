@@ -45,9 +45,27 @@ flutter:
     - assets/images/
   
   fonts:
-    - family: NotoNastaliqUrdu
+    - family: ArefRuqaa
       fonts:
-        - asset: assets/font/NotoNastaliqUrdu-VariableFont_wght.ttf
+        - asset: assets/font/ArefRuqaa/ArefRuqaa-Regular.ttf
+        - asset: assets/font/ArefRuqaa/ArefRuqaa-Bold.ttf
+          weight: 700
+    - family: Lateef
+      fonts:
+        - asset: assets/font/lateef/Lateef-ExtraLight.ttf
+          weight: 200
+        - asset: assets/font/lateef/Lateef-Light.ttf
+          weight: 300
+        - asset: assets/font/lateef/Lateef-Regular.ttf
+          weight: 400
+        - asset: assets/font/lateef/Lateef-Medium.ttf
+          weight: 500
+        - asset: assets/font/lateef/Lateef-SemiBold.ttf
+          weight: 600
+        - asset: assets/font/lateef/Lateef-Bold.ttf
+          weight: 700
+        - asset: assets/font/lateef/Lateef-ExtraBold.ttf
+          weight: 800
 
 flutter_launcher_icons:
   android: true

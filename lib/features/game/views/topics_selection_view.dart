@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/constants/app_strings.dart';
+import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
+import 'package:imposter/core/widgets/app_text_widget.dart';
+import 'package:imposter/core/widgets/custom_app_bar.dart';
+import 'package:imposter/features/game/widgets/topics_items_section.dart';
 
 class TopicsSelectionView extends StatelessWidget {
   const TopicsSelectionView({super.key});
@@ -6,9 +13,37 @@ class TopicsSelectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('TopicsSelectionView'),
+      appBar: CustomAppBar(),
+      body: SafeArea(
+        child: Padding(
+          padding: AppPaddings.h18,
+          child: SingleChildScrollView(
+            child: _TopicsSelectionViewBody(),
+          ),
+        ),
       ),
+    );
+  }
+}
+
+class _TopicsSelectionViewBody extends StatelessWidget {
+  const _TopicsSelectionViewBody();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        SizedBox(height: (context.height * 0.03).clamp(20, 100)),
+        Center(
+          child: AppTextWidget(
+            AppStrings.comingWithYou,
+            style: AppTextStyles.font22W200Primary,
+          ),
+        ),
+        const TopicsItemsSection(),
+        const SizedBox(height: 30),
+      ],
     );
   }
 }

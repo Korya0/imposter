@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.imposter"
+    namespace = "com.korya.imposter"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 

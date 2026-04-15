@@ -20,4 +20,6 @@ abstract class AppStrings {
   static const String youAreTheSpy = 'انت الجاسوس';
   static const String ready = 'كده كله تمام';
   static const String comingSoon = 'قريبا';
+  static const String comingWithYou = 'جايه معاك بايه ؟';
+  static const String back = 'رجوع';
 }
