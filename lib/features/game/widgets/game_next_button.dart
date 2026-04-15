@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_strings.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/widgets/app_button.dart';
 
 class GameNextButton extends StatelessWidget {
@@ -9,6 +10,8 @@ class GameNextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppButton(
+      width: 250,
+      height: (context.height * 0.1).clamp(50, 70),
       title: AppStrings.next,
       onTap: onPressed,
     );
