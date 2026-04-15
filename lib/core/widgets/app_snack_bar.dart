@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
@@ -27,17 +28,26 @@ class AppSnackBarContent extends StatelessWidget {
       bottom: isTop ? null : 0,
       left: 0,
       right: 0,
-      child: SafeArea(
-        bottom: !isTop,
-        top: isTop,
-        child: Padding(
-          padding: AppPaddings.all16,
-          child: _AppSnackBarCard(
-            message: message,
-            onClose: onDismiss,
-          ),
-        ),
-      ),
+      child:
+          SafeArea(
+                bottom: !isTop,
+                top: isTop,
+                child: Padding(
+                  padding: AppPaddings.all16,
+                  child: _AppSnackBarCard(
+                    message: message,
+                    onClose: onDismiss,
+                  ),
+                ),
+              )
+              .animate()
+              .fadeIn(duration: 400.ms)
+              .slideY(
+                begin: isTop ? -0.5 : 0.5,
+                end: 0,
+                duration: 400.ms,
+                curve: Curves.easeOutBack,
+              ),
     );
   }
 }
@@ -60,7 +70,12 @@ class _AppSnackBarCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.background,
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: AppColors.primary, width: 0.8),
+          border: const Border(
+            top: BorderSide(color: AppColors.primary, width: 0.8),
+            bottom: BorderSide(color: AppColors.primary, width: 0.8),
+            left: BorderSide(color: AppColors.primary, width: 4),
+            right: BorderSide(color: AppColors.primary, width: 4),
+          ),
         ),
         child: Row(
           spacing: 8,
@@ -69,6 +84,7 @@ class _AppSnackBarCard extends StatelessWidget {
               child: AppTextWidget(
                 title: message,
                 style: AppTextStyles.font18W800Primary,
+                textAlign: TextAlign.center,
               ),
             ),
             GestureDetector(

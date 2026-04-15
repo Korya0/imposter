@@ -16,30 +16,30 @@ class HomeButtonsSection extends StatelessWidget {
       spacing: 18,
       children: [
         Row(
-              spacing: 8,
-              children: [
-                Expanded(
-                  child: AppButton(
-                    height: buttonHeight.toDouble(),
-                    title: AppStrings.howToPlay,
-                    onTap: () => AppSnackBarHelper.show(
-                      context,
-                      message: AppStrings.comingSoon,
-                    ),
-                  ),
+          spacing: 8,
+          children: [
+            Expanded(
+              child: AppButton(
+                height: buttonHeight.toDouble(),
+                title: AppStrings.howToPlay,
+                onTap: () => AppSnackBarHelper.show(
+                  context,
+                  message: AppStrings.comingSoon,
                 ),
-                Expanded(
-                  child: AppButton(
-                    height: buttonHeight.toDouble(),
-                    title: AppStrings.drawer,
-                    onTap: () => AppSnackBarHelper.show(
-                      context,
-                      message: AppStrings.comingSoon,
-                    ),
-                  ),
+              ),
+            ),
+            Expanded(
+              child: AppButton(
+                height: buttonHeight.toDouble(),
+                title: AppStrings.drawer,
+                onTap: () => AppSnackBarHelper.show(
+                  context,
+                  message: AppStrings.comingSoon,
                 ),
-              ],
-            )
+              ),
+            ),
+          ],
+        )
             .animate()
             .fadeIn(duration: 300.ms, delay: 150.ms)
             .slideY(
@@ -49,13 +49,13 @@ class HomeButtonsSection extends StatelessWidget {
               curve: Curves.easeOutCubic,
             ),
         AppButton(
-              height: buttonHeight.toDouble(),
-              title: AppStrings.letsGo,
-              onTap: () => AppSnackBarHelper.show(
-                context,
-                message: AppStrings.comingSoon,
-              ),
-            )
+          height: buttonHeight.toDouble(),
+          title: AppStrings.letsGo,
+          onTap: () => AppSnackBarHelper.show(
+            context,
+            message: AppStrings.comingSoon,
+          ),
+        )
             .animate()
             .fadeIn(duration: 300.ms, delay: 200.ms)
             .slideY(
@@ -65,21 +65,21 @@ class HomeButtonsSection extends StatelessWidget {
               curve: Curves.easeOutCubic,
             ),
         ClipRect(
-              child: Banner(
-                message: '🔒',
-                location: BannerLocation.topStart,
-                color: AppColors.background,
-                textStyle: const TextStyle(fontSize: 30),
-                child: AppButton(
-                  height: buttonHeight.toDouble(),
-                  title: AppStrings.online,
-                  onTap: () => AppSnackBarHelper.show(
-                    context,
-                    message: AppStrings.comingSoon,
-                  ),
-                ),
+          child: Banner(
+            message: '🔒',
+            location: BannerLocation.topStart,
+            color: AppColors.background,
+            textStyle: const TextStyle(fontSize: 30),
+            child: AppButton(
+              height: buttonHeight.toDouble(),
+              title: AppStrings.online,
+              onTap: () => AppSnackBarHelper.show(
+                context,
+                message: AppStrings.comingSoon,
               ),
-            )
+            ),
+          ),
+        )
             .animate()
             .fadeIn(duration: 300.ms, delay: 250.ms)
             .slideY(
