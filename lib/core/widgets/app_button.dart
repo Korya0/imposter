@@ -1,45 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/widgets/app_button_label.dart';
 
-class AppButtonLabel extends StatelessWidget {
-  const AppButtonLabel({
-    super.key,
-    required this.title,
-    this.style,
-  });
-
-  final String title;
-  final TextStyle? style;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 24, right: 24, bottom: 4),
-      child: Center(
-        child: Transform.translate(
-          offset: const Offset(0, -12),
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text(
-              title,
-              style: (style ?? AppTextStyles.font34BoldSecondary).copyWith(
-                leadingDistribution: TextLeadingDistribution.even,
-              ),
-              textAlign: TextAlign.center,
-              textHeightBehavior: const TextHeightBehavior(
-                applyHeightToFirstAscent: false,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class AppButton extends StatelessWidget {
+class AppButton extends StatefulWidget {
   const AppButton({
     super.key,
     this.title,
@@ -61,31 +25,65 @@ class AppButton extends StatelessWidget {
   final Widget? child;
 
   @override
+  State<AppButton> createState() => _AppButtonState();
+}
+
+class _AppButtonState extends State<AppButton> {
+  bool _isPressed = false;
+
+  static const double _depth = 6;
+  static const Duration _duration = Duration(milliseconds: 80);
+
+  @override
   Widget build(BuildContext context) {
+    final buttonHeight = widget.height ?? 70;
+
     return Semantics(
-      label: title,
+      label: widget.title,
       button: true,
       child: GestureDetector(
-        onTap: onTap,
         behavior: HitTestBehavior.opaque,
+        onTapDown: (_) => setState(() => _isPressed = true),
+        onTapUp: (_) => setState(() => _isPressed = false),
+        onTapCancel: () => setState(() => _isPressed = false),
+        onTap: widget.onTap,
         child: SizedBox(
-          width: width ?? double.infinity,
-          height: height ?? 70,
+          width: widget.width ?? double.infinity,
+          height: buttonHeight + _depth,
           child: Stack(
-            alignment: Alignment.center,
             children: [
-              Positioned.fill(
-                child: SvgPicture.asset(
-                  AppSvgs.paper,
-                  fit: BoxFit.fill,
+              // Shadow layer — static at bottom, always visible
+              Positioned(
+                left: 0,
+                right: 0,
+                top: _depth,
+                bottom: 0,
+                child: Opacity(
+                  opacity: 0.35,
+                  child: SvgPicture.asset(AppSvgs.paper, fit: BoxFit.fill),
                 ),
               ),
-
-              // Use custom child or fall back to the default AppButtonLabel
-              if (child != null)
-                Positioned.fill(child: child!)
-              else
-                AppButtonLabel(title: title!, style: style),
+              // Main layer — SVG + content, shifts down on press
+              AnimatedPositioned(
+                duration: _duration,
+                curve: Curves.easeOut,
+                left: 0,
+                right: 0,
+                top: _isPressed ? _depth : 0,
+                bottom: _isPressed ? 0 : _depth,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned.fill(
+                      child: SvgPicture.asset(AppSvgs.paper, fit: BoxFit.fill),
+                    ),
+                    if (widget.child != null)
+                      Positioned.fill(child: widget.child!)
+                    else
+                      AppButtonLabel(title: widget.title!, style: widget.style),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
