@@ -21,7 +21,7 @@ class SketchyCardPainter extends CustomPainter {
     final paint = Paint()
       ..color = color.withValues(alpha: 0.6)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.2
+      ..strokeWidth = 3.2
       ..strokeCap = StrokeCap.round;
 
     // 1. Draw 3 overlapping messy borders

@@ -74,42 +74,34 @@ class _AppSketchyCardState extends State<AppSketchyCard>
                     showTape: widget.showTape,
                     progress: _controller.value,
                   ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      // Using secondary brown with subtle opacity for the card background
-                      color: const Color(0xFF303230).withValues(
-                        alpha: 0.15 + (_controller.value * 0.1),
-                      ),
-                    ),
-                    child: Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        if (widget.watermark != null)
-                          Padding(
-                            padding: AppPaddings.all16,
-                            child: Center(
-                              child: ColorFiltered(
-                                colorFilter: ColorFilter.mode(
-                                  AppColors.primary.withValues(
-                                    alpha: 0.11,
-                                  ),
-                                  BlendMode.srcIn,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      if (widget.watermark != null)
+                        Padding(
+                          padding: AppPaddings.all16,
+                          child: Center(
+                            child: ColorFiltered(
+                              colorFilter: ColorFilter.mode(
+                                AppColors.primary.withValues(
+                                  alpha: 0.1,
                                 ),
-                                child: widget.watermark,
+                                BlendMode.srcIn,
                               ),
-                            ),
-                          ),
-                        Center(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                            child: AppTextWidget(
-                              widget.title,
-                              style: AppTextStyles.ruqaa45BoldPrimary,
+                              child: widget.watermark,
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: AppTextWidget(
+                            widget.title,
+                            style: AppTextStyles.ruqaa45BoldPrimary,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
