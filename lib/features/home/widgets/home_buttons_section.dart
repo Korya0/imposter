@@ -31,6 +31,7 @@ class HomeButtonsSection extends StatelessWidget {
                 Expanded(
                   child: AppButton(
                     height: buttonHeight.toDouble(),
+
                     title: AppStrings.drawer,
                     onTap: () => AppToast.show(
                       context,
@@ -56,9 +57,13 @@ class HomeButtonsSection extends StatelessWidget {
             )
             .animate()
             .fadeIn(delay: 800.ms, duration: 600.ms)
-            .slideY(
-              begin: 0.2,
-              end: 0,
+            .slideY(begin: 0.2, end: 0)
+            .animate(onPlay: (controller) => controller.repeat(reverse: true))
+            .scale(
+              begin: const Offset(1, 1),
+              end: const Offset(1.03, 1.03),
+              duration: 1500.ms,
+              curve: Curves.easeInOutSine,
             ),
         ClipRect(
               child: Banner(
