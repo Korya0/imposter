@@ -25,3 +25,11 @@ abstract class AppImages {
   static const String logoSplashIcon = '$_baseImage/logo_splash_icon.png';
   static const String paperWebp = '$_baseImage/paper-converted-from-svg.webp';
 }
+
+abstract class AppAudios {
+  static const String _baseAudio = 'assets/audio';
+
+  static const String timer = '$_baseAudio/timer.mp3';
+  static const String win = '$_baseAudio/win.mp3';
+  static const String yallahBena = '$_baseAudio/yallah_bena.mp3';
+}
