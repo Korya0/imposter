@@ -4,7 +4,7 @@ import 'package:imposter/core/theme/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/widgets/app_text_widget.dart';
 import 'package:imposter/core/widgets/custom_app_bar.dart';
-import 'package:imposter/features/game/presentation/widgets/topics_items_section.dart';
+import 'package:imposter/features/game/presentation/widgets/topics_selection/topics_items_section.dart';
 
 class TopicsSelectionViewBody extends StatelessWidget {
   const TopicsSelectionViewBody({super.key});

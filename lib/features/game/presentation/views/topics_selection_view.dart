@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
-import 'package:imposter/features/game/presentation/widgets/topics_selection_view_body.dart';
+import 'package:imposter/features/game/presentation/widgets/topics_selection/topics_selection_view_body.dart';
 
 class TopicsSelectionView extends StatelessWidget {
   const TopicsSelectionView({super.key});

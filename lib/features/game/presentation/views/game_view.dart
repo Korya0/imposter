@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/models/game_view_state.dart';
-import 'package:imposter/features/game/presentation/widgets/game_view_body.dart';
+import 'package:imposter/features/game/presentation/widgets/game/game_view_body.dart';
 
 class GameView extends StatefulWidget {
   const GameView({super.key});

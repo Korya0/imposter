@@ -5,8 +5,8 @@ import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/widgets/custom_app_bar.dart';
-import 'package:imposter/features/game/presentation/widgets/game_setting_item.dart';
-import 'package:imposter/features/game/presentation/widgets/start_button.dart';
+import 'package:imposter/features/game/presentation/widgets/game_settings/game_setting_item.dart';
+import 'package:imposter/features/game/presentation/widgets/game_settings/start_button.dart';
 import 'package:go_router/go_router.dart';
 
 class GameSettingsViewBody extends StatelessWidget {

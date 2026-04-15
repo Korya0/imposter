@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:imposter/features/game/presentation/widgets/game_next_button.dart';
-import 'package:imposter/features/game/presentation/widgets/spy_logo.dart';
-import 'package:imposter/features/game/presentation/widgets/spy_you_are_text.dart';
+import 'package:imposter/features/game/presentation/widgets/game/game_next_button.dart';
+import 'package:imposter/features/game/presentation/widgets/game/spy_logo.dart';
+import 'package:imposter/features/game/presentation/widgets/game/spy_you_are_text.dart';
 
 class SpyRevealView extends StatelessWidget {
   final VoidCallback onNext;

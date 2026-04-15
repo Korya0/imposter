@@ -3,10 +3,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/widgets/custom_app_bar.dart';
 import 'package:imposter/features/game/presentation/models/game_view_state.dart';
-import 'package:imposter/features/game/presentation/widgets/citizen_reveal_view.dart';
-import 'package:imposter/features/game/presentation/widgets/game_ready_view.dart';
-import 'package:imposter/features/game/presentation/widgets/scan_view_body.dart';
-import 'package:imposter/features/game/presentation/widgets/spy_reveal_view.dart';
+import 'package:imposter/features/game/presentation/widgets/game/citizen_reveal_view.dart';
+import 'package:imposter/features/game/presentation/widgets/game/game_ready_view.dart';
+import 'package:imposter/features/game/presentation/widgets/game/scan_view_body.dart';
+import 'package:imposter/features/game/presentation/widgets/game/spy_reveal_view.dart';
 
 class GameViewBody extends StatelessWidget {
   final GameViewState currentState;
