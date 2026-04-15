@@ -31,29 +31,28 @@ class TopicsItemsSection extends StatelessWidget {
       itemCount: topics.length,
       itemBuilder: (context, index) {
         return AppSketchyCard(
-          title: topics[index]['title']!,
-          onTap: () async {
-            await context.pushNamed(AppRoutes.gameSettings);
-          },
-          watermark:
-              SvgPicture.asset(
-                    topics[index]['icon']!,
-                  )
-                  .animate()
-                  .fadeIn(delay: (index * 150).ms, duration: 500.ms)
-                  .slideX(
-                    begin: 1,
-                    end: 0,
-                    duration: 600.ms,
-                    curve: Curves.easeOutQuad,
-                  )
-                  .slideY(
-                    begin: 0.5,
-                    end: 0,
-                    duration: 600.ms,
-                    curve: Curves.easeOutQuad,
-                  ),
-        );
+              title: topics[index]['title']!,
+              onTap: () async {
+                await context.pushNamed(AppRoutes.gameSettings);
+              },
+              watermark: SvgPicture.asset(
+                topics[index]['icon']!,
+              ),
+            )
+            .animate()
+            .fadeIn(delay: (index * 150).ms, duration: 500.ms)
+            .slideX(
+              begin: 1,
+              end: 0,
+              duration: 600.ms,
+              curve: Curves.easeOutQuad,
+            )
+            .slideY(
+              begin: 0.5,
+              end: 0,
+              duration: 600.ms,
+              curve: Curves.easeOutQuad,
+            );
       },
     );
   }
