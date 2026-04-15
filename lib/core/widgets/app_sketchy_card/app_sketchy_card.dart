@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
 import 'package:imposter/core/widgets/app_sketchy_card/sketchy_card_painter.dart';
@@ -67,6 +66,10 @@ class _AppSketchyCardState extends State<AppSketchyCard>
               child: Container(
                 width: widget.width,
                 height: widget.height,
+                constraints: const BoxConstraints(
+                  minHeight: 150,
+                  minWidth: 250,
+                ),
                 margin: const EdgeInsets.only(top: 25, left: 10, right: 10),
                 child: CustomPaint(
                   painter: SketchyCardPainter(
@@ -74,34 +77,33 @@ class _AppSketchyCardState extends State<AppSketchyCard>
                     showTape: widget.showTape,
                     progress: _controller.value,
                   ),
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      if (widget.watermark != null)
-                        Padding(
-                          padding: AppPaddings.all16,
-                          child: Center(
-                            child: ColorFiltered(
-                              colorFilter: ColorFilter.mode(
-                                AppColors.primary.withValues(
-                                  alpha: 0.1,
-                                ),
-                                BlendMode.srcIn,
+                  child: Container(
+                    padding: const EdgeInsets.all(24),
+                    alignment: Alignment.center,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        if (widget.watermark != null)
+                          ColorFiltered(
+                            colorFilter: ColorFilter.mode(
+                              AppColors.primary.withValues(
+                                alpha: 0.1,
                               ),
-                              child: widget.watermark,
+                              BlendMode.srcIn,
                             ),
+                            child: widget.watermark,
                           ),
-                        ),
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
                           child: AppTextWidget(
                             widget.title,
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
                             style: AppTextStyles.ruqaa45BoldPrimary,
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -29,6 +29,12 @@ class AppTextStyles {
     color: AppColors.secondary,
   );
 
+  static TextStyle font45W800Primary = fontApp.copyWith(
+    fontSize: 45,
+    fontWeight: LateefWeight.w800.weight,
+    color: AppColors.primary,
+  );
+
   static TextStyle font30W800Background = fontApp.copyWith(
     fontSize: 30,
     fontWeight: LateefWeight.w800.weight,

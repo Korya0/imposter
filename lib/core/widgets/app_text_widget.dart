@@ -7,11 +7,15 @@ class AppTextWidget extends StatelessWidget {
     super.key,
     this.style,
     this.textAlign,
+    this.maxLines,
+    this.overflow,
   });
 
   final String title;
   final TextStyle? style;
   final TextAlign? textAlign;
+  final int? maxLines;
+  final TextOverflow? overflow;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +23,8 @@ class AppTextWidget extends StatelessWidget {
       title,
       style: style ?? AppTextStyles.font22W800Primary,
       textAlign: textAlign ?? TextAlign.center,
+      maxLines: maxLines,
+      overflow: overflow,
     );
   }
 }

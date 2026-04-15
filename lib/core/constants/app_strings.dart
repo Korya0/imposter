@@ -22,4 +22,5 @@ abstract class AppStrings {
   static const String comingSoon = 'قريبا';
   static const String comingWithYou = 'جايه معاك بايه ؟';
   static const String back = 'رجوع';
+  static const String player = 'Player';
 }

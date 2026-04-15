@@ -61,8 +61,9 @@ class HomeButtonsSection extends StatelessWidget {
         ClipRect(
               child: Banner(
                 message: '🔒',
+
                 location: BannerLocation.topStart,
-                color: AppColors.background,
+                color: AppColors.secondary,
                 textStyle: const TextStyle(fontSize: 22),
                 child: AppButton(
                   width: double.infinity,
