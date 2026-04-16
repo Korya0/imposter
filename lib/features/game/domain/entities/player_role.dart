@@ -1,4 +1,0 @@
-enum PlayerRole {
-  citizen,
-  imposter,
-}
