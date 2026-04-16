@@ -2,7 +2,7 @@
   "categories": [
     {
       "id": "places",
-      "name": "أماكن ومعالم",
+      "name": "أماكن",
       "icon": "assets/svgs/Places.svg",
       "words": [
         {
@@ -181,7 +181,7 @@
     },
     {
       "id": "food",
-      "name": "أكلات وحلويات",
+      "name": "أكل",
       "icon": "assets/svgs/Food.svg",
       "words": [
         {
@@ -356,7 +356,7 @@
     },
     {
       "id": "jobs",
-      "name": "مهن ووظائف",
+      "name": "وظائف",
       "icon": "assets/svgs/Professions.svg",
       "words": [
         {
@@ -710,7 +710,7 @@
     },
     {
       "id": "objects",
-      "name": "أدوات وأشياء",
+      "name": "أشياء",
       "icon": "assets/svgs/Things.svg",
       "words": [
         {
