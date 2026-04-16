@@ -1,0 +1,4 @@
+enum PlayerRole {
+  citizen,
+  imposter,
+}
