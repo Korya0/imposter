@@ -5,8 +5,8 @@ import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:imposter/core/widgets/app_button.dart';
-import 'package:imposter/core/widgets/app_text_widget.dart';
+import 'package:imposter/core/presentation/widgets/app_button.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 
 class StartButton extends StatelessWidget {
   const StartButton({

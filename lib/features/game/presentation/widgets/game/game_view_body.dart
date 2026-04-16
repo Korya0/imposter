@@ -3,9 +3,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:imposter/core/widgets/custom_app_bar.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
+import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
 import 'package:imposter/features/game/presentation/widgets/game/citizen_reveal_view.dart';
@@ -31,7 +32,7 @@ class GameViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: AppPaddings.h18,
+        padding: AppPaddings.h18.add(AppPaddings.bottomPaddingH05(context) * 2),
         child: Column(
           children: [
             const CustomAppBar(),
@@ -39,7 +40,6 @@ class GameViewBody extends StatelessWidget {
               child: _buildCurrentStateContent(context),
             ),
             _buildBottomAction(context),
-            SizedBox(height: (context.height * 0.05).clamp(12, 32)),
           ],
         ),
       ),
@@ -53,7 +53,7 @@ class GameViewBody extends StatelessWidget {
           GameInitial() ||
           GameLoading() => const Center(child: CircularProgressIndicator()),
           GameCategoriesLoaded() => const Center(
-            child: Text('Category Selection Soon'),
+            child: AppTextWidget(AppStrings.comingSoon),
           ),
           GameScanning(currentPlayerIndex: final index) => ScanViewBody(
             playerNumber: index + 1,
@@ -79,7 +79,7 @@ class GameViewBody extends StatelessWidget {
               onAnotherRound: cubit.prepareRound,
               onFinish: () => context.goNamed(AppRoutes.home),
             ),
-          GameError(message: final msg) => Center(child: Text(msg)),
+          GameError(message: final msg) => Center(child: AppTextWidget(msg)),
         }
         .animate(key: ValueKey(currentState))
         .fadeIn(duration: 400.ms)
@@ -94,15 +94,15 @@ class GameViewBody extends StatelessWidget {
         onTap: () => cubit.toggleReveal(true),
       ),
       GameRevealing() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: AppPaddings.h24,
         child: GameNextButton(onPressed: () => cubit.toggleReveal(false)),
       ),
       GameTimer() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: AppPaddings.h24,
         child: GameFinishTurnButton(onPressed: cubit.finishGame),
       ),
       GameSummary() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: AppPaddings.h24,
         child: GameFinishGameButton(
           onPressed: () => context.goNamed(AppRoutes.home),
         ),

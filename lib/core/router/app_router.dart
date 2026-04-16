@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/di/di.dart';
+import 'package:imposter/core/presentation/views/app_error_view.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/router/app_transitions.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
@@ -76,7 +76,5 @@ final GoRouter appRouter = GoRouter(
       ],
     ),
   ],
-  errorBuilder: (context, state) => const Scaffold(
-    body: Center(child: Text('Error')),
-  ),
+  errorBuilder: (context, state) => const AppErrorView(),
 );

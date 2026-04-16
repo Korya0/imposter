@@ -1,9 +1,10 @@
+import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
-import 'package:imposter/core/widgets/app_text_widget.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 
 class GameSummaryView extends StatelessWidget {
   final String secretWord;
@@ -49,7 +50,7 @@ class GameSummaryView extends StatelessWidget {
             InkWell(
               onTap: onAnotherRound,
               child: Container(
-                padding: const EdgeInsets.all(16),
+                padding: AppPaddings.all16,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.white, width: 1.5),
@@ -79,7 +80,7 @@ class GameSummaryView extends StatelessWidget {
 
   Widget _buildInfoRow(String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: AppPaddings.h24,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

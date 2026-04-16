@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
-import 'package:imposter/core/widgets/app_text_widget.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 
 class LottieTimer extends StatefulWidget {
   const LottieTimer({

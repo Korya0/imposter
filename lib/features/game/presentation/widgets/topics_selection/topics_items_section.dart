@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:imposter/core/widgets/app_sketchy_card/app_sketchy_card.dart';
+import 'package:imposter/core/presentation/widgets/app_sketchy_card/app_sketchy_card.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
 

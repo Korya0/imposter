@@ -3,10 +3,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_assets.dart';
+import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:imposter/core/widgets/custom_app_bar.dart';
+import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
 import 'package:imposter/features/game/presentation/widgets/game_settings/game_setting_item.dart';
@@ -22,9 +22,7 @@ class GameSettingsViewBody extends StatelessWidget {
     return BlocBuilder<GameCubit, GameState>(
       builder: (context, state) {
         return Padding(
-          padding: EdgeInsets.only(
-            bottom: (context.height * 0.05).clamp(12, 32),
-          ),
+          padding: AppPaddings.bottomPaddingH05(context),
           child: Column(
             children: [
               const CustomAppBar(),
@@ -40,7 +38,7 @@ class GameSettingsViewBody extends StatelessWidget {
                   .fadeIn(delay: 100.ms, duration: 600.ms)
                   .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
 
-              SizedBox(height: (context.height * 0.05).clamp(12, 32)),
+              SizedBox(height: AppPaddings.heightH05(context)),
 
               GameSettingItem(
                     iconPath: AppAssets.spySvg,
@@ -53,7 +51,7 @@ class GameSettingsViewBody extends StatelessWidget {
                   .fadeIn(delay: 250.ms, duration: 600.ms)
                   .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
 
-              SizedBox(height: (context.height * 0.01).clamp(12, 32)),
+              SizedBox(height: AppPaddings.heightH01(context)),
 
               GameSettingItem(
                     iconPath: AppAssets.timeOclockSvg,
@@ -66,7 +64,7 @@ class GameSettingsViewBody extends StatelessWidget {
                   .fadeIn(delay: 400.ms, duration: 600.ms)
                   .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
 
-              SizedBox(height: (context.height * 0.05).clamp(18, 42)),
+              SizedBox(height: AppPaddings.heightH05Large(context)),
 
               StartButton(
                 onTap: () async {

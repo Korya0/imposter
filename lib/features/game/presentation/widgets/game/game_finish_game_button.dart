@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:imposter/core/widgets/app_button.dart';
+import 'package:imposter/core/presentation/widgets/app_button.dart';
 
 class GameFinishGameButton extends StatelessWidget {
   final VoidCallback onPressed;

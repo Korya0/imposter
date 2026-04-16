@@ -1,3 +1,4 @@
+import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
@@ -5,7 +6,7 @@ import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
-import 'package:imposter/core/widgets/app_text_widget.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 
 class GameReadyView extends StatelessWidget {
   final VoidCallback onStartTimer;
@@ -17,7 +18,7 @@ class GameReadyView extends StatelessWidget {
       onTap: onStartTimer,
       child: Center(
         child: Column(
-          spacing: 30,
+          spacing: AppPaddings.spacing30,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AppTextWidget(
@@ -25,7 +26,7 @@ class GameReadyView extends StatelessWidget {
               style: AppTextStyles.ruqaa45BoldPrimary,
             ),
             Container(
-              padding: const EdgeInsets.all(20),
+              padding: AppPaddings.all20,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(color: AppColors.primary, width: 2),

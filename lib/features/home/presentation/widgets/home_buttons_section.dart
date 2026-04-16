@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/theme/app_colors.dart';
-import 'package:imposter/core/widgets/app_button.dart';
-import 'package:imposter/core/widgets/app_toast.dart';
+import 'package:imposter/core/presentation/widgets/app_button.dart';
+import 'package:imposter/core/presentation/widgets/app_toast.dart';
 
 class HomeButtonsSection extends StatelessWidget {
   const HomeButtonsSection({super.key});

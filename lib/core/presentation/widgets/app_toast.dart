@@ -1,7 +1,8 @@
+import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
-import 'package:imposter/core/widgets/app_text_widget.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:toastification/toastification.dart';
 
 enum ToastPosition { top, bottom }
@@ -45,13 +46,8 @@ class AppToast {
         primaryColor: AppColors.primary,
         backgroundColor: AppColors.background,
         foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 12,
-        ),
-        margin: const EdgeInsets.symmetric(
-          horizontal: 16,
-        ),
+        padding: AppPaddings.toastPadding,
+        margin: AppPaddings.toastMargin,
         showProgressBar: false,
         closeButton: const ToastCloseButton(showType: CloseButtonShowType.none),
         dragToClose: true,

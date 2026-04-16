@@ -1,7 +1,8 @@
+import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
-import 'package:imposter/core/widgets/app_text_widget.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({
@@ -36,7 +37,7 @@ class AppButton extends StatelessWidget {
           width: width,
           height: height ?? 60,
           padding: width == null
-              ? const EdgeInsets.symmetric(horizontal: 12)
+              ? AppPaddings.h12
               : null,
           alignment: Alignment.center,
           decoration: const BoxDecoration(
