@@ -1,3 +1,4 @@
+import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -53,14 +54,14 @@ class GameSummaryView extends StatelessWidget {
                 padding: AppPaddings.all16,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: 1.5),
+                  border: Border.all(color: AppColors.white, width: 1.5),
                 ),
                 child: SvgPicture.asset(
                   AppAssets.redoSvg,
                   width: 40,
                   height: 40,
                   colorFilter: const ColorFilter.mode(
-                    Colors.white,
+                    AppColors.white,
                     BlendMode.srcIn,
                   ),
                 ),

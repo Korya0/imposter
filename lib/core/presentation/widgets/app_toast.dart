@@ -45,7 +45,7 @@ class AppToast {
         borderRadius: BorderRadius.circular(16),
         primaryColor: AppColors.primary,
         backgroundColor: AppColors.background,
-        foregroundColor: Colors.white,
+        foregroundColor: AppColors.white,
         padding: AppPaddings.toastPadding,
         margin: AppPaddings.toastMargin,
         showProgressBar: false,

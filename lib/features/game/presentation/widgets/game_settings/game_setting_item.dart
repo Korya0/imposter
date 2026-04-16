@@ -67,7 +67,6 @@ class GameSettingItem extends StatelessWidget {
                 onPressed: onDecrement,
                 icon: const Icon(
                   Icons.remove_sharp,
-                  color: AppColors.primary,
                   size: 28,
                 ),
               ),
@@ -78,7 +77,7 @@ class GameSettingItem extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: AppTextWidget(
                   value,
-                  style: AppTextStyles.font36W800Primary.copyWith(fontSize: 40),
+                  style: AppTextStyles.font40W800Primary,
                 ),
               ),
             ),
@@ -92,7 +91,6 @@ class GameSettingItem extends StatelessWidget {
                 icon: const Icon(
                   Icons.add_sharp,
                   size: 28,
-                  color: AppColors.primary,
                 ),
               ),
             ),

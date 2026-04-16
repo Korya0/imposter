@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,7 +26,7 @@ class TopicsItemsSection extends StatelessWidget {
         }
 
         if (state is GameError) {
-          return Center(child: Text(state.message));
+          return Center(child: AppTextWidget(state.message));
         }
 
         final categories = state.categories;

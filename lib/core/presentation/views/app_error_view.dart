@@ -5,7 +5,6 @@ import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
 
 class AppErrorView extends StatelessWidget {
@@ -26,7 +25,6 @@ class AppErrorView extends StatelessWidget {
                   const Icon(
                     Icons.error_outline_rounded,
                     size: 80,
-                    color: AppColors.primary,
                   ),
                   AppTextWidget(
                     AppStrings.oopsYouLost,

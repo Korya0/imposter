@@ -6,6 +6,7 @@ import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_toast.dart';
+import 'package:imposter/core/theme/app_text_styles.dart';
 
 class HomeButtonsSection extends StatelessWidget {
   const HomeButtonsSection({super.key});
@@ -64,7 +65,7 @@ class HomeButtonsSection extends StatelessWidget {
 
                 location: BannerLocation.topStart,
                 color: AppColors.secondary,
-                textStyle: const TextStyle(fontSize: 22),
+                textStyle: AppTextStyles.font22W800Primary,
                 child: AppButton(
                   width: double.infinity,
                   title: AppStrings.online,

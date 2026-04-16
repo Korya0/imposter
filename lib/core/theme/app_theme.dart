@@ -13,6 +13,16 @@ abstract class AppTheme {
         secondary: AppColors.secondary,
         surface: AppColors.background,
       ),
+      iconTheme: const IconThemeData(
+        color: AppColors.primary,
+        size: 24,
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          foregroundColor: AppColors.primary,
+        ),
+      ),
+
       fontFamily: AppFonts.lateefBase.fontFamily,
     );
   }

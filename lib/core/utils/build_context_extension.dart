@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 extension BuildContextExtension on BuildContext {
@@ -11,8 +10,4 @@ extension BuildContextExtension on BuildContext {
       currentFocus.unfocus();
     }
   }
-
-  bool get isIOS => Theme.of(this).platform == TargetPlatform.iOS;
-  bool get isAndroid => Theme.of(this).platform == TargetPlatform.android;
-  bool get isWeb => kIsWeb;
 }

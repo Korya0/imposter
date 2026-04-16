@@ -17,21 +17,10 @@ class AppTextStyles {
     fontWeight: RuqaaWeight.w700.weight,
   );
 
-  static TextStyle font18W400Primary = fontApp.copyWith(
-    fontSize: 18,
-    fontWeight: LateefWeight.w400.weight,
-    color: AppColors.primary,
-  );
-
   static TextStyle ruqaa24BoldPrimary = fontRuqaa.copyWith(
     color: AppColors.primary,
     fontSize: 24,
     fontWeight: RuqaaWeight.w700.weight,
-  );
-  static TextStyle ruqaa20W400Primary = fontRuqaa.copyWith(
-    color: AppColors.primary,
-    fontSize: 20,
-    fontWeight: RuqaaWeight.w400.weight,
   );
 
   static TextStyle ruqaa32W400Primary = fontRuqaa.copyWith(
@@ -47,7 +36,7 @@ class AppTextStyles {
   );
 
   static TextStyle ruqaa28W400White = fontRuqaa.copyWith(
-    color: Colors.white,
+    color: AppColors.white,
     fontSize: 28,
     fontWeight: RuqaaWeight.w400.weight,
   );
@@ -64,22 +53,10 @@ class AppTextStyles {
     fontSize: 18,
   );
 
-  static TextStyle font28W800White = fontApp.copyWith(
-    fontWeight: LateefWeight.w800.weight,
-    color: Colors.white,
-    fontSize: 28,
-  );
-
   static TextStyle font45W800Secondary = fontApp.copyWith(
     fontSize: 45,
     fontWeight: LateefWeight.w800.weight,
     color: AppColors.secondary,
-  );
-
-  static TextStyle font45W800Primary = fontApp.copyWith(
-    fontSize: 45,
-    fontWeight: LateefWeight.w800.weight,
-    color: AppColors.primary,
   );
 
   static TextStyle font30W800Background = fontApp.copyWith(
@@ -98,6 +75,18 @@ class AppTextStyles {
     fontSize: 36,
     fontWeight: LateefWeight.w800.weight,
     color: AppColors.primary,
+  );
+
+  static TextStyle font40W800Primary = fontApp.copyWith(
+    fontSize: 40,
+    fontWeight: LateefWeight.w800.weight,
+    color: AppColors.primary,
+  );
+
+  static TextStyle font45W800Background = fontApp.copyWith(
+    fontSize: 45,
+    fontWeight: LateefWeight.w800.weight,
+    color: AppColors.background,
   );
 
   static TextStyle font22W200Primary = fontApp.copyWith(

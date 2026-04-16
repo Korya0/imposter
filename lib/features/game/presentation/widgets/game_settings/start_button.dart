@@ -30,9 +30,7 @@ class StartButton extends StatelessWidget {
               const SizedBox(width: 12),
               AppTextWidget(
                 AppStrings.start,
-                style: AppTextStyles.font30W800Background.copyWith(
-                  fontSize: (context.height * 0.05).clamp(40, 50),
-                ),
+                style: AppTextStyles.font45W800Background,
               ),
             ],
           ),
