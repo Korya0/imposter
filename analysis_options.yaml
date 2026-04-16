@@ -12,4 +12,5 @@ linter:
     sort_constructors_first: false
     sort_pub_dependencies: false
     eol_at_end_of_file: false
+    one_member_abstracts: false
     
