@@ -1,7 +1,11 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:imposter/core/di/di.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/router/app_transitions.dart';
+import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/views/game_settings_view.dart';
 import 'package:imposter/features/game/presentation/views/game_view.dart';
 import 'package:imposter/features/game/presentation/views/topics_selection_view.dart';
@@ -29,32 +33,46 @@ final GoRouter appRouter = GoRouter(
         context: context,
       ),
     ),
-    GoRoute(
-      path: AppRoutes.topicsSelection,
-      name: AppRoutes.topicsSelection,
-      pageBuilder: (context, state) => AppTransitions.slideFromRight(
-        context: context,
-        state: state,
-        child: const TopicsSelectionView(),
-      ),
-    ),
-    GoRoute(
-      path: AppRoutes.gameSettings,
-      name: AppRoutes.gameSettings,
-      pageBuilder: (context, state) => AppTransitions.slideFromRight(
-        context: context,
-        state: state,
-        child: const GameSettingsView(),
-      ),
-    ),
-    GoRoute(
-      path: AppRoutes.game,
-      name: AppRoutes.game,
-      pageBuilder: (context, state) => AppTransitions.slideFromRight(
-        context: context,
-        state: state,
-        child: const GameView(),
-      ),
+    ShellRoute(
+      builder: (context, state, child) {
+        return BlocProvider(
+          create: (context) {
+            final cubit = sl<GameCubit>();
+            unawaited(cubit.init());
+            return cubit;
+          },
+          child: child,
+        );
+      },
+      routes: [
+        GoRoute(
+          path: AppRoutes.topicsSelection,
+          name: AppRoutes.topicsSelection,
+          pageBuilder: (context, state) => AppTransitions.slideFromRight(
+            context: context,
+            state: state,
+            child: const TopicsSelectionView(),
+          ),
+        ),
+        GoRoute(
+          path: AppRoutes.gameSettings,
+          name: AppRoutes.gameSettings,
+          pageBuilder: (context, state) => AppTransitions.slideFromRight(
+            context: context,
+            state: state,
+            child: const GameSettingsView(),
+          ),
+        ),
+        GoRoute(
+          path: AppRoutes.game,
+          name: AppRoutes.game,
+          pageBuilder: (context, state) => AppTransitions.slideFromRight(
+            context: context,
+            state: state,
+            child: const GameView(),
+          ),
+        ),
+      ],
     ),
   ],
   errorBuilder: (context, state) => const Scaffold(

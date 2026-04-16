@@ -8,28 +8,43 @@ import 'package:imposter/core/widgets/app_button.dart';
 import 'package:imposter/core/widgets/how_to_play_button.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({
+    super.key,
+    this.onRedo,
+    this.showRedo = false,
+  });
+
+  final VoidCallback? onRedo;
+  final bool showRedo;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: (context.height * 0.01).clamp(20, 40)),
-      child:
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const HowToPlayButton(),
-
-              AppButton(
-                height: 50,
-                onTap: () => context.pop(),
-                child: SvgPicture.asset(
-                  AppSvgs.backIcon,
-                  height: 24,
-                ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const HowToPlayButton(),
+          if (showRedo)
+            AppButton(
+              height: 50,
+              onTap: onRedo,
+              child: const Icon(
+                Icons.refresh,
+                color: Colors.orangeAccent,
+                size: 28,
               ),
-            ],
-          ).animate().slideY(
+            ).animate().fadeIn(),
+          AppButton(
+            height: 50,
+            onTap: () => context.pop(),
+            child: SvgPicture.asset(
+              AppSvgs.backIcon,
+              height: 24,
+            ),
+          ),
+        ],
+      ).animate().slideY(
             begin: -1,
             end: 0,
             duration: 600.ms,

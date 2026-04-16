@@ -16,6 +16,11 @@ class AppTextStyles {
     fontSize: 45,
     fontWeight: RuqaaWeight.w700.weight,
   );
+  static TextStyle ruqaa20W400Primary = fontRuqaa.copyWith(
+    color: AppColors.primary,
+    fontSize: 20,
+    fontWeight: RuqaaWeight.w400.weight,
+  );
 
   static TextStyle ruqaa32W400Primary = fontRuqaa.copyWith(
     color: AppColors.primary,

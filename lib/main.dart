@@ -1,11 +1,13 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:imposter/core/di/app_initializer.dart';
 import 'package:imposter/core/router/app_router.dart';
 import 'package:imposter/core/theme/app_theme.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
-void main() {
+void main() async {
+  await AppInitializer.initEssential();
   runApp(
     kIsWeb && kDebugMode
         ? DevicePreview(builder: (context) => const ImposterApp())

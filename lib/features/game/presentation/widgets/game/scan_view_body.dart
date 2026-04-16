@@ -4,7 +4,9 @@ import 'package:imposter/core/theme/app_text_styles.dart';
 import 'package:imposter/core/widgets/app_text_widget.dart';
 
 class ScanViewBody extends StatelessWidget {
-  const ScanViewBody({super.key});
+  final int playerNumber;
+
+  const ScanViewBody({super.key, required this.playerNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class ScanViewBody extends StatelessWidget {
                 style: AppTextStyles.ruqaa32W400Primary,
               ),
               AppTextWidget(
-                '1', // TODO: Binding
+                playerNumber.toString(),
                 style: AppTextStyles.ruqaa32W400Primary,
               ),
             ],

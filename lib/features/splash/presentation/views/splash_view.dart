@@ -24,12 +24,9 @@ class _SplashViewState extends State<SplashView> {
   }
 
   Future<void> _initialize() async {
-    final essentialFuture = AppInitializer.initEssential();
-    final minimumDelayFuture = Future<void>.delayed(
+    await Future<void>.delayed(
       const Duration(seconds: 2),
     );
-
-    await Future.wait([essentialFuture, minimumDelayFuture]);
 
     if (mounted) {
       context.go(AppRoutes.home);
