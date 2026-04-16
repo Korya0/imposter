@@ -12,6 +12,11 @@ import 'package:imposter/features/game/presentation/widgets/game/lottie_timer.da
 import 'package:imposter/features/game/presentation/widgets/game/scan_view_body.dart';
 import 'package:imposter/features/game/presentation/widgets/game/spy_reveal_view.dart';
 
+import 'package:imposter/features/game/presentation/widgets/game/game_fingerprint_button.dart';
+import 'package:imposter/features/game/presentation/widgets/game/game_finish_game_button.dart';
+import 'package:imposter/features/game/presentation/widgets/game/game_finish_turn_button.dart';
+import 'package:imposter/features/game/presentation/widgets/game/game_next_button.dart';
+
 class GameViewBody extends StatelessWidget {
   final GameViewState currentState;
   final VoidCallback onScanComplete;
@@ -32,42 +37,36 @@ class GameViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        bottom: (context.height * 0.05).clamp(12, 32),
-      ),
-      child: Column(
-        children: [
-          const CustomAppBar(),
-          Expanded(
-            child: _buildCurrentStateWidget(context),
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        const CustomAppBar(),
+        Expanded(
+          child: _buildCurrentStateContent(context),
+        ),
+        _buildBottomAction(context),
+        SizedBox(height: (context.height * 0.05).clamp(12, 32)),
+      ],
     );
   }
 
-  Widget _buildCurrentStateWidget(BuildContext context) {
+  Widget _buildCurrentStateContent(BuildContext context) {
     Widget child;
     switch (currentState) {
       case GameViewState.scanning:
-        child = ScanViewBody(onScanComplete: onScanComplete);
+        return const ScanViewBody();
       case GameViewState.revealSpy:
-        child = SpyRevealView(onNext: onNext);
+        child = const SpyRevealView();
       case GameViewState.revealCitizen:
-        child = CitizenRevealView(onNext: onNext);
+        child = const CitizenRevealView();
       case GameViewState.ready:
         child = GameReadyView(onStartTimer: onStartTimer);
       case GameViewState.timer:
-        child = Center(
-          child: LottieTimer(
-            duration: const Duration(seconds: 10),
-            onTimeout: onFinishGame,
-            onFinish: onFinishGame,
-          ),
+        child = LottieTimer(
+          duration: const Duration(seconds: 10), // TODO(binding): connect to cubit
+          onTimeout: onFinishGame,
         );
       case GameViewState.summary:
-        child = GameSummaryView(
+        return GameSummaryView(
           secretWord: 'مسجد',
           playersCount: 4,
           spiesCount: 1,
@@ -80,6 +79,33 @@ class GameViewBody extends StatelessWidget {
     return child
         .animate(key: ValueKey(currentState))
         .fadeIn(duration: 400.ms)
-        .slideX(begin: 0.1, end: 0, curve: Curves.easeOutQuad);
+        .slideY(begin: 0.05, end: 0, curve: Curves.easeOutQuad);
+  }
+
+  Widget _buildBottomAction(BuildContext context) {
+    switch (currentState) {
+      case GameViewState.scanning:
+        return GameFingerprintButton(onTap: onScanComplete);
+      case GameViewState.revealSpy:
+      case GameViewState.revealCitizen:
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: GameNextButton(onPressed: onNext),
+        );
+      case GameViewState.timer:
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: GameFinishTurnButton(onPressed: onFinishGame),
+        );
+      case GameViewState.summary:
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: GameFinishGameButton(
+            onPressed: () => context.goNamed(AppRoutes.home),
+          ),
+        );
+      case GameViewState.ready:
+        return const SizedBox.shrink();
+    }
   }
 }

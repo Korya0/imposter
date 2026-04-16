@@ -23,10 +23,34 @@ class AppTextStyles {
     fontWeight: RuqaaWeight.w400.weight,
   );
 
+  static TextStyle ruqaa48W400Primary = fontRuqaa.copyWith(
+    color: AppColors.primary,
+    fontSize: 48,
+    fontWeight: RuqaaWeight.w400.weight,
+  );
+
+  static TextStyle ruqaa28W400White = fontRuqaa.copyWith(
+    color: Colors.white,
+    fontSize: 28,
+    fontWeight: RuqaaWeight.w400.weight,
+  );
+
+  static TextStyle ruqaa28W400Primary = fontRuqaa.copyWith(
+    color: AppColors.primary,
+    fontSize: 28,
+    fontWeight: RuqaaWeight.w400.weight,
+  );
+
   static TextStyle font22W800Primary = fontApp.copyWith(
     fontWeight: LateefWeight.w800.weight,
     color: AppColors.primary,
     fontSize: 18,
+  );
+
+  static TextStyle font28W800White = fontApp.copyWith(
+    fontWeight: LateefWeight.w800.weight,
+    color: Colors.white,
+    fontSize: 28,
   );
 
   static TextStyle font45W800Secondary = fontApp.copyWith(

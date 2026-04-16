@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
 import 'package:imposter/core/widgets/app_text_widget.dart';
-import 'package:imposter/core/constants/app_strings.dart';
-import 'package:imposter/core/widgets/app_button.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:lottie/lottie.dart';
@@ -14,12 +12,10 @@ class LottieTimer extends StatefulWidget {
   const LottieTimer({
     required this.duration,
     required this.onTimeout,
-    required this.onFinish,
     super.key,
   });
   final Duration duration;
   final VoidCallback onTimeout;
-  final VoidCallback onFinish;
 
   @override
   State<LottieTimer> createState() => _LottieTimerState();
@@ -28,7 +24,6 @@ class LottieTimer extends StatefulWidget {
 class _LottieTimerState extends State<LottieTimer>
     with TickerProviderStateMixin {
   late AnimationController _timerController;
-  bool _hasExploded = false;
 
   @override
   void initState() {
@@ -43,7 +38,6 @@ class _LottieTimerState extends State<LottieTimer>
 
   void _explode() {
     if (!mounted) return;
-    setState(() => _hasExploded = true);
     widget.onTimeout();
   }
 
@@ -56,10 +50,11 @@ class _LottieTimerState extends State<LottieTimer>
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          width: 150,
-          height: 150,
+          width: context.width * 0.9,
+          height: context.width * 0.9,
           child: DotLottieLoader.fromAsset(
             AppLottie.timer,
             frameBuilder: (ctx, dotlottie) {
@@ -72,6 +67,7 @@ class _LottieTimerState extends State<LottieTimer>
                   child: Lottie.memory(
                     dotlottie.animations.values.single,
                     controller: _timerController,
+                    fit: BoxFit.contain,
                   ),
                 );
               }
@@ -79,49 +75,24 @@ class _LottieTimerState extends State<LottieTimer>
             },
           ),
         ),
-        if (!_hasExploded) ...[
-          const SizedBox(height: 10),
-          AnimatedBuilder(
-            animation: _timerController,
-            builder: (context, _) {
-              final remaining =
-                  widget.duration.inSeconds * (1.0 - _timerController.value);
-              final totalSeconds = remaining.ceil();
-              final mins = totalSeconds ~/ 60;
-              final secs = totalSeconds % 60;
-              final timeStr =
-                  '${mins.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
+        const SizedBox(height: 20),
+        AnimatedBuilder(
+          animation: _timerController,
+          builder: (context, _) {
+            final remaining =
+                widget.duration.inSeconds * (1.0 - _timerController.value);
+            final totalSeconds = remaining.ceil();
+            final mins = totalSeconds ~/ 60;
+            final secs = totalSeconds % 60;
+            final timeStr =
+                '${mins.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
 
-              return AppTextWidget(
-                timeStr,
-                style: AppTextStyles.font22W200Primary.copyWith(
-                  color: Colors.red,
-                ),
-              );
-            },
-          ),
-          const Spacer(),
-          AppButton(
-            width: 250,
-            height: (context.height * 0.1).clamp(50, 70),
-            title: AppStrings.finishTurn,
-            onTap: widget.onFinish,
-          ),
-          SizedBox(height: (context.height * 0.05).clamp(12, 32)),
-        ] else ...[
-          const SizedBox(height: 24),
-          AppTextWidget(
-            AppStrings.roundEnded,
-            style: AppTextStyles.font22W200Primary,
-          ),
-          const SizedBox(height: 32),
-          AppButton(
-            width: 250,
-            height: (context.height * 0.1).clamp(50, 70),
-            title: AppStrings.finishGame,
-            onTap: widget.onFinish,
-          ),
-        ],
+            return AppTextWidget(
+              timeStr,
+              style: AppTextStyles.ruqaa48W400Primary,
+            );
+          },
+        ),
       ],
     );
   }
