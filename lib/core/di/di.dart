@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:get_it/get_it.dart';
 import 'package:imposter/features/game/data/datasources/game_local_data_source.dart';
 import 'package:imposter/features/game/data/repositories/game_repository_impl.dart';
@@ -19,5 +20,3 @@ Future<void> setupEssentialDI() async {
     )
     ..registerFactory<GameCubit>(() => GameCubit(sl<GetCategoriesUsecase>()));
 }
-
-Future<void> setupNonEssentialDI() async {}

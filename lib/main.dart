@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:imposter/core/di/app_initializer.dart';
 import 'package:imposter/core/router/app_router.dart';
 import 'package:imposter/core/theme/app_theme.dart';
+import 'package:imposter/core/theme/system_ui_config.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemUiConfig.setup();
   await AppInitializer.initEssential();
   runApp(
     kIsWeb && kDebugMode

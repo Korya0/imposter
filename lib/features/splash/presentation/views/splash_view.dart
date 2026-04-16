@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
-import 'package:imposter/core/di/app_initializer.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/features/splash/presentation/widgets/app_name_and_logo.dart';
 
@@ -30,7 +29,6 @@ class _SplashViewState extends State<SplashView> {
 
     if (mounted) {
       context.go(AppRoutes.home);
-      unawaited(AppInitializer.initBackground());
     }
   }
 

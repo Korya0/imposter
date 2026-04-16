@@ -34,11 +34,7 @@ class GameViewBody extends StatelessWidget {
         padding: AppPaddings.h18,
         child: Column(
           children: [
-            CustomAppBar(
-              showRedo:
-                  currentState is GameScanning || currentState is GameRevealing,
-              onRedo: context.read<GameCubit>().redoRound,
-            ),
+            const CustomAppBar(),
             Expanded(
               child: _buildCurrentStateContent(context),
             ),
