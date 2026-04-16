@@ -72,38 +72,40 @@ class _AppSketchyCardState extends State<AppSketchyCard>
                   minWidth: 250,
                 ),
                 margin: AppPaddings.sketchyCardMargin,
-                child: CustomPaint(
-                  painter: SketchyCardPainter(
-                    color: AppColors.primary,
-                    showTape: widget.showTape,
-                    progress: _controller.value,
-                  ),
-                  child: Container(
-                    padding: AppPaddings.all24,
-                    alignment: Alignment.center,
-                    child: Stack(
+                child: RepaintBoundary(
+                  child: CustomPaint(
+                    painter: SketchyCardPainter(
+                      color: AppColors.primary,
+                      showTape: widget.showTape,
+                      progress: _controller.value,
+                    ),
+                    child: Container(
+                      padding: AppPaddings.all24,
                       alignment: Alignment.center,
-                      children: [
-                        if (widget.watermark != null)
-                          ColorFiltered(
-                            colorFilter: ColorFilter.mode(
-                              AppColors.primary.withValues(
-                                alpha: 0.1,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          if (widget.watermark != null)
+                            ColorFiltered(
+                              colorFilter: ColorFilter.mode(
+                                AppColors.primary.withValues(
+                                  alpha: 0.1,
+                                ),
+                                BlendMode.srcIn,
                               ),
-                              BlendMode.srcIn,
+                              child: widget.watermark,
                             ),
-                            child: widget.watermark,
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: AppTextWidget(
+                              widget.title,
+                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              style: AppTextStyles.ruqaa45BoldPrimary,
+                            ),
                           ),
-                        FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: AppTextWidget(
-                            widget.title,
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                            style: AppTextStyles.ruqaa45BoldPrimary,
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

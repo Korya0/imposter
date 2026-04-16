@@ -1,16 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:imposter/core/theme/app_colors.dart';
 
 class SketchyCardPainter extends CustomPainter {
-  // To control scribbles on tap
-
   SketchyCardPainter({
     required this.color,
     this.showTape = true,
     this.progress = 0.0,
   });
+
   final Color color;
   final bool showTape;
   final double progress;
@@ -18,25 +16,26 @@ class SketchyCardPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final random = Random(42);
+
+    // Reuse paint object by modifying its properties
     final paint = Paint()
-      ..color = color.withValues(alpha: 0.6)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3.2
       ..strokeCap = StrokeCap.round;
 
     // 1. Draw 3 overlapping messy borders
     for (var i = 0; i < 3; i++) {
-      double n() => (random.nextDouble() - 0.5) * 8;
+      paint.color = color.withValues(alpha: 0.2 + (i * 0.1));
+
+      final offset = (random.nextDouble() - 0.5) * 8;
       final path = Path()
-        ..moveTo(n(), n())
-        ..lineTo(size.width + n(), n())
-        ..lineTo(size.width + n(), size.height + n())
-        ..lineTo(n(), size.height + n())
+        ..moveTo(offset, offset)
+        ..lineTo(size.width + offset, offset)
+        ..lineTo(size.width + offset, size.height + offset)
+        ..lineTo(offset, size.height + offset)
         ..close();
-      canvas.drawPath(
-        path,
-        paint..color = color.withValues(alpha: 0.2 + (i * 0.1)),
-      );
+
+      canvas.drawPath(path, paint);
     }
 
     // 2. Corner Scribbles
@@ -44,12 +43,12 @@ class SketchyCardPainter extends CustomPainter {
 
     // 3. INTERNAL SCRIBBLES ON TAP (Progress based)
     if (progress > 0) {
-      _drawInternalScribbles(canvas, size, AppColors.primary, progress, random);
+      _drawInternalScribbles(canvas, size, color, progress, random);
     }
 
     // 4. Tape effect
     if (showTape) {
-      _drawSketchyTape(canvas, size, AppColors.primary, random);
+      _drawSketchyTape(canvas, size, color, random);
     }
   }
 
@@ -82,7 +81,10 @@ class SketchyCardPainter extends CustomPainter {
     Paint paint,
     Random random,
   ) {
-    paint.strokeWidth = 1.0;
+    paint
+      ..strokeWidth = 1.0
+      ..color = color.withValues(alpha: 0.6);
+
     canvas
       ..drawLine(
         Offset(size.width - 15, -5),
@@ -102,29 +104,28 @@ class SketchyCardPainter extends CustomPainter {
     Color tapeColor,
     Random random,
   ) {
-    final tapePaint = Paint()
-      ..color = tapeColor.withValues(alpha: 0.3)
-      ..style = PaintingStyle.fill;
-
     final tapeW = size.width * 0.35;
     const tapeH = 25;
     final centerX = size.width / 2;
 
+    final offsetX = (random.nextDouble() - 0.5) * 5;
+
     final tapePath = Path()
-      ..moveTo(centerX - tapeW / 2 + (random.nextDouble() - 0.5) * 5, -15)
-      ..lineTo(centerX + tapeW / 2 + (random.nextDouble() - 0.5) * 5, -10)
-      ..lineTo(
-        centerX + tapeW / 2 + (random.nextDouble() - 0.5) * 5,
-        tapeH - 10,
-      )
-      ..lineTo(
-        centerX - tapeW / 2 + (random.nextDouble() - 0.5) * 5,
-        tapeH - 15,
-      )
+      ..moveTo(centerX - tapeW / 2 + offsetX, -15)
+      ..lineTo(centerX + tapeW / 2 + offsetX, -10)
+      ..lineTo(centerX + tapeW / 2 + offsetX, tapeH - 10)
+      ..lineTo(centerX - tapeW / 2 + offsetX, tapeH - 15)
       ..close();
 
+    // Fill
     canvas
-      ..drawPath(tapePath, tapePaint)
+      ..drawPath(
+        tapePath,
+        Paint()
+          ..color = tapeColor.withValues(alpha: 0.3)
+          ..style = PaintingStyle.fill,
+      )
+      // Stroke
       ..drawPath(
         tapePath,
         Paint()

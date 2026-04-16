@@ -6,8 +6,8 @@ import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/app_toast.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
 
-class HowToPlayButton extends StatelessWidget {
-  const HowToPlayButton({
+class HowToPlayIconButton extends StatelessWidget {
+  const HowToPlayIconButton({
     super.key,
     this.showText = true,
   });
