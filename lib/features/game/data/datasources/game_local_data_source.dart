@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import '../../../../core/constants/game_json_keys.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/utils/app_logger.dart';
 import '../models/category_model.dart';
@@ -9,16 +10,14 @@ abstract class GameLocalDataSource {
 }
 
 class GameLocalDataSourceImpl implements GameLocalDataSource {
-  final String _assetPath = 'assets/data/topics.json';
-
   @override
   Future<List<CategoryModel>> getCategories() async {
     try {
       AppLogger.info('Loading categories from topics.json asset');
-      final jsonString = await rootBundle.loadString(_assetPath);
+      final jsonString = await rootBundle.loadString(GameJsonKeys.topicsJsonPath);
       final jsonData = jsonDecode(jsonString) as Map<String, dynamic>;
 
-      final categoriesList = jsonData['categories'] as List<dynamic>;
+      final categoriesList = jsonData[GameJsonKeys.categories] as List<dynamic>;
 
       final categories = categoriesList
           .map((item) => CategoryModel.fromMap(item as Map<String, dynamic>))

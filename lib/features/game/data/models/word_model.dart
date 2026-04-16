@@ -1,3 +1,4 @@
+import '../../../../core/constants/game_json_keys.dart';
 import '../../domain/entities/word_entity.dart';
 
 class WordModel extends WordEntity {
@@ -5,15 +6,15 @@ class WordModel extends WordEntity {
 
   factory WordModel.fromMap(Map<String, dynamic> map) {
     return WordModel(
-      id: map['id'] as String,
-      name: map['name'] as String,
+      id: map[GameJsonKeys.idKey] as String,
+      name: map[GameJsonKeys.nameKey] as String,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'name': name,
+      GameJsonKeys.idKey: id,
+      GameJsonKeys.nameKey: name,
     };
   }
 }
