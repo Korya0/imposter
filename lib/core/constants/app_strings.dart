@@ -30,4 +30,9 @@ abstract class AppStrings {
   static const String word = 'الكلمة';
   static const String anotherRound = 'دور تاني';
   static const String finishTurn = 'أنهي الدور';
+
+  static const String errorDataParsing = 'حدث خطأ في معالجة بيانات اللعبة';
+  static const String errorStorage = 'تعذر حفظ أو استرجاع البيانات المحلية';
+  static const String errorAsset = 'ملف بيانات اللعبة غير موجود أو تالف';
+  static const String errorUnexpected = 'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى';
 }

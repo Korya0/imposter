@@ -103,3 +103,6 @@ Rules below only cover things that OVERRIDE defaults or encode project decisions
 - Dispose controllers and focus nodes in `StatefulWidget.dispose()`
 - Prefer small, composed widgets to minimize rebuild scope
 - Use `BlocBuilder`/`BlocSelector` on the smallest widget that needs the state — never at the top of the tree
+
+
+dont write comments in code 
