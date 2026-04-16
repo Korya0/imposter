@@ -35,7 +35,7 @@ class HowToPlayButton extends StatelessWidget {
             ),
             if (showText)
               SvgPicture.asset(
-                AppSvgs.arrowLineLong,
+                AppAssets.arrowLineLongSvg,
                 width: 40,
               ),
             if (showText)

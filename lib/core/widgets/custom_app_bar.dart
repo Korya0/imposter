@@ -26,7 +26,7 @@ class CustomAppBar extends StatelessWidget {
                 height: 50,
                 onTap: () => context.pop(),
                 child: SvgPicture.asset(
-                  AppSvgs.backIcon,
+                  AppAssets.backIconSvg,
                   height: 24,
                 ),
               ),

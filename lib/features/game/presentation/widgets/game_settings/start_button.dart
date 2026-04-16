@@ -24,7 +24,7 @@ class StartButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(
-                AppSvgs.play,
+                AppAssets.playSvg,
                 height: (context.height * 0.04).clamp(28, 30),
               ),
               const SizedBox(width: 12),

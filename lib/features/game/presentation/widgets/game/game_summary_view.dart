@@ -55,7 +55,7 @@ class GameSummaryView extends StatelessWidget {
                   border: Border.all(color: Colors.white, width: 1.5),
                 ),
                 child: SvgPicture.asset(
-                  AppSvgs.redo,
+                  AppAssets.redoSvg,
                   width: 40,
                   height: 40,
                   colorFilter: const ColorFilter.mode(

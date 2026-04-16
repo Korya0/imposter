@@ -18,7 +18,7 @@ class AppNameAndLogo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SvgPicture.asset(
-          AppSvgs.logo,
+          AppAssets.logoSvg,
           height: (context.height * 0.11).clamp(80, 100),
         ),
         AppTextWidget(

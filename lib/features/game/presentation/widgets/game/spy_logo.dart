@@ -11,9 +11,9 @@ class SpyLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      AppSvgs.logo,
-      height: (context.height * 0.23).clamp(100, 200),
-    )
+          AppAssets.logoSvg,
+          height: (context.height * 0.23).clamp(100, 200),
+        )
         .animate()
         .fadeIn(delay: 400.ms, duration: 800.ms)
         .slideY(begin: 0.2, end: 0)

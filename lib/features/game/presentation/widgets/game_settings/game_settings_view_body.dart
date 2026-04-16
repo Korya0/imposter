@@ -30,7 +30,7 @@ class GameSettingsViewBody extends StatelessWidget {
               const CustomAppBar(),
 
               GameSettingItem(
-                    iconPath: AppSvgs.peopleGroup,
+                    iconPath: AppAssets.peopleGroupSvg,
                     title: AppStrings.numberOfPlayers,
                     value: state.playerCount.toString(),
                     onIncrement: cubit.incrementPlayers,
@@ -43,7 +43,7 @@ class GameSettingsViewBody extends StatelessWidget {
               SizedBox(height: (context.height * 0.05).clamp(12, 32)),
 
               GameSettingItem(
-                    iconPath: AppSvgs.spy,
+                    iconPath: AppAssets.spySvg,
                     title: AppStrings.numberOfSpies,
                     value: state.spyCount.toString(),
                     onIncrement: cubit.incrementSpies,
@@ -56,7 +56,7 @@ class GameSettingsViewBody extends StatelessWidget {
               SizedBox(height: (context.height * 0.01).clamp(12, 32)),
 
               GameSettingItem(
-                    iconPath: AppSvgs.timeOclock,
+                    iconPath: AppAssets.timeOclockSvg,
                     title: AppStrings.numberOfMinutes,
                     value: state.durationMinutes.toString(),
                     onIncrement: cubit.incrementMinutes,

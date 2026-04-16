@@ -47,13 +47,13 @@ class _GameFingerprintButtonState extends State<GameFingerprintButton> {
             style: AppTextStyles.ruqaa32W400Primary,
           ),
           SvgPicture.asset(
-            AppSvgs.fingerprint,
-            height: 120,
-            colorFilter: ColorFilter.mode(
-              _isPressed ? AppColors.green : AppColors.primary,
-              BlendMode.srcIn,
-            ),
-          )
+                AppAssets.fingerprintSvg,
+                height: 120,
+                colorFilter: ColorFilter.mode(
+                  _isPressed ? AppColors.green : AppColors.primary,
+                  BlendMode.srcIn,
+                ),
+              )
               .animate(target: _isPressed ? 1 : 0)
               .scale(
                 begin: const Offset(1, 1),

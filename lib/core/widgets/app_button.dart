@@ -42,16 +42,19 @@ class AppButton extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                AppImages.paperWebp,
+                AppAssets.paperWebp,
               ),
               fit: BoxFit.fill,
             ),
           ),
           child:
               child ??
-              AppTextWidget(
-                title!,
-                style: style ?? AppTextStyles.font45W800Secondary,
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: AppTextWidget(
+                  title!,
+                  style: style ?? AppTextStyles.font45W800Secondary,
+                ),
               ),
         ),
       ),

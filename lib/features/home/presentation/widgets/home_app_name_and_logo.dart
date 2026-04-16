@@ -26,7 +26,7 @@ class HomeAppNameAndLogo extends StatelessWidget {
         SizedBox(height: (context.height * 0.05).clamp(14, 40)),
 
         SvgPicture.asset(
-              AppSvgs.logo,
+              AppAssets.logoSvg,
               height: (context.height * 0.23).clamp(100, 200),
             )
             .animate()

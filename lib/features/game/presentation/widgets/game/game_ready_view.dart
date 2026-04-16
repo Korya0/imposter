@@ -31,7 +31,7 @@ class GameReadyView extends StatelessWidget {
                 border: Border.all(color: AppColors.primary, width: 2),
               ),
               child: SvgPicture.asset(
-                AppSvgs.play,
+                AppAssets.playSvg,
                 height: 60,
                 colorFilter: const ColorFilter.mode(
                   AppColors.primary,
