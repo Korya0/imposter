@@ -8,15 +8,22 @@ abstract class AppAssets {
   static const String fingerprintSvg = '$_baseSvg/fingerprint.svg';
   static const String spySvg = '$_baseSvg/incognito.svg';
   static const String logoSvg = '$_baseSvg/logo.svg';
-  static const String peopleGroupSvg = '$_baseSvg/people-group.svg';
+  static const String peopleGroupSvg = '$_baseSvg/people_group.svg';
   static const String playSvg = '$_baseSvg/play.svg';
   static const String redoSvg = '$_baseSvg/redo.svg';
-  static const String timeOclockSvg = '$_baseSvg/time-oclock.svg';
+  static const String timeOclockSvg = '$_baseSvg/time_oclock.svg';
   static const String backIconSvg = '$_baseSvg/back_icon.svg';
   static const String arrowLineLongSvg = '$_baseSvg/arrow_line_long.svg';
+  static const String trophySvg = '$_baseSvg/trophy.svg';
+  static const String animalsSvg = '$_baseSvg/animals.svg';
+  static const String foodSvg = '$_baseSvg/food.svg';
+  static const String placesSvg = '$_baseSvg/places.svg';
+  static const String professionsSvg = '$_baseSvg/professions.svg';
+  static const String thingsSvg = '$_baseSvg/things.svg';
 
   // images
-  static const String paperWebp = '$_baseImage/paper-converted-from-svg.webp';
+  static const String paperWebp = '$_baseImage/paper_texture.webp';
+  static const String logoSplashIcon = '$_baseImage/logo_splash_icon.png';
 
   // audios
   static const String timer = '$_baseAudio/timer.mp3';

@@ -3,7 +3,7 @@
     {
       "id": "places",
       "name": "أماكن",
-      "icon": "assets/svgs/Places.svg",
+      "icon": "assets/svgs/places.svg",
       "words": [
         {
           "id": "pl_01",
@@ -182,7 +182,7 @@
     {
       "id": "food",
       "name": "أكل",
-      "icon": "assets/svgs/Food.svg",
+      "icon": "assets/svgs/food.svg",
       "words": [
         {
           "id": "fd_01",
@@ -357,7 +357,7 @@
     {
       "id": "jobs",
       "name": "وظائف",
-      "icon": "assets/svgs/Professions.svg",
+      "icon": "assets/svgs/professions.svg",
       "words": [
         {
           "id": "jb_01",
@@ -711,7 +711,7 @@
     {
       "id": "objects",
       "name": "أشياء",
-      "icon": "assets/svgs/Things.svg",
+      "icon": "assets/svgs/things.svg",
       "words": [
         {
           "id": "ob_01",
