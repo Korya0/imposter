@@ -25,7 +25,6 @@ class _ScanViewBodyState extends State<ScanViewBody> {
       _isPressed = true;
     });
     await HapticFeedbackHelper.heavy();
-    // Simulate a small delay for the effect
     await Future<void>.delayed(500.ms);
     widget.onScanComplete();
   }
@@ -46,11 +45,11 @@ class _ScanViewBodyState extends State<ScanViewBody> {
               children: [
                 AppTextWidget(
                   AppStrings.player,
-                  style: AppTextStyles.ruqaa45BoldPrimary,
+                  style: AppTextStyles.ruqaa32W400Primary,
                 ),
                 AppTextWidget(
                   '1',
-                  style: AppTextStyles.ruqaa45BoldPrimary,
+                  style: AppTextStyles.ruqaa32W400Primary,
                 ),
               ],
             ),
@@ -58,28 +57,35 @@ class _ScanViewBodyState extends State<ScanViewBody> {
           const Spacer(),
           GestureDetector(
             onTap: _handleTap,
+            behavior: HitTestBehavior.opaque,
 
-            child: Column(
-              spacing: 40,
-              children: [
-                AppTextWidget(
-                  AppStrings.scanHere,
-                  style: AppTextStyles.font45W800Primary,
-                ),
-                SvgPicture.asset(
-                      AppSvgs.fingerprint,
-                      height: 100,
-                      colorFilter: ColorFilter.mode(
-                        _isPressed ? AppColors.green : AppColors.primary,
-                        BlendMode.srcIn,
+            child: Padding(
+              // to easy clic
+              padding: const EdgeInsets.symmetric(
+                horizontal: 72,
+              ),
+              child: Column(
+                spacing: 40,
+                children: [
+                  AppTextWidget(
+                    AppStrings.scanHere,
+                    style: AppTextStyles.ruqaa32W400Primary,
+                  ),
+                  SvgPicture.asset(
+                        AppSvgs.fingerprint,
+                        height: 100,
+                        colorFilter: ColorFilter.mode(
+                          _isPressed ? AppColors.green : AppColors.primary,
+                          BlendMode.srcIn,
+                        ),
+                      )
+                      .animate(target: _isPressed ? 1 : 0)
+                      .scale(
+                        begin: const Offset(1, 1),
+                        end: const Offset(1.2, 1.2),
                       ),
-                    )
-                    .animate(target: _isPressed ? 1 : 0)
-                    .scale(
-                      begin: const Offset(1, 1),
-                      end: const Offset(1.2, 1.2),
-                    ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

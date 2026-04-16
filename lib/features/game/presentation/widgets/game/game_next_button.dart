@@ -10,7 +10,7 @@ class GameNextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppButton(
-      width: 250,
+      width: double.infinity,
       height: (context.height * 0.1).clamp(50, 70),
       title: AppStrings.next,
       onTap: onPressed,

@@ -33,3 +33,9 @@ abstract class AppAudios {
   static const String win = '$_baseAudio/win.mp3';
   static const String yallahBena = '$_baseAudio/yallah_bena.mp3';
 }
+
+abstract class AppLottie {
+  static const String _baseLottie = 'assets/lottie';
+
+  static const String timer = '$_baseLottie/Icon Timer Line Animation.lottie';
+}

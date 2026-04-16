@@ -14,8 +14,8 @@ class GameView extends StatefulWidget {
 class _GameViewState extends State<GameView> {
   GameViewState _currentState = GameViewState.scanning;
   int _currentPlayerIndex = 0;
-  final int _totalPlayers = 3; // Mock value
-  final int _spyIndex = 1; // Mock value
+  final int _totalPlayers = 3;
+  final int _spyIndex = 1;
 
   void _onScanComplete() {
     setState(() {
@@ -39,7 +39,22 @@ class _GameViewState extends State<GameView> {
   }
 
   void _onStartTimer() {
-    // Navigate to timer view in the future
+    setState(() {
+      _currentState = GameViewState.timer;
+    });
+  }
+
+  void _onFinishGame() {
+    setState(() {
+      _currentState = GameViewState.summary;
+    });
+  }
+
+  void _onAnotherRound() {
+    setState(() {
+      _currentPlayerIndex = 0;
+      _currentState = GameViewState.scanning;
+    });
   }
 
   @override
@@ -59,6 +74,8 @@ class _GameViewState extends State<GameView> {
                 onScanComplete: _onScanComplete,
                 onNext: _onNext,
                 onStartTimer: _onStartTimer,
+                onFinishGame: _onFinishGame,
+                onAnotherRound: _onAnotherRound,
               ),
             ),
           ),

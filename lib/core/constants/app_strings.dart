@@ -24,4 +24,10 @@ abstract class AppStrings {
   static const String comingWithYou = 'جايه معاك بايه ؟';
   static const String back = 'رجوع';
   static const String player = 'Player';
+  static const String roundEnded = 'انتهي الدور';
+  static const String finishGame = 'أنهي اللعبة';
+  static const String summary = 'ملخص الدور';
+  static const String word = 'الكلمة';
+  static const String anotherRound = 'دور تاني';
+  static const String finishTurn = 'أنهي الدور';
 }
