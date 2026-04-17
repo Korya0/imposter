@@ -44,9 +44,16 @@ flutter:
 
   assets:
     - assets/svgs/
+    - assets/svgs/places.svg
+    - assets/svgs/food.svg
+    - assets/svgs/professions.svg
+    - assets/svgs/animals.svg
+    - assets/svgs/things.svg
+    - assets/svgs/trophy.svg
     - assets/images/
     - assets/data/
-  
+    - assets/audio/
+
   fonts:
     - family: ArefRuqaa
       fonts:

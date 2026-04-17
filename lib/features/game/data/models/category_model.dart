@@ -2,12 +2,17 @@ import '../../../../core/constants/game_json_keys.dart';
 import '../../domain/entities/category_entity.dart';
 import 'word_model.dart';
 
-class CategoryModel extends CategoryEntity {
+class CategoryModel {
+  final String id;
+  final String name;
+  final String icon;
+  final List<WordModel> words;
+
   CategoryModel({
-    required super.id,
-    required super.name,
-    required super.icon,
-    required List<WordModel> super.words,
+    required this.id,
+    required this.name,
+    required this.icon,
+    required this.words,
   });
 
   factory CategoryModel.fromMap(Map<String, dynamic> map) {
@@ -26,7 +31,16 @@ class CategoryModel extends CategoryEntity {
       GameJsonKeys.idKey: id,
       GameJsonKeys.nameKey: name,
       GameJsonKeys.iconKey: icon,
-      GameJsonKeys.wordsKey: (words as List<WordModel>).map((word) => word.toMap()).toList(),
+      GameJsonKeys.wordsKey: words.map((word) => word.toMap()).toList(),
     };
+  }
+
+  CategoryEntity toEntity() {
+    return CategoryEntity(
+      id: id,
+      name: name,
+      icon: icon,
+      words: words.map((word) => word.toEntity()).toList(),
+    );
   }
 }

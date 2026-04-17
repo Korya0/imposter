@@ -29,4 +29,16 @@ abstract class AppAssets {
   static const String timer = '$_baseAudio/timer.mp3';
   static const String win = '$_baseAudio/win.mp3';
   static const String yallahBena = '$_baseAudio/yallah_bena.mp3';
+
+  static String getCategoryIcon(String id) {
+    return switch (id) {
+      'places' => placesSvg,
+      'food' => foodSvg,
+      'jobs' => professionsSvg,
+      'animals' => animalsSvg,
+      'objects' => thingsSvg,
+      'sports_figures' => trophySvg,
+      _ => logoSvg,
+    };
+  }
 }

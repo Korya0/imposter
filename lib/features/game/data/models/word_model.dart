@@ -1,8 +1,11 @@
 import '../../../../core/constants/game_json_keys.dart';
 import '../../domain/entities/word_entity.dart';
 
-class WordModel extends WordEntity {
-  WordModel({required super.id, required super.name});
+class WordModel {
+  final String id;
+  final String name;
+
+  WordModel({required this.id, required this.name});
 
   factory WordModel.fromMap(Map<String, dynamic> map) {
     return WordModel(
@@ -16,5 +19,12 @@ class WordModel extends WordEntity {
       GameJsonKeys.idKey: id,
       GameJsonKeys.nameKey: name,
     };
+  }
+
+  WordEntity toEntity() {
+    return WordEntity(
+      id: id,
+      name: name,
+    );
   }
 }

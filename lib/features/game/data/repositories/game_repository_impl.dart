@@ -14,8 +14,9 @@ class GameRepositoryImpl implements IGameRepository {
   @override
   Future<Result<List<CategoryEntity>>> getCategories() async {
     try {
-      final categories = await localDataSource.getCategories();
-      return Success(categories);
+      final models = await localDataSource.getCategories();
+      final entities = models.map((m) => m.toEntity()).toList();
+      return Success(entities);
     } on AppException catch (e) {
       AppLogger.warning('AppException in Repository: ${e.message}');
       return const FailureResult(DataParsingFailure());

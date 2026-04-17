@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_sketchy_card/app_sketchy_card.dart';
@@ -13,6 +13,7 @@ import 'package:imposter/core/theme/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
+import 'package:go_router/go_router.dart';
 
 class TopicsSelectionView extends StatelessWidget {
   const TopicsSelectionView({super.key});
@@ -50,19 +51,27 @@ class _TopicsSelectionViewBody extends StatelessWidget {
           BlocBuilder<GameCubit, GameState>(
             builder: (context, state) {
               return switch (state) {
-                GameInitial() || GameLoading() => const Center(
+                GameInitial() || GameLoading(categories: []) => const Center(
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 40),
                       child: CircularProgressIndicator(),
                     ),
                   ),
-                GameError(message: final msg) => Center(
+                GameError(message: final msg, categories: []) => Center(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 40),
                       child: AppTextWidget(msg),
                     ),
                   ),
-                GameCategoriesLoaded(categories: final cats) => GridView.builder(
+                GameCategoriesLoaded(categories: final cats) ||
+                GameLoading(categories: final cats) ||
+                GameError(categories: final cats) ||
+                GameScanning(categories: final cats) ||
+                GameRevealing(categories: final cats) ||
+                GameReady(categories: final cats) ||
+                GameTimer(categories: final cats) ||
+                GameSummary(categories: final cats) =>
+                  GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -81,10 +90,16 @@ class _TopicsSelectionViewBody extends StatelessWidget {
                           context.read<GameCubit>().selectCategory(category);
                           await context.pushNamed(AppRoutes.gameSettings);
                         },
-                        watermark: SvgPicture.asset(
-                          category.icon,
-                          width: 100,
-                          height: 100,
+                        watermark: IgnorePointer(
+                          child: SvgPicture.asset(
+                            AppAssets.getCategoryIcon(category.id),
+                            width: 100,
+                            height: 100,
+                            placeholderBuilder: (context) => const SizedBox(
+                              width: 100,
+                              height: 100,
+                            ),
+                          ),
                         ),
                       )
                           .animate()
@@ -103,7 +118,6 @@ class _TopicsSelectionViewBody extends StatelessWidget {
                           );
                     },
                   ),
-                _ => const SizedBox.shrink(),
               };
             },
           ),

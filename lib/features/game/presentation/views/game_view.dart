@@ -5,20 +5,19 @@ import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
-import 'package:imposter/core/presentation/widgets/lottie_timer.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
-import 'package:imposter/features/game/presentation/widgets/game/citizen_reveal_view.dart';
 import 'package:imposter/features/game/presentation/widgets/game/game_fingerprint_button.dart';
 import 'package:imposter/features/game/presentation/widgets/game/game_finish_game_button.dart';
 import 'package:imposter/features/game/presentation/widgets/game/game_finish_turn_button.dart';
 import 'package:imposter/features/game/presentation/widgets/game/game_next_button.dart';
-import 'package:imposter/features/game/presentation/widgets/game/game_ready_view.dart';
-import 'package:imposter/features/game/presentation/widgets/game/game_summary_view.dart';
-import 'package:imposter/features/game/presentation/widgets/game/spy_reveal_view.dart';
+import 'package:imposter/features/game/presentation/widgets/game/phases/ready_phase.dart';
+import 'package:imposter/features/game/presentation/widgets/game/phases/revealing_phase.dart';
+import 'package:imposter/features/game/presentation/widgets/game/phases/scanning_phase.dart';
+import 'package:imposter/features/game/presentation/widgets/game/phases/summary_phase.dart';
+import 'package:imposter/features/game/presentation/widgets/game/phases/timer_phase.dart';
 
 class GameView extends StatelessWidget {
   const GameView({super.key});
@@ -64,19 +63,30 @@ class _GameViewBody extends StatelessWidget {
     final cubit = context.read<GameCubit>();
 
     return switch (currentState) {
-      GameInitial() ||
-      GameLoading() => const Center(child: CircularProgressIndicator()),
+      GameInitial() || GameLoading() => const Center(
+          child: CircularProgressIndicator(),
+        ),
       GameCategoriesLoaded() => const Center(
           child: AppTextWidget(AppStrings.comingSoon),
         ),
-      GameScanning(currentPlayerIndex: final index) => _ScanViewBody(
+      GameScanning(currentPlayerIndex: final index) => ScanningPhaseWidget(
           playerNumber: index + 1,
         ),
-      GameRevealing(isSpy: final spy, secretWord: final word, selectedCategory: final cat) =>
-        spy ? SpyRevealView(category: cat.name) : CitizenRevealView(category: cat.name, word: word),
-      GameReady() => GameReadyView(onStartTimer: cubit.startTimer),
-      GameTimer(durationMinutes: final mins) => LottieTimer(
-          duration: Duration(minutes: mins),
+      GameRevealing(
+        isSpy: final spy,
+        secretWord: final word,
+        selectedCategory: final cat
+      ) =>
+        RevealingPhaseWidget(
+          isSpy: spy,
+          secretWord: word,
+          categoryName: cat!.name,
+        ),
+      GameReady() => ReadyPhaseWidget(
+          onStartTimer: cubit.startTimer,
+        ),
+      GameTimer(durationMinutes: final mins) => TimerPhaseWidget(
+          durationMinutes: mins,
           onTimeout: cubit.finishGame,
         ),
       GameSummary(
@@ -85,15 +95,17 @@ class _GameViewBody extends StatelessWidget {
         spyCount: final s,
         durationMinutes: final d,
       ) =>
-        GameSummaryView(
+        SummaryPhaseWidget(
           secretWord: word,
-          playersCount: p,
-          spiesCount: s,
-          duration: Duration(minutes: d),
+          playerCount: p,
+          spyCount: s,
+          durationMinutes: d,
           onAnotherRound: cubit.prepareRound,
           onFinish: () => context.goNamed(AppRoutes.home),
         ),
-      GameError(message: final msg) => Center(child: AppTextWidget(msg)),
+      GameError(message: final msg) => Center(
+          child: AppTextWidget(msg),
+        ),
     }
         .animate(key: ValueKey(currentState))
         .fadeIn(duration: 400.ms)
@@ -109,11 +121,15 @@ class _GameViewBody extends StatelessWidget {
         ),
       GameRevealing() => Padding(
           padding: AppPaddings.h24,
-          child: GameNextButton(onPressed: () => cubit.toggleReveal(false)),
+          child: GameNextButton(
+            onPressed: () => cubit.toggleReveal(false),
+          ),
         ),
       GameTimer() => Padding(
           padding: AppPaddings.h24,
-          child: GameFinishTurnButton(onPressed: cubit.finishGame),
+          child: GameFinishTurnButton(
+            onPressed: cubit.finishGame,
+          ),
         ),
       GameSummary() => Padding(
           padding: AppPaddings.h24,
@@ -123,36 +139,5 @@ class _GameViewBody extends StatelessWidget {
         ),
       _ => const SizedBox.shrink(),
     };
-  }
-}
-
-class _ScanViewBody extends StatelessWidget {
-  final int playerNumber;
-
-  const _ScanViewBody({required this.playerNumber});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: Row(
-            spacing: 8,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AppTextWidget(
-                AppStrings.player,
-                style: AppTextStyles.ruqaa32W400Primary,
-              ),
-              AppTextWidget(
-                playerNumber.toString(),
-                style: AppTextStyles.ruqaa32W400Primary,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
   }
 }
