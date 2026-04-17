@@ -73,7 +73,7 @@ class _GameViewBody extends StatelessWidget {
           playerNumber: index + 1,
         ),
       GameRevealing(isSpy: final spy, secretWord: final word, selectedCategory: final cat) =>
-        spy ? SpyRevealView(category: cat!.name) : CitizenRevealView(category: cat!.name, word: word!),
+        spy ? SpyRevealView(category: cat.name) : CitizenRevealView(category: cat.name, word: word),
       GameReady() => GameReadyView(onStartTimer: cubit.startTimer),
       GameTimer(durationMinutes: final mins) => LottieTimer(
           duration: Duration(minutes: mins),
@@ -86,7 +86,7 @@ class _GameViewBody extends StatelessWidget {
         durationMinutes: final d,
       ) =>
         GameSummaryView(
-          secretWord: word!,
+          secretWord: word,
           playersCount: p,
           spiesCount: s,
           duration: Duration(minutes: d),
