@@ -94,4 +94,10 @@ class AppTextStyles {
     fontWeight: LateefWeight.w200.weight,
     color: AppColors.primary,
   );
+
+  static TextStyle font22W200White = fontApp.copyWith(
+    fontSize: 22,
+    fontWeight: LateefWeight.w200.weight,
+    color: AppColors.white.withValues(alpha: 0.8),
+  );
 }
