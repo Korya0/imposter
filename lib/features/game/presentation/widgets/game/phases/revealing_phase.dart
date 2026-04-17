@@ -17,7 +17,7 @@ class RevealingPhaseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isSpy) {
-      return SpyRevealView(category: categoryName);
+      return const SpyRevealView();
     }
     return CitizenRevealView(
       category: categoryName,

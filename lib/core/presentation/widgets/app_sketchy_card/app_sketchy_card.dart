@@ -1,9 +1,9 @@
-import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
-import 'package:imposter/core/theme/app_colors.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/presentation/widgets/app_sketchy_card/sketchy_card_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
+import 'package:imposter/core/theme/app_colors.dart';
+import 'package:imposter/core/theme/app_text_styles.dart';
 
 class AppSketchyCard extends StatefulWidget {
   const AppSketchyCard({
@@ -14,6 +14,7 @@ class AppSketchyCard extends StatefulWidget {
     this.height,
     this.showTape = true,
     this.onTap,
+    this.style,
   });
 
   final String title;
@@ -22,6 +23,7 @@ class AppSketchyCard extends StatefulWidget {
   final double? height;
   final bool showTape;
   final VoidCallback? onTap;
+  final TextStyle? style;
 
   @override
   State<AppSketchyCard> createState() => _AppSketchyCardState();
@@ -101,7 +103,9 @@ class _AppSketchyCardState extends State<AppSketchyCard>
                               widget.title,
                               textAlign: TextAlign.center,
                               maxLines: 1,
-                              style: AppTextStyles.ruqaa45BoldPrimary,
+                              style:
+                                  widget.style ??
+                                  AppTextStyles.ruqaa45BoldPrimary,
                             ),
                           ),
                         ],

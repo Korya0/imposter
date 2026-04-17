@@ -3,10 +3,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
 import 'package:imposter/core/utils/haptic_feedback_helper.dart';
-import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 
 class GameFingerprintButton extends StatefulWidget {
   final VoidCallback onTap;
@@ -44,7 +44,7 @@ class _GameFingerprintButtonState extends State<GameFingerprintButton> {
         children: [
           AppTextWidget(
             AppStrings.scanHere,
-            style: AppTextStyles.ruqaa32W400Primary,
+            style: AppTextStyles.font40W800Primary,
           ),
           SvgPicture.asset(
                 AppAssets.fingerprintSvg,

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 
-class LottieTimer extends StatefulWidget {
-  const LottieTimer({
+import 'package:imposter/core/presentation/widgets/app_analog_clock.dart';
+
+class GameTimer extends StatefulWidget {
+  const GameTimer({
     required this.duration,
     required this.onTimeout,
     super.key,
@@ -13,10 +15,10 @@ class LottieTimer extends StatefulWidget {
   final VoidCallback onTimeout;
 
   @override
-  State<LottieTimer> createState() => _LottieTimerState();
+  State<GameTimer> createState() => _GameTimerState();
 }
 
-class _LottieTimerState extends State<LottieTimer>
+class _GameTimerState extends State<GameTimer>
     with TickerProviderStateMixin {
   late AnimationController _timerController;
 
@@ -50,17 +52,26 @@ class _LottieTimerState extends State<LottieTimer>
         AnimatedBuilder(
           animation: _timerController,
           builder: (context, _) {
-            final remaining =
-                widget.duration.inSeconds * (1.0 - _timerController.value);
+            final progress = _timerController.value;
+            final remaining = widget.duration.inSeconds * (1.0 - progress);
             final totalSeconds = remaining.ceil();
             final mins = totalSeconds ~/ 60;
             final secs = totalSeconds % 60;
             final timeStr =
                 '${mins.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
 
-            return AppTextWidget(
-              timeStr,
-              style: AppTextStyles.ruqaa48W400Primary,
+            return Column(
+              children: [
+                AppAnalogClock(
+                  value: progress,
+                  size: 220,
+                ),
+                const SizedBox(height: 30),
+                AppTextWidget(
+                  timeStr,
+                  style: AppTextStyles.ruqaa48W400Primary,
+                ),
+              ],
             );
           },
         ),

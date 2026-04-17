@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:imposter/core/presentation/widgets/lottie_timer.dart';
+import 'package:imposter/core/presentation/widgets/game_timer.dart';
 
 class TimerPhaseWidget extends StatelessWidget {
   final int durationMinutes;
@@ -13,7 +13,7 @@ class TimerPhaseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LottieTimer(
+    return GameTimer(
       duration: Duration(minutes: durationMinutes),
       onTimeout: onTimeout,
     );

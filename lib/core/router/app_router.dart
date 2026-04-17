@@ -36,12 +36,11 @@ final GoRouter appRouter = GoRouter(
     ),
     ShellRoute(
       builder: (context, state, child) {
-        return BlocProvider(
-          create: (context) {
-            final cubit = sl<GameCubit>();
-            unawaited(cubit.init());
-            return cubit;
-          },
+        final cubit = sl<GameCubit>();
+        // Ensure init is called, though it's already handled in main.dart as well
+        unawaited(cubit.init());
+        return BlocProvider.value(
+          value: cubit,
           child: child,
         );
       },
