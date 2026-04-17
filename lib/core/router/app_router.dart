@@ -11,7 +11,7 @@ import 'package:imposter/features/game/presentation/views/game_settings_view.dar
 import 'package:imposter/features/game/presentation/views/game_view.dart';
 import 'package:imposter/features/game/presentation/views/topics_selection_view.dart';
 import 'package:imposter/features/home/presentation/views/home_view.dart';
-import 'package:imposter/features/splash/presentation/views/splash_view.dart';
+import 'package:imposter/features/splash/splash_view.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: AppRoutes.splash,
