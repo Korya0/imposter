@@ -7,6 +7,7 @@ import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
+import 'package:imposter/core/presentation/widgets/lottie_timer.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
 import 'package:imposter/features/game/presentation/widgets/game/citizen_reveal_view.dart';
@@ -16,7 +17,6 @@ import 'package:imposter/features/game/presentation/widgets/game/game_finish_tur
 import 'package:imposter/features/game/presentation/widgets/game/game_next_button.dart';
 import 'package:imposter/features/game/presentation/widgets/game/game_ready_view.dart';
 import 'package:imposter/features/game/presentation/widgets/game/game_summary_view.dart';
-import 'package:imposter/features/game/presentation/widgets/game/lottie_timer.dart';
 import 'package:imposter/features/game/presentation/widgets/game/scan_view_body.dart';
 import 'package:imposter/features/game/presentation/widgets/game/spy_reveal_view.dart';
 

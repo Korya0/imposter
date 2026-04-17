@@ -6,6 +6,7 @@ import 'package:imposter/core/theme/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
+import 'package:imposter/core/presentation/widgets/app_value_adjuster.dart';
 
 class GameSettingItem extends StatelessWidget {
   final String iconPath;
@@ -55,46 +56,10 @@ class GameSettingItem extends StatelessWidget {
           ),
         ),
         SizedBox(height: (context.height * 0.02).clamp(6, 12)),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColors.primary, width: 0.9),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: IconButton(
-                onPressed: onDecrement,
-                icon: const Icon(
-                  Icons.remove_sharp,
-                  size: 28,
-                ),
-              ),
-            ),
-            SizedBox(
-              width: 70,
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: AppTextWidget(
-                  value,
-                  style: AppTextStyles.font40W800Primary,
-                ),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColors.primary, width: 0.9),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: IconButton(
-                onPressed: onIncrement,
-                icon: const Icon(
-                  Icons.add_sharp,
-                  size: 28,
-                ),
-              ),
-            ),
-          ],
+        AppValueAdjuster(
+          value: value,
+          onIncrement: onIncrement,
+          onDecrement: onDecrement,
         ),
       ],
     );

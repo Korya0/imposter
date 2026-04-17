@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
-import 'package:imposter/features/home/presentation/widgets/home_app_name_and_logo.dart';
+import 'package:imposter/core/presentation/widgets/app_logo_header.dart';
 import 'package:imposter/features/home/presentation/widgets/home_buttons_section.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -13,7 +13,9 @@ class HomeViewBody extends StatelessWidget {
       child: Column(
         spacing: AppPaddings.heightH10(context),
         children: const [
-          HomeAppNameAndLogo(),
+          AppLogoHeader(
+            shouldAnimate: true,
+          ),
           HomeButtonsSection(),
         ],
       ),
