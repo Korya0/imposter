@@ -201,38 +201,6 @@ class GameCubit extends Cubit<GameState> {
     }
   }
 
-  void redoRound() {
-    final currentState = state;
-    var word = '';
-    var spies = <int>[];
-
-    if (currentState is GameReady) {
-      word = currentState.secretWord;
-      spies = currentState.spyIndices;
-    } else if (currentState is GameTimer) {
-      word = currentState.secretWord;
-      spies = currentState.spyIndices;
-    } else if (currentState is GameSummary) {
-      word = currentState.secretWord;
-      spies = currentState.spyIndices;
-    } else {
-      return;
-    }
-
-    emit(
-      GameScanning(
-        categories: state.categories,
-        selectedCategory: state.selectedCategory!,
-        playerCount: state.playerCount,
-        spyCount: state.spyCount,
-        durationMinutes: state.durationMinutes,
-        currentPlayerIndex: 0,
-        secretWord: word,
-        spyIndices: spies,
-      ),
-    );
-  }
-
   void startTimer() {
     final currentState = state;
     if (currentState is! GameReady) return;
