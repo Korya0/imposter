@@ -20,7 +20,7 @@ Future<void> setupEssentialDI() async {
     ..registerLazySingleton<GetCategoriesUsecase>(
       () => GetCategoriesUsecase(repository: sl<IGameRepository>()),
     )
-    ..registerFactory<GameCubit>(
+    ..registerLazySingleton<GameCubit>(
       () => GameCubit(sl<GetCategoriesUsecase>(), sl<GameEngine>()),
     );
 }
