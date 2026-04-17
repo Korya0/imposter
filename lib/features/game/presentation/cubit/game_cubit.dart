@@ -23,22 +23,25 @@ class GameCubit extends Cubit<GameState> {
 
     final result = await _getCategoriesUsecase();
 
-    final newState = switch (result) {
-      Success(data: final categories) => GameCategoriesLoaded(
-        categories: categories,
-        playerCount: state.playerCount,
-        spyCount: state.spyCount,
-        durationMinutes: state.durationMinutes,
-      ),
-      FailureResult(failure: final f) => GameError(
-        message: f.message,
-        playerCount: state.playerCount,
-        spyCount: state.spyCount,
-        durationMinutes: state.durationMinutes,
-      ),
-    };
-
-    emit(newState);
+    if (result is Success<List<CategoryEntity>>) {
+      emit(
+        GameCategoriesLoaded(
+          categories: result.data,
+          playerCount: state.playerCount,
+          spyCount: state.spyCount,
+          durationMinutes: state.durationMinutes,
+        ),
+      );
+    } else if (result is FailureResult<List<CategoryEntity>>) {
+      emit(
+        GameError(
+          message: result.failure.message,
+          playerCount: state.playerCount,
+          spyCount: state.spyCount,
+          durationMinutes: state.durationMinutes,
+        ),
+      );
+    }
   }
 
   void selectCategory(CategoryEntity category) {
@@ -61,7 +64,10 @@ class GameCubit extends Cubit<GameState> {
         categories: state.categories,
         selectedCategory: state.selectedCategory,
         playerCount: (players ?? state.playerCount).clamp(3, 12),
-        spyCount: (spies ?? state.spyCount).clamp(1, (players ?? state.playerCount) ~/ 2),
+        spyCount: (spies ?? state.spyCount).clamp(
+          1,
+          (players ?? state.playerCount) ~/ 2,
+        ),
         durationMinutes: (minutes ?? state.durationMinutes).clamp(1, 30),
       ),
     );

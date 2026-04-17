@@ -5,9 +5,10 @@ import 'package:imposter/core/presentation/widgets/app_sketchy_card/app_sketchy_
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 
 class CitizenRevealView extends StatelessWidget {
+  final String category;
   final String word;
 
-  const CitizenRevealView({super.key, required this.word});
+  const CitizenRevealView({super.key, required this.category, required this.word});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,11 @@ class CitizenRevealView extends StatelessWidget {
             style: AppTextStyles.ruqaa24BoldPrimary,
           ),
           const SizedBox(height: 5),
+          AppTextWidget(
+            '($category)',
+            style: AppTextStyles.font22W200White,
+          ),
+          const SizedBox(height: 10),
           AppSketchyCard(
             height: 150,
             title: word,

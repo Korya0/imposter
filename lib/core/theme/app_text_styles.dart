@@ -36,7 +36,7 @@ class AppTextStyles {
   );
 
   static TextStyle ruqaa28W400White = fontRuqaa.copyWith(
-    color: AppColors.white,
+    color: AppColors.white.withValues(alpha: 0.8),
     fontSize: 28,
     fontWeight: RuqaaWeight.w400.weight,
   );

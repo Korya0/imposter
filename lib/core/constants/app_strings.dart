@@ -9,6 +9,7 @@ abstract class AppStrings {
 
   // Category Selection
   static const String comingWithYou = 'جايه معاك بايه ؟';
+  static const String category = 'الموضوع';
 
   // Game Settings
   static const String numberOfPlayers = 'عدد الاعبين';

@@ -72,8 +72,8 @@ class _GameViewBody extends StatelessWidget {
       GameScanning(currentPlayerIndex: final index) => _ScanViewBody(
           playerNumber: index + 1,
         ),
-      GameRevealing(isSpy: final spy, secretWord: final word) =>
-        spy ? const SpyRevealView() : CitizenRevealView(word: word!),
+      GameRevealing(isSpy: final spy, secretWord: final word, selectedCategory: final cat) =>
+        spy ? SpyRevealView(category: cat!.name) : CitizenRevealView(category: cat!.name, word: word!),
       GameReady() => GameReadyView(onStartTimer: cubit.startTimer),
       GameTimer(durationMinutes: final mins) => LottieTimer(
           duration: Duration(minutes: mins),

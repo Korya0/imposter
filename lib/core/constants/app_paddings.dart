@@ -31,7 +31,7 @@ abstract class AppPaddings {
       EdgeInsets.only(bottom: (context.height * 0.01).clamp(20, 40));
 
   static double heightH05(BuildContext context) =>
-      (context.height * 0.05).clamp(12, 32);
+      (context.height * 0.05).clamp(8, 24);
   static double heightH01(BuildContext context) =>
       (context.height * 0.01).clamp(12, 32);
   static double heightH05Large(BuildContext context) =>

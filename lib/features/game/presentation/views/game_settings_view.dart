@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/constants/app_strings.dart';
-import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
+import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
 import 'package:imposter/features/game/presentation/widgets/game_settings/game_setting_item.dart';
@@ -44,35 +44,36 @@ class _GameSettingsViewBody extends StatelessWidget {
           child: Column(
             children: [
               const CustomAppBar(),
+
               GameSettingItem(
-                iconPath: AppAssets.peopleGroupSvg,
-                title: AppStrings.numberOfPlayers,
-                value: state.playerCount.toString(),
-                onIncrement: cubit.incrementPlayers,
-                onDecrement: cubit.decrementPlayers,
-              )
+                    iconPath: AppAssets.peopleGroupSvg,
+                    title: AppStrings.numberOfPlayers,
+                    value: state.playerCount.toString(),
+                    onIncrement: cubit.incrementPlayers,
+                    onDecrement: cubit.decrementPlayers,
+                  )
                   .animate()
                   .fadeIn(delay: 100.ms, duration: 600.ms)
                   .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
               SizedBox(height: AppPaddings.heightH05(context)),
               GameSettingItem(
-                iconPath: AppAssets.spySvg,
-                title: AppStrings.numberOfSpies,
-                value: state.spyCount.toString(),
-                onIncrement: cubit.incrementSpies,
-                onDecrement: cubit.decrementSpies,
-              )
+                    iconPath: AppAssets.spySvg,
+                    title: AppStrings.numberOfSpies,
+                    value: state.spyCount.toString(),
+                    onIncrement: cubit.incrementSpies,
+                    onDecrement: cubit.decrementSpies,
+                  )
                   .animate()
                   .fadeIn(delay: 250.ms, duration: 600.ms)
                   .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
               SizedBox(height: AppPaddings.heightH01(context)),
               GameSettingItem(
-                iconPath: AppAssets.timeOclockSvg,
-                title: AppStrings.numberOfMinutes,
-                value: state.durationMinutes.toString(),
-                onIncrement: cubit.incrementMinutes,
-                onDecrement: cubit.decrementMinutes,
-              )
+                    iconPath: AppAssets.timeOclockSvg,
+                    title: AppStrings.numberOfMinutes,
+                    value: state.durationMinutes.toString(),
+                    onIncrement: cubit.incrementMinutes,
+                    onDecrement: cubit.decrementMinutes,
+                  )
                   .animate()
                   .fadeIn(delay: 400.ms, duration: 600.ms)
                   .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
