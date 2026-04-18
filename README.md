@@ -117,6 +117,16 @@
 
 ---
 
+## 📅 Roadmap
+
+- [x] Initial Game Release (MVP)
+- [x] Sliver Performance Optimization
+- [ ] Comprehensive Project Documentation
+- [ ] Unit & UI Testing Implementation
+- [ ] New Game Categories & Words
+
+---
+
 ## 📄 License
 
 <hr style="height:1px;border:none;color:#333;background-color:#333;" />
