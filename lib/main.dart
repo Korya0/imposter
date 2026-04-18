@@ -18,7 +18,7 @@ void main() async {
   await SystemUiConfig.setup();
   await AppInitializer.initEssential();
   runApp(
-    kIsWeb && !kDebugMode
+    kIsWeb && kDebugMode
         ? DevicePreview(builder: (context) => const ImposterApp())
         : const ImposterApp(),
   );
