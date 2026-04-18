@@ -3,10 +3,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 
 class AppLogoHeader extends StatelessWidget {
   final bool isVertical;
@@ -37,32 +37,29 @@ class AppLogoHeader extends StatelessWidget {
     final effectiveSpacing =
         spacing ?? (isVertical ? (context.height * 0.05).clamp(14, 40) : 24.0);
 
-    final children = [
-      _buildLogo(context, effectiveLogoHeight),
-      if (showText) ...[
-        if (isVertical)
-          SizedBox(height: effectiveSpacing)
-        else
-          SizedBox(width: effectiveSpacing),
-        _buildText(),
-      ],
-    ];
-
-    final orderedChildren = showText
+    final children = showText
         ? (isVertical
-            ? [children[2], children[1], children[0]]
-            : [children[0], children[1], children[2]])
-        : [children[0]];
+              ? [
+                  _buildText(),
+                  SizedBox(height: effectiveSpacing),
+                  _buildLogo(context, effectiveLogoHeight),
+                ]
+              : [
+                  _buildText(),
+                  SizedBox(width: effectiveSpacing),
+                  _buildLogo(context, effectiveLogoHeight),
+                ])
+        : [_buildLogo(context, effectiveLogoHeight)];
 
     final content = isVertical
         ? Column(
             mainAxisSize: MainAxisSize.min,
-            children: orderedChildren,
+            children: children,
           )
         : Row(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
-            children: orderedChildren,
+            children: children,
           );
 
     return content;

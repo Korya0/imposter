@@ -21,3 +21,11 @@ class AssetFailure extends Failure {
 class UnexpectedFailure extends Failure {
   const UnexpectedFailure() : super(AppStrings.errorUnexpected);
 }
+
+class NetworkFailure extends Failure {
+  const NetworkFailure() : super(AppStrings.noInternetError);
+}
+
+class ServerFailure extends Failure {
+  const ServerFailure() : super(AppStrings.feedbackError);
+}

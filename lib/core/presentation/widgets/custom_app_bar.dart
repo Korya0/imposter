@@ -11,8 +11,10 @@ class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
     this.showText = true,
+    this.showHowToPlay = true,
   });
   final bool showText;
+  final bool showHowToPlay;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,8 +23,6 @@ class CustomAppBar extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              HowToPlayIconButton(showText: showText),
-
               AppButton(
                 height: 50,
                 onTap: () => context.pop(),
@@ -31,6 +31,8 @@ class CustomAppBar extends StatelessWidget {
                   height: 24,
                 ),
               ),
+              if (!showHowToPlay) const SizedBox(),
+              if (showHowToPlay) HowToPlayIconButton(showText: showText),
             ],
           ).animate().slideY(
             begin: -1,

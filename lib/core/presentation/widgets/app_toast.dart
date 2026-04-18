@@ -33,7 +33,6 @@ class AppToast {
       ..show(
         context: context,
         style: ToastificationStyle.minimal,
-        direction: TextDirection.rtl,
         title: AppTextWidget(
           message,
           style: AppTextStyles.font22W800Primary,

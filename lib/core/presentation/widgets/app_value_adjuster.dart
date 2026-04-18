@@ -23,8 +23,8 @@ class AppValueAdjuster extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _buildControlButton(
-          icon: Icons.remove_sharp,
-          onPressed: onDecrement,
+          icon: Icons.add_sharp,
+          onPressed: onIncrement,
         ),
         SizedBox(
           width: width,
@@ -37,8 +37,8 @@ class AppValueAdjuster extends StatelessWidget {
           ),
         ),
         _buildControlButton(
-          icon: Icons.add_sharp,
-          onPressed: onIncrement,
+          icon: Icons.remove_sharp,
+          onPressed: onDecrement,
         ),
       ],
     );

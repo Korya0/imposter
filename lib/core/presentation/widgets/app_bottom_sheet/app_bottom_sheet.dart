@@ -2,10 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:imposter/core/presentation/widgets/app_bottom_sheet/torn_paper_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
-import 'package:imposter/core/presentation/widgets/app_bottom_sheet/torn_paper_painter.dart';
 
 class AppBottomSheet extends StatelessWidget {
   const AppBottomSheet({
@@ -39,7 +39,7 @@ class AppBottomSheet extends StatelessWidget {
             ),
           ),
           AppBottomSheet(
-            height: height ?? MediaQuery.of(context).size.height * 0.7,
+            height: height,
             title: title,
             child: child,
           ),
@@ -55,9 +55,11 @@ class AppBottomSheet extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        height: height,
         width: double.infinity,
-        constraints: const BoxConstraints(maxWidth: 550),
+        constraints: BoxConstraints(
+          maxWidth: 550,
+          maxHeight: height ?? MediaQuery.of(context).size.height * 0.8,
+        ),
         child: CustomPaint(
           painter: TornPaperPainter(color: AppColors.secondaryBackground),
           child: Material(
@@ -67,11 +69,23 @@ class AppBottomSheet extends StatelessWidget {
               child: SafeArea(
                 top: false,
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 26, 24, 0),
+                  padding: const EdgeInsets.fromLTRB(24, 26, 24, 20),
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          if (title == null)
+                            const SizedBox.shrink()
+                          else
+                            Align(
+                              alignment: AlignmentDirectional.centerEnd,
+                              child: AppTextWidget(
+                                title!,
+                                style: AppTextStyles.font24W800Primary,
+                              ),
+                            ),
                           Semantics(
                             button: true,
                             label: 'إغلاق',
@@ -83,22 +97,10 @@ class AppBottomSheet extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: title == null
-                                ? const SizedBox.shrink()
-                                : Align(
-                                    alignment: Alignment.centerRight,
-                                    child: AppTextWidget(
-                                      title!,
-                                      textAlign: TextAlign.right,
-                                      style: AppTextStyles.font24W800Primary,
-                                    ),
-                                  ),
-                          ),
                         ],
                       ),
                       const SizedBox(height: 20),
-                      Expanded(
+                      Flexible(
                         child: SingleChildScrollView(
                           physics: const BouncingScrollPhysics(),
                           child: child,

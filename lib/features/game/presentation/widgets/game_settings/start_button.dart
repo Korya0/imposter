@@ -23,14 +23,14 @@ class StartButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                AppAssets.playSvg,
-                height: (context.height * 0.04).clamp(28, 30),
-              ),
-              const SizedBox(width: 12),
               AppTextWidget(
                 AppStrings.start,
                 style: AppTextStyles.font45W800Background,
+              ),
+              const SizedBox(width: 12),
+              SvgPicture.asset(
+                AppAssets.playSvg,
+                height: (context.height * 0.04).clamp(28, 30),
               ),
             ],
           ),

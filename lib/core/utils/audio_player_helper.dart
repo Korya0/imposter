@@ -1,16 +1,18 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
 import 'package:imposter/core/constants/app_assets.dart';
+import 'package:imposter/core/di/di.dart';
+import 'package:soundpool/soundpool.dart';
 
 class AudioPlayerHelper {
-  static final AudioPlayer _player = AudioPlayer();
+  static int? _winSoundId;
 
   static Future<void> playWin() async {
-    await _player.stop();
-    await _player.setReleaseMode(ReleaseMode.release);
-    await _player.play(AssetSource(AppAssets.win.replaceFirst('assets/', '')));
-  }
+    final pool = sl<Soundpool>();
 
-  static Future<void> stop() async {
-    await _player.stop();
+    _winSoundId ??= await rootBundle.load(AppAssets.win).then(pool.load);
+
+    if (_winSoundId != null) {
+      await pool.play(_winSoundId!);
+    }
   }
 }

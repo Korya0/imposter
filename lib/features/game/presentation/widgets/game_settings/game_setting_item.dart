@@ -39,11 +39,6 @@ class GameSettingItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(),
-                AppTextWidget(
-                  title,
-                  style: AppTextStyles.font30W800Background,
-                ),
                 SvgPicture.asset(
                   iconPath,
                   width: 28,
@@ -53,6 +48,11 @@ class GameSettingItem extends StatelessWidget {
                     BlendMode.srcIn,
                   ),
                 ),
+                AppTextWidget(
+                  title,
+                  style: AppTextStyles.font30W800Background,
+                ),
+                const SizedBox(),
               ],
             ),
           ),

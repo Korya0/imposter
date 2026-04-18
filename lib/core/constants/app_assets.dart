@@ -20,6 +20,7 @@ abstract class AppAssets {
   static const String placesSvg = '$_baseSvg/places.svg';
   static const String professionsSvg = '$_baseSvg/professions.svg';
   static const String thingsSvg = '$_baseSvg/things.svg';
+  static const String facebookSvg = '$_baseSvg/facebook.svg';
 
   // images
   static const String paperWebp = '$_baseImage/paper_texture.webp';

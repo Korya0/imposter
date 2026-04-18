@@ -22,11 +22,11 @@ class ScanningPhaseWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AppTextWidget(
-                AppStrings.player,
+                playerNumber.toString(),
                 style: AppTextStyles.ruqaa32W400Primary,
               ),
               AppTextWidget(
-                playerNumber.toString(),
+                AppStrings.player,
                 style: AppTextStyles.ruqaa32W400Primary,
               ),
             ],

@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
@@ -7,7 +8,6 @@ import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
-
 import 'package:imposter/core/utils/audio_player_helper.dart';
 
 class SummaryPhaseWidget extends StatefulWidget {
@@ -51,7 +51,10 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget> {
           const SizedBox(height: 6),
           _buildInfoRow(AppStrings.word, widget.secretWord),
           const SizedBox(height: 12),
-          _buildInfoRow(AppStrings.numberOfPlayers, widget.playerCount.toString()),
+          _buildInfoRow(
+            AppStrings.numberOfPlayers,
+            widget.playerCount.toString(),
+          ),
           const SizedBox(height: 12),
           _buildInfoRow(AppStrings.numberOfSpies, widget.spyCount.toString()),
           const SizedBox(height: 12),
@@ -71,10 +74,6 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget> {
                   mainAxisSize: MainAxisSize.min,
                   spacing: 16,
                   children: [
-                    AppTextWidget(
-                      AppStrings.anotherRound,
-                      style: AppTextStyles.ruqaa28W400White,
-                    ),
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
@@ -91,6 +90,10 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget> {
                         ),
                       ),
                     ),
+                    AppTextWidget(
+                      AppStrings.anotherRound,
+                      style: AppTextStyles.ruqaa28W400White,
+                    ),
                   ],
                 ),
               ),
@@ -105,17 +108,19 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget> {
     return Padding(
       padding: AppPaddings.h24,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        spacing: 16,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          AppTextWidget(
+            '$label:',
+            style: AppTextStyles.font28W800Primary,
+          ),
+
           AppTextWidget(
             value,
             style: AppTextStyles.font28W800Primary.copyWith(
               color: AppColors.white.withValues(alpha: 0.8),
             ),
-          ),
-          AppTextWidget(
-            ': $label',
-            style: AppTextStyles.font28W800Primary,
           ),
         ],
       ),

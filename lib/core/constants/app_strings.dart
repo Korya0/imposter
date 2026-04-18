@@ -44,6 +44,17 @@ abstract class AppStrings {
       'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى';
   static const String oopsYouLost = 'أوبس تهت في الطريق؟';
   static const String backToHome = 'الرجوع للرئيسية';
+  static const String feedbackSuggestionOrComplaint = 'أقتراح او شكوي';
+  static const String sendFeedback = 'إرسال';
+  static const String feedbackPlaceholder = 'اكتب مقترحك هنا...';
+  static const String feedbackSuccess = 'شكراً لمشاركتك تم الإرسال بنجاح';
+  static const String feedbackError = 'حدث خطأ أثناء الإرسال، حاول مرة أخرى';
+  static const String feedbackBusinessContact = 'تواصل لأغراض العمل';
+  static const String shareAndRate = 'شارك وقيم';
+  static const String shareApp = 'مشاركة التطبيق';
+  static const String followUsOn = 'تابع التطبيق علي';
+  static const String noInternetError =
+      'لا يوجد اتصال بالإنترنت، يرجى التحقق من الشبكة';
 
   // Settings Limits
   static const String maxPlayersReached = 'وصلت لأقصى عدد لاعبين مسموح بيه';

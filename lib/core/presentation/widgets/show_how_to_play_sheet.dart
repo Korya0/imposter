@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_strings.dart';
+import 'package:imposter/core/presentation/widgets/app_bottom_sheet/app_bottom_sheet.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
-import 'package:imposter/core/presentation/widgets/app_bottom_sheet/app_bottom_sheet.dart';
 
 void showHowToPlaySheet(BuildContext context) {
   unawaited(
@@ -20,7 +20,6 @@ void showHowToPlaySheet(BuildContext context) {
                 padding: const EdgeInsets.only(bottom: 16),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  textDirection: TextDirection.rtl,
                   children: [
                     Container(
                       width: 28,
@@ -53,11 +52,11 @@ void showHowToPlaySheet(BuildContext context) {
                     Expanded(
                       child: AppTextWidget(
                         step,
-                        textAlign: TextAlign.right,
                         style: AppTextStyles.font15W700Primary.copyWith(
-                          fontSize: 22, // Bigger text size
+                          fontSize: 22,
                           height: 1.3,
                         ),
+                        textAlign: TextAlign.start,
                       ),
                     ),
                   ],

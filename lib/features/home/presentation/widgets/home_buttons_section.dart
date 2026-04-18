@@ -33,7 +33,7 @@ class HomeButtonsSection extends StatelessWidget {
               Expanded(
                 child: AppButton(
                   title: AppStrings.drawer,
-                  onTap: () => AppToast.show(context, AppStrings.comingSoon),
+                  onTap: () => context.pushNamed(AppRoutes.drawer),
                 ),
               ),
             ],
