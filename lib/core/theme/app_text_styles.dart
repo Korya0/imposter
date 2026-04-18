@@ -124,4 +124,16 @@ class AppTextStyles {
     fontWeight: LateefWeight.w200.weight,
     color: AppColors.white.withValues(alpha: 0.8),
   );
+
+  static TextStyle font24W600Secondary = fontApp.copyWith(
+    fontSize: 24,
+    fontWeight: LateefWeight.w600.weight,
+    color: AppColors.secondary,
+  );
+
+  static TextStyle font15W700Primary = fontApp.copyWith(
+    fontSize: 15,
+    fontWeight: LateefWeight.w700.weight,
+    color: AppColors.primary,
+  );
 }

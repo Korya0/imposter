@@ -44,4 +44,26 @@ abstract class AppStrings {
       'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى';
   static const String oopsYouLost = 'أوبس تهت في الطريق؟';
   static const String backToHome = 'الرجوع للرئيسية';
+
+  // Settings Limits
+  static const String maxPlayersReached = 'وصلت لأقصى عدد لاعبين مسموح بيه';
+  static const String minPlayersReached = 'لازم 3 لاعيبة على الأقل عشان تلعبوا';
+  static const String maxSpiesReached =
+      'عدد الجواسيس مينفعش يتخطى نص عدد اللعيبة';
+  static const String minSpiesReached = 'لازم يكون فيه جاسوس واحد على الأقل';
+  static const String maxMinutesReached = '30 دقيقة ده أقصى وقت مسموح بيه';
+  static const String minMinutesReached = 'أقل وقت هو دقيقة واحدة';
+
+  static const List<String> howToPlaySteps = [
+    'فكرة اللعبة: في كل دور في مواطنين وجاسوس بينهم.',
+    'الأدوار: المواطن بيشوف الكلمة السرية، والجاسوس مايشوفش الكلمة.',
+    'الدور بيمشي بسؤال بين اللعيبة بالتتابع.',
+    'ممنوع نفس اللاعب يتسأل مرتين ورا بعد.',
+    'هدف المواطنين: يعرفوا مين الجاسوس قبل ما يخمّن الكلمة.',
+    'هدف الجاسوس: يندمج في الكلام من غير ما يتكشف ويحاول يعرف الكلمة.',
+    'الجاسوس يقدر يوقف الدور في أي وقت لو حب يخمّن.',
+    'لو تخمين الجاسوس صح: يكسب والدور ينتهي فورًا.',
+    'لو تخمينه غلط: يخرج من الدور واللعيبة تكمل.',
+    'لو الجاسوس ماوقفش الدور: اللعيبة تصوّت على أكتر شخص مشكوك فيه.',
+  ];
 }

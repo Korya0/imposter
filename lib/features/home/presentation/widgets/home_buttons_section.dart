@@ -7,6 +7,7 @@ import 'package:imposter/core/presentation/widgets/app_toast.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/presentation/widgets/show_how_to_play_sheet.dart';
 
 class HomeButtonsSection extends StatelessWidget {
   const HomeButtonsSection({super.key});
@@ -24,7 +25,7 @@ class HomeButtonsSection extends StatelessWidget {
               Expanded(
                 child: AppButton(
                   title: AppStrings.howToPlay,
-                  onTap: () => AppToast.show(context, AppStrings.comingSoon),
+                  onTap: () => showHowToPlaySheet(context),
                 ),
               ),
               Expanded(

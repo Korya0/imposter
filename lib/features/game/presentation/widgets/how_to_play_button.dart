@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
-import 'package:imposter/core/presentation/widgets/app_toast.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/presentation/widgets/show_how_to_play_sheet.dart';
 
 class HowToPlayIconButton extends StatelessWidget {
   const HowToPlayIconButton({
@@ -18,7 +18,7 @@ class HowToPlayIconButton extends StatelessWidget {
       button: true,
       label: AppStrings.howToPlay,
       child: GestureDetector(
-        onTap: () => AppToast.show(context, AppStrings.comingSoon),
+        onTap: () => showHowToPlaySheet(context),
         behavior: HitTestBehavior.opaque,
         child: Row(
           spacing: showText ? 8 : 0,
