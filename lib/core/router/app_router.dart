@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:imposter/core/di/di.dart';
 import 'package:imposter/core/presentation/views/app_error_view.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/core/router/app_transitions.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/views/game_settings_view.dart';
 import 'package:imposter/features/game/presentation/views/game_view.dart';
@@ -19,25 +18,16 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.splash,
       name: AppRoutes.splash,
-      pageBuilder: (context, state) => AppTransitions.fade(
-        state: state,
-        child: const SplashView(),
-        context: context,
-      ),
+      builder: (context, state) => const SplashView(),
     ),
     GoRoute(
       path: AppRoutes.home,
       name: AppRoutes.home,
-      pageBuilder: (context, state) => AppTransitions.slideFromRight(
-        state: state,
-        child: const HomeView(),
-        context: context,
-      ),
+      builder: (context, state) => const HomeView(),
     ),
     ShellRoute(
       builder: (context, state, child) {
         final cubit = sl<GameCubit>();
-        // Ensure init is called, though it's already handled in main.dart as well
         unawaited(cubit.init());
         return BlocProvider.value(
           value: cubit,
@@ -48,29 +38,17 @@ final GoRouter appRouter = GoRouter(
         GoRoute(
           path: AppRoutes.topicsSelection,
           name: AppRoutes.topicsSelection,
-          pageBuilder: (context, state) => AppTransitions.slideFromRight(
-            context: context,
-            state: state,
-            child: const TopicsSelectionView(),
-          ),
+          builder: (context, state) => const TopicsSelectionView(),
         ),
         GoRoute(
           path: AppRoutes.gameSettings,
           name: AppRoutes.gameSettings,
-          pageBuilder: (context, state) => AppTransitions.slideFromRight(
-            context: context,
-            state: state,
-            child: const GameSettingsView(),
-          ),
+          builder: (context, state) => const GameSettingsView(),
         ),
         GoRoute(
           path: AppRoutes.game,
           name: AppRoutes.game,
-          pageBuilder: (context, state) => AppTransitions.slideFromRight(
-            context: context,
-            state: state,
-            child: const GameView(),
-          ),
+          builder: (context, state) => const GameView(),
         ),
       ],
     ),

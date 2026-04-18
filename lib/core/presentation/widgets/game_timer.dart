@@ -62,9 +62,11 @@ class _GameTimerState extends State<GameTimer>
 
             return Column(
               children: [
-                AppAnalogClock(
-                  value: progress,
-                  size: 220,
+                RepaintBoundary(
+                  child: AppAnalogClock(
+                    value: progress,
+                    size: 220,
+                  ),
                 ),
                 const SizedBox(height: 30),
                 AppTextWidget(

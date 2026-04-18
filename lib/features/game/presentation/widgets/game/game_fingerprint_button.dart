@@ -24,7 +24,7 @@ class _GameFingerprintButtonState extends State<GameFingerprintButton> {
       _isPressed = true;
     });
     await HapticFeedbackHelper.heavy();
-    await Future<void>.delayed(500.ms);
+    await Future<void>.delayed(150.ms);
     if (mounted) {
       setState(() {
         _isPressed = false;
@@ -58,7 +58,7 @@ class _GameFingerprintButtonState extends State<GameFingerprintButton> {
               .scale(
                 begin: const Offset(1, 1),
                 end: const Offset(1.1, 1.1),
-                duration: 100.ms,
+                duration: 80.ms,
               ),
         ],
       ),
