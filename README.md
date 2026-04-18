@@ -26,13 +26,13 @@
 <a href="https://docs.google.com/uc?export=download&id=[YOUR_DRIVE_FILE_ID_HERE]">
   <img src="https://img.shields.io/badge/📥_Download_APK-D4AF37?style=for-the-badge" alt="Download APK"/>
 </a>
-<a href="https://www.linkedin.com/in/[YOUR_LINKEDIN_USERNAME]/">
+<a href="https://www.linkedin.com/in/mahmoudk25/">
   <img src="https://img.shields.io/badge/💬_LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
 </a>
 </p>
 
 <!-- Demo GIF -->
-<img src="assets/readme_assets/app_gif.gif" width="700" alt="App Demo GIF" />
+<img src="assets/readme_assets/app_gif.gif" width="400" alt="App Demo GIF" />
 
 </div>
 
@@ -89,10 +89,10 @@
 
 | | | |
 |:---:|:---:|:---:|
-| <img src="assets/readme_assets/splash.jpg" width="180"/> | <img src="assets/readme_assets/home.jpg" width="180"/> | <img src="assets/readme_assets/topics_selection.jpg" width="180"/> |
-| <img src="assets/readme_assets/game_settings.jpg" width="180"/> | <img src="assets/readme_assets/how_to_play_bottom_sheet.jpg" width="180"/> | <img src="assets/readme_assets/fingerprint_phase.jpg" width="180"/> |
-| <img src="assets/readme_assets/word_phase.jpg" width="180"/> | <img src="assets/readme_assets/ok_phase.jpg" width="180"/> | <img src="assets/readme_assets/you_are_spy_phase.jpg" width="180"/> |
-| <img src="assets/readme_assets/time_phase.jpg" width="180"/> | <img src="assets/readme_assets/summary_phase.jpg" width="180"/> | |
+| <img src="assets/readme_assets/splash.jpg" width="160"/> | <img src="assets/readme_assets/home.jpg" width="160"/> | <img src="assets/readme_assets/topics_selection.jpg" width="160"/> |
+| <img src="assets/readme_assets/game_settings.jpg" width="160"/> | <img src="assets/readme_assets/how_to_play_bottom_sheet.jpg" width="160"/> | <img src="assets/readme_assets/fingerprint_phase.jpg" width="160"/> |
+| <img src="assets/readme_assets/word_phase.jpg" width="160"/> | <img src="assets/readme_assets/ok_phase.jpg" width="160"/> | <img src="assets/readme_assets/you_are_spy_phase.jpg" width="160"/> |
+| <img src="assets/readme_assets/time_phase.jpg" width="160"/> | <img src="assets/readme_assets/summary_phase.jpg" width="160"/> | <img src="assets/readme_assets/app_gif.gif" width="160"/> |
 
 </div>
 
