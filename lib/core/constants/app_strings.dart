@@ -6,6 +6,7 @@ abstract class AppStrings {
   static const String drawer = 'الدرج';
   static const String online = 'أونلاين';
   static const String comingSoon = 'قريبا';
+  static const String close = 'إغلاق';
 
   // Category Selection
   static const String comingWithYou = 'جايه معاك بايه ؟';

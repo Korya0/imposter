@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_bottom_sheet/torn_paper_painter.dart';
+import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
@@ -86,15 +88,13 @@ class AppBottomSheet extends StatelessWidget {
                                 style: AppTextStyles.font24W800Primary,
                               ),
                             ),
-                          Semantics(
-                            button: true,
-                            label: 'إغلاق',
-                            child: TextButton(
-                              onPressed: () => context.pop(),
-                              child: AppTextWidget(
-                                'إغلاق',
-                                style: AppTextStyles.font24W800Primary,
-                              ),
+                          AppButton(
+                            height: 50,
+                            width: 70,
+                            onTap: () => context.pop(),
+                            child: AppTextWidget(
+                              AppStrings.close,
+                              style: AppTextStyles.font24W600Secondary,
                             ),
                           ),
                         ],

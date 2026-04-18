@@ -5,6 +5,7 @@ import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_bottom_sheet/app_bottom_sheet.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/theme/app_colors.dart';
+import 'package:imposter/core/theme/app_fonts.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
 
 void showHowToPlaySheet(BuildContext context) {
@@ -19,11 +20,12 @@ void showHowToPlaySheet(BuildContext context) {
               (step) => Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: Row(
+                  spacing: 12,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: 28,
-                      height: 28,
+                      width: 24,
+                      height: 24,
                       decoration: const BoxDecoration(
                         color: AppColors.primary,
                         shape: BoxShape.circle,
@@ -48,13 +50,11 @@ void showHowToPlaySheet(BuildContext context) {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 12),
                     Expanded(
                       child: AppTextWidget(
                         step,
-                        style: AppTextStyles.font15W700Primary.copyWith(
-                          fontSize: 22,
-                          height: 1.3,
+                        style: AppTextStyles.font22W200Primary.copyWith(
+                          fontWeight: LateefWeight.w600.weight,
                         ),
                         textAlign: TextAlign.start,
                       ),
