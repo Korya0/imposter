@@ -26,9 +26,7 @@ abstract class AppAssets {
   static const String logoSplashIcon = '$_baseImage/logo_splash_icon.png';
 
   // audios
-  static const String timer = '$_baseAudio/timer.mp3';
   static const String win = '$_baseAudio/win.mp3';
-  static const String yallahBena = '$_baseAudio/yallah_bena.mp3';
 
   static String getCategoryIcon(String id) {
     return switch (id) {

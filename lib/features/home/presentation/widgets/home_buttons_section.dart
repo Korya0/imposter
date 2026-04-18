@@ -1,13 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_toast.dart';
+import 'package:imposter/core/presentation/widgets/show_how_to_play_sheet.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
-import 'package:imposter/core/presentation/widgets/show_how_to_play_sheet.dart';
 
 class HomeButtonsSection extends StatelessWidget {
   const HomeButtonsSection({super.key});
@@ -42,7 +44,9 @@ class HomeButtonsSection extends StatelessWidget {
           shouldPulse: true,
           child: AppButton(
             title: AppStrings.letsGo,
-            onTap: () => context.pushNamed(AppRoutes.topicsSelection),
+            onTap: () {
+              unawaited(context.pushNamed(AppRoutes.topicsSelection));
+            },
           ),
         ),
         _buildAnimatedItem(

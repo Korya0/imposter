@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
@@ -7,7 +8,9 @@ import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_text_styles.dart';
 
-class SummaryPhaseWidget extends StatelessWidget {
+import 'package:imposter/core/utils/audio_player_helper.dart';
+
+class SummaryPhaseWidget extends StatefulWidget {
   final String secretWord;
   final int playerCount;
   final int spyCount;
@@ -26,6 +29,17 @@ class SummaryPhaseWidget extends StatelessWidget {
   });
 
   @override
+  State<SummaryPhaseWidget> createState() => _SummaryPhaseWidgetState();
+}
+
+class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget> {
+  @override
+  void initState() {
+    super.initState();
+    unawaited(AudioPlayerHelper.playWin());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
@@ -35,20 +49,20 @@ class SummaryPhaseWidget extends StatelessWidget {
             style: AppTextStyles.font34W800Primary,
           ),
           const SizedBox(height: 6),
-          _buildInfoRow(AppStrings.word, secretWord),
+          _buildInfoRow(AppStrings.word, widget.secretWord),
           const SizedBox(height: 12),
-          _buildInfoRow(AppStrings.numberOfPlayers, playerCount.toString()),
+          _buildInfoRow(AppStrings.numberOfPlayers, widget.playerCount.toString()),
           const SizedBox(height: 12),
-          _buildInfoRow(AppStrings.numberOfSpies, spyCount.toString()),
+          _buildInfoRow(AppStrings.numberOfSpies, widget.spyCount.toString()),
           const SizedBox(height: 12),
           _buildInfoRow(
             AppStrings.numberOfMinutes,
-            '$durationMinutes:00',
+            '${widget.durationMinutes}:00',
           ),
           const SizedBox(height: 40),
           Center(
             child: GestureDetector(
-              onTap: onAnotherRound,
+              onTap: widget.onAnotherRound,
               behavior: HitTestBehavior.opaque,
               child: Padding(
                 padding: AppPaddings.all16,
