@@ -41,66 +41,72 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          AppTextWidget(
-            AppStrings.summary,
-            style: AppTextStyles.font34W800Primary,
-          ),
-          const SizedBox(height: 6),
-          _buildInfoRow(AppStrings.word, widget.secretWord),
-          const SizedBox(height: 12),
-          _buildInfoRow(
-            AppStrings.numberOfPlayers,
-            widget.playerCount.toString(),
-          ),
-          const SizedBox(height: 12),
-          _buildInfoRow(AppStrings.numberOfSpies, widget.spyCount.toString()),
-          const SizedBox(height: 12),
-          _buildInfoRow(
-            AppStrings.numberOfMinutes,
-            '${widget.durationMinutes}:00',
-          ),
-          const SizedBox(height: 40),
-          Center(
-            child: GestureDetector(
-              onTap: widget.onAnotherRound,
-              behavior: HitTestBehavior.opaque,
-              child: Padding(
-                padding: AppPaddings.all16,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  spacing: 16,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: AppColors.white, width: 1.5),
-                      ),
-                      child: SvgPicture.asset(
-                        AppAssets.redoSvg,
-                        width: 32,
-                        height: 32,
-                        colorFilter: const ColorFilter.mode(
-                          AppColors.white,
-                          BlendMode.srcIn,
+    return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
+      slivers: [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Column(
+            children: [
+              AppTextWidget(
+                AppStrings.summary,
+                style: AppTextStyles.font34W800Primary,
+              ),
+              const SizedBox(height: 6),
+              _buildInfoRow(AppStrings.word, widget.secretWord),
+              const SizedBox(height: 12),
+              _buildInfoRow(
+                AppStrings.numberOfPlayers,
+                widget.playerCount.toString(),
+              ),
+              const SizedBox(height: 12),
+              _buildInfoRow(AppStrings.numberOfSpies, widget.spyCount.toString()),
+              const SizedBox(height: 12),
+              _buildInfoRow(
+                AppStrings.numberOfMinutes,
+                '${widget.durationMinutes}:00',
+              ),
+              const SizedBox(height: 40),
+              Center(
+                child: GestureDetector(
+                  onTap: widget.onAnotherRound,
+                  behavior: HitTestBehavior.opaque,
+                  child: Padding(
+                    padding: AppPaddings.all16,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: 16,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: AppColors.white, width: 1.5),
+                          ),
+                          child: SvgPicture.asset(
+                            AppAssets.redoSvg,
+                            width: 32,
+                            height: 32,
+                            colorFilter: const ColorFilter.mode(
+                              AppColors.white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
                         ),
-                      ),
+                        AppTextWidget(
+                          AppStrings.anotherRound,
+                          style: AppTextStyles.ruqaa28W400White,
+                        ),
+                      ],
                     ),
-                    AppTextWidget(
-                      AppStrings.anotherRound,
-                      style: AppTextStyles.ruqaa28W400White,
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

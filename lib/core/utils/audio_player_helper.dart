@@ -1,18 +1,17 @@
-import 'package:flutter/services.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/di/di.dart';
-import 'package:soundpool/soundpool.dart';
+import 'package:imposter/core/utils/app_logger.dart';
 
 class AudioPlayerHelper {
-  static int? _winSoundId;
-
   static Future<void> playWin() async {
-    final pool = sl<Soundpool>();
-
-    _winSoundId ??= await rootBundle.load(AppAssets.win).then(pool.load);
-
-    if (_winSoundId != null) {
-      await pool.play(_winSoundId!);
+    try {
+      final player = sl<AudioPlayer>();
+      final path = AppAssets.win.replaceFirst('assets/', '');
+      await player.play(AssetSource(path));
+      AppLogger.info('Playing win sound: $path');
+    } on Exception catch (e) {
+      AppLogger.error('Failed to play win sound', e);
     }
   }
 }

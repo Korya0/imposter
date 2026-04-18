@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
@@ -30,7 +29,25 @@ class GameViewContent extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: _buildCurrentStateContent(context),
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 400),
+            transitionBuilder: (child, animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 0.05),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                ),
+              );
+            },
+            child: Container(
+              key: ValueKey(state.runtimeType),
+              child: _buildCurrentStateContent(context),
+            ),
+          ),
         ),
         _buildBottomAction(context),
       ],
@@ -42,18 +59,18 @@ class GameViewContent extends StatelessWidget {
 
     return switch (state) {
       GameInitial() || GameLoading() => const Center(
-          child: CircularProgressIndicator(),
-        ),
+        child: CircularProgressIndicator(),
+      ),
       GameCategoriesLoaded() => const Center(
-          child: AppTextWidget(AppStrings.comingSoon),
-        ),
+        child: AppTextWidget(AppStrings.comingSoon),
+      ),
       GameScanning(currentPlayerIndex: final index) => ScanningPhaseWidget(
-          playerNumber: index + 1,
-        ),
+        playerNumber: index + 1,
+      ),
       GameRevealing(
         isSpy: final spy,
         secretWord: final word,
-        selectedCategory: final cat
+        selectedCategory: final cat,
       ) =>
         RevealingPhaseWidget(
           isSpy: spy,
@@ -61,12 +78,12 @@ class GameViewContent extends StatelessWidget {
           categoryName: cat!.name,
         ),
       GameReady() => ReadyPhaseWidget(
-          onStartTimer: cubit.startTimer,
-        ),
+        onStartTimer: cubit.startTimer,
+      ),
       GameTimer(durationMinutes: final mins) => TimerPhaseWidget(
-          durationMinutes: mins,
-          onTimeout: cubit.finishGame,
-        ),
+        durationMinutes: mins,
+        onTimeout: cubit.finishGame,
+      ),
       GameSummary(
         secretWord: final word,
         playerCount: final p,
@@ -82,12 +99,9 @@ class GameViewContent extends StatelessWidget {
           onFinish: () => context.goNamed(AppRoutes.home),
         ),
       GameError(message: final msg) => Center(
-          child: AppTextWidget(msg),
-        ),
-    }
-        .animate(key: ValueKey(state))
-        .fadeIn(duration: 400.ms)
-        .slideY(begin: 0.05, end: 0, curve: Curves.easeOutQuad);
+        child: AppTextWidget(msg),
+      ),
+    };
   }
 
   Widget _buildBottomAction(BuildContext context) {
@@ -95,35 +109,35 @@ class GameViewContent extends StatelessWidget {
 
     return switch (state) {
       GameScanning() => GameFingerprintButton(
-          onTap: () => cubit.toggleReveal(true),
-        ),
+        onTap: () => cubit.toggleReveal(true),
+      ),
       GameRevealing() => Padding(
-          padding: AppPaddings.h24,
-          child: AppButton(
-            width: double.infinity,
-            height: (context.height * 0.1).clamp(50, 70),
-            title: AppStrings.next,
-            onTap: () => cubit.toggleReveal(false),
-          ),
+        padding: AppPaddings.h24,
+        child: AppButton(
+          width: double.infinity,
+          height: (context.height * 0.1).clamp(50, 70),
+          title: AppStrings.next,
+          onTap: () => cubit.toggleReveal(false),
         ),
+      ),
       GameTimer() => Padding(
-          padding: AppPaddings.h24,
-          child: AppButton(
-            width: double.infinity,
-            height: (context.height * 0.1).clamp(50, 70),
-            title: AppStrings.finishTurn,
-            onTap: cubit.finishGame,
-          ),
+        padding: AppPaddings.h24,
+        child: AppButton(
+          width: double.infinity,
+          height: (context.height * 0.1).clamp(50, 70),
+          title: AppStrings.finishTurn,
+          onTap: cubit.finishGame,
         ),
+      ),
       GameSummary() => Padding(
-          padding: AppPaddings.h24,
-          child: AppButton(
-            width: double.infinity,
-            height: (context.height * 0.1).clamp(50, 70),
-            title: AppStrings.finishGame,
-            onTap: () => context.goNamed(AppRoutes.home),
-          ),
+        padding: AppPaddings.h24,
+        child: AppButton(
+          width: double.infinity,
+          height: (context.height * 0.1).clamp(50, 70),
+          title: AppStrings.finishGame,
+          onTap: () => context.goNamed(AppRoutes.home),
         ),
+      ),
       _ => const SizedBox.shrink(),
     };
   }

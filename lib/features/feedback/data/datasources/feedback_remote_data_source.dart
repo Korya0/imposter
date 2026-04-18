@@ -1,11 +1,12 @@
-import 'dart:js_interop';
-import 'dart:js_interop_unsafe';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:imposter/core/constants/feedback_constants.dart';
 import 'package:imposter/core/utils/app_logger.dart';
 import 'package:imposter/features/feedback/data/models/feedback_request.dart';
+
+// Import the stub/web implementation conditionally
+import 'feedback_submission_helper.dart'
+    if (dart.library.js_interop) 'feedback_submission_web_helper.dart';
 
 abstract class FeedbackRemoteDataSource {
   Future<void> submitFeedback(FeedbackRequest request);
@@ -23,33 +24,16 @@ class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
     };
 
     AppLogger.info('Attempting to submit feedback to Google Forms...');
-    AppLogger.debug('URL: ${FeedbackConstants.formUrl}');
-    AppLogger.debug('Data: $formData');
-
+    
     if (kIsWeb) {
+      // Use the conditional helper for Web to avoid CORS issues via JS Interop
+      // but only on platforms where it's supported.
       try {
-        final options = {
-          'method': FeedbackConstants.methodPost,
-          'mode': FeedbackConstants.modeNoCors,
-          'headers': {
-            'Content-Type': FeedbackConstants.contentTypeUrlEncoded,
-          },
-          'body': Uri(queryParameters: formData).query,
-        }.jsify()! as JSObject;
-
-        globalContext.callMethod(
-          FeedbackConstants.fetchMethod.toJS,
-          FeedbackConstants.formUrl.toJS,
-          options,
-        );
-
-        AppLogger.info(
-          'Feedback submission triggered via JS Fetch (no-cors mode for Web).',
-        );
+        await submitFeedbackWeb(formData);
         return;
-      } catch (e) {
-        AppLogger.error('Failed to submit feedback via JS Fetch on Web', e);
-        rethrow;
+      } on Exception catch (e) {
+        AppLogger.error('Failed to submit feedback via Web Helper', e);
+        // Fallback to Dio if web helper fails
       }
     }
 
@@ -62,7 +46,7 @@ class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
         ),
       );
       AppLogger.info(
-        'Feedback submitted successfully. Response: ${response.statusCode}',
+        'Feedback submitted successfully via Dio. Response: ${response.statusCode}',
       );
     } on Exception catch (e) {
       AppLogger.error('Failed to submit feedback in DataSource', e);

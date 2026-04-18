@@ -10,13 +10,19 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: SingleChildScrollView(
-          child: SafeArea(
-            child: Padding(
-              padding: AppPaddings.h18,
-              child: _HomeViewBody(),
+        child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: SafeArea(
+                child: Padding(
+                  padding: AppPaddings.h18,
+                  child: _HomeViewBody(),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

@@ -42,7 +42,6 @@ class HomeButtonsSection extends StatelessWidget {
         ),
         _buildAnimatedItem(
           delay: 800.ms,
-          shouldPulse: true,
           child: AppButton(
             title: AppStrings.letsGo,
             onTap: () {
@@ -91,6 +90,6 @@ class HomeButtonsSection extends StatelessWidget {
           );
     }
 
-    return animated;
+    return RepaintBoundary(child: animated);
   }
 }

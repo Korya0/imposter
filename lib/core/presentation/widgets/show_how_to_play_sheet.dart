@@ -15,55 +15,46 @@ void showHowToPlaySheet(BuildContext context) {
       title: AppStrings.howToPlay,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: AppStrings.howToPlaySteps
-            .map(
-              (step) => Padding(
-                padding: const EdgeInsets.only(bottom: 16),
-                child: Row(
-                  spacing: 12,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 24,
-                      height: 24,
-                      decoration: const BoxDecoration(
-                        color: AppColors.primary,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Container(
-                          width: 24,
-                          height: 24,
-                          decoration: const BoxDecoration(
-                            color: AppColors.background,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Center(
-                            child: AppTextWidget(
-                              (AppStrings.howToPlaySteps.indexOf(step) + 1)
-                                  .toString(),
-                              style: AppTextStyles.font15W700Primary.copyWith(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                        ),
+        children: AppStrings.howToPlaySteps.asMap().entries.map(
+          (entry) {
+            final index = entry.key;
+            final step = entry.value;
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: Row(
+                spacing: 12,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 28,
+                    height: 28,
+                    decoration: const BoxDecoration(
+                      color: AppColors.primary,
+                      shape: BoxShape.circle,
+                    ),
+                    alignment: Alignment.center,
+                    child: AppTextWidget(
+                      (index + 1).toString(),
+                      style: AppTextStyles.font15W700Primary.copyWith(
+                        color: AppColors.background,
+                        fontSize: 15,
                       ),
                     ),
-                    Expanded(
-                      child: AppTextWidget(
-                        step,
-                        style: AppTextStyles.font22W200Primary.copyWith(
-                          fontWeight: LateefWeight.w600.weight,
-                        ),
-                        textAlign: TextAlign.start,
+                  ),
+                  Expanded(
+                    child: AppTextWidget(
+                      step,
+                      style: AppTextStyles.font22W200Primary.copyWith(
+                        fontWeight: LateefWeight.w600.weight,
                       ),
+                      textAlign: TextAlign.start,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )
-            .toList(),
+            );
+          },
+        ).toList(),
       ),
     ),
   );

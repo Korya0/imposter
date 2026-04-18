@@ -18,53 +18,73 @@ class TopicsSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: AppPaddings.h18,
-          child: SingleChildScrollView(
-            child: _TopicsSelectionViewBody(),
-          ),
+        child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverPadding(
+              padding: AppPaddings.h18,
+              sliver: SliverToBoxAdapter(
+                child: _TopicsSelectionHeader(),
+              ),
+            ),
+            SliverPadding(
+              padding: AppPaddings.h18,
+              sliver: _TopicsSelectionContent(),
+            ),
+            SliverToBoxAdapter(
+              child: SizedBox(height: 100),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class _TopicsSelectionViewBody extends StatelessWidget {
-  const _TopicsSelectionViewBody();
+class _TopicsSelectionHeader extends StatelessWidget {
+  const _TopicsSelectionHeader();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: AppPaddings.bottomPaddingH05(context),
-      child: Column(
-        children: [
-          const CustomAppBar(),
-          AppTextWidget(
-            AppStrings.comingWithYou,
-            style: AppTextStyles.font22W200White,
-          ),
-          BlocBuilder<GameCubit, GameState>(
-            builder: (context, state) {
-              return switch (state) {
-                GameInitial() ||
-                GameLoading(categories: []) => const TopicsLoadingWidget(),
-                GameError(message: final msg, categories: []) =>
-                  TopicsErrorWidget(message: msg),
-                GameCategoriesLoaded(categories: final cats) ||
-                GameLoading(categories: final cats) ||
-                GameError(categories: final cats) ||
-                GameScanning(categories: final cats) ||
-                GameRevealing(categories: final cats) ||
-                GameReady(categories: final cats) ||
-                GameTimer(categories: final cats) ||
-                GameSummary(
-                  categories: final cats,
-                ) => TopicsGridWidget(categories: cats),
-              };
-            },
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        const CustomAppBar(),
+        AppTextWidget(
+          AppStrings.comingWithYou,
+          style: AppTextStyles.font22W200White,
+        ),
+        const SizedBox(height: 16),
+      ],
+    );
+  }
+}
+
+class _TopicsSelectionContent extends StatelessWidget {
+  const _TopicsSelectionContent();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<GameCubit, GameState>(
+      builder: (context, state) {
+        return switch (state) {
+          GameInitial() ||
+          GameLoading(categories: []) =>
+            const SliverToBoxAdapter(child: TopicsLoadingWidget()),
+          GameError(message: final msg, categories: []) =>
+            SliverToBoxAdapter(child: TopicsErrorWidget(message: msg)),
+          GameCategoriesLoaded(categories: final cats) ||
+          GameLoading(categories: final cats) ||
+          GameError(categories: final cats) ||
+          GameScanning(categories: final cats) ||
+          GameRevealing(categories: final cats) ||
+          GameReady(categories: final cats) ||
+          GameTimer(categories: final cats) ||
+          GameSummary(
+            categories: final cats,
+          ) =>
+            TopicsGridWidget(categories: cats),
+        };
+      },
     );
   }
 }

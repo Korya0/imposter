@@ -31,19 +31,21 @@ class AppBottomSheet extends StatelessWidget {
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       elevation: 0,
-      barrierColor: Colors.black.withValues(alpha: 0.6),
+      barrierColor: Colors.black.withValues(alpha: 0.5),
       builder: (context) => Stack(
         children: [
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1.5),
               child: Container(color: Colors.transparent),
             ),
           ),
-          AppBottomSheet(
-            height: height,
-            title: title,
-            child: child,
+          RepaintBoundary(
+            child: AppBottomSheet(
+              height: height,
+              title: title,
+              child: child,
+            ),
           ),
         ],
       ),

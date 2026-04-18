@@ -16,51 +16,45 @@ class TopicsGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+    return SliverGrid(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
-        childAspectRatio: (context.width / 2) / (context.height * 0.27),
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        childAspectRatio: (context.width / 2) / (context.height * 0.28),
       ),
-      itemCount: categories.length,
-      itemBuilder: (context, index) {
-        final category = categories[index];
-        return AppSketchyCard(
-              title: category.name,
-              onTap: () async {
-                context.read<GameCubit>().selectCategory(category);
-                await context.pushNamed(AppRoutes.gameSettings);
-              },
-              watermark: IgnorePointer(
-                child: SvgPicture.asset(
-                  AppAssets.getCategoryIcon(category.id),
-                  width: 100,
-                  height: 100,
-                  placeholderBuilder: (context) => const SizedBox(
-                    width: 100,
-                    height: 100,
-                  ),
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          final category = categories[index];
+          return AppSketchyCard(
+            title: category.name,
+            onTap: () async {
+              context.read<GameCubit>().selectCategory(category);
+              await context.pushNamed(AppRoutes.gameSettings);
+            },
+            watermark: IgnorePointer(
+              child: SvgPicture.asset(
+                AppAssets.getCategoryIcon(category.id),
+                width: 80,
+                height: 80,
+                placeholderBuilder: (context) => const SizedBox(
+                  width: 80,
+                  height: 80,
                 ),
               ),
-            )
-            .animate()
-            .fadeIn(delay: (index * 150).ms, duration: 500.ms)
-            .slideX(
-              begin: 1,
-              end: 0,
-              duration: 600.ms,
-              curve: Curves.easeOutQuad,
-            )
-            .slideY(
-              begin: 0.5,
-              end: 0,
-              duration: 600.ms,
-              curve: Curves.easeOutQuad,
-            );
-      },
+            ),
+          )
+              .animate()
+              .fadeIn(delay: (index % 6 * 100).ms, duration: 400.ms)
+              .slideY(
+                begin: 0.2,
+                end: 0,
+                duration: 500.ms,
+                curve: Curves.easeOutQuad,
+              );
+        },
+        childCount: categories.length,
+      ),
     );
   }
 }

@@ -16,27 +16,31 @@ class AppErrorView extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: AppPaddings.h24,
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                spacing: 20,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.error_outline_rounded,
-                    size: 80,
-                  ),
-                  AppTextWidget(
-                    AppStrings.oopsYouLost,
-                    style: AppTextStyles.font24W800Primary,
-                  ),
-                  AppButton(
-                    title: AppStrings.backToHome,
-                    onTap: () => context.goNamed(AppRoutes.home),
-                  ),
-                ],
+          child: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Column(
+                  spacing: 20,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.error_outline_rounded,
+                      size: 80,
+                    ),
+                    AppTextWidget(
+                      AppStrings.oopsYouLost,
+                      style: AppTextStyles.font24W800Primary,
+                    ),
+                    AppButton(
+                      title: AppStrings.backToHome,
+                      onTap: () => context.goNamed(AppRoutes.home),
+                    ),
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

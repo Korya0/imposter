@@ -15,11 +15,16 @@ class GameSettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: AppPaddings.h18,
-          child: SingleChildScrollView(
-            child: _GameSettingsViewBody(),
-          ),
+        child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverPadding(
+              padding: AppPaddings.h18,
+              sliver: SliverToBoxAdapter(
+                child: _GameSettingsViewBody(),
+              ),
+            ),
+          ],
         ),
       ),
     );
