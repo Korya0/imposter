@@ -3,7 +3,7 @@ abstract class AppStrings {
   static const String spy = 'الجاسوس';
   static const String howToPlay = 'أزاي تلعب';
   static const String letsGo = 'يلا بينا';
-  static const String drawer = 'الدرج';
+  static const String feedback = 'رأيك يهمنا';
   static const String online = 'أونلاين';
   static const String comingSoon = 'قريبا';
   static const String close = 'إغلاق';

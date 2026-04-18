@@ -11,7 +11,6 @@ import 'package:imposter/features/game/presentation/views/game_settings_view.dar
 import 'package:imposter/features/game/presentation/views/game_view.dart';
 import 'package:imposter/features/game/presentation/views/topics_selection_view.dart';
 import 'package:imposter/features/home/presentation/views/home_view.dart';
-import 'package:imposter/core/presentation/views/app_drawer_view.dart';
 import 'package:imposter/features/splash/splash_view.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -32,15 +31,6 @@ final GoRouter appRouter = GoRouter(
       pageBuilder: (context, state) => AppTransitions.slideFromRight(
         state: state,
         child: const HomeView(),
-        context: context,
-      ),
-    ),
-    GoRoute(
-      path: AppRoutes.drawer,
-      name: AppRoutes.drawer,
-      pageBuilder: (context, state) => AppTransitions.slideFromRight(
-        state: state,
-        child: const AppDrawerView(),
         context: context,
       ),
     ),

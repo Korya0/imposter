@@ -4,5 +4,5 @@ class AppRoutes {
   static const String topicsSelection = '/topics-selection';
   static const String gameSettings = '/game-settings';
   static const String game = '/game';
-  static const String drawer = '/drawer';
+
 }

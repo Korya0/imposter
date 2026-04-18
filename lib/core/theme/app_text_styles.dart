@@ -53,6 +53,11 @@ class AppTextStyles {
     fontWeight: RuqaaWeight.w400.weight,
   );
 
+  static TextStyle font24W800White = fontRuqaa.copyWith(
+    color: AppColors.white,
+    fontWeight: FontWeight.bold,
+    fontSize: 24,
+  );
   static TextStyle font22W800Primary = fontApp.copyWith(
     fontWeight: LateefWeight.w800.weight,
     color: AppColors.primary,
