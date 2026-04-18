@@ -17,9 +17,9 @@
 </p>
 
 <!-- Typing Logo -->
-<img src="https://readme-typing-svg.herokuapp.com/?font=Inter&weight=800&size=50&center=true&vCenter=true&width=500&height=100&duration=4000&lines=IMPOSTER+GAME;مـيـن+الـجـاسـوس%3F"/>
+<img src="https://readme-typing-svg.herokuapp.com/?font=Inter&weight=800&size=50&center=true&vCenter=true&width=500&height=100&duration=4000&lines=IMPOSTER"/>
 
-<h3>A social deduction group game with a unique sketchy design</h3>
+
 
 <!-- Links Section -->
 <p>
