@@ -26,6 +26,9 @@
 <a href="https://docs.google.com/uc?export=download&id=1wD1dC-gDMqCCXVFKequ_WWDeH5JOKTfd">
   <img src="https://img.shields.io/badge/📥_Download_APK-D4AF37?style=for-the-badge" alt="Download APK"/>
 </a>
+<a href="https://imposter-psi-rouge.vercel.app/">
+  <img src="https://img.shields.io/badge/🌐_Live_Demo-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo"/>
+</a>
 <a href="https://www.linkedin.com/in/mahmoudk25/">
   <img src="https://img.shields.io/badge/💬_LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
 </a>
