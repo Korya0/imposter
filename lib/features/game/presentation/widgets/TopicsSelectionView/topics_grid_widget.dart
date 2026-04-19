@@ -21,7 +21,8 @@ class TopicsGridWidget extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: (context.width / 2) / (context.height * 0.28),
+        childAspectRatio: (context.width.clamp(0.0, 500.0) / 2) /
+            (context.height.clamp(0.0, 900.0) * 0.28),
       ),
       delegate: SliverChildBuilderDelegate(
         (context, index) {
