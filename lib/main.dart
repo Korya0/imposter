@@ -46,7 +46,12 @@ class ImposterApp extends StatelessWidget {
       builder: (context, child) {
         return GestureDetector(
           onTap: () => context.unFocus(),
-          child: child,
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 500),
+              child: child,
+            ),
+          ),
         );
       },
     );
