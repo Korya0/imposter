@@ -90,6 +90,11 @@
 
 <div align="center">
 
+<img src="assets/readme_assets/all_screens.png" width="100%" alt="All Screens" />
+
+<br/>
+<br/>
+
 | | | |
 |:---:|:---:|:---:|
 | <img src="assets/readme_assets/splash.jpg" width="160"/> | <img src="assets/readme_assets/home.jpg" width="160"/> | <img src="assets/readme_assets/topics_selection.jpg" width="160"/> |
