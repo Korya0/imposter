@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:imposter/core/theme/app_colors.dart';
 import 'package:imposter/core/theme/app_fonts.dart';
 
 class AppTextStyles {
-  static const TextStyle fontApp = AppFonts.lateefBase;
-  static const TextStyle fontRuqaa = AppFonts.arefRuqaaBase;
+  // ==================== BASE FONTS CONFIGURATION ====================
+  // [OPTION 1] Local Assets Fonts (Default)
+  // static const TextStyle fontApp = AppFonts.lateefBase;
+  // static const TextStyle fontRuqaa = AppFonts.arefRuqaaBase;
+
+  // [OPTION 2] Google Fonts
+  // (Uncomment the two lines below and comment out OPTION 1 above to switch to Google Fonts)
+  static final TextStyle fontApp = GoogleFonts.arefRuqaa();
+  static final TextStyle fontRuqaa = GoogleFonts.arefRuqaa();
+  // ==================================================================
 
   static TextStyle ruqaa60BoldPrimary = fontRuqaa.copyWith(
     color: AppColors.primary,
