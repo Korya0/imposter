@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/theme/app_colors.dart';
-import 'package:imposter/core/theme/app_fonts.dart';
+import 'package:imposter/core/theme/fonts/app_fonts.dart';
 
 abstract class AppTheme {
   static ThemeData get darkTheme {
@@ -23,7 +23,7 @@ abstract class AppTheme {
         ),
       ),
 
-      fontFamily: AppFonts.lateefBase.fontFamily,
+      fontFamily: AppFonts.appFont,
     );
   }
 }

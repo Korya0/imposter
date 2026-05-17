@@ -5,7 +5,7 @@ import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/app_value_adjuster.dart';
 import 'package:imposter/core/theme/app_colors.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/theme/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
 class GameSettingItem extends StatelessWidget {
@@ -50,7 +50,7 @@ class GameSettingItem extends StatelessWidget {
                 ),
                 AppTextWidget(
                   title,
-                  style: AppTextStyles.font30W800Background,
+                  style: AppTextStyles.font30W700Background,
                 ),
                 const SizedBox(),
               ],

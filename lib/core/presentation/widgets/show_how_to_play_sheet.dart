@@ -5,8 +5,8 @@ import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_bottom_sheet/app_bottom_sheet.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/theme/app_colors.dart';
-import 'package:imposter/core/theme/app_fonts.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/theme/fonts/app_fonts.dart';
+import 'package:imposter/core/theme/fonts/app_text_styles.dart';
 
 void showHowToPlaySheet(BuildContext context) {
   unawaited(
@@ -44,8 +44,8 @@ void showHowToPlaySheet(BuildContext context) {
                   Expanded(
                     child: AppTextWidget(
                       step,
-                      style: AppTextStyles.font22W200Primary.copyWith(
-                        fontWeight: LateefWeight.w600.weight,
+                      style: AppTextStyles.font22W400Primary.copyWith(
+                        fontWeight: FontWeightHelper.w700.weight,
                       ),
                       textAlign: TextAlign.start,
                     ),

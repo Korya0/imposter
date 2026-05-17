@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/theme/app_colors.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/theme/fonts/app_text_styles.dart';
 
 class AppValueAdjuster extends StatelessWidget {
   final String value;
@@ -32,7 +32,7 @@ class AppValueAdjuster extends StatelessWidget {
             fit: BoxFit.scaleDown,
             child: AppTextWidget(
               value,
-              style: AppTextStyles.font40W800Primary,
+              style: AppTextStyles.font40W700Primary,
             ),
           ),
         ),

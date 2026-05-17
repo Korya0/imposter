@@ -4,7 +4,7 @@ import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/theme/fonts/app_text_styles.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
 import 'package:imposter/features/game/presentation/widgets/TopicsSelectionView/topics_error_widget.dart';
@@ -51,7 +51,7 @@ class _TopicsSelectionHeader extends StatelessWidget {
         const CustomAppBar(),
         AppTextWidget(
           AppStrings.comingWithYou,
-          style: AppTextStyles.font22W200White,
+          style: AppTextStyles.font22W400White,
         ),
         const SizedBox(height: 16),
       ],
@@ -67,11 +67,11 @@ class _TopicsSelectionContent extends StatelessWidget {
     return BlocBuilder<GameCubit, GameState>(
       builder: (context, state) {
         return switch (state) {
-          GameInitial() ||
-          GameLoading(categories: []) =>
+          GameInitial() || GameLoading(categories: []) =>
             const SliverToBoxAdapter(child: TopicsLoadingWidget()),
-          GameError(message: final msg, categories: []) =>
-            SliverToBoxAdapter(child: TopicsErrorWidget(message: msg)),
+          GameError(message: final msg, categories: []) => SliverToBoxAdapter(
+            child: TopicsErrorWidget(message: msg),
+          ),
           GameCategoriesLoaded(categories: final cats) ||
           GameLoading(categories: final cats) ||
           GameError(categories: final cats) ||
@@ -81,8 +81,7 @@ class _TopicsSelectionContent extends StatelessWidget {
           GameTimer(categories: final cats) ||
           GameSummary(
             categories: final cats,
-          ) =>
-            TopicsGridWidget(categories: cats),
+          ) => TopicsGridWidget(categories: cats),
         };
       },
     );

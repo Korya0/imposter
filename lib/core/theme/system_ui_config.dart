@@ -6,7 +6,6 @@ class SystemUiConfig {
   static Future<void> setup() async {
     await SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
     ]);
 
     SystemChrome.setSystemUIOverlayStyle(

@@ -7,7 +7,7 @@ import 'package:imposter/core/presentation/widgets/app_bottom_sheet/torn_paper_p
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/theme/app_colors.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/theme/fonts/app_text_styles.dart';
 
 class AppBottomSheet extends StatelessWidget {
   const AppBottomSheet({
@@ -87,7 +87,7 @@ class AppBottomSheet extends StatelessWidget {
                               alignment: AlignmentDirectional.centerEnd,
                               child: AppTextWidget(
                                 title!,
-                                style: AppTextStyles.font24W800Primary,
+                                style: AppTextStyles.font24W700Primary,
                               ),
                             ),
                           AppButton(
@@ -96,7 +96,7 @@ class AppBottomSheet extends StatelessWidget {
                             onTap: () => context.pop(),
                             child: AppTextWidget(
                               AppStrings.close,
-                              style: AppTextStyles.font24W600Secondary,
+                              style: AppTextStyles.font24W400Secondary,
                             ),
                           ),
                         ],

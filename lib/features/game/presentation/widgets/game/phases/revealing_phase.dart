@@ -4,7 +4,7 @@ import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_logo_header.dart';
 import 'package:imposter/core/presentation/widgets/app_sketchy_card/app_sketchy_card.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/theme/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
 class RevealingPhaseWidget extends StatelessWidget {
@@ -58,7 +58,7 @@ class _SpyYouAreText extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppTextWidget(
       AppStrings.youAreTheSpy,
-      style: AppTextStyles.ruqaa60BoldPrimary,
+      style: AppTextStyles.font60W700Primary,
     ).animate().fadeIn(duration: 800.ms).slideY(begin: -0.2, end: 0);
   }
 }
@@ -81,7 +81,7 @@ class _CitizenRevealView extends StatelessWidget {
           AppSketchyCard(
             height: 150,
             title: word,
-            style: AppTextStyles.font45W800Primary,
+            style: AppTextStyles.font45W700Primary,
           ),
         ],
       ),

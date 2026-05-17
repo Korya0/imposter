@@ -3,7 +3,7 @@ import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/presentation/widgets/app_sketchy_card/sketchy_card_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/theme/app_colors.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/theme/fonts/app_text_styles.dart';
 
 class AppSketchyCard extends StatefulWidget {
   const AppSketchyCard({
@@ -105,7 +105,7 @@ class _AppSketchyCardState extends State<AppSketchyCard>
                               maxLines: 1,
                               style:
                                   widget.style ??
-                                  AppTextStyles.ruqaa45BoldPrimary,
+                                  AppTextStyles.font45W700Primary,
                             ),
                           ),
                         ],

@@ -9,7 +9,7 @@ import 'package:imposter/core/presentation/widgets/app_toast.dart';
 import 'package:imposter/core/presentation/widgets/show_how_to_play_sheet.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/theme/app_colors.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/theme/fonts/app_text_styles.dart';
 import 'package:imposter/features/feedback/presentation/widgets/feedback_bottom_sheet.dart';
 
 class HomeButtonsSection extends StatelessWidget {
@@ -56,7 +56,7 @@ class HomeButtonsSection extends StatelessWidget {
               message: '🔒',
               location: BannerLocation.topStart,
               color: AppColors.secondary,
-              textStyle: AppTextStyles.font22W800Primary,
+              textStyle: AppTextStyles.font18W700Primary,
               child: AppButton(
                 width: double.infinity,
                 title: AppStrings.online,

@@ -4,7 +4,7 @@ import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/show_how_to_play_sheet.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/theme/fonts/app_text_styles.dart';
 
 class HowToPlayIconButton extends StatelessWidget {
   const HowToPlayIconButton({
@@ -26,7 +26,7 @@ class HowToPlayIconButton extends StatelessWidget {
             if (showText)
               AppTextWidget(
                 AppStrings.howToPlay,
-                style: AppTextStyles.font22W200Primary,
+                style: AppTextStyles.font22W400Primary,
               ),
             if (showText)
               SvgPicture.asset(

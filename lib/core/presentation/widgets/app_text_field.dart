@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/theme/app_colors.dart';
-import 'package:imposter/core/theme/app_text_styles.dart';
+import 'package:imposter/core/theme/fonts/app_text_styles.dart';
 
 class AppTextField extends StatelessWidget {
   const AppTextField({
@@ -22,10 +22,10 @@ class AppTextField extends StatelessWidget {
       controller: controller,
       maxLines: maxLines,
       keyboardType: keyboardType,
-      style: AppTextStyles.font22W800Primary,
+      style: AppTextStyles.font18W700Primary,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: AppTextStyles.font22W200Primary,
+        hintStyle: AppTextStyles.font22W400Primary,
         filled: true,
         fillColor: AppColors.secondaryBackground,
         border: OutlineInputBorder(
