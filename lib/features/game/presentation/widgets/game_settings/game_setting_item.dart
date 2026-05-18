@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:imposter/core/presentation/widgets/app_button.dart';
+import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/app_value_adjuster.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
@@ -29,9 +29,17 @@ class GameSettingItem extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        AppButton(
+        Container(
           width: 250,
           height: (context.height * 0.08).clamp(40, 70),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                AppAssets.paperWebp,
+              ),
+              fit: BoxFit.fill,
+            ),
+          ),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: context.p(18)),
             child: Row(
