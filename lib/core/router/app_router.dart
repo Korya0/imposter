@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/di/di.dart';
@@ -13,7 +14,7 @@ import 'package:imposter/features/home/presentation/views/home_view.dart';
 import 'package:imposter/features/splash/splash_view.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: AppRoutes.splash,
+  initialLocation: kIsWeb ? AppRoutes.home : AppRoutes.splash,
   routes: [
     GoRoute(
       path: AppRoutes.splash,

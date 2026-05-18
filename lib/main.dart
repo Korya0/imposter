@@ -30,6 +30,7 @@ class ImposterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      // Theme & Router & localizations
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
       locale: const Locale(AppConstants.ar),
@@ -40,6 +41,8 @@ class ImposterApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       routerConfig: appRouter,
+
+      // Device constraints & UnFocus gesture
       builder: (context, child) {
         return GestureDetector(
           onTap: () => context.unFocus(),
