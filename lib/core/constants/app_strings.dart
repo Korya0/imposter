@@ -4,7 +4,6 @@ abstract class AppStrings {
   static const String howToPlay = 'أزاي تلعب';
   static const String letsGo = 'يلا بينا';
   static const String feedback = 'رأيك يهمنا';
-  static const String online = 'أونلاين';
   static const String comingSoon = 'قريبا';
   static const String close = 'إغلاق';
 
@@ -45,7 +44,7 @@ abstract class AppStrings {
       'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى';
   static const String oopsYouLost = 'أوبس تهت في الطريق؟';
   static const String backToHome = 'الرجوع للرئيسية';
-  static const String feedbackSuggestionOrComplaint = 'أقتراح او شكوي';
+  static const String tellUs = 'هات اللى عندك';
   static const String sendFeedback = 'إرسال';
   static const String feedbackPlaceholder = 'اكتب مقترحك هنا...';
   static const String feedbackSuccess = 'شكراً لمشاركتك تم الإرسال بنجاح';

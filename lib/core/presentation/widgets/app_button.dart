@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_assets.dart';
-import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({
@@ -36,8 +36,10 @@ class AppButton extends StatelessWidget {
         child: Container(
           width: width,
           height: height ?? 60,
-          padding: width == null ? EdgeInsets.symmetric(horizontal: context.p(12)) : null,
-          alignment: Alignment.center,
+          padding: width == null
+              ? EdgeInsets.symmetric(horizontal: context.p(12))
+              : null,
+          alignment: const Alignment(0, -0.40),
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
@@ -52,7 +54,7 @@ class AppButton extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: AppTextWidget(
                   title!,
-                  style: style ?? AppTextStyles.font45W700Secondary,
+                  style: style ?? AppTextStyles.font36W700Secondary,
                 ),
               ),
         ),

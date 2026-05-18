@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/di/di.dart';
 import 'package:imposter/core/presentation/widgets/app_bottom_sheet/app_bottom_sheet.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_field.dart';
 import 'package:imposter/core/presentation/widgets/app_toast.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/feedback/presentation/cubit/feedback_cubit.dart';
 
 class FeedbackBottomSheet extends StatefulWidget {
@@ -90,7 +90,7 @@ void showFeedbackBottomSheet(BuildContext context) {
   unawaited(
     AppBottomSheet.show(
       context: context,
-      title: AppStrings.feedbackSuggestionOrComplaint,
+      title: AppStrings.tellUs,
       child: const FeedbackBottomSheet(),
     ),
   );

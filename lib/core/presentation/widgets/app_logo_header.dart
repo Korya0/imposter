@@ -28,7 +28,7 @@ class AppLogoHeader extends StatelessWidget {
         logoHeight ?? (isVertical ? context.s(160) : context.s(90));
 
     final effectiveSpacing =
-        spacing ?? (isVertical ? context.p(30) : context.p(24));
+        spacing ?? (isVertical ? context.p(18) : context.p(24));
 
     final children = [
       if (showText) ...[

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/style/fonts/app_fonts.dart';
+import 'package:imposter/core/style/theme/app_colors.dart';
 
 class AppTextStyles {
   static const TextStyle font = TextStyle(
@@ -62,6 +62,18 @@ class AppTextStyles {
 
   static TextStyle font45W700Secondary = font.copyWith(
     fontSize: 45,
+    fontWeight: FontWeightHelper.w700.weight,
+    color: AppColors.secondary,
+  );
+
+  static TextStyle font32W700Secondary = font.copyWith(
+    fontSize: 32,
+    fontWeight: FontWeightHelper.w700.weight,
+    color: AppColors.secondary,
+  );
+
+  static TextStyle font36W700Secondary = font.copyWith(
+    fontSize: 36,
     fontWeight: FontWeightHelper.w700.weight,
     color: AppColors.secondary,
   );
