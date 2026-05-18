@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:imposter/core/theme/app_colors.dart';
+import 'package:imposter/core/style/theme/app_colors.dart';
 
 class AppLoadingIndicator extends StatelessWidget {
   const AppLoadingIndicator({super.key});

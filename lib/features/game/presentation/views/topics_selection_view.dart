@@ -4,7 +4,7 @@ import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
-import 'package:imposter/core/theme/fonts/app_text_styles.dart';
+import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
 import 'package:imposter/features/game/presentation/widgets/TopicsSelectionView/topics_error_widget.dart';

@@ -5,7 +5,7 @@ import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/core/theme/fonts/app_text_styles.dart';
+import 'package:imposter/core/style/fonts/app_text_styles.dart';
 
 class AppErrorView extends StatelessWidget {
   const AppErrorView({super.key});

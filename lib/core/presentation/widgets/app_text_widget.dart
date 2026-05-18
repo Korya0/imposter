@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:imposter/core/theme/fonts/app_text_styles.dart';
+import 'package:imposter/core/style/fonts/app_text_styles.dart';
 
 class AppTextWidget extends StatelessWidget {
   const AppTextWidget(

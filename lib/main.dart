@@ -8,8 +8,8 @@ import 'package:imposter/core/constants/aoo_constants.dart';
 import 'package:imposter/core/di/app_initializer.dart';
 import 'package:imposter/core/di/di.dart';
 import 'package:imposter/core/router/app_router.dart';
-import 'package:imposter/core/theme/app_theme.dart';
-import 'package:imposter/core/theme/system_ui_config.dart';
+import 'package:imposter/core/style/theme/app_theme.dart';
+import 'package:imposter/core/style/theme/system_ui_config.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 

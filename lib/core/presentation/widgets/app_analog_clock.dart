@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:imposter/core/theme/app_colors.dart';
+import 'package:imposter/core/style/theme/app_colors.dart';
 
 class AppAnalogClock extends StatelessWidget {
   final double value; // From 0.0 to 1.0 (Animation progress)
