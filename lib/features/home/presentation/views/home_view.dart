@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/presentation/widgets/app_logo_header.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/home/presentation/widgets/home_buttons_section.dart';
@@ -48,9 +49,10 @@ class _HomeViewBody extends StatelessWidget {
       child: Column(
         spacing: context.p(40),
         children: [
-          const AppLogoHeader(
-            shouldAnimate: true,
-          ),
+          const AppLogoHeader()
+              .animate()
+              .fadeIn(duration: 800.ms, curve: Curves.easeOut)
+              .slideY(begin: 0.1, end: 0),
           HomeButtonsSection(onFeedbackTap: onFeedbackTap),
         ],
       ),

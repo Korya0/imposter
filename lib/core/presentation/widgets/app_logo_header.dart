@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
@@ -11,14 +10,13 @@ class AppLogoHeader extends StatelessWidget {
   const AppLogoHeader({
     super.key,
     this.isVertical = true,
-    this.shouldAnimate = false,
     this.showText = true,
     this.logoHeight,
     this.spacing,
     this.textStyle,
   });
+
   final bool isVertical;
-  final bool shouldAnimate;
   final bool showText;
   final double? logoHeight;
   final double? spacing;
@@ -27,29 +25,23 @@ class AppLogoHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final effectiveLogoHeight =
-        logoHeight ??
-        (isVertical
-            ? (context.height * 0.23).clamp(100, 200)
-            : (context.height * 0.11).clamp(80, 100));
+        logoHeight ?? (isVertical ? context.s(160) : context.s(90));
 
     final effectiveSpacing =
-        spacing ?? (isVertical ? (context.height * 0.05).clamp(14, 40) : 24.0);
+        spacing ?? (isVertical ? context.p(30) : context.p(24));
 
-    final children = showText
-        ? (isVertical
-              ? [
-                  _buildText(),
-                  SizedBox(height: effectiveSpacing),
-                  _buildLogo(context, effectiveLogoHeight),
-                ]
-              : [
-                  _buildText(),
-                  SizedBox(width: effectiveSpacing),
-                  _buildLogo(context, effectiveLogoHeight),
-                ])
-        : [_buildLogo(context, effectiveLogoHeight)];
+    final children = [
+      if (showText) ...[
+        _Text(textStyle: textStyle),
+        SizedBox(
+          height: isVertical ? effectiveSpacing : 0,
+          width: isVertical ? 0 : effectiveSpacing,
+        ),
+      ],
+      _Logo(height: effectiveLogoHeight),
+    ];
 
-    final content = isVertical
+    return isVertical
         ? Column(
             mainAxisSize: MainAxisSize.min,
             children: children,
@@ -59,41 +51,37 @@ class AppLogoHeader extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: children,
           );
-
-    return content;
   }
+}
 
-  Widget _buildLogo(BuildContext context, double height) {
-    Widget logo = SvgPicture.asset(
+class _Logo extends StatelessWidget {
+  const _Logo({
+    required this.height,
+  });
+
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(
       AppAssets.logoSvg,
       height: height,
     );
-
-    if (shouldAnimate) {
-      logo = logo
-          .animate()
-          .fadeIn(delay: 400.ms, duration: 800.ms)
-          .slideY(begin: 0.2, end: 0);
-      return RepaintBoundary(child: logo);
-    }
-
-    return logo;
   }
+}
 
-  Widget _buildText() {
-    Widget text = AppTextWidget(
+class _Text extends StatelessWidget {
+  const _Text({
+    this.textStyle,
+  });
+
+  final TextStyle? textStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppTextWidget(
       AppStrings.spy,
       style: textStyle ?? AppTextStyles.font60W700Primary,
     );
-
-    if (shouldAnimate) {
-      text = text
-          .animate()
-          .fadeIn(duration: 800.ms, curve: Curves.easeOut)
-          .slideY(begin: -0.2, end: 0);
-      return RepaintBoundary(child: text);
-    }
-
-    return text;
   }
 }

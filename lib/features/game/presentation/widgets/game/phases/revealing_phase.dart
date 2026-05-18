@@ -42,9 +42,8 @@ class _SpyRevealView extends StatelessWidget {
         const SizedBox(height: 10),
         SizedBox(height: (context.height * 0.05).clamp(14, 40)),
         const AppLogoHeader(
-          shouldAnimate: true,
           showText: false,
-        ),
+        ).animate().fadeIn(delay: 400.ms, duration: 800.ms).slideY(begin: 0.2, end: 0),
       ],
     );
   }
