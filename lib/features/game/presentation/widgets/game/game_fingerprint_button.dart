@@ -46,14 +46,16 @@ class _GameFingerprintButtonState extends State<GameFingerprintButton> {
             AppStrings.scanHere,
             style: AppTextStyles.font40W700Primary,
           ),
-          SvgPicture.asset(
-                AppAssets.fingerprintSvg,
-                height: 120,
-                colorFilter: ColorFilter.mode(
-                  _isPressed ? AppColors.green : AppColors.primary,
-                  BlendMode.srcIn,
-                ),
-              )
+          RepaintBoundary(
+            child: SvgPicture.asset(
+              AppAssets.fingerprintSvg,
+              height: 120,
+              colorFilter: ColorFilter.mode(
+                _isPressed ? AppColors.green : AppColors.primary,
+                BlendMode.srcIn,
+              ),
+            ),
+          )
               .animate(target: _isPressed ? 1 : 0)
               .scale(
                 begin: const Offset(1, 1),

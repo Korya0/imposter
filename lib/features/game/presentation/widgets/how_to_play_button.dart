@@ -29,9 +29,11 @@ class HowToPlayIconButton extends StatelessWidget {
                 style: AppTextStyles.font22W400Primary,
               ),
             if (showText)
-              SvgPicture.asset(
-                AppAssets.arrowLineLongSvg,
-                width: 40,
+              RepaintBoundary(
+                child: SvgPicture.asset(
+                  AppAssets.arrowLineLongSvg,
+                  width: 40,
+                ),
               ),
             const Icon(
               Icons.help_sharp,

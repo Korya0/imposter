@@ -63,9 +63,11 @@ class _Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      AppAssets.logoSvg,
-      height: height,
+    return RepaintBoundary(
+      child: SvgPicture.asset(
+        AppAssets.logoSvg,
+        height: height,
+      ),
     );
   }
 }

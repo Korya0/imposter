@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-18T23:14:00Z",
+  "title": "Design System: Imposter",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Desert Gold",
+        "canonical": "oklch(72.5% 0.14 85)",
+        "tonalRamp": ["#362a05", "#5c480b", "#856914", "#ad8c21", "#c3a24b", "#d4b96f", "#e6d39c", "#f7ecd1"]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Burnt Charcoal",
+        "canonical": "oklch(22.8% 0.08 72)",
+        "tonalRamp": ["#080400", "#1c1003", "#301b05", "#4c2d09", "#6b4317", "#8c5f2b", "#ad7d44", "#d19f64"]
+      },
+      "green": {
+        "role": "accent",
+        "displayName": "Safe Zone Green",
+        "canonical": "oklch(60.1% 0.17 142)",
+        "tonalRamp": ["#0b230f", "#143a1a", "#225628", "#317438", "#43a047", "#6cb86f", "#96d098", "#c1e8c2"]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Stark Abyss",
+        "canonical": "oklch(0% 0 0)",
+        "tonalRamp": ["#000000", "#090909", "#121212", "#1b1b1b", "#242424", "#2d2d2d", "#363636", "#404040"]
+      },
+      "secondary-background": {
+        "role": "neutral",
+        "displayName": "Graphite Grey",
+        "canonical": "oklch(23.4% 0.01 100)",
+        "tonalRamp": ["#121312", "#1d1f1d", "#282a28", "#303230", "#454745", "#5d605d", "#777a77", "#929592"]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Clean Canvas",
+        "canonical": "oklch(100% 0 0)",
+        "tonalRamp": ["#6e6e6e", "#828282", "#969696", "#aaaaaa", "#bebebe", "#d2d2d2", "#e6e6e6", "#ffffff"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display Title",
+        "purpose": "Used for highly stylized screen titles, secret role declarations, and massive countdown timers."
+      },
+      "body": {
+        "displayName": "Body & UI Copy",
+        "purpose": "Used for standard settings text, lists, buttons, and instructional pass-around sheets."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sketchy-offset",
+        "value": "stroke-width: 2.0, shadow-offset: 4.0",
+        "purpose": "A custom outline offset drawn to the bottom-right in solid black, giving hand-drawn depth."
+      }
+    ],
+    "motion": [
+      {
+        "name": "spring-scale",
+        "value": "scale: 1.0 -> 0.95, duration: 150ms",
+        "purpose": "Physical compression animation triggered when any button or card is tapped down."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-max",
+        "value": "500px",
+        "purpose": "Defines the maximum container width to constrain the layout on tablets and web previewers."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "AppButton",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Tactile button utilizing a hand-drawn paper webp texture as its background. Animates down on active tap and emits a light haptic impact.",
+      "html": "<button class=\"ds-btn-primary\">بدء اللعب</button>",
+      "css": ".ds-btn-primary { background-image: url('assets/images/paper_texture.webp'); background-size: 100% 100%; border: none; width: 100%; height: 60px; display: flex; align-items: center; justify-content: center; font-family: 'ArefRuqaa', serif; font-size: 36px; font-weight: 700; color: #4c2d09; cursor: pointer; transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275); } .ds-btn-primary:active { transform: scale(0.95); }"
+    },
+    {
+      "name": "AppSketchyCard",
+      "kind": "card",
+      "refersTo": "card-primary",
+      "description": "Rugged card painted dynamically with imperfect border lines, supporting an option masking-tape overlay for the evidence-board aesthetic.",
+      "html": "<div class=\"ds-sketchy-card\"><div class=\"ds-tape\"></div><div class=\"ds-card-title\">الموضوعات</div></div>",
+      "css": ".ds-sketchy-card { position: relative; width: 260px; height: 160px; border: 2px solid #c3a24b; background-color: #000000; box-shadow: 4px 4px 0px #000000; display: flex; align-items: center; justify-content: center; margin-top: 25px; transition: transform 0.15s ease-out; } .ds-sketchy-card:active { transform: scale(0.95); } .ds-card-title { font-family: 'ArefRuqaa', serif; font-size: 45px; font-weight: 700; color: #c3a24b; } .ds-tape { position: absolute; top: -12px; width: 80px; height: 24px; background-color: rgba(255, 255, 255, 0.15); transform: rotate(-2deg); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Cardboard Confessional",
+    "overview": "Imposter's design system is an expressive, highly physical visual language that blends raw, organic, sketchy elements with rich calligraphic heritage. The entire interface feels like a tangible desktop game made of hand-cut cardboard, torn paper sheets, and rough graphite doodles.",
+    "keyCharacteristics": [
+      "Hand-Drawn Tactility",
+      "Antique Calligraphic Heritage",
+      "Physical Spring Feedback"
+    ],
+    "rules": [
+      {
+        "name": "The Rarity of Gold Rule",
+        "body": "Desert Gold (#c3a24b) is a powerful, saturated brand asset. It should cover no more than 15% of any screen surface, standing out sharply against the absolute black backdrop to direct the player's eye immediately.",
+        "section": "colors"
+      },
+      {
+        "name": "The Calligraphic Dominance Rule",
+        "body": "Every visual text element in the game must use ArefRuqaa. Standard system sans-serif is only permitted as a fallback in platform exceptions, preserving the immersive visual world.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-Ink Shadow Rule",
+        "body": "Soft, blurry drop-shadows are banned. All elevations are represented by drawing solid offset outlines or stacking hand-cut paper layers with black margins.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use ArefRuqaa for all display text and Arabic game commands.",
+      "Do incorporate HapticFeedback.lightImpact() on all custom button taps to give physical confirmation.",
+      "Do draw custom outlines with SketchyCardPainter to represent card segments and frames.",
+      "Do use thick borders and golden highlights to maintain high readability in low-light gathering settings."
+    ],
+    "donts": [
+      "Don't use standard material default rounded buttons or clean flat gray grids (avoids the SaaS Cliché).",
+      "Don't use neon gradients or soft drop-shadow blurs (avoids the Neon Cyberpunk style).",
+      "Don't allow text blocks to expand beyond 65 characters without proper horizontal margins (maintains Pass-Around legibility).",
+      "Don't use side-stripe borders greater than 1px as a colored accent on lists or cards (banned pattern)."
+    ]
+  }
+}

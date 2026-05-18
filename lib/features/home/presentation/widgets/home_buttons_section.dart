@@ -20,8 +20,14 @@ class HomeButtonsSection extends StatelessWidget {
     return Column(
       spacing: context.p(18),
       children: [
+        AppButton(
+          title: AppStrings.letsGo,
+          onTap: () {
+            context.pushNamed(AppRoutes.topicsSelection);
+          },
+        ),
         Row(
-          spacing: context.p(4),
+          spacing: context.p(12),
           children: [
             Expanded(
               child: AppButton(
@@ -38,12 +44,6 @@ class HomeButtonsSection extends StatelessWidget {
               ),
             ),
           ],
-        ),
-        AppButton(
-          title: AppStrings.letsGo,
-          onTap: () {
-            context.pushNamed(AppRoutes.topicsSelection);
-          },
         ),
       ],
     );

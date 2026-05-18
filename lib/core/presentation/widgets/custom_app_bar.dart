@@ -26,9 +26,11 @@ class CustomAppBar extends StatelessWidget {
               AppButton(
                 height: 50,
                 onTap: () => context.pop(),
-                child: SvgPicture.asset(
-                  AppAssets.backIconSvg,
-                  height: 24,
+                child: RepaintBoundary(
+                  child: SvgPicture.asset(
+                    AppAssets.backIconSvg,
+                    height: 24,
+                  ),
                 ),
               ),
               if (!showHowToPlay) const SizedBox(),
