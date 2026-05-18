@@ -14,6 +14,7 @@ import 'package:imposter/features/game/presentation/widgets/game/phases/ready_ph
 import 'package:imposter/features/game/presentation/widgets/game/phases/revealing_phase.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/scanning_phase.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/summary_phase.dart';
+import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/timer_phase.dart';
 
 class GameViewContent extends StatelessWidget {
@@ -58,7 +59,9 @@ class GameViewContent extends StatelessWidget {
 
     return switch (state) {
       GameInitial() || GameLoading() => const Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          color: AppColors.primary,
+        ),
       ),
       GameCategoriesLoaded() => const Center(
         child: AppTextWidget(AppStrings.comingSoon),

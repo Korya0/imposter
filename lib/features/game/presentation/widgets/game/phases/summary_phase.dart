@@ -31,11 +31,24 @@ class SummaryPhaseWidget extends StatefulWidget {
   State<SummaryPhaseWidget> createState() => _SummaryPhaseWidgetState();
 }
 
-class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget> {
+class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _redoController;
+
   @override
   void initState() {
     super.initState();
     unawaited(AudioPlayerHelper.playWin());
+    _redoController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 150),
+    );
+  }
+
+  @override
+  void dispose() {
+    _redoController.dispose();
+    super.dispose();
   }
 
   @override
@@ -71,39 +84,50 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget> {
               const SizedBox(height: 40),
               Center(
                 child: GestureDetector(
-                  onTap: widget.onAnotherRound,
+                  onTapDown: (_) => _redoController.forward(),
+                  onTapUp: (_) {
+                    _redoController.reverse();
+                    widget.onAnotherRound();
+                  },
+                  onTapCancel: () => _redoController.reverse(),
                   behavior: HitTestBehavior.opaque,
-                  child: Padding(
-                    padding: EdgeInsets.all(context.p(16)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      spacing: 16,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: AppColors.white,
-                              width: 1.5,
+                  child: AnimatedBuilder(
+                    animation: _redoController,
+                    builder: (context, child) {
+                      final scale = 1.0 - (_redoController.value * 0.05);
+                      return Transform.scale(
+                        scale: scale,
+                        child: child,
+                      );
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(context.p(16)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: 16,
+                        children: [
+                          CustomPaint(
+                            painter: SketchyCirclePainter(color: AppColors.white),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: SvgPicture.asset(
+                                AppAssets.redoSvg,
+                                width: 32,
+                                height: 32,
+                                colorFilter: const ColorFilter.mode(
+                                  AppColors.white,
+                                  BlendMode.srcIn,
+                                ),
+                              ),
                             ),
                           ),
-                          child: SvgPicture.asset(
-                            AppAssets.redoSvg,
-                            width: 32,
-                            height: 32,
-                            colorFilter: const ColorFilter.mode(
-                              AppColors.white,
-                              BlendMode.srcIn,
-                            ),
+                          AppTextWidget(
+                            AppStrings.anotherRound,
+                            style: AppTextStyles.font28W400White,
                           ),
-                        ),
-                        AppTextWidget(
-                          AppStrings.anotherRound,
-                          style: AppTextStyles.font28W400White,
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -137,4 +161,38 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget> {
       ),
     );
   }
+}
+
+class SketchyCirclePainter extends CustomPainter {
+  final Color color;
+
+  SketchyCirclePainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.0
+      ..strokeCap = StrokeCap.round;
+
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = size.width / 2 - 4;
+
+    final rect = Rect.fromCircle(center: center, radius: radius);
+
+    // Primary sketched loop
+    canvas.drawArc(rect, 0, 6.28, false, paint);
+
+    // Secondary offset sketch shadow loop
+    final outerRect = Rect.fromCircle(center: center, radius: radius + 3);
+    final shadowPaint = Paint()
+      ..color = color.withValues(alpha: 0.4)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.0;
+    canvas.drawArc(outerRect, 0.45, 5.8, false, shadowPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

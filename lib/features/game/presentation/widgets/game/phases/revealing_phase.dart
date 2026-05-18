@@ -74,11 +74,31 @@ class _CitizenRevealView extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        spacing: 16,
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 8,
+            children: [
+              AppTextWidget(
+                '${AppStrings.category}:',
+                style: AppTextStyles.font28W700Primary,
+              ),
+              AppTextWidget(
+                category,
+                style: AppTextStyles.font28W400White,
+              ),
+            ],
+          ),
+          // EXCEPTION: Use a regular system sans-serif font family for the secret word
+          // to ensure clear gameplay readability and avoid any calligraphic styling confusion.
+          // استثناء: استخدام خط عادي (sans-serif) للكلمة السرية لضمان الوضوح التام ومنع اللبس.
           AppSketchyCard(
             height: 150,
             title: word,
-            style: AppTextStyles.font45W700Primary,
+            style: AppTextStyles.font45W700Primary.copyWith(
+              fontFamily: 'sans-serif',
+            ),
           ),
         ],
       ),
