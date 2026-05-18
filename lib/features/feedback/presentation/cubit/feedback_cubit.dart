@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/error/result.dart';
 import 'package:imposter/features/feedback/data/models/feedback_request.dart';
 import 'package:imposter/features/feedback/data/repositories/feedback_repository_impl.dart';
@@ -13,7 +14,10 @@ class FeedbackCubit extends Cubit<FeedbackState> {
     required String content,
     String? contact,
   }) async {
-    if (content.isEmpty) return;
+    if (content.trim().isEmpty) {
+      emit(FeedbackError(AppStrings.feedbackEmptyError));
+      return;
+    }
 
     emit(FeedbackLoading());
 

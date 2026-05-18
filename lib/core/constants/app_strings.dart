@@ -47,8 +47,10 @@ abstract class AppStrings {
   static const String tellUs = 'هات اللى عندك';
   static const String sendFeedback = 'إرسال';
   static const String feedbackPlaceholder = 'اكتب مقترحك هنا...';
+  static const String feedbackContactPlaceholder = 'إيميلك أو رقم تليفونك (اختياري)...';
   static const String feedbackSuccess = 'شكراً لمشاركتك تم الإرسال بنجاح';
   static const String feedbackError = 'حدث خطأ أثناء الإرسال، حاول مرة أخرى';
+  static const String feedbackEmptyError = 'اكتب رأيك الأول عشان نقراه!';
   static const String feedbackBusinessContact = 'تواصل لأغراض العمل';
   static const String shareAndRate = 'شارك وقيم';
   static const String shareApp = 'مشاركة التطبيق';
