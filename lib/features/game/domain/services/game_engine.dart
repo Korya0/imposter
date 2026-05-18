@@ -4,19 +4,17 @@ import 'package:imposter/features/game/domain/entities/category_entity.dart';
 import 'package:imposter/features/game/domain/entities/word_entity.dart';
 
 class GameSetup {
-  final WordEntity secretWord;
-  final List<int> spyIndices;
-
   GameSetup({
     required this.secretWord,
     required this.spyIndices,
   });
+  final WordEntity secretWord;
+  final List<int> spyIndices;
 }
 
 class GameEngine {
-  final Random _random;
-
   GameEngine({Random? random}) : _random = random ?? Random();
+  final Random _random;
 
   GameSetup prepareRound({
     required CategoryEntity category,

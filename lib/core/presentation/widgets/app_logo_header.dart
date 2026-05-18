@@ -8,13 +8,6 @@ import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
 class AppLogoHeader extends StatelessWidget {
-  final bool isVertical;
-  final bool shouldAnimate;
-  final bool showText;
-  final double? logoHeight;
-  final double? spacing;
-  final TextStyle? textStyle;
-
   const AppLogoHeader({
     super.key,
     this.isVertical = true,
@@ -24,6 +17,12 @@ class AppLogoHeader extends StatelessWidget {
     this.spacing,
     this.textStyle,
   });
+  final bool isVertical;
+  final bool shouldAnimate;
+  final bool showText;
+  final double? logoHeight;
+  final double? spacing;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {

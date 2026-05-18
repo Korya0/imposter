@@ -22,11 +22,10 @@ class GameView extends StatelessWidget {
 }
 
 class _GameViewBody extends StatelessWidget {
-  final GameState currentState;
-
   const _GameViewBody({
     required this.currentState,
   });
+  final GameState currentState;
 
   @override
   Widget build(BuildContext context) {

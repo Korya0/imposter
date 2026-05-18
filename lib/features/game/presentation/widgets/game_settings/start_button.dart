@@ -10,8 +10,8 @@ import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 
 class StartButton extends StatelessWidget {
   const StartButton({
-    super.key,
     required this.onTap,
+    super.key,
   });
   final VoidCallback onTap;
   @override

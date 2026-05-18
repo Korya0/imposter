@@ -5,7 +5,7 @@ import 'package:imposter/core/utils/app_logger.dart';
 import 'package:imposter/features/feedback/data/models/feedback_request.dart';
 
 // Import the stub/web implementation conditionally
-import 'feedback_submission_helper.dart'
+import 'package:imposter/features/feedback/data/datasources/feedback_submission_helper.dart'
     if (dart.library.js_interop) 'feedback_submission_web_helper.dart';
 
 abstract class FeedbackRemoteDataSource {
@@ -13,9 +13,8 @@ abstract class FeedbackRemoteDataSource {
 }
 
 class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
-  final Dio _dio;
-
   FeedbackRemoteDataSourceImpl(this._dio);
+  final Dio _dio;
 
   @override
   Future<void> submitFeedback(FeedbackRequest request) async {
@@ -24,7 +23,7 @@ class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
     };
 
     AppLogger.info('Attempting to submit feedback to Google Forms...');
-    
+
     if (kIsWeb) {
       // Use the conditional helper for Web to avoid CORS issues via JS Interop
       // but only on platforms where it's supported.

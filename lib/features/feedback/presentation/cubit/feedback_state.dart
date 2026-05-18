@@ -9,6 +9,6 @@ final class FeedbackLoading extends FeedbackState {}
 final class FeedbackSuccess extends FeedbackState {}
 
 final class FeedbackError extends FeedbackState {
-  final String message;
   FeedbackError(this.message);
+  final String message;
 }

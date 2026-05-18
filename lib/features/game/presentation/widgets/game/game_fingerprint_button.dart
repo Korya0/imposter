@@ -4,13 +4,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
-import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
+import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/haptic_feedback_helper.dart';
 
 class GameFingerprintButton extends StatefulWidget {
+  const GameFingerprintButton({required this.onTap, super.key});
   final VoidCallback onTap;
-  const GameFingerprintButton({super.key, required this.onTap});
 
   @override
   State<GameFingerprintButton> createState() => _GameFingerprintButtonState();

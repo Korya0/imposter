@@ -8,16 +8,15 @@ import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
 class RevealingPhaseWidget extends StatelessWidget {
-  final bool isSpy;
-  final String secretWord;
-  final String categoryName;
-
   const RevealingPhaseWidget({
-    super.key,
     required this.isSpy,
     required this.secretWord,
     required this.categoryName,
+    super.key,
   });
+  final bool isSpy;
+  final String secretWord;
+  final String categoryName;
 
   @override
   Widget build(BuildContext context) {
@@ -64,13 +63,12 @@ class _SpyYouAreText extends StatelessWidget {
 }
 
 class _CitizenRevealView extends StatelessWidget {
-  final String category;
-  final String word;
-
   const _CitizenRevealView({
     required this.category,
     required this.word,
   });
+  final String category;
+  final String word;
 
   @override
   Widget build(BuildContext context) {

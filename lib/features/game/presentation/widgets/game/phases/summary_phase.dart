@@ -6,27 +6,26 @@ import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
-import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
+import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/audio_player_helper.dart';
 
 class SummaryPhaseWidget extends StatefulWidget {
-  final String secretWord;
-  final int playerCount;
-  final int spyCount;
-  final int durationMinutes;
-  final VoidCallback onAnotherRound;
-  final VoidCallback onFinish;
-
   const SummaryPhaseWidget({
-    super.key,
     required this.secretWord,
     required this.playerCount,
     required this.spyCount,
     required this.durationMinutes,
     required this.onAnotherRound,
     required this.onFinish,
+    super.key,
   });
+  final String secretWord;
+  final int playerCount;
+  final int spyCount;
+  final int durationMinutes;
+  final VoidCallback onAnotherRound;
+  final VoidCallback onFinish;
 
   @override
   State<SummaryPhaseWidget> createState() => _SummaryPhaseWidgetState();

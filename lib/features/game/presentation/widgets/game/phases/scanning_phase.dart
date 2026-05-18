@@ -4,12 +4,11 @@ import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 
 class ScanningPhaseWidget extends StatelessWidget {
-  final int playerNumber;
-
   const ScanningPhaseWidget({
-    super.key,
     required this.playerNumber,
+    super.key,
   });
+  final int playerNumber;
 
   @override
   Widget build(BuildContext context) {

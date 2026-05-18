@@ -1,9 +1,8 @@
-import '../constants/app_strings.dart';
+import 'package:imposter/core/constants/app_strings.dart';
 
 sealed class Failure {
-  final String message;
-
   const Failure(this.message);
+  final String message;
 }
 
 class DataParsingFailure extends Failure {

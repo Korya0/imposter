@@ -3,12 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class SketchyCardPainter extends CustomPainter {
-  late final Paint _borderPaint;
-  late final Paint _scribblePaint;
-  late final Paint _tapeFillPaint;
-  late final Paint _tapeStrokePaint;
-  final Random _random = Random(42);
-
   SketchyCardPainter({
     required this.color,
     this.showTape = true,
@@ -28,6 +22,11 @@ class SketchyCardPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.0;
   }
+  late final Paint _borderPaint;
+  late final Paint _scribblePaint;
+  late final Paint _tapeFillPaint;
+  late final Paint _tapeStrokePaint;
+  final Random _random = Random(42);
 
   final Color color;
   final bool showTape;

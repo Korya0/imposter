@@ -11,8 +11,8 @@ import 'package:imposter/features/game/domain/entities/category_entity.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 
 class TopicsGridWidget extends StatelessWidget {
+  const TopicsGridWidget({required this.categories, super.key});
   final List<CategoryEntity> categories;
-  const TopicsGridWidget({super.key, required this.categories});
 
   @override
   Widget build(BuildContext context) {
@@ -21,30 +21,31 @@ class TopicsGridWidget extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: (context.width.clamp(0.0, 500.0) / 2) /
+        childAspectRatio:
+            (context.width.clamp(0.0, 500.0) / 2) /
             (context.height.clamp(0.0, 900.0) * 0.28),
       ),
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           final category = categories[index];
           return AppSketchyCard(
-            title: category.name,
-            onTap: () async {
-              context.read<GameCubit>().selectCategory(category);
-              await context.pushNamed(AppRoutes.gameSettings);
-            },
-            watermark: IgnorePointer(
-              child: SvgPicture.asset(
-                AppAssets.getCategoryIcon(category.id),
-                width: 80,
-                height: 80,
-                placeholderBuilder: (context) => const SizedBox(
-                  width: 80,
-                  height: 80,
+                title: category.name,
+                onTap: () async {
+                  context.read<GameCubit>().selectCategory(category);
+                  await context.pushNamed(AppRoutes.gameSettings);
+                },
+                watermark: IgnorePointer(
+                  child: SvgPicture.asset(
+                    AppAssets.getCategoryIcon(category.id),
+                    width: 80,
+                    height: 80,
+                    placeholderBuilder: (context) => const SizedBox(
+                      width: 80,
+                      height: 80,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          )
+              )
               .animate()
               .fadeIn(delay: (index % 6 * 100).ms, duration: 400.ms)
               .slideY(

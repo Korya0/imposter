@@ -17,12 +17,11 @@ import 'package:imposter/features/game/presentation/widgets/game/phases/summary_
 import 'package:imposter/features/game/presentation/widgets/game/phases/timer_phase.dart';
 
 class GameViewContent extends StatelessWidget {
-  final GameState state;
-
   const GameViewContent({
-    super.key,
     required this.state,
+    super.key,
   });
+  final GameState state;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +108,7 @@ class GameViewContent extends StatelessWidget {
 
     return switch (state) {
       GameScanning() => GameFingerprintButton(
-        onTap: () => cubit.toggleReveal(true),
+        onTap: () => cubit.toggleReveal(reveal: true),
       ),
       GameRevealing() => Padding(
         padding: AppPaddings.h24,
@@ -117,7 +116,7 @@ class GameViewContent extends StatelessWidget {
           width: double.infinity,
           height: (context.height * 0.1).clamp(50, 70),
           title: AppStrings.next,
-          onTap: () => cubit.toggleReveal(false),
+          onTap: () => cubit.toggleReveal(reveal: false),
         ),
       ),
       GameTimer() => Padding(

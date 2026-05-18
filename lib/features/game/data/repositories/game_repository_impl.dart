@@ -7,9 +7,8 @@ import 'package:imposter/features/game/domain/entities/category_entity.dart';
 import 'package:imposter/features/game/domain/repositories/game_repository.dart';
 
 class GameRepositoryImpl implements IGameRepository {
-  final GameLocalDataSource localDataSource;
-
   GameRepositoryImpl({required this.localDataSource});
+  final GameLocalDataSource localDataSource;
 
   @override
   Future<Result<List<CategoryEntity>>> getCategories() async {

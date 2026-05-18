@@ -1,13 +1,8 @@
-import '../../../../core/constants/game_json_keys.dart';
-import '../../domain/entities/category_entity.dart';
-import 'word_model.dart';
+import 'package:imposter/core/constants/game_json_keys.dart';
+import 'package:imposter/features/game/domain/entities/category_entity.dart';
+import 'package:imposter/features/game/data/models/word_model.dart';
 
 class CategoryModel {
-  final String id;
-  final String name;
-  final String icon;
-  final List<WordModel> words;
-
   CategoryModel({
     required this.id,
     required this.name,
@@ -25,6 +20,10 @@ class CategoryModel {
           .toList(),
     );
   }
+  final String id;
+  final String name;
+  final String icon;
+  final List<WordModel> words;
 
   Map<String, dynamic> toMap() {
     return {

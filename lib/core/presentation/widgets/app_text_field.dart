@@ -4,9 +4,9 @@ import 'package:imposter/core/style/fonts/app_text_styles.dart';
 
 class AppTextField extends StatelessWidget {
   const AppTextField({
-    super.key,
     required this.controller,
     required this.hintText,
+    super.key,
     this.maxLines = 1,
     this.keyboardType,
   });

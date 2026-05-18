@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
-import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
+import 'package:imposter/core/style/theme/app_colors.dart';
 
 class AppValueAdjuster extends StatelessWidget {
-  final String value;
-  final VoidCallback? onIncrement;
-  final VoidCallback? onDecrement;
-  final double? width;
-
   const AppValueAdjuster({
-    super.key,
     required this.value,
+    super.key,
     this.onIncrement,
     this.onDecrement,
     this.width = 70,
   });
+  final String value;
+  final VoidCallback? onIncrement;
+  final VoidCallback? onDecrement;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {

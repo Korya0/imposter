@@ -1,10 +1,7 @@
-import '../../../../core/constants/game_json_keys.dart';
-import '../../domain/entities/word_entity.dart';
+import 'package:imposter/core/constants/game_json_keys.dart';
+import 'package:imposter/features/game/domain/entities/word_entity.dart';
 
 class WordModel {
-  final String id;
-  final String name;
-
   WordModel({required this.id, required this.name});
 
   factory WordModel.fromMap(Map<String, dynamic> map) {
@@ -13,6 +10,8 @@ class WordModel {
       name: map[GameJsonKeys.nameKey] as String,
     );
   }
+  final String id;
+  final String name;
 
   Map<String, dynamic> toMap() {
     return {

@@ -1,16 +1,46 @@
 include: package:very_good_analysis/analysis_options.yaml
 
+analyzer:
+  errors:
+    todo: ignore
+    missing_required_param: error
+    missing_return: error
+    unused_import: error
+    unused_local_variable: warning
+    dead_code: error
+    invalid_annotation_target: ignore
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.gr.dart"
+    - "**/generated/**"
+    - "lib/core/constants/generated/**"
+    - "lib/core/networking/firebase/**"
+
 linter:
   rules:
-    public_member_api_docs: false
-    lines_longer_than_80_chars: false
-    directives_ordering: false
-    always_use_package_imports: false
-    prefer_relative_imports: false
-    avoid_positional_boolean_parameters: false
-    always_put_required_named_parameters_first: false
-    sort_constructors_first: false
-    sort_pub_dependencies: false
+    always_declare_return_types: true
+    type_annotate_public_apis: true
+    avoid_dynamic_calls: true
+    cancel_subscriptions: true
+    close_sinks: true
+    only_throw_errors: true
+    prefer_final_fields: true
+    discarded_futures: false
+    prefer_final_locals: true
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    prefer_interpolation_to_compose_strings: true
+    avoid_redundant_argument_values: true
+    cascade_invocations: true
+    sort_unnamed_constructors_first: true
+    sort_pub_dependencies: false 
+    directives_ordering: false    
+    comment_references: true
+    public_member_api_docs: false     
+    lines_longer_than_80_chars: false  
+    one_member_abstracts: false     
+    unawaited_futures: false 
     eol_at_end_of_file: false
-    one_member_abstracts: false
-    
+    require_trailing_commas: false  
+    sort_constructors_first: false

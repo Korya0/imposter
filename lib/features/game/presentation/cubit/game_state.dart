@@ -1,12 +1,6 @@
 import 'package:imposter/features/game/domain/entities/category_entity.dart';
 
 sealed class GameState {
-  final int playerCount;
-  final int spyCount;
-  final int durationMinutes;
-  final List<CategoryEntity> categories;
-  final CategoryEntity? selectedCategory;
-
   const GameState({
     this.playerCount = 3,
     this.spyCount = 1,
@@ -14,6 +8,11 @@ sealed class GameState {
     this.categories = const [],
     this.selectedCategory,
   });
+  final int playerCount;
+  final int spyCount;
+  final int durationMinutes;
+  final List<CategoryEntity> categories;
+  final CategoryEntity? selectedCategory;
 }
 
 class GameInitial extends GameState {
@@ -41,10 +40,6 @@ class GameCategoriesLoaded extends GameState {
 }
 
 class GameScanning extends GameState {
-  final int currentPlayerIndex;
-  final String secretWord;
-  final List<int> spyIndices;
-
   const GameScanning({
     required super.categories,
     required CategoryEntity super.selectedCategory,
@@ -55,14 +50,12 @@ class GameScanning extends GameState {
     required this.secretWord,
     required this.spyIndices,
   });
-}
-
-class GameRevealing extends GameState {
   final int currentPlayerIndex;
   final String secretWord;
   final List<int> spyIndices;
-  final bool isSpy;
+}
 
+class GameRevealing extends GameState {
   const GameRevealing({
     required super.categories,
     required CategoryEntity super.selectedCategory,
@@ -74,12 +67,13 @@ class GameRevealing extends GameState {
     required this.spyIndices,
     required this.isSpy,
   });
+  final int currentPlayerIndex;
+  final String secretWord;
+  final List<int> spyIndices;
+  final bool isSpy;
 }
 
 class GameReady extends GameState {
-  final String secretWord;
-  final List<int> spyIndices;
-
   const GameReady({
     required super.categories,
     required CategoryEntity super.selectedCategory,
@@ -89,12 +83,11 @@ class GameReady extends GameState {
     required this.secretWord,
     required this.spyIndices,
   });
+  final String secretWord;
+  final List<int> spyIndices;
 }
 
 class GameTimer extends GameState {
-  final String secretWord;
-  final List<int> spyIndices;
-
   const GameTimer({
     required super.categories,
     required CategoryEntity super.selectedCategory,
@@ -104,12 +97,11 @@ class GameTimer extends GameState {
     required this.secretWord,
     required this.spyIndices,
   });
+  final String secretWord;
+  final List<int> spyIndices;
 }
 
 class GameSummary extends GameState {
-  final String secretWord;
-  final List<int> spyIndices;
-
   const GameSummary({
     required super.categories,
     required CategoryEntity super.selectedCategory,
@@ -119,11 +111,11 @@ class GameSummary extends GameState {
     required this.secretWord,
     required this.spyIndices,
   });
+  final String secretWord;
+  final List<int> spyIndices;
 }
 
 class GameError extends GameState {
-  final String message;
-
   const GameError({
     required this.message,
     super.playerCount,
@@ -132,4 +124,5 @@ class GameError extends GameState {
     super.categories,
     super.selectedCategory,
   });
+  final String message;
 }

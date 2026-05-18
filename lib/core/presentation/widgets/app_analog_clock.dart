@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 
 class AppAnalogClock extends StatelessWidget {
-  final double value; // From 0.0 to 1.0 (Animation progress)
-  final double size;
-
   const AppAnalogClock({
-    super.key,
     required this.value,
+    super.key,
     this.size = 200,
   });
+  final double value; // From 0.0 to 1.0 (Animation progress)
+  final double size;
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +29,6 @@ class AppAnalogClock extends StatelessWidget {
 }
 
 class _ClockPainter extends CustomPainter {
-  final double value;
-  final Color primaryColor;
-  final Color secondaryColor;
-
-  late final Paint _outerCirclePaint;
-  late final Paint _innerCirclePaint;
-  late final Paint _markerPaint;
-  late final Paint _minuteHandPaint;
-  late final Paint _secondHandPaint;
-  late final Paint _centerDotPrimaryPaint;
-  late final Paint _centerDotSecondaryPaint;
-
   _ClockPainter({
     required this.value,
     required this.primaryColor,
@@ -73,6 +60,17 @@ class _ClockPainter extends CustomPainter {
     _centerDotPrimaryPaint = Paint()..color = primaryColor;
     _centerDotSecondaryPaint = Paint()..color = secondaryColor;
   }
+  final double value;
+  final Color primaryColor;
+  final Color secondaryColor;
+
+  late final Paint _outerCirclePaint;
+  late final Paint _innerCirclePaint;
+  late final Paint _markerPaint;
+  late final Paint _minuteHandPaint;
+  late final Paint _secondHandPaint;
+  late final Paint _centerDotPrimaryPaint;
+  late final Paint _centerDotSecondaryPaint;
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -6,16 +6,15 @@ import 'package:imposter/features/feedback/data/repositories/feedback_repository
 part 'feedback_state.dart';
 
 class FeedbackCubit extends Cubit<FeedbackState> {
-  final FeedbackRepositoryImpl _feedbackRepository;
-
   FeedbackCubit(this._feedbackRepository) : super(FeedbackInitial());
+  final FeedbackRepositoryImpl _feedbackRepository;
 
   Future<void> submitFeedback({
     required String content,
     String? contact,
   }) async {
     if (content.isEmpty) return;
-    
+
     emit(FeedbackLoading());
 
     final request = FeedbackRequest(content: content, contact: contact);

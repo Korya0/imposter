@@ -4,27 +4,26 @@ import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/app_value_adjuster.dart';
-import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
+import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
 class GameSettingItem extends StatelessWidget {
+  const GameSettingItem({
+    required this.iconPath,
+    required this.title,
+    required this.value,
+    super.key,
+    this.isReadOnly = false,
+    this.onIncrement,
+    this.onDecrement,
+  });
   final String iconPath;
   final String title;
   final String value;
   final bool isReadOnly;
   final VoidCallback? onIncrement;
   final VoidCallback? onDecrement;
-
-  const GameSettingItem({
-    super.key,
-    required this.iconPath,
-    required this.title,
-    required this.value,
-    this.isReadOnly = false,
-    this.onIncrement,
-    this.onDecrement,
-  });
 
   @override
   Widget build(BuildContext context) {

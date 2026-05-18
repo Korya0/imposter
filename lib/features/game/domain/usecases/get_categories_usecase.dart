@@ -3,9 +3,8 @@ import 'package:imposter/features/game/domain/entities/category_entity.dart';
 import 'package:imposter/features/game/domain/repositories/game_repository.dart';
 
 class GetCategoriesUsecase {
-  final IGameRepository repository;
-
   GetCategoriesUsecase({required this.repository});
+  final IGameRepository repository;
 
   Future<Result<List<CategoryEntity>>> call() async {
     return repository.getCategories();

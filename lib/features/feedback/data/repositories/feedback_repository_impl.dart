@@ -8,9 +8,8 @@ import 'package:imposter/features/feedback/data/datasources/feedback_remote_data
 import 'package:imposter/features/feedback/data/models/feedback_request.dart';
 
 class FeedbackRepositoryImpl {
-  final FeedbackRemoteDataSource _remoteDataSource;
-
   FeedbackRepositoryImpl(this._remoteDataSource);
+  final FeedbackRemoteDataSource _remoteDataSource;
 
   Future<Result<void>> submitFeedback(FeedbackRequest request) async {
     try {

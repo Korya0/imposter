@@ -5,16 +5,15 @@ import 'package:imposter/features/game/domain/entities/category_entity.dart';
 import 'package:imposter/features/game/domain/services/game_engine.dart';
 import 'package:imposter/features/game/domain/usecases/get_categories_usecase.dart';
 
-import 'game_state.dart';
+import 'package:imposter/features/game/presentation/cubit/game_state.dart';
 
 class GameCubit extends Cubit<GameState> {
-  final GetCategoriesUsecase _getCategoriesUsecase;
-  final GameEngine _gameEngine;
-
   GameCubit(
     this._getCategoriesUsecase,
     this._gameEngine,
   ) : super(const GameInitial());
+  final GetCategoriesUsecase _getCategoriesUsecase;
+  final GameEngine _gameEngine;
 
   Future<void> init() async {
     if (state.categories.isNotEmpty) return;
@@ -130,7 +129,7 @@ class GameCubit extends Cubit<GameState> {
     );
   }
 
-  void toggleReveal(bool reveal) {
+  void toggleReveal({required bool reveal}) {
     final currentState = state;
     if (reveal && currentState is GameScanning) {
       emit(
