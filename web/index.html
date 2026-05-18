@@ -89,8 +89,22 @@
       bottom: 0;
       right: 0;
     }
+
+    /* Hide the HTML splash logo when running as an installed PWA (standalone mode) */
+    @media (display-mode: standalone) {
+      #splash {
+        display: none !important;
+      }
+    }
   </style>
   <script id="splash-screen-script">
+    // Extra safety check for iOS PWA and older devices
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+      var style = document.createElement('style');
+      style.innerHTML = '#splash { display: none !important; }';
+      document.head.appendChild(style);
+    }
+
     function removeSplashFromWeb() {
       document.getElementById("splash")?.remove();
       document.getElementById("splash-branding")?.remove();
