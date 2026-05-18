@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/presentation/widgets/app_sketchy_card/app_sketchy_card.dart';
+import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/domain/entities/category_entity.dart';
@@ -29,7 +30,12 @@ class TopicsGridWidget extends StatelessWidget {
         (context, index) {
           final category = categories[index];
           return AppSketchyCard(
+                key: ValueKey(category.id),
                 title: category.name,
+                minWidth: 0,
+                minHeight: 0,
+                maxLines: 2,
+                style: AppTextStyles.font24W700Primary,
                 onTap: () async {
                   context.read<GameCubit>().selectCategory(category);
                   await context.pushNamed(AppRoutes.gameSettings);

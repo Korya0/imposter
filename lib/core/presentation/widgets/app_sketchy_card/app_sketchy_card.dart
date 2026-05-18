@@ -12,18 +12,24 @@ class AppSketchyCard extends StatefulWidget {
     this.watermark,
     this.width,
     this.height,
+    this.minWidth = 250,
+    this.minHeight = 150,
     this.showTape = true,
     this.onTap,
     this.style,
+    this.maxLines = 1,
   });
 
   final String title;
   final Widget? watermark;
   final double? width;
   final double? height;
+  final double minWidth;
+  final double minHeight;
   final bool showTape;
   final VoidCallback? onTap;
   final TextStyle? style;
+  final int maxLines;
 
   @override
   State<AppSketchyCard> createState() => _AppSketchyCardState();
@@ -69,9 +75,9 @@ class _AppSketchyCardState extends State<AppSketchyCard>
               child: Container(
                 width: widget.width,
                 height: widget.height,
-                constraints: const BoxConstraints(
-                  minHeight: 150,
-                  minWidth: 250,
+                constraints: BoxConstraints(
+                  minHeight: widget.minHeight,
+                  minWidth: widget.minWidth,
                 ),
                 margin: EdgeInsets.only(
                   top: context.p(25),
@@ -101,17 +107,28 @@ class _AppSketchyCardState extends State<AppSketchyCard>
                               ),
                               child: widget.watermark,
                             ),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: AppTextWidget(
+                          if (widget.maxLines == 1)
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: AppTextWidget(
+                                widget.title,
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                style:
+                                    widget.style ??
+                                    AppTextStyles.font45W700Primary,
+                              ),
+                            )
+                          else
+                            AppTextWidget(
                               widget.title,
                               textAlign: TextAlign.center,
-                              maxLines: 1,
+                              maxLines: widget.maxLines,
+                              overflow: TextOverflow.ellipsis,
                               style:
                                   widget.style ??
-                                  AppTextStyles.font45W700Primary,
+                                  AppTextStyles.font24W700Primary,
                             ),
-                          ),
                         ],
                       ),
                     ),

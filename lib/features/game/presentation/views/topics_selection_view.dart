@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
 import 'package:imposter/features/game/presentation/widgets/TopicsSelectionView/topics_error_widget.dart';
@@ -52,6 +52,7 @@ class _TopicsSelectionHeader extends StatelessWidget {
         AppTextWidget(
           AppStrings.comingWithYou,
           style: AppTextStyles.font22W400White,
+          textAlign: TextAlign.center,
         ),
         const SizedBox(height: 16),
       ],
@@ -65,6 +66,25 @@ class _TopicsSelectionContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GameCubit, GameState>(
+      buildWhen: (previous, current) {
+        // Only rebuild if the view's core visual states change
+        final wasCore =
+            previous is GameInitial ||
+            previous is GameLoading ||
+            previous is GameError ||
+            previous is GameCategoriesLoaded;
+        final isCore =
+            current is GameInitial ||
+            current is GameLoading ||
+            current is GameError ||
+            current is GameCategoriesLoaded;
+
+        // Always rebuild if categories list changes
+        if (previous.categories != current.categories) return true;
+
+        // Otherwise, only rebuild if transitioning within the core selection lifecycle states
+        return wasCore || isCore;
+      },
       builder: (context, state) {
         return switch (state) {
           GameInitial() || GameLoading(categories: []) =>
