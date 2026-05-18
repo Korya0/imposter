@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
@@ -15,7 +15,7 @@ class AppErrorView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: AppPaddings.h24,
+          padding: EdgeInsets.symmetric(horizontal: context.p(24)),
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [

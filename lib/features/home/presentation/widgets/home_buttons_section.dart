@@ -11,20 +11,24 @@ import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:imposter/features/feedback/presentation/widgets/feedback_bottom_sheet.dart';
 
 class HomeButtonsSection extends StatelessWidget {
-  const HomeButtonsSection({super.key});
+  final VoidCallback onFeedbackTap;
+
+  const HomeButtonsSection({
+    required this.onFeedbackTap,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: context.s(18),
+      spacing: context.p(18),
       children: [
         _AnimatedHomeItem(
           delay: 600.ms,
           child: Row(
-            spacing: context.s(8),
+            spacing: context.p(8),
             children: [
               Expanded(
                 child: AppButton(
@@ -35,7 +39,7 @@ class HomeButtonsSection extends StatelessWidget {
               Expanded(
                 child: AppButton(
                   title: AppStrings.feedbackSuggestionOrComplaint,
-                  onTap: () => showFeedbackBottomSheet(context),
+                  onTap: onFeedbackTap,
                 ),
               ),
             ],

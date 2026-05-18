@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
@@ -74,7 +74,7 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget> {
                   onTap: widget.onAnotherRound,
                   behavior: HitTestBehavior.opaque,
                   child: Padding(
-                    padding: AppPaddings.all16,
+                    padding: EdgeInsets.all(context.p(16)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
@@ -117,7 +117,7 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget> {
 
   Widget _buildInfoRow(String label, String value) {
     return Padding(
-      padding: AppPaddings.h24,
+      padding: EdgeInsets.symmetric(horizontal: context.p(24)),
       child: Row(
         spacing: 16,
         mainAxisAlignment: MainAxisAlignment.center,

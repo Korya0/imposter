@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
@@ -21,7 +21,7 @@ class ReadyPhaseWidget extends StatelessWidget {
       onTap: onStartTimer,
       child: Center(
         child: Column(
-          spacing: AppPaddings.spacing30,
+          spacing: context.p(30),
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AppTextWidget(
@@ -29,7 +29,7 @@ class ReadyPhaseWidget extends StatelessWidget {
               style: AppTextStyles.font45W700Primary,
             ),
             Container(
-              padding: AppPaddings.all20,
+              padding: EdgeInsets.all(context.p(20)),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(color: AppColors.primary, width: 2),

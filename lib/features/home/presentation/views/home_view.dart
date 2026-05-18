@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/presentation/widgets/app_logo_header.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/home/presentation/widgets/home_buttons_section.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  final VoidCallback onFeedbackTap;
+
+  const HomeView({
+    required this.onFeedbackTap,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,7 @@ class HomeView extends StatelessWidget {
               child: SafeArea(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: context.p(18)),
-                  child: const _HomeViewBody(),
+                  child: _HomeViewBody(onFeedbackTap: onFeedbackTap),
                 ),
               ),
             ),
@@ -31,19 +35,23 @@ class HomeView extends StatelessWidget {
 }
 
 class _HomeViewBody extends StatelessWidget {
-  const _HomeViewBody();
+  final VoidCallback onFeedbackTap;
+
+  const _HomeViewBody({
+    required this.onFeedbackTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: AppPaddings.bottomPaddingH05(context),
+      padding: EdgeInsets.only(bottom: context.p(24)),
       child: Column(
-        spacing: AppPaddings.heightH10(context),
-        children: const [
-          AppLogoHeader(
+        spacing: context.p(40),
+        children: [
+          const AppLogoHeader(
             shouldAnimate: true,
           ),
-          HomeButtonsSection(),
+          HomeButtonsSection(onFeedbackTap: onFeedbackTap),
         ],
       ),
     );

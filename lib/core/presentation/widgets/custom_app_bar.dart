@@ -3,7 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_assets.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/features/game/presentation/widgets/how_to_play_button.dart';
 
@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: AppPaddings.appBarBottomPadding(context),
+      padding: EdgeInsets.only(bottom: context.p(20)),
       child:
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

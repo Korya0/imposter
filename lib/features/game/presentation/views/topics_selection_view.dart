@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
@@ -16,22 +16,22 @@ class TopicsSelectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           slivers: [
             SliverPadding(
-              padding: AppPaddings.h18,
-              sliver: SliverToBoxAdapter(
+              padding: EdgeInsets.symmetric(horizontal: context.p(18)),
+              sliver: const SliverToBoxAdapter(
                 child: _TopicsSelectionHeader(),
               ),
             ),
             SliverPadding(
-              padding: AppPaddings.h18,
-              sliver: _TopicsSelectionContent(),
+              padding: EdgeInsets.symmetric(horizontal: context.p(18)),
+              sliver: const _TopicsSelectionContent(),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SizedBox(height: 100),
             ),
           ],

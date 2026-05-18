@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
@@ -31,7 +31,9 @@ class _GameViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: AppPaddings.h18.add(AppPaddings.bottomPaddingH05(context) * 2),
+        padding: EdgeInsets.symmetric(horizontal: context.p(18)).add(
+          EdgeInsets.only(bottom: context.p(24) * 2),
+        ),
         child: Column(
           children: [
             const CustomAppBar(),

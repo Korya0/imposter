@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/app_value_adjuster.dart';
@@ -34,7 +33,7 @@ class GameSettingItem extends StatelessWidget {
           width: 250,
           height: (context.height * 0.08).clamp(40, 70),
           child: Padding(
-            padding: AppPaddings.h18,
+            padding: EdgeInsets.symmetric(horizontal: context.p(18)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

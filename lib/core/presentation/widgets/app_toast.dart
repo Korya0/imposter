@@ -1,4 +1,4 @@
-import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
@@ -45,8 +45,13 @@ class AppToast {
         primaryColor: AppColors.primary,
         backgroundColor: AppColors.background,
         foregroundColor: AppColors.white,
-        padding: AppPaddings.toastPadding,
-        margin: AppPaddings.toastMargin,
+        padding: EdgeInsets.symmetric(
+          horizontal: context.p(20),
+          vertical: context.p(12),
+        ),
+        margin: EdgeInsets.symmetric(
+          horizontal: context.p(16),
+        ),
         showProgressBar: false,
         closeButton: const ToastCloseButton(showType: CloseButtonShowType.none),
         dragToClose: true,

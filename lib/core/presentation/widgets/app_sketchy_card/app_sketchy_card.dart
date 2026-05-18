@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/presentation/widgets/app_sketchy_card/sketchy_card_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
@@ -73,7 +73,11 @@ class _AppSketchyCardState extends State<AppSketchyCard>
                   minHeight: 150,
                   minWidth: 250,
                 ),
-                margin: AppPaddings.sketchyCardMargin,
+                margin: EdgeInsets.only(
+                  top: context.p(25),
+                  left: context.p(10),
+                  right: context.p(10),
+                ),
                 child: RepaintBoundary(
                   child: CustomPaint(
                     painter: SketchyCardPainter(
@@ -82,7 +86,7 @@ class _AppSketchyCardState extends State<AppSketchyCard>
                       progress: _controller.value,
                     ),
                     child: Container(
-                      padding: AppPaddings.all24,
+                      padding: EdgeInsets.all(context.p(24)),
                       alignment: Alignment.center,
                       child: Stack(
                         alignment: Alignment.center,

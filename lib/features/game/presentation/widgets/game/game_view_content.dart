@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
+
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
@@ -111,7 +111,7 @@ class GameViewContent extends StatelessWidget {
         onTap: () => cubit.toggleReveal(reveal: true),
       ),
       GameRevealing() => Padding(
-        padding: AppPaddings.h24,
+        padding: EdgeInsets.symmetric(horizontal: context.p(24)),
         child: AppButton(
           width: double.infinity,
           height: (context.height * 0.1).clamp(50, 70),
@@ -120,7 +120,7 @@ class GameViewContent extends StatelessWidget {
         ),
       ),
       GameTimer() => Padding(
-        padding: AppPaddings.h24,
+        padding: EdgeInsets.symmetric(horizontal: context.p(24)),
         child: AppButton(
           width: double.infinity,
           height: (context.height * 0.1).clamp(50, 70),
@@ -129,7 +129,7 @@ class GameViewContent extends StatelessWidget {
         ),
       ),
       GameSummary() => Padding(
-        padding: AppPaddings.h24,
+        padding: EdgeInsets.symmetric(horizontal: context.p(24)),
         child: AppButton(
           width: double.infinity,
           height: (context.height * 0.1).clamp(50, 70),

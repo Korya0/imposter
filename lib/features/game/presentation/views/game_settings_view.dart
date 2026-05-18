@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
@@ -13,14 +13,14 @@ class GameSettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           slivers: [
             SliverPadding(
-              padding: AppPaddings.h18,
-              sliver: SliverToBoxAdapter(
+              padding: EdgeInsets.symmetric(horizontal: context.p(18)),
+              sliver: const SliverToBoxAdapter(
                 child: _GameSettingsViewBody(),
               ),
             ),
@@ -37,12 +37,12 @@ class _GameSettingsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: AppPaddings.bottomPaddingH05(context),
+      padding: EdgeInsets.only(bottom: context.p(24)),
       child: Column(
         children: [
           const CustomAppBar(),
           const GameSettingsList(),
-          SizedBox(height: AppPaddings.heightH05(context)),
+          SizedBox(height: context.p(16)),
           StartButton(
             onTap: () async {
               context.read<GameCubit>().prepareRound();

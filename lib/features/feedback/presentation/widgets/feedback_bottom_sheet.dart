@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/di/di.dart';
 import 'package:imposter/core/presentation/widgets/app_bottom_sheet/app_bottom_sheet.dart';
@@ -51,7 +51,7 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
         },
         builder: (context, state) {
           return Padding(
-            padding: AppPaddings.bottomPaddingH05(context),
+            padding: EdgeInsets.only(bottom: context.p(24)),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

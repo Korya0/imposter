@@ -10,8 +10,9 @@ import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/views/game_settings_view.dart';
 import 'package:imposter/features/game/presentation/views/game_view.dart';
 import 'package:imposter/features/game/presentation/views/topics_selection_view.dart';
+import 'package:imposter/features/feedback/presentation/widgets/feedback_bottom_sheet.dart';
 import 'package:imposter/features/home/presentation/views/home_view.dart';
-import 'package:imposter/features/splash_mobile/splash_view.dart';
+import 'package:imposter/features/splash_mobile/presentation/views/splash_view.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: kIsWeb ? AppRoutes.home : AppRoutes.splash,
@@ -24,7 +25,9 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.home,
       name: AppRoutes.home,
-      builder: (context, state) => const HomeView(),
+      builder: (context, state) => HomeView(
+        onFeedbackTap: () => showFeedbackBottomSheet(context),
+      ),
     ),
     ShellRoute(
       builder: (context, state, child) {

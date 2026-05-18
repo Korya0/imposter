@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imposter/core/constants/app_assets.dart';
-import 'package:imposter/core/constants/app_paddings.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_toast.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
@@ -44,7 +44,7 @@ class GameSettingsList extends StatelessWidget {
                 .fadeIn(delay: 100.ms, duration: 600.ms)
                 .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
 
-            SizedBox(height: AppPaddings.heightH01(context)),
+            SizedBox(height: context.p(12)),
 
             // Spies Setting
             GameSettingItem(
@@ -70,7 +70,7 @@ class GameSettingsList extends StatelessWidget {
                 .fadeIn(delay: 250.ms, duration: 600.ms)
                 .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
 
-            SizedBox(height: AppPaddings.heightH01(context)),
+            SizedBox(height: context.p(12)),
 
             // Minutes Setting
             GameSettingItem(
