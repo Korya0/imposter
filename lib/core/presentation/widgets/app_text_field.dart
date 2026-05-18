@@ -9,12 +9,16 @@ class AppTextField extends StatelessWidget {
     super.key,
     this.maxLines = 1,
     this.keyboardType,
+    this.textAlign = TextAlign.right,
+    this.enabled = true,
   });
 
   final TextEditingController controller;
   final String hintText;
   final int maxLines;
   final TextInputType? keyboardType;
+  final TextAlign textAlign;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +26,17 @@ class AppTextField extends StatelessWidget {
       controller: controller,
       maxLines: maxLines,
       keyboardType: keyboardType,
-      style: AppTextStyles.font18W700Primary,
+      textAlign: textAlign,
+      enabled: enabled,
+      style: AppTextStyles.font18W700Primary.copyWith(
+        color: enabled ? AppColors.primary : AppColors.primary.withValues(alpha: 0.5),
+      ),
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: AppTextStyles.font22W400Primary,
+        hintStyle: AppTextStyles.font18W700Primary.copyWith(
+          color: AppColors.primary.withValues(alpha: 0.5),
+          fontWeight: FontWeight.w400,
+        ),
         filled: true,
         fillColor: AppColors.secondaryBackground,
         border: OutlineInputBorder(
@@ -39,6 +50,13 @@ class AppTextField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: AppColors.primary, width: 2.5),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: AppColors.primary.withValues(alpha: 0.4),
+            width: 1.5,
+          ),
         ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
