@@ -40,7 +40,7 @@ class _GameSettingsViewBody extends StatelessWidget {
       padding: EdgeInsets.only(bottom: context.p(24)),
       child: Column(
         children: [
-          const CustomAppBar(),
+          const CustomAppBar(title: 'الإعدادات'),
           const GameSettingsList(),
           SizedBox(height: context.p(16)),
           StartButton(

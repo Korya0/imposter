@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imposter/core/constants/app_strings.dart';
-import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
-import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
@@ -46,15 +44,10 @@ class _TopicsSelectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const CustomAppBar(),
-        AppTextWidget(
-          AppStrings.comingWithYou,
-          style: AppTextStyles.font22W400White,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 16),
+        CustomAppBar(title: AppStrings.comingWithYou),
+        SizedBox(height: 16),
       ],
     );
   }

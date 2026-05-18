@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:imposter/core/presentation/widgets/app_sketchy_card/app_sketchy_card.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class TopicsLoadingWidget extends StatelessWidget {
   const TopicsLoadingWidget({super.key});
