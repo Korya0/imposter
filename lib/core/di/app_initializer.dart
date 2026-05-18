@@ -1,11 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imposter/core/di/di.dart';
+import 'package:imposter/core/style/theme/system_ui_config.dart';
 import 'package:imposter/core/utils/app_bloc_observer.dart';
 import 'package:imposter/core/utils/app_logger.dart';
 
 class AppInitializer {
   static Future<void> initEssential() async {
     try {
+      WidgetsFlutterBinding.ensureInitialized();
+      await SystemUiConfig.setup();
       await setupEssentialDI();
 
       Bloc.observer = AppBlocObserver();
