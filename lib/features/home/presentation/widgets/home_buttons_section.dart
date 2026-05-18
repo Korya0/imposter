@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_strings.dart';
@@ -44,7 +42,7 @@ class HomeButtonsSection extends StatelessWidget {
         AppButton(
           title: AppStrings.letsGo,
           onTap: () {
-            unawaited(context.pushNamed(AppRoutes.topicsSelection));
+            context.pushNamed(AppRoutes.topicsSelection);
           },
         ),
       ],
