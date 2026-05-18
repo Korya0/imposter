@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_paddings.dart';
 import 'package:imposter/core/presentation/widgets/app_logo_header.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/home/presentation/widgets/home_buttons_section.dart';
 
 class HomeView extends StatelessWidget {
@@ -8,17 +9,17 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: CustomScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           slivers: [
             SliverFillRemaining(
               hasScrollBody: false,
               child: SafeArea(
                 child: Padding(
-                  padding: AppPaddings.h18,
-                  child: _HomeViewBody(),
+                  padding: EdgeInsets.symmetric(horizontal: context.p(18)),
+                  child: const _HomeViewBody(),
                 ),
               ),
             ),

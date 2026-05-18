@@ -8,6 +8,26 @@ extension BuildContextExtension on BuildContext {
 
   bool get isWeb => kIsWeb;
 
+  // h: Scales heights/lengths (vertical dimensions)
+  double h(double value) =>
+      (value * (height / 812)).clamp(value * 0.8, value * 1.5);
+
+  // w: Scales widths/breadths (horizontal dimensions)
+  double w(double value) =>
+      (value * (width / 375)).clamp(value * 0.8, value * 1.5);
+
+  // s: Scales element sizes (icons, sized custom shapes)
+  double s(double value) =>
+      (value * (width / 375)).clamp(value * 0.8, value * 1.5);
+
+  // p: Scales spacings (paddings, margins, gaps, SizedBox spacing)
+  double p(double value) =>
+      (value * (width / 375)).clamp(value * 0.8, value * 1.5);
+
+  // f: Scales font sizes (text size)
+  double f(double value) =>
+      (value * (width / 375)).clamp(value * 0.8, value * 1.5);
+
   void showAppToast(
     String message, {
     ToastPosition position = ToastPosition.top,

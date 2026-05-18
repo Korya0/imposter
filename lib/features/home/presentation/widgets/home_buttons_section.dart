@@ -8,8 +8,9 @@ import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_toast.dart';
 import 'package:imposter/core/presentation/widgets/show_how_to_play_sheet.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
+import 'package:imposter/core/style/theme/app_colors.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/feedback/presentation/widgets/feedback_bottom_sheet.dart';
 
 class HomeButtonsSection extends StatelessWidget {
@@ -18,12 +19,12 @@ class HomeButtonsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 18,
+      spacing: context.s(18),
       children: [
-        _buildAnimatedItem(
+        _AnimatedHomeItem(
           delay: 600.ms,
           child: Row(
-            spacing: 8,
+            spacing: context.s(8),
             children: [
               Expanded(
                 child: AppButton(
@@ -40,7 +41,7 @@ class HomeButtonsSection extends StatelessWidget {
             ],
           ),
         ),
-        _buildAnimatedItem(
+        _AnimatedHomeItem(
           delay: 800.ms,
           child: AppButton(
             title: AppStrings.letsGo,
@@ -49,7 +50,7 @@ class HomeButtonsSection extends StatelessWidget {
             },
           ),
         ),
-        _buildAnimatedItem(
+        _AnimatedHomeItem(
           delay: 1000.ms,
           child: ClipRect(
             child: Banner(
@@ -68,27 +69,23 @@ class HomeButtonsSection extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _buildAnimatedItem({
-    required Widget child,
-    required Duration delay,
-    bool shouldPulse = false,
-  }) {
-    var animated = child
+class _AnimatedHomeItem extends StatelessWidget {
+  final Widget child;
+  final Duration delay;
+
+  const _AnimatedHomeItem({
+    required this.child,
+    required this.delay,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final animated = child
         .animate()
         .fadeIn(delay: delay, duration: 600.ms)
         .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad);
-
-    if (shouldPulse) {
-      animated = animated
-          .animate(onPlay: (c) => c.repeat(reverse: true))
-          .scale(
-            begin: const Offset(1, 1),
-            end: const Offset(1.06, 1.06),
-            duration: 1500.ms,
-            curve: Curves.easeInOutSine,
-          );
-    }
 
     return RepaintBoundary(child: animated);
   }
