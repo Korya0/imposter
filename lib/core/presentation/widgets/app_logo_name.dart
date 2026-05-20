@@ -18,7 +18,7 @@ class AppLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       AppAssets.logoSvg,
-      height: height ?? context.s(200),
+      height: height ?? context.s(170),
     );
   }
 }

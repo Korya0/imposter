@@ -6,6 +6,7 @@ extension BuildContextExtension on BuildContext {
   double get width => MediaQuery.sizeOf(this).width;
   double get height => MediaQuery.sizeOf(this).height;
   double get shortestSide => MediaQuery.sizeOf(this).shortestSide;
+  bool get isLandscape => MediaQuery.orientationOf(this) == Orientation.landscape;
 
   bool get isWeb => kIsWeb;
 

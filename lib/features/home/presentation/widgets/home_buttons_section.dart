@@ -17,32 +17,45 @@ class HomeButtonsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = context.isLandscape;
+
+    final letsGoButton = AppButton(
+      width: isLandscape ? context.w(300) : null,
+      title: AppStrings.letsGo,
+      onTap: () {
+        context.pushNamed(AppRoutes.topicsSelection);
+      },
+    );
+
+    final howToPlayButton = AppButton(
+      title: AppStrings.howToPlay,
+      style: AppTextStyles.font32W700Secondary,
+      onTap: () => showHowToPlaySheet(context),
+    );
+
+    final tellUsButton = AppButton(
+      title: AppStrings.tellUs,
+      style: AppTextStyles.font32W700Secondary,
+      onTap: onFeedbackTap,
+    );
+
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       spacing: context.p(18),
       children: [
-        AppButton(
-          title: AppStrings.letsGo,
-          onTap: () {
-            context.pushNamed(AppRoutes.topicsSelection);
-          },
-        ),
+        letsGoButton,
         Row(
           spacing: context.p(12),
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: AppButton(
-                title: AppStrings.howToPlay,
-                style: AppTextStyles.font32W700Secondary,
-                onTap: () => showHowToPlaySheet(context),
-              ),
-            ),
-            Expanded(
-              child: AppButton(
-                title: AppStrings.tellUs,
-                style: AppTextStyles.font32W700Secondary,
-                onTap: onFeedbackTap,
-              ),
-            ),
+            if (isLandscape)
+              SizedBox(width: context.w(144), child: howToPlayButton)
+            else
+              Expanded(child: howToPlayButton),
+            if (isLandscape)
+              SizedBox(width: context.w(144), child: tellUsButton)
+            else
+              Expanded(child: tellUsButton),
           ],
         ),
       ],
