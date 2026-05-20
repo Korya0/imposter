@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -20,8 +20,8 @@ class TopicsGridWidget extends StatelessWidget {
     return SliverGrid(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
+        crossAxisSpacing: context.p(12),
+        mainAxisSpacing: context.p(12),
         childAspectRatio:
             (context.width.clamp(0.0, 500.0) / 2) /
             (context.height.clamp(0.0, 900.0) * 0.28),
@@ -39,39 +39,32 @@ class TopicsGridWidget extends StatelessWidget {
               : 0.015;
 
           return Transform.rotate(
-                angle: rotationAngle,
-                child: AppSketchyCard(
-                  key: ValueKey(category.id),
-                  title: category.name,
-                  minWidth: 0,
-                  minHeight: 0,
-                  maxLines: 2,
-                  style: AppTextStyles.font24W700Primary,
-                  onTap: () async {
-                    context.read<GameCubit>().selectCategory(category);
-                    await context.pushNamed(AppRoutes.gameSettings);
-                  },
-                  watermark: IgnorePointer(
-                    child: SvgPicture.asset(
-                      AppAssets.getCategoryIcon(category.id),
-                      width: 80,
-                      height: 80,
-                      placeholderBuilder: (context) => const SizedBox(
-                        width: 80,
-                        height: 80,
-                      ),
-                    ),
+            angle: rotationAngle,
+            child: AppSketchyCard(
+              key: ValueKey(category.id),
+              title: category.name,
+              minWidth: 0,
+              minHeight: 0,
+              maxLines: 2,
+              style: AppTextStyles.font24W700Primary,
+              onTap: () async {
+                HapticFeedback.lightImpact();
+                context.read<GameCubit>().selectCategory(category);
+                await context.pushNamed(AppRoutes.gameSettings);
+              },
+              watermark: IgnorePointer(
+                child: SvgPicture.asset(
+                  AppAssets.getCategoryIcon(category.id),
+                  width: context.s(80),
+                  height: context.s(80),
+                  placeholderBuilder: (context) => SizedBox(
+                    width: context.s(80),
+                    height: context.s(80),
                   ),
                 ),
-              )
-              .animate()
-              .fadeIn(delay: (index % 6 * 80).ms, duration: 350.ms)
-              .slideY(
-                begin: 0.15,
-                end: 0,
-                duration: 400.ms,
-                curve: Curves.easeOutQuad,
-              );
+              ),
+            ),
+          );
         },
         childCount: categories.length,
       ),

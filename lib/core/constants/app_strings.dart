@@ -39,6 +39,8 @@ abstract class AppStrings {
   static const String finishGame = 'أنهي اللعبة';
 
   // Errors
+  static const String tryAgain = 'إعادة المحاولة';
+  static const String loadingCategory = 'اسم التصنيف الافتراضي';
   static const String errorDataParsing = 'حدث خطأ في معالجة بيانات اللعبة';
   static const String errorStorage = 'تعذر حفظ أو استرجاع البيانات المحلية';
   static const String errorAsset = 'ملف بيانات اللعبة غير موجود أو تالف';

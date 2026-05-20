@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:imposter/core/constants/app_padding.dart';
 import 'package:imposter/core/constants/app_strings.dart';
+import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/custom_scroll_scaffold.dart';
-import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
-import 'package:imposter/features/game/presentation/widgets/TopicsSelectionView/topics_error_widget.dart';
-import 'package:imposter/features/game/presentation/widgets/TopicsSelectionView/topics_grid_widget.dart';
-import 'package:imposter/features/game/presentation/widgets/TopicsSelectionView/topics_loading_widget.dart';
+import 'package:imposter/features/game/presentation/widgets/topics_selection_view/topics_error_widget.dart';
+import 'package:imposter/features/game/presentation/widgets/topics_selection_view/topics_grid_widget.dart';
+import 'package:imposter/features/game/presentation/widgets/topics_selection_view/topics_loading_widget.dart';
 
 class TopicsSelectionView extends StatelessWidget {
   const TopicsSelectionView({super.key});
@@ -16,14 +17,14 @@ class TopicsSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollScaffold(
       title: AppStrings.comingWithYou,
-      
+
       slivers: [
         SliverPadding(
-          padding: EdgeInsets.symmetric(horizontal: context.p(18)),
+          padding: AppPadding.viewH18(context),
           sliver: const _TopicsSelectionContent(),
         ),
         const SliverToBoxAdapter(
-          child: SizedBox(height: 100),
+          child: AppGap(30),
         ),
       ],
     );
