@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
+import 'package:imposter/core/presentation/widgets/app_loading_indicator.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
@@ -14,7 +15,6 @@ import 'package:imposter/features/game/presentation/widgets/game/phases/ready_ph
 import 'package:imposter/features/game/presentation/widgets/game/phases/revealing_phase.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/scanning_phase.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/summary_phase.dart';
-import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/timer_phase.dart';
 
 class GameViewContent extends StatelessWidget {
@@ -59,9 +59,7 @@ class GameViewContent extends StatelessWidget {
 
     return switch (state) {
       GameInitial() || GameLoading() => const Center(
-        child: CircularProgressIndicator(
-          color: AppColors.primary,
-        ),
+        child: AppLoadingIndicator(),
       ),
       GameCategoriesLoaded() => const Center(
         child: AppTextWidget(AppStrings.comingSoon),

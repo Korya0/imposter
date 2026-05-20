@@ -21,7 +21,7 @@ void main() async {
   );
 
   // Background initialization to avoid loading flickers
-  unawaited(sl<GameCubit>().init()); 
+  unawaited(sl<GameCubit>().init());
 }
 
 class ImposterApp extends StatelessWidget {

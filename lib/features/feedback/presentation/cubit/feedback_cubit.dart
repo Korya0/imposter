@@ -14,6 +14,8 @@ class FeedbackCubit extends Cubit<FeedbackState> {
     required String content,
     String? contact,
   }) async {
+    if (state is FeedbackLoading) return;
+
     if (content.trim().isEmpty) {
       emit(FeedbackError(AppStrings.feedbackEmptyError));
       return;

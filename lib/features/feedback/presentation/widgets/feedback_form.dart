@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
+import 'package:imposter/core/presentation/widgets/app_loading_indicator.dart';
 import 'package:imposter/core/presentation/widgets/app_text_field.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
@@ -64,13 +65,9 @@ class FeedbackForm extends StatelessWidget {
                 },
           title: isLoading ? null : AppStrings.sendFeedback,
           child: isLoading
-              ? SizedBox(
-                  height: context.s(24),
-                  width: context.s(24),
-                  child: CircularProgressIndicator(
-                    color: AppColors.primary,
-                    strokeWidth: context.s(2.5),
-                  ),
+              ? AppLoadingIndicator(
+                  size: context.s(24),
+                  color: AppColors.secondary,
                 )
               : null,
         ),

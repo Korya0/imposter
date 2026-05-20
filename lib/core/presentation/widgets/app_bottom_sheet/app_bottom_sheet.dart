@@ -2,9 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_bottom_sheet/torn_paper_painter.dart';
-import 'package:imposter/core/presentation/widgets/app_button.dart';
+import 'package:imposter/core/presentation/widgets/app_back_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
@@ -92,14 +91,8 @@ class AppBottomSheet extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          AppButton(
-                            height: 50,
-                            width: 70,
+                          AppBackButton(
                             onTap: () => context.pop(),
-                            child: AppTextWidget(
-                              AppStrings.close,
-                              style: AppTextStyles.font24W400Secondary,
-                            ),
                           ),
                         ],
                       ),

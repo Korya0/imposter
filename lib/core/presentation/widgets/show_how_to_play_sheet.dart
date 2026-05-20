@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_bottom_sheet/app_bottom_sheet.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
+import 'package:imposter/core/presentation/widgets/tactile_sketchy_icon_button.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 
@@ -128,79 +130,136 @@ class HowToPlaySheetContent extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ..._categories.asMap().entries.map((catEntry) {
-            final catIndex = catEntry.key;
-            final category = catEntry.value;
+        children: List.generate(_categories.length, (index) {
+          final isLast = index == _categories.length - 1;
+          return _HowToPlayCategorySection(
+            category: _categories[index],
+            isLast: isLast,
+          );
+        }),
+      ),
+    );
+  }
+}
 
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 16),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 6,
-                        height: 24,
-                        decoration: BoxDecoration(
-                          color: AppColors.primary,
-                          borderRadius: BorderRadius.circular(2),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      AppTextWidget(
-                        category.title,
-                        style: AppTextStyles.font24W700Primary,
-                      ),
-                    ],
+class _HowToPlayCategorySection extends StatelessWidget {
+  const _HowToPlayCategorySection({
+    required this.category,
+    required this.isLast,
+  });
+
+  final _RuleCategory category;
+  final bool isLast;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 8, bottom: 16),
+          child: AppTextWidget(
+            category.title,
+            style: AppTextStyles.font24W700Primary,
+          ),
+        ),
+        ...category.stepIndexes.map((index) {
+          final step = AppStrings.howToPlaySteps[index];
+          return _HowToPlayStepRow(
+            index: index,
+            stepText: step,
+          );
+        }),
+        if (!isLast)
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 12),
+            child: SizedBox(
+              width: double.infinity,
+              height: 4,
+              child: CustomPaint(
+                painter: _SketchyHorizontalLinePainter(
+                  color: AppColors.secondaryBackground,
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class _SketchyHorizontalLinePainter extends CustomPainter {
+  const _SketchyHorizontalLinePainter({required this.color});
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.5
+      ..strokeCap = StrokeCap.round;
+
+    final path = Path()..moveTo(0, size.height / 2);
+
+    const steps = 24;
+    final stepWidth = size.width / steps;
+    for (var i = 1; i <= steps; i++) {
+      final x = i * stepWidth;
+      final y = size.height / 2 + 0.8 * sin(i * 1.5);
+      path.lineTo(x, y);
+    }
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant _SketchyHorizontalLinePainter oldDelegate) =>
+      oldDelegate.color != color;
+}
+
+class _HowToPlayStepRow extends StatelessWidget {
+  const _HowToPlayStepRow({
+    required this.index,
+    required this.stepText,
+  });
+
+  final int index;
+  final String stepText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 28,
+            height: 28,
+            child: CustomPaint(
+              painter: QuietSketchyPainter(
+                color: AppColors.primary,
+              ),
+              child: Center(
+                child: AppTextWidget(
+                  (index + 1).toString(),
+                  style: AppTextStyles.font15W700Primary.copyWith(
+                    color: AppColors.primary,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                ...category.stepIndexes.map((index) {
-                  final step = AppStrings.howToPlaySteps[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 28,
-                          height: 28,
-                          decoration: const BoxDecoration(
-                            color: AppColors.primary,
-                            shape: BoxShape.circle,
-                          ),
-                          alignment: Alignment.center,
-                          child: AppTextWidget(
-                            (index + 1).toString(),
-                            style: AppTextStyles.font15W700Primary.copyWith(
-                              color: AppColors.background,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Text.rich(
-                            _getCachedSpan(step),
-                            textAlign: TextAlign.start,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }),
-                if (catIndex < _categories.length - 1)
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: Divider(
-                      color: AppColors.secondaryBackground,
-                      thickness: 1.5,
-                    ),
-                  ),
-              ],
-            );
-          }),
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text.rich(
+              HowToPlaySheetContent._getCachedSpan(stepText),
+              textAlign: TextAlign.start,
+            ),
+          ),
         ],
       ),
     );

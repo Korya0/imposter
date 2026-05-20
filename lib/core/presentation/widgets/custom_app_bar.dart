@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:imposter/core/constants/app_assets.dart';
+import 'package:imposter/core/presentation/widgets/app_back_button.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
-import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -44,7 +41,7 @@ class CustomAppBar extends StatelessWidget {
                   // 2. Tactile Minimalist Back Icon Button (Primary Color)
                   Align(
                     alignment: AlignmentDirectional.centerStart,
-                    child: _BackButton(
+                    child: AppBackButton(
                       onTap: () => context.pop(),
                     ),
                   ),
@@ -64,44 +61,3 @@ class CustomAppBar extends StatelessWidget {
   }
 }
 
-class _BackButton extends StatefulWidget {
-  const _BackButton({required this.onTap});
-  final VoidCallback onTap;
-
-  @override
-  State<_BackButton> createState() => _BackButtonState();
-}
-
-class _BackButtonState extends State<_BackButton> {
-  bool _isPressed = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: (_) => setState(() => _isPressed = true),
-      onTapUp: (_) => setState(() => _isPressed = false),
-      onTapCancel: () => setState(() => _isPressed = false),
-      onTap: () {
-        HapticFeedback.lightImpact();
-        widget.onTap();
-      },
-      behavior: HitTestBehavior.opaque,
-      child: AnimatedScale(
-        scale: _isPressed ? 0.85 : 1.0,
-        duration: const Duration(milliseconds: 150),
-        curve: Curves.easeOutCubic,
-        child: Padding(
-          padding: EdgeInsets.all(context.p(8)),
-          child: SvgPicture.asset(
-            AppAssets.backIconSvg,
-            height: 28,
-            colorFilter: const ColorFilter.mode(
-              AppColors.primary,
-              BlendMode.srcIn,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
