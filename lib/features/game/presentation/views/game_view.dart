@@ -12,6 +12,7 @@ class GameView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(),
       body: BlocBuilder<GameCubit, GameState>(
         builder: (context, state) {
           return _GameViewBody(currentState: state);
@@ -36,7 +37,6 @@ class _GameViewBody extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const CustomAppBar(),
             Expanded(
               child: GameViewContent(state: currentState),
             ),

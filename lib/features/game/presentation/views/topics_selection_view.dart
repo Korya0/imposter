@@ -15,16 +15,13 @@ class TopicsSelectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(
+        title: AppStrings.comingWithYou,
+      ),
       body: SafeArea(
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: context.p(18)),
-              sliver: const SliverToBoxAdapter(
-                child: _TopicsSelectionHeader(),
-              ),
-            ),
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: context.p(18)),
               sliver: const _TopicsSelectionContent(),
@@ -35,20 +32,6 @@ class TopicsSelectionView extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _TopicsSelectionHeader extends StatelessWidget {
-  const _TopicsSelectionHeader();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        CustomAppBar(title: AppStrings.comingWithYou),
-        SizedBox(height: 16),
-      ],
     );
   }
 }

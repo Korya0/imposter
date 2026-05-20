@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/presentation/widgets/app_back_button.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
-class CustomAppBar extends StatelessWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     this.title,
+    this.actions,
+    this.onBackTap,
+    this.showBackButton,
   });
 
   final String? title;
+  final List<Widget>? actions;
+  final VoidCallback? onBackTap;
+  final bool? showBackButton;
+
+  @override
+  Size get preferredSize => const Size.fromHeight(60);
 
   @override
   Widget build(BuildContext context) {
+    final canPop = showBackButton ?? Navigator.canPop(context);
+
     return SafeArea(
           bottom: false,
           child: Padding(
@@ -39,24 +49,28 @@ class CustomAppBar extends StatelessWidget {
                     ),
 
                   // 2. Tactile Minimalist Back Icon Button (Primary Color)
-                  Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: AppBackButton(
-                      onTap: () => context.pop(),
+                  if (canPop)
+                    Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: AppBackButton(
+                        onTap: onBackTap ?? () => context.pop(),
+                      ),
                     ),
-                  ),
+
+                  // 3. Optional Actions on the Right
+                  if (actions != null)
+                    Align(
+                      alignment: AlignmentDirectional.centerEnd,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: context.p(8),
+                        children: actions!,
+                      ),
+                    ),
                 ],
               ),
             ),
           ),
-        )
-        .animate()
-        .fadeIn(duration: 400.ms)
-        .slideY(
-          begin: -0.15,
-          end: 0,
-          duration: 450.ms,
-          curve: Curves.easeOutQuad,
         );
   }
 }

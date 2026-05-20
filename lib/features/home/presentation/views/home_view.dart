@@ -6,10 +6,7 @@ import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/home/presentation/widgets/home_buttons_section.dart';
 
 class HomeView extends StatelessWidget {
-  final VoidCallback onFeedbackTap;
-
   const HomeView({
-    required this.onFeedbackTap,
     super.key,
   });
 
@@ -23,7 +20,7 @@ class HomeView extends StatelessWidget {
             hasScrollBody: false,
             child: Padding(
               padding: AppPadding.viewH18(context),
-              child: _HomeViewBody(onFeedbackTap: onFeedbackTap),
+              child: const _HomeViewBody(),
             ),
           ),
         ],
@@ -33,11 +30,7 @@ class HomeView extends StatelessWidget {
 }
 
 class _HomeViewBody extends StatelessWidget {
-  final VoidCallback onFeedbackTap;
-
-  const _HomeViewBody({
-    required this.onFeedbackTap,
-  });
+  const _HomeViewBody();
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +52,7 @@ class _HomeViewBody extends StatelessWidget {
             ],
           ),
 
-          HomeButtonsSection(onFeedbackTap: onFeedbackTap)
+          const HomeButtonsSection()
               .animate()
               .fadeIn(delay: 200.ms, duration: 800.ms, curve: Curves.easeOut)
               .slideY(begin: 0.05, end: 0),
@@ -82,7 +75,7 @@ class _HomeViewBody extends StatelessWidget {
           ],
         ),
 
-        HomeButtonsSection(onFeedbackTap: onFeedbackTap)
+        const HomeButtonsSection()
             .animate()
             .fadeIn(delay: 200.ms, duration: 800.ms, curve: Curves.easeOut)
             .slideY(begin: 0.05, end: 0),

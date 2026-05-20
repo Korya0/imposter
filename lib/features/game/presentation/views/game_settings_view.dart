@@ -14,31 +14,33 @@ class GameSettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: context.p(18)),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate([
-                const CustomAppBar(title: 'الإعدادات'),
-                const GameSettingsList(),
-                SizedBox(height: context.p(24)),
-                Padding(
-                  padding: EdgeInsets.only(bottom: context.p(24)),
-                  child: Center(
-                    child: StartButton(
-                      onTap: () async {
-                        context.read<GameCubit>().prepareRound();
-                        await context.pushNamed(AppRoutes.game);
-                      },
+      appBar: const CustomAppBar(title: 'الإعدادات'),
+      body: SafeArea(
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: context.p(18)),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  const GameSettingsList(),
+                  SizedBox(height: context.p(24)),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: context.p(24)),
+                    child: Center(
+                      child: StartButton(
+                        onTap: () async {
+                          context.read<GameCubit>().prepareRound();
+                          await context.pushNamed(AppRoutes.game);
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ]),
+                ]),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

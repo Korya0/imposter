@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
-import 'package:imposter/core/presentation/widgets/show_how_to_play_sheet.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
 class HomeButtonsSection extends StatelessWidget {
-  final VoidCallback onFeedbackTap;
-
   const HomeButtonsSection({
-    required this.onFeedbackTap,
     super.key,
   });
 
@@ -30,13 +26,17 @@ class HomeButtonsSection extends StatelessWidget {
     final howToPlayButton = AppButton(
       title: AppStrings.howToPlay,
       style: AppTextStyles.font32W700Secondary,
-      onTap: () => showHowToPlaySheet(context),
+      onTap: () {
+        context.pushNamed(AppRoutes.howToPlay);
+      },
     );
 
     final tellUsButton = AppButton(
       title: AppStrings.tellUs,
       style: AppTextStyles.font32W700Secondary,
-      onTap: onFeedbackTap,
+      onTap: () {
+        context.pushNamed(AppRoutes.feedback);
+      },
     );
 
     return Column(

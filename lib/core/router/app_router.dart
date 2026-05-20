@@ -6,12 +6,13 @@ import 'package:go_router/go_router.dart';
 import 'package:imposter/core/di/di.dart';
 import 'package:imposter/core/presentation/views/app_error_view.dart';
 import 'package:imposter/core/router/app_routes.dart';
+import 'package:imposter/features/feedback/presentation/views/feedback_view.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/views/game_settings_view.dart';
 import 'package:imposter/features/game/presentation/views/game_view.dart';
 import 'package:imposter/features/game/presentation/views/topics_selection_view.dart';
-import 'package:imposter/features/feedback/presentation/widgets/feedback_bottom_sheet.dart';
 import 'package:imposter/features/home/presentation/views/home_view.dart';
+import 'package:imposter/features/how_to_play/presentation/views/how_to_play_view.dart';
 import 'package:imposter/features/splash/presentation/views/splash_view.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -25,9 +26,17 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.home,
       name: AppRoutes.home,
-      builder: (context, state) => HomeView(
-        onFeedbackTap: () => showFeedbackBottomSheet(context),
-      ),
+      builder: (context, state) => const HomeView(),
+    ),
+    GoRoute(
+      path: AppRoutes.feedback,
+      name: AppRoutes.feedback,
+      builder: (context, state) => const FeedbackView(),
+    ),
+    GoRoute(
+      path: AppRoutes.howToPlay,
+      name: AppRoutes.howToPlay,
+      builder: (context, state) => const HowToPlayView(),
     ),
     ShellRoute(
       builder: (context, state, child) {
