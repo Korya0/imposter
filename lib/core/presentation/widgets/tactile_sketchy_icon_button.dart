@@ -83,7 +83,7 @@ class QuietSketchyPainter extends CustomPainter {
   QuietSketchyPainter({required this.color});
   final Color color;
 
-  static Path? _cachedPath;
+  static final Map<double, Path> _cachedPaths = {};
 
   static Path _buildPath(double radius, Offset center) {
     final path = Path();
@@ -115,9 +115,9 @@ class QuietSketchyPainter extends CustomPainter {
     final radius = size.width / 2;
     final center = Offset(size.width / 2, size.height / 2);
     
-    _cachedPath ??= _buildPath(radius, center);
+    final path = _cachedPaths[size.width] ??= _buildPath(radius, center);
 
-    canvas.drawPath(_cachedPath!, paint);
+    canvas.drawPath(path, paint);
   }
 
   @override

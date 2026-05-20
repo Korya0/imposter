@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/tactile_sketchy_icon_button.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
@@ -23,8 +24,8 @@ class HowToPlayRuleWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            width: context.s(28),
-            height: context.s(28),
+            width: context.s(30),
+            height: context.s(30),
             child: CustomPaint(
               painter: QuietSketchyPainter(
                 color: AppColors.primary,
@@ -32,20 +33,17 @@ class HowToPlayRuleWidget extends StatelessWidget {
               child: Center(
                 child: Text(
                   stepNumber.toString(),
-                  style: AppTextStyles.font15W700Primary.copyWith(
-                    color: AppColors.primary,
-                    fontSize: context.f(14),
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: AppTextStyles.font15W700Primary,
                 ),
               ),
             ),
           ),
           const AppGap(12, isVertical: false),
           Expanded(
-            child: Text(
+            child: AppTextWidget(
               rule,
               style: AppTextStyles.font20W400White,
+              textAlign: TextAlign.start,
             ),
           ),
         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/sketchy_horizontal_line_painter.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
@@ -26,7 +27,7 @@ class HowToPlaySectionWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          AppTextWidget(
             section.title,
             style: AppTextStyles.font24W700Primary,
           ),
@@ -37,7 +38,7 @@ class HowToPlaySectionWidget extends StatelessWidget {
               stepNumber: startingStepNumber + index,
             );
           }),
-          if (!isLastSection)
+          if (!isLastSection) 
             Padding(
               padding: EdgeInsets.symmetric(vertical: context.p(12)),
               child: SizedBox(

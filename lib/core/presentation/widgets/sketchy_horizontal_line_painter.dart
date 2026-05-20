@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class SketchyHorizontalLinePainter extends CustomPainter {
@@ -15,15 +16,15 @@ class SketchyHorizontalLinePainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     final path = Path();
-    final random = Random(42); 
-    
+    final random = Random(42);
+
     path.moveTo(0, size.height / 2);
-    
+
     double x = 0;
     while (x < size.width) {
       x += 10 + random.nextDouble() * 15;
       if (x > size.width) x = size.width;
-      
+
       final y = (size.height / 2) + (random.nextDouble() * 2 - 1);
       path.lineTo(x, y);
     }

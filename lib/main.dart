@@ -31,7 +31,7 @@ class ImposterApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       // Theme & Router & localizations
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, 
       theme: AppTheme.darkTheme,
       locale: const Locale(AppConstants.ar),
       supportedLocales: const [Locale(AppConstants.ar)],

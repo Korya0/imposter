@@ -55,4 +55,3 @@ class AppValueAdjuster extends StatelessWidget {
     );
   }
 }
-
