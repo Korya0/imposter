@@ -21,7 +21,12 @@ class AppTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: style ?? AppTextStyles.font18W700Primary,
+      style:
+          style ??
+          AppTextStyles.font18W700Primary.copyWith(
+            wordSpacing: 4,
+          ),
+
       textAlign: textAlign ?? TextAlign.center,
       maxLines: maxLines,
       overflow: overflow,

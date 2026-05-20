@@ -10,7 +10,8 @@ import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:imposter/features/feedback/data/datasources/feedback_remote_data_source.dart';
-import 'package:imposter/features/feedback/data/repositories/feedback_repository_impl.dart';
+import 'package:imposter/features/feedback/data/repositories/feedback_repo_impl.dart';
+import 'package:imposter/features/feedback/data/repositories/i_feedback_repository.dart';
 import 'package:imposter/features/feedback/presentation/cubit/feedback_cubit.dart';
 
 final GetIt sl = GetIt.instance;
@@ -33,10 +34,10 @@ Future<void> setupEssentialDI() async {
     ..registerLazySingleton<FeedbackRemoteDataSource>(
       () => FeedbackRemoteDataSourceImpl(sl<Dio>()),
     )
-    ..registerLazySingleton<FeedbackRepositoryImpl>(
-      () => FeedbackRepositoryImpl(sl<FeedbackRemoteDataSource>()),
+    ..registerLazySingleton<IFeedbackRepository>(
+      () => FeedbackRepoImpl(sl<FeedbackRemoteDataSource>()),
     )
     ..registerFactory<FeedbackCubit>(
-      () => FeedbackCubit(sl<FeedbackRepositoryImpl>()),
+      () => FeedbackCubit(sl<IFeedbackRepository>()),
     );
 }

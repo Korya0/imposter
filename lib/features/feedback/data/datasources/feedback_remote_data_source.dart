@@ -1,15 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:imposter/core/constants/feedback_constants.dart';
+import 'package:imposter/features/feedback/keys.dart';
 import 'package:imposter/core/utils/app_logger.dart';
-import 'package:imposter/features/feedback/data/models/feedback_request.dart';
+import 'package:imposter/features/feedback/data/models/feedback_request_model.dart';
 
 // Import the stub/web implementation conditionally
 import 'package:imposter/features/feedback/data/datasources/feedback_submission_helper.dart'
     if (dart.library.js_interop) 'feedback_submission_web_helper.dart';
 
 abstract class FeedbackRemoteDataSource {
-  Future<void> submitFeedback(FeedbackRequest request);
+  Future<void> submitFeedback(FeedbackRequestModel request);
 }
 
 class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
@@ -17,9 +17,9 @@ class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
   final Dio _dio;
 
   @override
-  Future<void> submitFeedback(FeedbackRequest request) async {
+  Future<void> submitFeedback(FeedbackRequestModel request) async {
     final formData = {
-      FeedbackConstants.feedbackEntryId: request.content,
+      FeedbackKeys.feedbackEntryId: request.content,
     };
 
     AppLogger.info('Attempting to submit feedback to Google Forms...');
@@ -38,7 +38,7 @@ class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
 
     try {
       final response = await _dio.post<dynamic>(
-        FeedbackConstants.formUrl,
+        FeedbackKeys.formUrl,
         data: formData,
         options: Options(
           contentType: Headers.formUrlEncodedContentType,

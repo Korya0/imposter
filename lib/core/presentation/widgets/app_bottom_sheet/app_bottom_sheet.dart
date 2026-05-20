@@ -87,7 +87,9 @@ class AppBottomSheet extends StatelessWidget {
                               alignment: AlignmentDirectional.centerEnd,
                               child: AppTextWidget(
                                 title!,
-                                style: AppTextStyles.font24W700Primary,
+                                style: AppTextStyles.font24W700Primary.copyWith(
+                                  wordSpacing: 4,
+                                ),
                               ),
                             ),
                           AppButton(

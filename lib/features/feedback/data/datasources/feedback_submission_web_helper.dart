@@ -1,6 +1,6 @@
 import 'dart:js_interop';
 import 'dart:js_interop_unsafe';
-import 'package:imposter/core/constants/feedback_constants.dart';
+import 'package:imposter/features/feedback/keys.dart';
 import 'package:imposter/core/utils/app_logger.dart';
 
 /// Web implementation for feedback submission using JS interop.
@@ -8,17 +8,17 @@ import 'package:imposter/core/utils/app_logger.dart';
 Future<void> submitFeedbackWeb(Map<String, String> formData) async {
   try {
     final options = {
-      'method': FeedbackConstants.methodPost,
-      'mode': FeedbackConstants.modeNoCors,
-      'headers': {
-        'Content-Type': FeedbackConstants.contentTypeUrlEncoded,
+      FeedbackKeys.keyMethod: FeedbackKeys.methodPost,
+      FeedbackKeys.keyMode: FeedbackKeys.modeNoCors,
+      FeedbackKeys.keyHeaders: {
+        FeedbackKeys.keyContentType: FeedbackKeys.contentTypeUrlEncoded,
       },
-      'body': Uri(queryParameters: formData).query,
+      FeedbackKeys.keyBody: Uri(queryParameters: formData).query,
     }.jsify()! as JSObject;
 
     globalContext.callMethod(
-      FeedbackConstants.fetchMethod.toJS,
-      FeedbackConstants.formUrl.toJS,
+      FeedbackKeys.fetchMethod.toJS,
+      FeedbackKeys.formUrl.toJS,
       options,
     );
 

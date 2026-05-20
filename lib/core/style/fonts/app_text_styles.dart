@@ -5,6 +5,7 @@ import 'package:imposter/core/style/theme/app_colors.dart';
 class AppTextStyles {
   static const TextStyle font = TextStyle(
     fontFamily: AppFonts.appFont,
+  
   );
   static TextStyle font60W700Primary = font.copyWith(
     color: AppColors.primary,

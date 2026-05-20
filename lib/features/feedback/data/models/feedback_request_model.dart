@@ -1,5 +1,5 @@
-class FeedbackRequest {
-  const FeedbackRequest({
+class FeedbackRequestModel {
+  const FeedbackRequestModel({
     required this.content,
     this.contact,
   });

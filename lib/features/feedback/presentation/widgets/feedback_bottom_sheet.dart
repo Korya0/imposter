@@ -5,14 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/di/di.dart';
 import 'package:imposter/core/presentation/widgets/app_bottom_sheet/app_bottom_sheet.dart';
-import 'package:imposter/core/presentation/widgets/app_button.dart';
-import 'package:imposter/core/presentation/widgets/app_text_field.dart';
-import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/app_toast.dart';
-import 'package:imposter/core/style/theme/app_colors.dart';
-import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/feedback/presentation/cubit/feedback_cubit.dart';
+import 'package:imposter/features/feedback/presentation/widgets/feedback_discard_dialog.dart';
+import 'package:imposter/features/feedback/presentation/widgets/feedback_form.dart';
 
 class FeedbackBottomSheet extends StatefulWidget {
   const FeedbackBottomSheet({super.key});
@@ -22,15 +19,8 @@ class FeedbackBottomSheet extends StatefulWidget {
 }
 
 class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
-  late final TextEditingController _feedbackController;
-  late final TextEditingController _contactController;
-
-  @override
-  void initState() {
-    super.initState();
-    _feedbackController = TextEditingController();
-    _contactController = TextEditingController();
-  }
+  final _feedbackController = TextEditingController();
+  final _contactController = TextEditingController();
 
   @override
   void dispose() {
@@ -39,51 +29,13 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
     super.dispose();
   }
 
-  Future<bool> _showDiscardConfirmationDialog(BuildContext context) async {
+  Future<bool> _showDiscardConfirmation(BuildContext context) async {
     return await showDialog<bool>(
-      context: context,
-      barrierColor: Colors.black.withValues(alpha: 0.75),
-      builder: (dialogContext) => AlertDialog(
-        backgroundColor: AppColors.secondaryBackground,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: const BorderSide(color: AppColors.primary, width: 2),
-        ),
-        title: Align(
-          alignment: Alignment.centerRight,
-          child: AppTextWidget(
-            'تراجع عن الكتابة؟',
-            style: AppTextStyles.font24W700Primary,
-          ),
-        ),
-        content: AppTextWidget(
-          'لو رجعت دلوقتي، كل الكلام اللي كتبته هيتمسح. متأكد إنك عايز تخرج؟',
-          textAlign: TextAlign.right,
-          style: AppTextStyles.font22W400White,
-        ),
-        actionsAlignment: MainAxisAlignment.spaceBetween,
-        actions: [
-          AppButton(
-            height: 48,
-            width: 115,
-            onTap: () => Navigator.pop(dialogContext, false),
-            child: AppTextWidget(
-              'كمل كتابة',
-              style: AppTextStyles.font18W700Primary,
-            ),
-          ),
-          AppButton(
-            height: 48,
-            width: 115,
-            onTap: () => Navigator.pop(dialogContext, true),
-            child: AppTextWidget(
-              'امسح واخرج',
-              style: AppTextStyles.font18W700Primary,
-            ),
-          ),
-        ],
-      ),
-    ) ?? false;
+          context: context,
+          barrierColor: Colors.black.withValues(alpha: 0.75),
+          builder: (dialogContext) => const FeedbackDiscardDialog(),
+        ) ??
+        false;
   }
 
   @override
@@ -105,67 +57,19 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
             return Padding(
               padding: EdgeInsets.only(bottom: context.p(24)),
               child: PopScope(
-                canPop: !isLoading &&
+                canPop:
+                    !isLoading &&
                     _feedbackController.text.trim().isEmpty &&
                     _contactController.text.trim().isEmpty,
                 onPopInvokedWithResult: (didPop, result) async {
-                  if (didPop) return;
-                  if (isLoading) return;
-                  final shouldPop = await _showDiscardConfirmationDialog(context);
-                  if (shouldPop && context.mounted) {
-                    Navigator.pop(context);
-                  }
+                  if (didPop || isLoading) return;
+                  final shouldPop = await _showDiscardConfirmation(context);
+                  if (shouldPop && context.mounted) Navigator.pop(context);
                 },
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Align(
-                      alignment: Alignment.centerRight,
-                      child: AppTextWidget(
-                        'رأيك بيساعدنا نطور اللعبة ونخليها أحسن! اكتب مقترحك أو لو قابلتك مشكلة.',
-                        textAlign: TextAlign.right,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    AppTextField(
-                      controller: _feedbackController,
-                      hintText: AppStrings.feedbackPlaceholder,
-                      maxLines: 4,
-                      enabled: !isLoading,
-                    ),
-                    const SizedBox(height: 16),
-                    AppTextField(
-                      controller: _contactController,
-                      hintText: AppStrings.feedbackContactPlaceholder,
-                      enabled: !isLoading,
-                    ),
-                    const SizedBox(height: 24),
-                    AppButton(
-                      width: double.infinity,
-                      onTap: isLoading
-                          ? null
-                          : () {
-                              unawaited(
-                                context.read<FeedbackCubit>().submitFeedback(
-                                      content: _feedbackController.text,
-                                      contact: _contactController.text,
-                                    ),
-                              );
-                            },
-                      title: isLoading ? null : AppStrings.sendFeedback,
-                      child: isLoading
-                          ? const SizedBox(
-                              height: 24,
-                              width: 24,
-                              child: CircularProgressIndicator(
-                                color: AppColors.primary,
-                                strokeWidth: 2.5,
-                              ),
-                            )
-                          : null,
-                    ),
-                  ],
+                child: FeedbackForm(
+                  feedbackController: _feedbackController,
+                  contactController: _contactController,
+                  isLoading: isLoading,
                 ),
               ),
             );
@@ -180,7 +84,7 @@ void showFeedbackBottomSheet(BuildContext context) {
   unawaited(
     AppBottomSheet.show(
       context: context,
-      title: AppStrings.tellUs,
+      title: AppStrings.dontLetHopeDown,
       child: const FeedbackBottomSheet(),
     ),
   );

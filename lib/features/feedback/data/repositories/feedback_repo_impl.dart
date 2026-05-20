@@ -5,13 +5,15 @@ import 'package:imposter/core/error/failures.dart';
 import 'package:imposter/core/error/result.dart';
 import 'package:imposter/core/utils/app_logger.dart';
 import 'package:imposter/features/feedback/data/datasources/feedback_remote_data_source.dart';
-import 'package:imposter/features/feedback/data/models/feedback_request.dart';
+import 'package:imposter/features/feedback/data/models/feedback_request_model.dart';
+import 'package:imposter/features/feedback/data/repositories/i_feedback_repository.dart';
 
-class FeedbackRepositoryImpl {
-  FeedbackRepositoryImpl(this._remoteDataSource);
+class FeedbackRepoImpl implements IFeedbackRepository {
+  FeedbackRepoImpl(this._remoteDataSource);
   final FeedbackRemoteDataSource _remoteDataSource;
 
-  Future<Result<void>> submitFeedback(FeedbackRequest request) async {
+  @override
+  Future<Result<void>> submitFeedback(FeedbackRequestModel request) async {
     try {
       await _remoteDataSource.submitFeedback(request);
       return const Success(null);

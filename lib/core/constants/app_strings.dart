@@ -1,3 +1,5 @@
+import 'dart:core';
+
 abstract class AppStrings {
   // Common & Home
   static const String spy = 'الجاسوس';
@@ -45,12 +47,20 @@ abstract class AppStrings {
   static const String oopsYouLost = 'أوبس تهت في الطريق؟';
   static const String backToHome = 'الرجوع للرئيسية';
   static const String tellUs = 'هات اللى عندك';
+  static const String dontLetHopeDown = 'متخليش العشم ياخدك';
   static const String sendFeedback = 'إرسال';
   static const String feedbackPlaceholder = 'اكتب مقترحك هنا...';
   static const String feedbackContactPlaceholder = 'إيميلك أو رقم تليفونك (اختياري)...';
   static const String feedbackSuccess = 'شكراً لمشاركتك تم الإرسال بنجاح';
   static const String feedbackError = 'حدث خطأ أثناء الإرسال، حاول مرة أخرى';
   static const String feedbackEmptyError = 'اكتب رأيك الأول عشان نقراه!';
+  static const String discardFeedbackTitle = 'تراجع عن الكتابة؟';
+  static const String discardFeedbackMessage =
+      'لو رجعت دلوقتي، كل الكلام اللي كتبته هيتمسح. متأكد إنك عايز تخرج؟';
+  static const String continueWriting = 'كمل كتابة';
+  static const String discardAndExit = 'امسح واخرج';
+  static const String feedbackSubtitle =
+      'رأيك بيساعدنا نطور اللعبة ونخليها أحسن! اكتب مقترحك أو لو قابلتك مشكلة.';
   static const String feedbackBusinessContact = 'تواصل لأغراض العمل';
   static const String shareAndRate = 'شارك وقيم';
   static const String shareApp = 'مشاركة التطبيق';

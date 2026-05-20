@@ -4,7 +4,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:imposter/core/constants/aoo_constants.dart';
+import 'package:imposter/core/constants/app_constants.dart';
 import 'package:imposter/core/di/app_initializer.dart';
 import 'package:imposter/core/di/di.dart';
 import 'package:imposter/core/router/app_router.dart';
@@ -21,7 +21,7 @@ void main() async {
   );
 
   // Background initialization to avoid loading flickers
-  unawaited(sl<GameCubit>().init());
+  unawaited(sl<GameCubit>().init()); 
 }
 
 class ImposterApp extends StatelessWidget {
