@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imposter/core/constants/app_strings.dart';
-import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
+import 'package:imposter/core/presentation/widgets/custom_scroll_scaffold.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
@@ -14,24 +14,17 @@ class TopicsSelectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(
-        title: AppStrings.comingWithYou,
-      ),
-      body: SafeArea(
-        child: CustomScrollView(
-          physics: const BouncingScrollPhysics(),
-          slivers: [
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: context.p(18)),
-              sliver: const _TopicsSelectionContent(),
-            ),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 100),
-            ),
-          ],
+    return CustomScrollScaffold(
+      title: AppStrings.comingWithYou,
+      slivers: [
+        SliverPadding(
+          padding: EdgeInsets.symmetric(horizontal: context.p(18)),
+          sliver: const _TopicsSelectionContent(),
         ),
-      ),
+        const SliverToBoxAdapter(
+          child: SizedBox(height: 100),
+        ),
+      ],
     );
   }
 }
