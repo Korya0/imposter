@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/constants/app_strings.dart';
-import 'package:imposter/core/presentation/widgets/app_logo_header.dart';
 import 'package:imposter/core/presentation/widgets/app_sketchy_card/app_sketchy_card.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
@@ -41,10 +40,10 @@ class _SpyRevealView extends StatelessWidget {
         const _SpyYouAreText(),
         const SizedBox(height: 10),
         SizedBox(height: (context.height * 0.05).clamp(14, 40)),
-        const AppLogoHeader(
-          showText: false,
+     /*   const AppLogoHeader(
+     //     showText: false,
         ).animate().fadeIn(delay: 400.ms, duration: 800.ms).slideY(begin: 0.2, end: 0),
-      ],
+   */   ],
     );
   }
 }

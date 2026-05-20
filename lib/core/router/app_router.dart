@@ -12,7 +12,7 @@ import 'package:imposter/features/game/presentation/views/game_view.dart';
 import 'package:imposter/features/game/presentation/views/topics_selection_view.dart';
 import 'package:imposter/features/feedback/presentation/widgets/feedback_bottom_sheet.dart';
 import 'package:imposter/features/home/presentation/views/home_view.dart';
-import 'package:imposter/features/splash_mobile/presentation/views/splash_view.dart';
+import 'package:imposter/features/splash/presentation/views/splash_view.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: kIsWeb ? AppRoutes.home : AppRoutes.splash,

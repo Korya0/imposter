@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/core/presentation/widgets/app_logo_header.dart';
+import 'package:imposter/core/presentation/widgets/app_logo_name.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -35,10 +36,20 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: const AppLogoHeader(isVertical: false).animate().fadeIn(
-          duration: 2200.ms,
-          curve: Curves.easeInOut,
-        ),
+        child:
+            Row(
+              spacing: context.p(24),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [  
+                const AppNameText(),
+                AppLogo(
+                  height: context.s(100),
+                ), 
+              ],
+            ).animate().fadeIn(
+              duration: 1500.ms,
+              curve: Curves.easeInOut,
+            ),
       ),
     );
   }
