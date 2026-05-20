@@ -16,6 +16,7 @@ class TopicsSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollScaffold(
       title: AppStrings.comingWithYou,
+      
       slivers: [
         SliverPadding(
           padding: EdgeInsets.symmetric(horizontal: context.p(18)),

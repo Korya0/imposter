@@ -23,7 +23,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final canPop = showBackButton ?? Navigator.canPop(context);
+    final canPop = showBackButton ??
+        (Navigator.canPop(context) || GoRouter.of(context).canPop());
 
     return SafeArea(
           bottom: false,

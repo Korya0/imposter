@@ -24,7 +24,8 @@ class CustomSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final canPop = showBackButton ?? Navigator.canPop(context);
+    final canPop = showBackButton ??
+        (Navigator.canPop(context) || GoRouter.of(context).canPop());
 
     return SliverAppBar(
       surfaceTintColor: Colors.transparent,
