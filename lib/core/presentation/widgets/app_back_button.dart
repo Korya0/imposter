@@ -11,25 +11,20 @@ class AppBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      label: 'رجوع',
-      button: true,
-      child: GestureDetector(
-  
-        onTap: () {
-          HapticFeedback.lightImpact();
-          onTap();
-        },
-        behavior: HitTestBehavior.opaque,
-        child: Padding(
-          padding: EdgeInsets.all(context.p(8)),
-          child: SvgPicture.asset(
-            AppAssets.backIconSvg,
-            height: 28,
-            colorFilter: const ColorFilter.mode(
-              AppColors.primary,
-              BlendMode.srcIn,
-            ),
+    return GestureDetector(
+      onTap: () {
+        HapticFeedback.heavyImpact();
+        onTap();
+      },
+      behavior: HitTestBehavior.opaque,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: context.p(8)),
+        child: SvgPicture.asset(
+          AppAssets.backIconSvg,
+          height: 28,
+          colorFilter: const ColorFilter.mode(
+            AppColors.primary,
+            BlendMode.srcIn,
           ),
         ),
       ),

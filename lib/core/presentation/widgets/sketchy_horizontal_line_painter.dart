@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class SketchyHorizontalLinePainter extends CustomPainter {
   const SketchyHorizontalLinePainter({required this.color});
+
   final Color color;
 
   @override
@@ -10,16 +11,20 @@ class SketchyHorizontalLinePainter extends CustomPainter {
     final paint = Paint()
       ..color = color
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.5
+      ..strokeWidth = 2.0
       ..strokeCap = StrokeCap.round;
 
-    final path = Path()..moveTo(0, size.height / 2);
-
-    const steps = 24;
-    final stepWidth = size.width / steps;
-    for (var i = 1; i <= steps; i++) {
-      final x = i * stepWidth;
-      final y = size.height / 2 + 0.8 * sin(i * 1.5);
+    final path = Path();
+    final random = Random(42); 
+    
+    path.moveTo(0, size.height / 2);
+    
+    double x = 0;
+    while (x < size.width) {
+      x += 10 + random.nextDouble() * 15;
+      if (x > size.width) x = size.width;
+      
+      final y = (size.height / 2) + (random.nextDouble() * 2 - 1);
       path.lineTo(x, y);
     }
 

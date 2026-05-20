@@ -1,122 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:go_router/go_router.dart';
+import 'package:imposter/core/constants/app_padding.dart';
 import 'package:imposter/core/constants/app_strings.dart';
-import 'package:imposter/core/presentation/widgets/custom_app_bar.dart';
-import 'package:imposter/core/style/theme/app_colors.dart';
-import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:imposter/features/how_to_play/presentation/widgets/how_to_play_category_section.dart';
+import 'package:imposter/core/presentation/widgets/app_back_button.dart';
+import 'package:imposter/core/presentation/widgets/app_gap.dart';
+import 'package:imposter/core/style/fonts/app_text_styles.dart';
+import 'package:imposter/features/how_to_play/data/how_to_play_data.dart';
+import 'package:imposter/features/how_to_play/presentation/widgets/how_to_play_section_widget.dart';
 
-class HowToPlayView extends StatefulWidget {
+class HowToPlayView extends StatelessWidget {
   const HowToPlayView({super.key});
-
-  @override
-  State<HowToPlayView> createState() => _HowToPlayViewState();
-}
-
-class _HowToPlayViewState extends State<HowToPlayView> {
-  late final ScrollController _scrollController;
-  final ValueNotifier<bool> _isAppBarVisible = ValueNotifier<bool>(true);
-
-  static const List<RuleCategory> _categories = [
-    RuleCategory(
-      title: 'الفكرة والأدوار',
-      stepIndexes: [0, 1],
-    ),
-    RuleCategory(
-      title: 'طريقة اللعب والسؤال',
-      stepIndexes: [2, 3, 4, 5],
-    ),
-    RuleCategory(
-      title: 'التخمين والتصويت',
-      stepIndexes: [6, 7, 8, 9],
-    ),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController()..addListener(_scrollListener);
-  }
-
-  @override
-  void dispose() {
-    _scrollController
-      ..removeListener(_scrollListener)
-      ..dispose();
-    _isAppBarVisible.dispose();
-    super.dispose();
-  }
-
-  void _scrollListener() {
-    final direction = _scrollController.position.userScrollDirection;
-    if (direction == ScrollDirection.reverse) {
-      if (_isAppBarVisible.value) {
-        _isAppBarVisible.value = false;
-      }
-    } else if (direction == ScrollDirection.forward) {
-      if (!_isAppBarVisible.value) {
-        _isAppBarVisible.value = true;
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          CustomScrollView(
-            controller: _scrollController,
-            physics: const BouncingScrollPhysics(),
-            slivers: [
-              // Top Spacing so content starts below the app bar
-              SliverToBoxAdapter(
-                child: SizedBox(height: context.p(90)),
-              ),
-              SliverPadding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: context.p(18),
-                  vertical: context.p(12),
-                ),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate(
-                    [
-                      Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: List.generate(_categories.length, (index) {
-                            final isLast = index == _categories.length - 1;
-                            return HowToPlayCategorySection(
-                              category: _categories[index],
-                              isLast: isLast,
-                            );
-                          }),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverAppBar(
+            surfaceTintColor: Colors.transparent,
+            floating: true,
+            snap: true,
+            elevation: 0,
+            leading: AppBackButton(
+              onTap: () => context.pop(),
+            ),
+            title: Text(
+              AppStrings.howToPlay,
+              style: AppTextStyles.font24W700Primary,
+            ),
+            centerTitle: true,
           ),
-          ValueListenableBuilder<bool>(
-            valueListenable: _isAppBarVisible,
-            builder: (context, isVisible, child) {
-              return AnimatedPositioned(
-                duration: const Duration(milliseconds: 200),
-                curve: Curves.easeInOutQuad,
-                top: isVisible ? 0 : -context.p(100),
-                left: 0,
-                right: 0,
-                child: child!,
-              );
-            },
-            child: const ColoredBox(
-              color: AppColors.background,
-              child: CustomAppBar(
-                title: AppStrings.howToPlay,
-                showBackButton: true,
+          const SliverToBoxAdapter(
+            child: AppGap(8),
+          ),
+          SliverPadding(
+            padding: AppPadding.viewH18(context),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final section = HowToPlayData.sections[index];
+                  final isLastSection =
+                      index == HowToPlayData.sections.length - 1;
+
+                  var startingStep = 1;
+                  for (var i = 0; i < index; i++) {
+                    startingStep += HowToPlayData.sections[i].rules.length;
+                  }
+
+                  return HowToPlaySectionWidget(
+                    section: section,
+                    isLastSection: isLastSection,
+                    startingStepNumber: startingStep,
+                  );
+                },
+                childCount: HowToPlayData.sections.length,
               ),
             ),
           ),
