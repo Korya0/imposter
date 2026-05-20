@@ -5,7 +5,7 @@ import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
-class AppButton extends StatefulWidget {
+class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
     this.title,
@@ -27,81 +27,43 @@ class AppButton extends StatefulWidget {
   final Widget? child;
 
   @override
-  State<AppButton> createState() => _AppButtonState();
-}
-
-class _AppButtonState extends State<AppButton> {
-  bool _isPressed = false;
-
-  void _handleTapDown(TapDownDetails details) {
-    if (widget.onTap != null) {
-      setState(() {
-        _isPressed = true;
-      });
-    }
-  }
-
-  void _handleTapUp(TapUpDetails details) {
-    if (widget.onTap != null) {
-      setState(() {
-        _isPressed = false;
-      });
-    }
-  }
-
-  void _handleTapCancel() {
-    if (widget.onTap != null) {
-      setState(() {
-        _isPressed = false;
-      });
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: widget.title,
+      label: title,
       button: true,
       child: GestureDetector(
-        onTapDown: _handleTapDown,
-        onTapUp: _handleTapUp,
-        onTapCancel: _handleTapCancel,
-        onTap: widget.onTap != null
+      
+        onTap: onTap != null
             ? () {
                 HapticFeedback.lightImpact();
-                widget.onTap!();
+                onTap!();
               }
             : null,
         behavior: HitTestBehavior.opaque,
-        child: AnimatedScale(
-          scale: _isPressed ? 0.95 : 1.0,
-          duration: const Duration(milliseconds: 150),
-          curve: Curves.easeOutCubic,
-          child: Container(
-            width: widget.width,
-            height: widget.height ?? 60,
-            padding: widget.width == null
-                ? EdgeInsets.symmetric(horizontal: context.p(12))
-                : null,
-            alignment: const Alignment(0, -0.40),
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  AppAssets.paperWebp,
-                ),
-                fit: BoxFit.fill,
+        child: Container(
+          width: width,
+          height: height ?? 60,
+          padding: width == null
+              ? EdgeInsets.symmetric(horizontal: context.p(12))
+              : null,
+          alignment: const Alignment(0, -0.40),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                AppAssets.paperWebp,
               ),
+              fit: BoxFit.fill,
             ),
-            child:
-                widget.child ??
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: AppTextWidget(
-                    widget.title!,
-                    style: widget.style ?? AppTextStyles.font36W700Secondary,
-                  ),
-                ),
           ),
+          child:
+              child ??
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: AppTextWidget(
+                  title!,
+                  style: style ?? AppTextStyles.font36W700Secondary,
+                ),
+              ),
         ),
       ),
     );
