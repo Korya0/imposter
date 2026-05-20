@@ -12,7 +12,6 @@ class FeedbackCubit extends Cubit<FeedbackState> {
 
   Future<void> submitFeedback({
     required String content,
-    String? contact,
   }) async {
     if (state is FeedbackLoading) return;
 
@@ -23,7 +22,7 @@ class FeedbackCubit extends Cubit<FeedbackState> {
 
     emit(FeedbackLoading());
 
-    final request = FeedbackRequestModel(content: content, contact: contact);
+    final request = FeedbackRequestModel(content: content);
     final result = await _feedbackRepository.submitFeedback(request);
 
     switch (result) {

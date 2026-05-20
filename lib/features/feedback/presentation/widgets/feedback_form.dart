@@ -2,76 +2,120 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_strings.dart';
+import 'package:imposter/core/di/di.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/app_loading_indicator.dart';
 import 'package:imposter/core/presentation/widgets/app_text_field.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
+import 'package:imposter/core/presentation/widgets/app_toast.dart';
+import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/feedback/presentation/cubit/feedback_cubit.dart';
 
-class FeedbackForm extends StatelessWidget {
-  final TextEditingController feedbackController;
-  final TextEditingController contactController;
-  final bool isLoading;
-
+class FeedbackForm extends StatefulWidget {
   const FeedbackForm({
-    required this.feedbackController,
-    required this.contactController,
-    required this.isLoading,
     super.key,
   });
 
   @override
+  State<FeedbackForm> createState() => _FeedbackFormState();
+}
+
+class _FeedbackFormState extends State<FeedbackForm> {
+  final _feedbackController = TextEditingController();
+
+  @override
+  void dispose() {
+    _feedbackController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const Align(
-          alignment: Alignment.centerRight,
-          child: AppTextWidget(
-            AppStrings.feedbackSubtitle,
-            textAlign: TextAlign.right,
-          ),
-        ),
-        const AppGap(16),
-        AppTextField(
-          controller: feedbackController,
-          hintText: AppStrings.feedbackPlaceholder,
-          maxLines: 4,
-          enabled: !isLoading,
-        ),
-        const AppGap(16),
-        AppTextField(
-          controller: contactController,
-          hintText: AppStrings.feedbackContactPlaceholder,
-          enabled: !isLoading,
-        ),
-        const AppGap(24),
-        AppButton(
-          width: double.infinity,
-          onTap: isLoading
-              ? null
-              : () {
-                  unawaited(
-                    context.read<FeedbackCubit>().submitFeedback(
-                          content: feedbackController.text,
-                          contact: contactController.text,
-                        ),
-                  );
-                },
-          title: isLoading ? null : AppStrings.sendFeedback,
-          child: isLoading
-              ? AppLoadingIndicator(
-                  size: context.s(24),
-                  color: AppColors.secondary,
-                )
-              : null,
-        ),
-      ],
+    return BlocProvider(
+      create: (context) => sl<FeedbackCubit>(),
+      child: BlocConsumer<FeedbackCubit, FeedbackState>(
+        listener: (context, state) {
+          if (state is FeedbackSuccess) {
+            AppToast.show(context, AppStrings.feedbackSuccess);
+            context.pop();
+          } else if (state is FeedbackError) {
+            AppToast.show(context, state.message);
+          }
+        },
+        builder: (context, state) {
+          final isLoading = state is FeedbackLoading;
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              AppTextWidget(
+                AppStrings.feedbackSubtitle,
+                style: AppTextStyles.font20W400White,
+              ),
+              const AppGap(26),
+              AppTextField(
+                controller: _feedbackController,
+                hintText: AppStrings.feedbackPlaceholder,
+                maxLines: 4,
+                enabled: !isLoading,
+                textInputAction: TextInputAction.send,
+                onSubmitted: isLoading
+                    ? null
+                    : (_) {
+                        unawaited(
+                          context.read<FeedbackCubit>().submitFeedback(
+                            content: _feedbackController.text,
+                          ),
+                        );
+                      },
+              ),
+              const AppGap(24),
+              FeedbackSubmitButton(
+                isLoading: isLoading,
+                feedbackController: _feedbackController,
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+class FeedbackSubmitButton extends StatelessWidget {
+  const FeedbackSubmitButton({
+    required this.isLoading,
+    required this.feedbackController,
+    super.key,
+  });
+
+  final bool isLoading;
+  final TextEditingController feedbackController;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppButton(
+      onTap: isLoading
+          ? null
+          : () {
+              unawaited(
+                context.read<FeedbackCubit>().submitFeedback(
+                  content: feedbackController.text,
+                ),
+              );
+            },
+      title: isLoading ? null : AppStrings.sendFeedback,
+      child: isLoading
+          ? AppLoadingIndicator(
+              size: context.s(24),
+              color: AppColors.secondary,
+            )
+          : null,
     );
   }
 }

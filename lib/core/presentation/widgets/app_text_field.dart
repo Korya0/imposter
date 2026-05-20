@@ -11,6 +11,8 @@ class AppTextField extends StatelessWidget {
     this.keyboardType,
     this.textAlign = TextAlign.right,
     this.enabled = true,
+    this.textInputAction,
+    this.onSubmitted,
   });
 
   final TextEditingController controller;
@@ -19,6 +21,8 @@ class AppTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextAlign textAlign;
   final bool enabled;
+  final TextInputAction? textInputAction;
+  final ValueChanged<String>? onSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +32,8 @@ class AppTextField extends StatelessWidget {
       keyboardType: keyboardType,
       textAlign: textAlign,
       enabled: enabled,
+      textInputAction: textInputAction,
+      onSubmitted: onSubmitted,
       style: AppTextStyles.font18W700Primary.copyWith(
         color: enabled ? AppColors.primary : AppColors.primary.withValues(alpha: 0.5),
       ),
