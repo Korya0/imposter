@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
-import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/constants/app_strings.dart';
+import 'package:imposter/core/presentation/painters/sketchy_circle_painter.dart';
+import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/audio_player_helper.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 
 class SummaryPhaseWidget extends StatefulWidget {
   const SummaryPhaseWidget({
@@ -64,72 +66,28 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
                 AppStrings.summary,
                 style: AppTextStyles.font34W700Primary,
               ),
-              const SizedBox(height: 6),
-              _buildInfoRow(AppStrings.word, widget.secretWord),
-              const SizedBox(height: 12),
-              _buildInfoRow(
-                AppStrings.numberOfPlayers,
-                widget.playerCount.toString(),
+              AppGap(context.p(6)),
+              _SummaryInfoRow(label: AppStrings.word, value: widget.secretWord),
+              AppGap(context.p(12)),
+              _SummaryInfoRow(
+                label: AppStrings.numberOfPlayers,
+                value: widget.playerCount.toString(),
               ),
-              const SizedBox(height: 12),
-              _buildInfoRow(
-                AppStrings.numberOfSpies,
-                widget.spyCount.toString(),
+              AppGap(context.p(12)),
+              _SummaryInfoRow(
+                label: AppStrings.numberOfSpies,
+                value: widget.spyCount.toString(),
               ),
-              const SizedBox(height: 12),
-              _buildInfoRow(
-                AppStrings.numberOfMinutes,
-                '${widget.durationMinutes}:00',
+              AppGap(context.p(12)),
+              _SummaryInfoRow(
+                label: AppStrings.numberOfMinutes,
+                value: '${widget.durationMinutes}:00',
               ),
-              const SizedBox(height: 40),
+              AppGap(context.p(40)),
               Center(
-                child: GestureDetector(
-                  onTapDown: (_) => _redoController.forward(),
-                  onTapUp: (_) {
-                    _redoController.reverse();
-                    widget.onAnotherRound();
-                  },
-                  onTapCancel: () => _redoController.reverse(),
-                  behavior: HitTestBehavior.opaque,
-                  child: AnimatedBuilder(
-                    animation: _redoController,
-                    builder: (context, child) {
-                      final scale = 1.0 - (_redoController.value * 0.05);
-                      return Transform.scale(
-                        scale: scale,
-                        child: child,
-                      );
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.all(context.p(16)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        spacing: 16,
-                        children: [
-                          CustomPaint(
-                            painter: SketchyCirclePainter(color: AppColors.white),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12),
-                              child: SvgPicture.asset(
-                                AppAssets.redoSvg,
-                                width: 32,
-                                height: 32,
-                                colorFilter: const ColorFilter.mode(
-                                  AppColors.white,
-                                  BlendMode.srcIn,
-                                ),
-                              ),
-                            ),
-                          ),
-                          AppTextWidget(
-                            AppStrings.anotherRound,
-                            style: AppTextStyles.font28W400White,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                child: _AnotherRoundButton(
+                  controller: _redoController,
+                  onTap: widget.onAnotherRound,
                 ),
               ),
             ],
@@ -138,19 +96,22 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
       ],
     );
   }
+}
 
-  Widget _buildInfoRow(String label, String value) {
+class _SummaryInfoRow extends StatelessWidget {
+  const _SummaryInfoRow({required this.label, required this.value});
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: context.p(24)),
       child: Row(
-        spacing: 16,
+        spacing: context.p(16),
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AppTextWidget(
-            '$label:',
-            style: AppTextStyles.font28W700Primary,
-          ),
-
+          AppTextWidget('$label:', style: AppTextStyles.font28W700Primary),
           AppTextWidget(
             value,
             style: AppTextStyles.font28W700Primary.copyWith(
@@ -163,36 +124,60 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
   }
 }
 
-class SketchyCirclePainter extends CustomPainter {
-  final Color color;
-
-  SketchyCirclePainter({required this.color});
+class _AnotherRoundButton extends StatelessWidget {
+  const _AnotherRoundButton({
+    required this.controller,
+    required this.onTap,
+  });
+  final AnimationController controller;
+  final VoidCallback onTap;
 
   @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.0
-      ..strokeCap = StrokeCap.round;
-
-    final center = Offset(size.width / 2, size.height / 2);
-    final radius = size.width / 2 - 4;
-
-    final rect = Rect.fromCircle(center: center, radius: radius);
-
-    // Primary sketched loop
-    canvas.drawArc(rect, 0, 6.28, false, paint);
-
-    // Secondary offset sketch shadow loop
-    final outerRect = Rect.fromCircle(center: center, radius: radius + 3);
-    final shadowPaint = Paint()
-      ..color = color.withValues(alpha: 0.4)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.0;
-    canvas.drawArc(outerRect, 0.45, 5.8, false, shadowPaint);
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => controller.forward(),
+      onTapUp: (_) {
+        controller.reverse();
+        onTap();
+      },
+      onTapCancel: controller.reverse,
+      behavior: HitTestBehavior.opaque,
+      child: AnimatedBuilder(
+        animation: controller,
+        builder: (context, child) => Transform.scale(
+          scale: 1.0 - (controller.value * 0.05),
+          child: child,
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(context.p(16)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            spacing: context.p(16),
+            children: [
+              CustomPaint(
+                painter: const SketchyCirclePainter(color: AppColors.white),
+                child: Padding(
+                  padding: EdgeInsets.all(context.p(12)),
+                  child: SvgPicture.asset(
+                    AppAssets.redoSvg,
+                    width: context.s(32),
+                    height: context.s(32),
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.white,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
+              ),
+              AppTextWidget(
+                AppStrings.anotherRound,
+                style: AppTextStyles.font28W400White,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

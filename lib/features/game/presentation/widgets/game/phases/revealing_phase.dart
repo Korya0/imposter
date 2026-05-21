@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/constants/app_strings.dart';
+import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/app_sketchy_card/app_sketchy_card.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
@@ -19,13 +20,8 @@ class RevealingPhaseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isSpy) {
-      return const _SpyRevealView();
-    }
-    return _CitizenRevealView(
-      category: categoryName,
-      word: secretWord,
-    );
+    if (isSpy) return const _SpyRevealView();
+    return _CitizenRevealView(category: categoryName, word: secretWord);
   }
 }
 
@@ -37,34 +33,18 @@ class _SpyRevealView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const _SpyYouAreText(),
-        const SizedBox(height: 10),
-        SizedBox(height: (context.height * 0.05).clamp(14, 40)),
-     /*   const AppLogoHeader(
-     //     showText: false,
-        ).animate().fadeIn(delay: 400.ms, duration: 800.ms).slideY(begin: 0.2, end: 0),
-   */   ],
+        AppTextWidget(
+          AppStrings.youAreTheSpy,
+          style: AppTextStyles.font60W700Primary,
+        ).animate().fadeIn(duration: 800.ms).slideY(begin: -0.2, end: 0),
+        AppGap(context.p(40)),
+      ],
     );
   }
 }
 
-class _SpyYouAreText extends StatelessWidget {
-  const _SpyYouAreText();
-
-  @override
-  Widget build(BuildContext context) {
-    return AppTextWidget(
-      AppStrings.youAreTheSpy,
-      style: AppTextStyles.font60W700Primary,
-    ).animate().fadeIn(duration: 800.ms).slideY(begin: -0.2, end: 0);
-  }
-}
-
 class _CitizenRevealView extends StatelessWidget {
-  const _CitizenRevealView({
-    required this.category,
-    required this.word,
-  });
+  const _CitizenRevealView({required this.category, required this.word});
   final String category;
   final String word;
 
@@ -89,15 +69,10 @@ class _CitizenRevealView extends StatelessWidget {
               ),
             ],
           ),
-          // EXCEPTION: Use a regular system sans-serif font family for the secret word
-          // to ensure clear gameplay readability and avoid any calligraphic styling confusion.
-          // استثناء: استخدام خط عادي (sans-serif) للكلمة السرية لضمان الوضوح التام ومنع اللبس.
           AppSketchyCard(
             height: 150,
             title: word,
-            style: AppTextStyles.font45W700Primary.copyWith(
-              fontFamily: 'sans-serif',
-            ),
+            style: AppTextStyles.font45W700SecretWord,
           ),
         ],
       ),

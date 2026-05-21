@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_loading_indicator.dart';
@@ -18,45 +17,32 @@ import 'package:imposter/features/game/presentation/widgets/game/phases/summary_
 import 'package:imposter/features/game/presentation/widgets/game/phases/timer_phase.dart';
 
 class GameViewContent extends StatelessWidget {
-  const GameViewContent({
-    required this.state,
-    super.key,
-  });
+  const GameViewContent({required this.state, super.key});
   final GameState state;
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Expanded(
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 400),
-            transitionBuilder: (child, animation) {
-              return FadeTransition(
-                opacity: animation,
-                child: SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(0, 0.05),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: child,
-                ),
-              );
-            },
-            child: Container(
-              key: ValueKey(state.runtimeType),
-              child: _buildCurrentStateContent(context),
-            ),
+          child: Container(
+            key: ValueKey(state.runtimeType),
+            child: _GameStateContent(state: state),
           ),
         ),
-        _buildBottomAction(context),
+        _GameBottomAction(state: state),
       ],
     );
   }
+}
 
-  Widget _buildCurrentStateContent(BuildContext context) {
-    final cubit = context.read<GameCubit>();
+class _GameStateContent extends StatelessWidget {
+  const _GameStateContent({required this.state});
+  final GameState state;
 
+  @override
+  Widget build(BuildContext context) {
     return switch (state) {
       GameInitial() || GameLoading() => const Center(
         child: AppLoadingIndicator(),
@@ -78,11 +64,11 @@ class GameViewContent extends StatelessWidget {
           categoryName: cat!.name,
         ),
       GameReady() => ReadyPhaseWidget(
-        onStartTimer: cubit.startTimer,
+        onStartTimer: context.read<GameCubit>().startTimer,
       ),
       GameTimer(durationMinutes: final mins) => TimerPhaseWidget(
         durationMinutes: mins,
-        onTimeout: cubit.finishGame,
+        onTimeout: context.read<GameCubit>().finishGame,
       ),
       GameSummary(
         secretWord: final word,
@@ -95,50 +81,76 @@ class GameViewContent extends StatelessWidget {
           playerCount: p,
           spyCount: s,
           durationMinutes: d,
-          onAnotherRound: cubit.prepareRound,
+          onAnotherRound: context.read<GameCubit>().prepareRound,
           onFinish: () => context.goNamed(AppRoutes.home),
         ),
-      GameError(message: final msg) => Center(
-        child: AppTextWidget(msg),
-      ),
+      GameError(message: final msg) => Center(child: AppTextWidget(msg)),
     };
   }
+}
 
-  Widget _buildBottomAction(BuildContext context) {
-    final cubit = context.read<GameCubit>();
+class _GameBottomAction extends StatelessWidget {
+  const _GameBottomAction({required this.state});
+  final GameState state;
 
-    return switch (state) {
+  @override
+  Widget build(BuildContext context) {
+    final buttonHeight = (context.height * 0.1).clamp(50.0, 70.0);
+
+    final actionButton = switch (state) {
       GameScanning() => GameFingerprintButton(
-        onTap: () => cubit.toggleReveal(reveal: true),
+        onTap: () => context.read<GameCubit>().toggleReveal(reveal: true),
       ),
-      GameRevealing() => Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.p(24)),
-        child: AppButton(
-          width: double.infinity,
-          height: (context.height * 0.1).clamp(50, 70),
-          title: AppStrings.next,
-          onTap: () => cubit.toggleReveal(reveal: false),
-        ),
+      GameRevealing() => _FullWidthButton(
+        height: buttonHeight,
+        title: AppStrings.next,
+        onTap: () => context.read<GameCubit>().toggleReveal(reveal: false),
       ),
-      GameTimer() => Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.p(24)),
-        child: AppButton(
-          width: double.infinity,
-          height: (context.height * 0.1).clamp(50, 70),
-          title: AppStrings.finishTurn,
-          onTap: cubit.finishGame,
-        ),
+      GameTimer() => _FullWidthButton(
+        height: buttonHeight,
+        title: AppStrings.finishTurn,
+        onTap: context.read<GameCubit>().finishGame,
       ),
-      GameSummary() => Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.p(24)),
-        child: AppButton(
-          width: double.infinity,
-          height: (context.height * 0.1).clamp(50, 70),
-          title: AppStrings.finishGame,
-          onTap: () => context.goNamed(AppRoutes.home),
-        ),
+      GameSummary() => _FullWidthButton(
+        height: buttonHeight,
+        title: AppStrings.finishGame,
+        onTap: () => context.goNamed(AppRoutes.home),
       ),
-      _ => const SizedBox.shrink(),
+      _ => null,
     };
+
+    if (actionButton == null) return const SizedBox.shrink();
+
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: context.p(24)),
+        child: actionButton,
+      ),
+    );
+  }
+}
+
+class _FullWidthButton extends StatelessWidget {
+  const _FullWidthButton({
+    required this.height,
+    required this.title,
+    required this.onTap,
+  });
+  final double height;
+  final String title;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: context.p(24)),
+      child: AppButton(
+        width: double.infinity.clamp(150, 300),
+        height: height,
+        title: title,
+        onTap: onTap,
+      ),
+    );
   }
 }

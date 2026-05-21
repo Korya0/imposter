@@ -23,6 +23,8 @@ abstract class AppStrings {
   // Game Play - Scanning
   static const String player = 'Player';
   static const String scanHere = 'ابصم هنا';
+  static const String keepHolding = 'خليك باصم...';
+  static const String scanSuccess = 'تم البصم بنجاح';
 
   // Game Play - Revealing
   static const String youAreTheSpy = 'انت الجاسوس';

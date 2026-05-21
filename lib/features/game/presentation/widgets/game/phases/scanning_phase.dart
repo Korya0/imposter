@@ -29,7 +29,7 @@ class ScanningPhaseWidget extends StatelessWidget {
                 style: AppTextStyles.font32W400Primary,
               ),
             ],
-          ),
+          ), 
         ),
       ],
     );

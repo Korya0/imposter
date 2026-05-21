@@ -18,6 +18,13 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.w700.weight,
   );
 
+  static TextStyle font45W700SecretWord = font.copyWith(
+    color: AppColors.primary,
+    fontSize: 45,
+    fontWeight: FontWeightHelper.w700.weight,
+    fontFamily: 'sans-serif',
+  );
+
   static TextStyle font24W700Primary = font.copyWith(
     color: AppColors.primary,
     fontSize: 24,
