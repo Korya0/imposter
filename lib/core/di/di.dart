@@ -6,7 +6,8 @@ import 'package:imposter/features/game/data/repositories/game_repository_impl.da
 import 'package:imposter/features/game/domain/repositories/game_repository.dart';
 import 'package:imposter/features/game/domain/usecases/get_categories_usecase.dart';
 import 'package:imposter/features/game/domain/services/game_engine.dart';
-import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
+import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
+import 'package:imposter/features/game/presentation/controller/game_session_cubit/game_session_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:imposter/features/feedback/data/datasources/feedback_remote_data_source.dart';
@@ -28,8 +29,11 @@ Future<void> setupEssentialDI() async {
     ..registerLazySingleton<GetCategoriesUsecase>(
       () => GetCategoriesUsecase(repository: sl<IGameRepository>()),
     )
-    ..registerLazySingleton<GameCubit>(
-      () => GameCubit(sl<GetCategoriesUsecase>(), sl<GameEngine>()),
+    ..registerLazySingleton<GameSetupCubit>(
+      () => GameSetupCubit(sl<GetCategoriesUsecase>()),
+    )
+    ..registerLazySingleton<GameSessionCubit>(
+      () => GameSessionCubit(sl<GameEngine>()),
     )
     ..registerLazySingleton<FeedbackRemoteDataSource>(
       () => FeedbackRemoteDataSourceImpl(sl<Dio>()),

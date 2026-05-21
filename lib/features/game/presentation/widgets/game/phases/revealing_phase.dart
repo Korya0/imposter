@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/constants/app_strings.dart';
+import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/app_sketchy_card/app_sketchy_card.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
@@ -12,16 +13,33 @@ class RevealingPhaseWidget extends StatelessWidget {
     required this.isSpy,
     required this.secretWord,
     required this.categoryName,
+    required this.onNext,
     super.key,
   });
   final bool isSpy;
   final String secretWord;
   final String categoryName;
+  final VoidCallback onNext;
 
   @override
   Widget build(BuildContext context) {
-    if (isSpy) return const _SpyRevealView();
-    return _CitizenRevealView(category: categoryName, word: secretWord);
+    final buttonHeight = (context.height * 0.1).clamp(50.0, 70.0);
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        if (isSpy)
+          const _SpyRevealView()
+        else
+          _CitizenRevealView(category: categoryName, word: secretWord),
+        AppButton(
+          width: double.infinity.clamp(150, 300),
+          height: buttonHeight,
+          title: AppStrings.next,
+          onTap: onNext,
+        ),
+      ],
+    );
   }
 }
 
@@ -50,32 +68,11 @@ class _CitizenRevealView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        spacing: 16,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 8,
-            children: [
-              AppTextWidget(
-                '${AppStrings.category}:',
-                style: AppTextStyles.font28W700Primary,
-              ),
-              AppTextWidget(
-                category,
-                style: AppTextStyles.font28W400White,
-              ),
-            ],
-          ),
-          AppSketchyCard(
-            height: 150,
-            title: word,
-            style: AppTextStyles.font45W700SecretWord,
-          ),
-        ],
-      ),
+    return AppSketchyCard(
+      height: 150,
+      width: context.w(100),
+      title: word,
+      style: AppTextStyles.font45W700SecretWord,
     );
   }
 }

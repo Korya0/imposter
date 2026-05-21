@@ -4,8 +4,8 @@ import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_toast.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
-import 'package:imposter/features/game/presentation/cubit/game_state.dart';
+import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
+import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_state.dart';
 import 'package:imposter/features/game/presentation/widgets/game_settings/game_setting_item.dart';
 
 class GameSettingsList extends StatelessWidget {
@@ -13,7 +13,7 @@ class GameSettingsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<GameCubit>();
+    final cubit = context.read<GameSetupCubit>();
 
     return context.isLandscape
         ? Row(
@@ -21,7 +21,7 @@ class GameSettingsList extends StatelessWidget {
             spacing: context.p(22),
             children: [ 
               // Players Setting
-              BlocSelector<GameCubit, GameState, int>(
+              BlocSelector<GameSetupCubit, GameSetupState, int>(
                 selector: (state) => state.playerCount,
                 builder: (context, playerCount) {
                   return GameSettingItem(
@@ -47,7 +47,7 @@ class GameSettingsList extends StatelessWidget {
               ),
 
               // Spies Setting
-              BlocSelector<GameCubit, GameState, (int, int)>(
+              BlocSelector<GameSetupCubit, GameSetupState, (int, int)>(
                 selector: (state) => (state.spyCount, state.playerCount),
                 builder: (context, data) {
                   final spyCount = data.$1;
@@ -75,7 +75,7 @@ class GameSettingsList extends StatelessWidget {
               ),
 
               // Minutes Setting
-              BlocSelector<GameCubit, GameState, int>(
+              BlocSelector<GameSetupCubit, GameSetupState, int>(
                 selector: (state) => state.durationMinutes,
                 builder: (context, durationMinutes) {
                   return GameSettingItem(
@@ -105,7 +105,7 @@ class GameSettingsList extends StatelessWidget {
             spacing: context.p(22),
             children: [
               // Players Setting
-              BlocSelector<GameCubit, GameState, int>(
+              BlocSelector<GameSetupCubit, GameSetupState, int>(
                 selector: (state) => state.playerCount,
                 builder: (context, playerCount) {
                   return GameSettingItem(
@@ -131,7 +131,7 @@ class GameSettingsList extends StatelessWidget {
               ),
 
               // Spies Setting
-              BlocSelector<GameCubit, GameState, (int, int)>(
+              BlocSelector<GameSetupCubit, GameSetupState, (int, int)>(
                 selector: (state) => (state.spyCount, state.playerCount),
                 builder: (context, data) {
                   final spyCount = data.$1;
@@ -159,7 +159,7 @@ class GameSettingsList extends StatelessWidget {
               ),
 
               // Minutes Setting
-              BlocSelector<GameCubit, GameState, int>(
+              BlocSelector<GameSetupCubit, GameSetupState, int>(
                 selector: (state) => state.durationMinutes,
                 builder: (context, durationMinutes) {
                   return GameSettingItem(

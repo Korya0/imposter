@@ -29,6 +29,11 @@ class _GameFingerprintButtonState extends State<GameFingerprintButton> {
         await HapticFeedbackHelper.successPattern();
         widget.onTap();
       },
+      onLongPress: () async {
+        setState(() => _isPressed = false);
+        await HapticFeedbackHelper.successPattern();
+        widget.onTap();
+      },
       onTapCancel: () => setState(() => _isPressed = false),
       behavior: HitTestBehavior.opaque,
       child: _FingerprintContent(isPressed: _isPressed),
@@ -47,17 +52,20 @@ class _FingerprintContent extends StatelessWidget {
         : AppColors.primary.withValues(alpha: 0.8);
 
     final childWidgets = [
-      AppTextWidget(AppStrings.scanHere, style: AppTextStyles.font32W400Primary),
+      AppTextWidget(
+        AppStrings.scanHere,
+        style: AppTextStyles.font32W400Primary,
+      ),
       RepaintBoundary(
-        child: Padding(
-          padding: EdgeInsets.all(context.p(12)),
-          child: SvgPicture.asset(
-            AppAssets.fingerprintSvg,
-            height: context.s(80),
-            colorFilter: ColorFilter.mode(scanColor, BlendMode.srcIn),
-          ),
-        ),
-      )
+            child: Padding(
+              padding: EdgeInsets.all(context.p(12)),
+              child: SvgPicture.asset(
+                AppAssets.fingerprintSvg,
+                height: context.s(80),
+                colorFilter: ColorFilter.mode(scanColor, BlendMode.srcIn),
+              ),
+            ),
+          )
           .animate(target: isPressed ? 1 : 0)
           .scale(
             begin: const Offset(1, 1),

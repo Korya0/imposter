@@ -9,7 +9,7 @@ import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/domain/entities/category_entity.dart';
-import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
+import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
 
 class TopicsGridWidget extends StatelessWidget {
   const TopicsGridWidget({required this.categories, super.key});
@@ -49,7 +49,7 @@ class TopicsGridWidget extends StatelessWidget {
               style: AppTextStyles.font24W700Primary,
               onTap: () async {
                 HapticFeedback.lightImpact();
-                context.read<GameCubit>().selectCategory(category);
+                context.read<GameSetupCubit>().selectCategory(category);
                 await context.pushNamed(AppRoutes.gameSettings);
               },
               watermark: IgnorePointer(

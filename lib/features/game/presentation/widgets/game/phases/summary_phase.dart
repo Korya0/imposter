@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/painters/sketchy_circle_painter.dart';
-import 'package:imposter/core/presentation/widgets/app_gap.dart';
+import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
@@ -61,34 +61,48 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
         SliverFillRemaining(
           hasScrollBody: false,
           child: Column(
+            spacing: context.p(24),
+            mainAxisAlignment: .spaceEvenly,
             children: [
-              AppTextWidget(
-                AppStrings.summary,
-                style: AppTextStyles.font34W700Primary,
+              Column(
+                spacing: context.p(24),
+                children: [
+                  AppTextWidget(
+                    AppStrings.summary,
+                    style: AppTextStyles.font34W700Primary,
+                  ),
+                  Column(
+                    spacing: context.p(4),
+                    children: [
+                      _SummaryInfoRow(
+                        label: AppStrings.word,
+                        value: widget.secretWord,
+                      ),
+                      _SummaryInfoRow(
+                        label: AppStrings.numberOfPlayers,
+                        value: widget.playerCount.toString(),
+                      ),
+                      _SummaryInfoRow(
+                        label: AppStrings.numberOfSpies,
+                        value: widget.spyCount.toString(),
+                      ),
+                      _SummaryInfoRow(
+                        label: AppStrings.numberOfMinutes,
+                        value: '${widget.durationMinutes}:00',
+                      ),
+                    ],
+                  ),
+                  _AnotherRoundButton(
+                    controller: _redoController,
+                    onTap: widget.onAnotherRound,
+                  ),
+                ],
               ),
-              AppGap(context.p(6)),
-              _SummaryInfoRow(label: AppStrings.word, value: widget.secretWord),
-              AppGap(context.p(12)),
-              _SummaryInfoRow(
-                label: AppStrings.numberOfPlayers,
-                value: widget.playerCount.toString(),
-              ),
-              AppGap(context.p(12)),
-              _SummaryInfoRow(
-                label: AppStrings.numberOfSpies,
-                value: widget.spyCount.toString(),
-              ),
-              AppGap(context.p(12)),
-              _SummaryInfoRow(
-                label: AppStrings.numberOfMinutes,
-                value: '${widget.durationMinutes}:00',
-              ),
-              AppGap(context.p(40)),
-              Center(
-                child: _AnotherRoundButton(
-                  controller: _redoController,
-                  onTap: widget.onAnotherRound,
-                ),
+              AppButton(
+                width: double.infinity.clamp(150, 300),
+                height: (context.height * 0.1).clamp(50.0, 70.0),
+                title: AppStrings.finishGame,
+                onTap: widget.onFinish,
               ),
             ],
           ),
@@ -109,7 +123,7 @@ class _SummaryInfoRow extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: context.p(24)),
       child: Row(
         spacing: context.p(16),
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: .center,
         children: [
           AppTextWidget('$label:', style: AppTextStyles.font28W700Primary),
           AppTextWidget(

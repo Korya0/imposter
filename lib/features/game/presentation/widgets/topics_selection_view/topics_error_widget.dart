@@ -7,7 +7,7 @@ import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
+import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
 
 class TopicsErrorWidget extends StatelessWidget {
   const TopicsErrorWidget({required this.message, super.key});
@@ -42,7 +42,7 @@ class TopicsErrorWidget extends StatelessWidget {
               width: context.w(180),
               height: context.h(55),
               onTap: () {
-                context.read<GameCubit>().init();
+                context.read<GameSetupCubit>().init();
               },
             ),
           ],

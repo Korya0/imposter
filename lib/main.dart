@@ -10,7 +10,7 @@ import 'package:imposter/core/di/di.dart';
 import 'package:imposter/core/router/app_router.dart';
 import 'package:imposter/core/style/theme/app_theme.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
-import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
+import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
 
 void main() async {
   await AppInitializer.initEssential();
@@ -21,7 +21,7 @@ void main() async {
   );
 
   // Background initialization to avoid loading flickers
-  unawaited(sl<GameCubit>().init());
+  unawaited(sl<GameSetupCubit>().init());
 }
 
 class ImposterApp extends StatelessWidget {
@@ -30,7 +30,7 @@ class ImposterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      // Theme & Router & localizations
+      // Theme & Router & localizations 
       debugShowCheckedModeBanner: false, 
       theme: AppTheme.darkTheme,
       locale: const Locale(AppConstants.ar),

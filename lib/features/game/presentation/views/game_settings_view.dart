@@ -6,7 +6,8 @@ import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/custom_scroll_scaffold.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
+import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
+import 'package:imposter/features/game/presentation/controller/game_session_cubit/game_session_cubit.dart';
 import 'package:imposter/features/game/presentation/widgets/game_settings/game_settings_list.dart';
 import 'package:imposter/features/game/presentation/widgets/game_settings/start_button.dart';
 
@@ -27,7 +28,13 @@ class GameSettingsView extends StatelessWidget {
               Center(
                 child: StartButton(
                   onTap: () async {
-                    context.read<GameCubit>().prepareRound();
+                    final setup = context.read<GameSetupCubit>().state;
+                    context.read<GameSessionCubit>().startGame(
+                      playerCount: setup.playerCount,
+                      spyCount: setup.spyCount,
+                      durationMinutes: setup.durationMinutes,
+                      category: setup.selectedCategory!,
+                    );
                     await context.pushNamed(AppRoutes.game);
                   },
                 ),
