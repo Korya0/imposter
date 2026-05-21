@@ -67,6 +67,20 @@ class AppTextStyles {
     fontSize: 18,
   );
 
+  static TextStyle font18W400Primary = font.copyWith(
+    fontWeight: FontWeightHelper.w400.weight,
+    color: AppColors.primary,
+    fontSize: 18,
+  );
+
+  static TextStyle font18W700PrimaryWithSpacing4 = font18W700Primary.copyWith(
+    wordSpacing: 4,
+  );
+
+  static TextStyle font24W700PrimaryWithSpacing4 = font24W700Primary.copyWith(
+    wordSpacing: 4,
+  );
+
   static TextStyle font20W400White = font.copyWith(
     color: AppColors.white,
     fontWeight: FontWeightHelper.w400.weight,

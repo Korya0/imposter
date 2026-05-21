@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:imposter/core/presentation/painters/quiet_sketchy_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
-import 'package:imposter/core/presentation/widgets/tactile_sketchy_icon_button.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';

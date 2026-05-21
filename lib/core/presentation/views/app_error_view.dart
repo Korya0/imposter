@@ -22,12 +22,12 @@ class AppErrorView extends StatelessWidget {
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Column(
-                  spacing: 20,
+                  spacing: context.p(20),
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.error_outline_rounded,
-                      size: 80,
+                      size: context.s(80),
                     ),
                     AppTextWidget(
                       AppStrings.oopsYouLost,

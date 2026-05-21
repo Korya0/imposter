@@ -34,7 +34,6 @@ class SketchyCardPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // 1. Draw 3 overlapping messy borders
     for (var i = 0; i < 3; i++) {
       _borderPaint.color = color.withValues(alpha: 0.2 + (i * 0.1));
 
@@ -49,15 +48,12 @@ class SketchyCardPainter extends CustomPainter {
       canvas.drawPath(path, _borderPaint);
     }
 
-    // 2. Corner Scribbles
     _drawCornerScribbles(canvas, size);
 
-    // 3. INTERNAL SCRIBBLES ON TAP (Progress based)
     if (progress > 0) {
       _drawInternalScribbles(canvas, size);
     }
 
-    // 4. Tape effect
     if (showTape) {
       _drawSketchyTape(canvas, size);
     }

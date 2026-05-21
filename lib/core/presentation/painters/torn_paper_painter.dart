@@ -20,7 +20,7 @@ class TornPaperPainter extends CustomPainter {
       ..lineTo(size.width, size.height)
       ..lineTo(size.width, 20);
 
-    // Jagged TOP
+
     var curX = size.width;
     while (curX > 0) {
       final step = 10.0 + random.nextDouble() * 10.0;

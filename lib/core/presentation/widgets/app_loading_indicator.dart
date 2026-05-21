@@ -68,9 +68,7 @@ class _SketchySpinnerPainter extends CustomPainter {
     final radius = size.width / 2 - 2;
 
     final path = Path();
-    // Arc 1: from 0 to 140 degrees
     _drawSketchyArc(path, center, radius, 0, 140);
-    // Arc 2: from 180 to 300 degrees
     _drawSketchyArc(path, center, radius, 180, 300);
 
     canvas.drawPath(path, paint);
@@ -85,13 +83,12 @@ class _SketchySpinnerPainter extends CustomPainter {
   ) {
     final startRad = startAngleDeg * pi / 180;
     final endRad = endAngleDeg * pi / 180;
-    const step = 4.0 * pi / 180; // 4 degrees steps
+    const step = 4.0 * pi / 180;
 
     var currentAngle = startRad;
     var isFirst = true;
 
     while (currentAngle <= endRad) {
-      // Add a slight hand-drawn jitter to the radius
       final ripple = 0.8 * sin(currentAngle * 10);
       final r = radius + ripple;
       final x = center.dx + r * cos(currentAngle);

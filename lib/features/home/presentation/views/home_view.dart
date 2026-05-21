@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/constants/app_padding.dart';
-import 'package:imposter/core/presentation/widgets/app_logo_name.dart';
+import 'package:imposter/core/presentation/widgets/app_logo.dart';
+import 'package:imposter/core/presentation/widgets/app_name_text.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/home/presentation/widgets/home_buttons_section.dart';
 

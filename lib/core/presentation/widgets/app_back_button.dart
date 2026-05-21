@@ -21,7 +21,7 @@ class AppBackButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: context.p(8)),
         child: SvgPicture.asset(
           AppAssets.backIconSvg,
-          height: 28,
+          height: context.s(28),
           colorFilter: const ColorFilter.mode(
             AppColors.primary,
             BlendMode.srcIn,

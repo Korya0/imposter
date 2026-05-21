@@ -14,10 +14,7 @@ class AppButton extends StatelessWidget {
     this.width,
     this.height,
     this.child,
-  }) : assert(
-         title != null || child != null,
-         'Title or child must be provided',
-       );
+  }) : assert(title != null || child != null, 'Title or child must be provided');
 
   final String? title;
   final VoidCallback? onTap;
@@ -32,41 +29,31 @@ class AppButton extends StatelessWidget {
       label: title,
       button: true,
       child: GestureDetector(
-      
-        onTap: onTap != null
-            ? () {
-                HapticFeedback.lightImpact();
-                onTap!();
-              }
-            : null,
+        onTap: onTap != null ? () {
+          HapticFeedback.lightImpact();
+          onTap!();
+        } : null,
         behavior: HitTestBehavior.opaque,
         child: Container(
           width: width,
-          height: height ?? 60,
-          padding: width == null
-              ? EdgeInsets.symmetric(horizontal: context.p(12))
-              : null,
+          height: height ?? context.h(60),
+          padding: width == null ? EdgeInsets.symmetric(horizontal: context.p(12)) : null,
           alignment: const Alignment(0, -0.40),
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(
-                AppAssets.paperWebp,
-              ),
+              image: AssetImage(AppAssets.paperWebp),
               fit: BoxFit.fill,
             ),
           ),
-          child:
-              child ??
-              FittedBox(
-                fit: BoxFit.scaleDown,
-                child: AppTextWidget(
-                  title!,
-                  style: style ?? AppTextStyles.font36W700Secondary,
-                ),
-              ),
+          child: child ?? FittedBox(
+            fit: BoxFit.scaleDown,
+            child: AppTextWidget(
+              title!,
+              style: style ?? AppTextStyles.font36W700Secondary,
+            ),
+          ),
         ),
       ),
     );
   }
 }
-

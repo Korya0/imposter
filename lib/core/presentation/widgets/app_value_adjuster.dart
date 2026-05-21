@@ -3,6 +3,7 @@ import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/tactile_sketchy_icon_button.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 
 class AppValueAdjuster extends StatelessWidget {
   const AppValueAdjuster({
@@ -10,7 +11,7 @@ class AppValueAdjuster extends StatelessWidget {
     super.key,
     this.onIncrement,
     this.onDecrement,
-    this.width = 50,
+    this.width,
     this.textColor,
     this.buttonColor,
   });
@@ -25,6 +26,7 @@ class AppValueAdjuster extends StatelessWidget {
   Widget build(BuildContext context) {
     final activeTextColor = textColor ?? AppColors.primary;
     final activeBtnColor = buttonColor ?? AppColors.primary;
+    final adjusterWidth = width ?? context.w(50);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +37,7 @@ class AppValueAdjuster extends StatelessWidget {
           onPressed: onIncrement,
         ),
         SizedBox(
-          width: width,
+          width: adjusterWidth,
           child: FittedBox(
             fit: BoxFit.scaleDown,
             child: AppTextWidget(

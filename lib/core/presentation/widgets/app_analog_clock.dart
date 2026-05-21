@@ -2,21 +2,23 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 
 class AppAnalogClock extends StatelessWidget {
   const AppAnalogClock({
     required this.value,
     super.key,
-    this.size = 200,
+    this.size,
   });
-  final double value; // From 0.0 to 1.0 (Animation progress)
-  final double size;
+  final double value;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
+    final clockSize = size ?? context.s(200);
     return SizedBox(
-      width: size,
-      height: size,
+      width: clockSize,
+      height: clockSize,
       child: CustomPaint(
         painter: _ClockPainter(
           value: value,
@@ -81,11 +83,12 @@ class _ClockPainter extends CustomPainter {
       ..drawCircle(center, radius, _outerCirclePaint)
       ..drawCircle(center, radius, _innerCirclePaint);
 
+    final markerLength = radius * 0.1;
     for (var i = 0; i < 12; i++) {
       final angle = (i * 30) * pi / 180;
       final start = Offset(
-        center.dx + (radius - 10) * cos(angle),
-        center.dy + (radius - 10) * sin(angle),
+        center.dx + (radius - markerLength) * cos(angle),
+        center.dy + (radius - markerLength) * sin(angle),
       );
       final end = Offset(
         center.dx + radius * cos(angle),
@@ -114,8 +117,8 @@ class _ClockPainter extends CustomPainter {
         ),
         _secondHandPaint,
       )
-      ..drawCircle(center, 6, _centerDotPrimaryPaint)
-      ..drawCircle(center, 3, _centerDotSecondaryPaint);
+      ..drawCircle(center, radius * 0.06, _centerDotPrimaryPaint)
+      ..drawCircle(center, radius * 0.03, _centerDotSecondaryPaint);
   }
 
   @override

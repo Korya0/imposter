@@ -19,7 +19,7 @@ class AppToast {
   }) {
     final now = DateTime.now();
 
-    // De-bounce logic: Prevent identical message within 2 seconds
+
     if (_lastToastTime != null &&
         _lastMessage == message &&
         now.difference(_lastToastTime!) < const Duration(seconds: 2)) {
@@ -41,7 +41,7 @@ class AppToast {
             ? Alignment.topCenter
             : Alignment.bottomCenter,
         autoCloseDuration: Duration(seconds: seconds ?? 2),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(context.p(16)),
         primaryColor: AppColors.primary,
         backgroundColor: AppColors.background,
         foregroundColor: AppColors.white,

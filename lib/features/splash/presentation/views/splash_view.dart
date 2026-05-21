@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/core/presentation/widgets/app_logo_name.dart';
+import 'package:imposter/core/presentation/widgets/app_logo.dart';
+import 'package:imposter/core/presentation/widgets/app_name_text.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
 class SplashView extends StatefulWidget {

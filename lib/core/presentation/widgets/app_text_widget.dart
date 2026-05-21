@@ -22,10 +22,7 @@ class AppTextWidget extends StatelessWidget {
     return Text(
       title,
       style:
-          style ??
-          AppTextStyles.font18W700Primary.copyWith(
-            wordSpacing: 4,
-          ),
+          style ?? AppTextStyles.font18W700PrimaryWithSpacing4,
 
       textAlign: textAlign ?? TextAlign.center,
       maxLines: maxLines,

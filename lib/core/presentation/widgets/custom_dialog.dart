@@ -2,57 +2,56 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 
 class CustomDialog extends StatelessWidget {
   const CustomDialog({
     required this.child,
     super.key,
     this.backgroundColor,
-    this.borderRadius = 16,
-    this.padding = const EdgeInsets.all(24),
-    this.insetPadding = const EdgeInsets.symmetric(
-      horizontal: 40,
-      vertical: 24,
-    ),
+    this.borderRadius,
+    this.padding,
+    this.insetPadding,
     this.useGlassmorphism = false,
     this.borderColor,
-    this.borderWidth = 1,
+    this.borderWidth,
     this.showShadow = true,
   });
 
   final Widget child;
   final Color? backgroundColor;
-  final double borderRadius;
-  final EdgeInsetsGeometry padding;
-  final EdgeInsets insetPadding;
+  final double? borderRadius;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsets? insetPadding;
   final bool useGlassmorphism;
   final Color? borderColor;
-  final double borderWidth;
+  final double? borderWidth;
   final bool showShadow;
 
   @override
   Widget build(BuildContext context) {
+    final bgColor = backgroundColor ?? AppColors.secondaryBackground;
+    final effectiveBorderRadius = borderRadius ?? context.p(16);
+    final effectivePadding = padding ?? EdgeInsets.all(context.p(24));
+    final effectiveInsetPadding = insetPadding ?? EdgeInsets.symmetric(
+      horizontal: context.w(40),
+      vertical: context.h(24),
+    );
+    final effectiveBorderWidth = borderWidth ?? context.w(1);
+
     final dialogContent = Container(
-      padding: padding,
+      padding: effectivePadding,
       decoration: BoxDecoration(
-        color: useGlassmorphism
-            ? (backgroundColor ?? AppColors.secondaryBackground).withValues(
-                alpha: 0.95,
-              )
-            : (backgroundColor ?? AppColors.secondaryBackground),
-        borderRadius: BorderRadius.circular(borderRadius),
-        border: borderColor != null
-            ? Border.all(color: borderColor!, width: borderWidth)
-            : null,
-        boxShadow: showShadow
-            ? [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.3),
-                  blurRadius: 20,
-                  offset: const Offset(0, 10),
-                ),
-              ]
-            : null,
+        color: useGlassmorphism ? bgColor.withValues(alpha: 0.95) : bgColor,
+        borderRadius: BorderRadius.circular(effectiveBorderRadius),
+        border: borderColor != null ? Border.all(color: borderColor!, width: effectiveBorderWidth) : null,
+        boxShadow: showShadow ? [
+          BoxShadow(
+            color: AppColors.background.withValues(alpha: 0.3),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ] : null,
       ),
       child: child,
     );
@@ -60,18 +59,13 @@ class CustomDialog extends StatelessWidget {
     final dialog = Dialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      insetPadding: insetPadding,
+      insetPadding: effectiveInsetPadding,
       child: dialogContent,
     );
 
-    if (useGlassmorphism) {
-      return BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-        child: dialog,
-      );
-    }
-
-    return dialog;
+    return useGlassmorphism
+        ? BackdropFilter(filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8), child: dialog)
+        : dialog;
   }
 }
 
@@ -79,15 +73,12 @@ Future<T?> showCustomDialog<T>({
   required BuildContext context,
   required Widget child,
   Color? backgroundColor,
-  double borderRadius = 16,
-  EdgeInsetsGeometry padding = const EdgeInsets.all(24),
-  EdgeInsets insetPadding = const EdgeInsets.symmetric(
-    horizontal: 40,
-    vertical: 24,
-  ),
+  double? borderRadius,
+  EdgeInsetsGeometry? padding,
+  EdgeInsets? insetPadding,
   bool useGlassmorphism = false,
   Color? borderColor,
-  double borderWidth = 1,
+  double? borderWidth,
   bool showShadow = true,
   bool barrierDismissible = true,
   Color? barrierColor,
