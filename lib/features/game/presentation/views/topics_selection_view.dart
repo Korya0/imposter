@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imposter/core/constants/app_padding.dart';
 import 'package:imposter/core/constants/app_strings.dart';
-import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/custom_scroll_scaffold.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
@@ -22,9 +21,6 @@ class TopicsSelectionView extends StatelessWidget {
         SliverPadding(
           padding: AppPadding.viewH18(context),
           sliver: const _TopicsSelectionContent(),
-        ),
-        const SliverToBoxAdapter(
-          child: AppGap(30),
         ),
       ],
     );

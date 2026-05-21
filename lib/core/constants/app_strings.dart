@@ -14,6 +14,7 @@ abstract class AppStrings {
   static const String category = 'الموضوع';
 
   // Game Settings
+  static const String settings = 'الإعدادات';
   static const String numberOfPlayers = 'عدد الاعبين';
   static const String numberOfSpies = 'عدد الجواسيس';
   static const String numberOfMinutes = 'عدد الدقائق';

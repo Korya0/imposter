@@ -89,6 +89,11 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.w700.weight,
     color: AppColors.background,
   );
+  static TextStyle font36W700Background = font.copyWith(
+    fontSize: 36,
+    fontWeight: FontWeightHelper.w700.weight,
+    color: AppColors.background,
+  );
 
   static TextStyle font36W700Primary = font.copyWith(
     fontSize: 36,

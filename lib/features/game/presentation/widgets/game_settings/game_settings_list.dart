@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imposter/core/constants/app_assets.dart';
-import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_toast.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/cubit/game_cubit.dart';
 import 'package:imposter/features/game/presentation/cubit/game_state.dart';
 import 'package:imposter/features/game/presentation/widgets/game_settings/game_setting_item.dart';
@@ -17,6 +16,7 @@ class GameSettingsList extends StatelessWidget {
     final cubit = context.read<GameCubit>();
 
     return Column(
+      spacing: context.p(22),
       children: [
         // Players Setting
         BlocSelector<GameCubit, GameState, int>(
@@ -42,12 +42,7 @@ class GameSettingsList extends StatelessWidget {
               },
             );
           },
-        )
-            .animate(key: const ValueKey('players_setting_anim'))
-            .fadeIn(delay: 100.ms, duration: 600.ms)
-            .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
-
-        SizedBox(height: context.p(20)),
+        ),
 
         // Spies Setting
         BlocSelector<GameCubit, GameState, (int, int)>(
@@ -75,12 +70,7 @@ class GameSettingsList extends StatelessWidget {
               },
             );
           },
-        )
-            .animate(key: const ValueKey('spies_setting_anim'))
-            .fadeIn(delay: 250.ms, duration: 600.ms)
-            .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
-
-        SizedBox(height: context.p(20)),
+        ),
 
         // Minutes Setting
         BlocSelector<GameCubit, GameState, int>(
@@ -106,10 +96,7 @@ class GameSettingsList extends StatelessWidget {
               },
             );
           },
-        )
-            .animate(key: const ValueKey('minutes_setting_anim'))
-            .fadeIn(delay: 400.ms, duration: 600.ms)
-            .slideY(begin: 0.2, end: 0, curve: Curves.easeOutQuad),
+        ),
       ],
     );
   }

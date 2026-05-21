@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/custom_sliver_app_bar.dart';
 
 class CustomScrollScaffold extends StatelessWidget {
@@ -46,7 +47,13 @@ class CustomScrollScaffold extends StatelessWidget {
             floating: appBarFloating,
             snap: appBarSnap,
           ),
+          const SliverToBoxAdapter(
+            child: AppGap(24),
+          ),
           ...slivers,
+          const SliverToBoxAdapter(
+            child: AppGap(40),
+          ),
         ],
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:imposter/core/constants/app_assets.dart';
+import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/app_value_adjuster.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
@@ -29,48 +29,50 @@ class GameSettingItem extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          width: 250,
-          height: (context.height * 0.08).clamp(40, 70),
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                AppAssets.paperWebp,
-              ),
-              fit: BoxFit.fill,
-            ),
-          ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.p(18)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SvgPicture.asset(
-                  iconPath,
-                  width: 28,
-                  height: 28,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.background,
-                    BlendMode.srcIn,
-                  ),
-                ),
-                AppTextWidget(
-                  title,
-                  style: AppTextStyles.font30W700Background,
-                ),
-                const SizedBox(),
-              ],
-            ),
-          ),
-        ),
+        _GameSettingHeader(iconPath: iconPath, title: title),
         if (!isReadOnly) ...[
-          SizedBox(height: (context.height * 0.02).clamp(6, 12)),
+          const AppGap(8),
           AppValueAdjuster(
             value: value,
             onIncrement: onIncrement,
             onDecrement: onDecrement,
           ),
         ],
+      ],
+    );
+  }
+}
+
+class _GameSettingHeader extends StatelessWidget {
+  const _GameSettingHeader({
+    required this.iconPath,
+    required this.title,
+  });
+  final String iconPath;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      spacing: context.p(12),
+      mainAxisAlignment: .center,
+      children: [
+        SvgPicture.asset(
+          iconPath,
+          width: context.s(28),
+          height: context.s(28),
+          colorFilter: const ColorFilter.mode(
+            AppColors.primary,
+            BlendMode.srcIn,
+          ),
+        ),
+
+        AppTextWidget(
+          title,
+          style: AppTextStyles.font30W700Background.copyWith(
+            color: AppColors.primary,
+          ),
+        ),
       ],
     );
   }
