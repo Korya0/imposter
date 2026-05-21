@@ -10,7 +10,7 @@ class AppValueAdjuster extends StatelessWidget {
     super.key,
     this.onIncrement,
     this.onDecrement,
-    this.width = 70,
+    this.width = 50,
     this.textColor,
     this.buttonColor,
   });

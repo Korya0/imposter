@@ -1,8 +1,9 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class TactileSketchyIconButton extends StatefulWidget {
+class TactileSketchyIconButton extends StatelessWidget {
   const TactileSketchyIconButton({
     required this.icon,
     required this.onPressed,
@@ -15,62 +16,29 @@ class TactileSketchyIconButton extends StatefulWidget {
   final VoidCallback? onPressed;
 
   @override
-  State<TactileSketchyIconButton> createState() => _TactileSketchyIconButtonState();
-}
-
-class _TactileSketchyIconButtonState extends State<TactileSketchyIconButton> {
-  bool _isPressed = false;
-
-  @override
   Widget build(BuildContext context) {
-    final isEnabled = widget.onPressed != null;
-    final activeColor = isEnabled ? widget.color : widget.color.withValues(alpha: 0.3);
+    final isEnabled = onPressed != null;
+    final activeColor = isEnabled ? color : color.withValues(alpha: 0.3);
 
     return GestureDetector(
-      onTapDown: (_) {
-        if (isEnabled) {
-          setState(() {
-            _isPressed = true;
-          });
-        }
-      },
-      onTapUp: (_) {
-        if (isEnabled) {
-          setState(() {
-            _isPressed = false;
-          });
-        }
-      },
-      onTapCancel: () {
-        if (isEnabled) {
-          setState(() {
-            _isPressed = false;
-          });
-        }
-      },
       onTap: isEnabled
           ? () {
               HapticFeedback.lightImpact();
-              widget.onPressed!();
+              onPressed!();
             }
           : null,
       behavior: HitTestBehavior.opaque,
-      child: AnimatedScale(
-        scale: _isPressed ? 0.90 : 1.0,
-        duration: const Duration(milliseconds: 100),
-        curve: Curves.easeOutCubic,
-        child: Container(
-          width: 44,
-          height: 44,
-          margin: const EdgeInsets.symmetric(horizontal: 4),
-          child: CustomPaint(
-            painter: QuietSketchyPainter(color: activeColor),
-            child: Center(
-              child: Icon(
-                widget.icon,
-                size: 22,
-                color: activeColor,
-              ),
+      child: Container(
+        width: 44,
+        height: 44,
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        child: CustomPaint(
+          painter: QuietSketchyPainter(color: activeColor),
+          child: Center(
+            child: Icon(
+              icon,
+              size: 22,
+              color: activeColor,
             ),
           ),
         ),
@@ -93,7 +61,7 @@ class QuietSketchyPainter extends CustomPainter {
       final r = radius - 1.5 + ripple;
       final x = center.dx + r * cos(angle);
       final y = center.dy + r * sin(angle);
-      
+
       if (i == 0) {
         path.moveTo(x, y);
       } else {
@@ -114,7 +82,7 @@ class QuietSketchyPainter extends CustomPainter {
 
     final radius = size.width / 2;
     final center = Offset(size.width / 2, size.height / 2);
-    
+
     final path = _cachedPaths[size.width] ??= _buildPath(radius, center);
 
     canvas.drawPath(path, paint);
