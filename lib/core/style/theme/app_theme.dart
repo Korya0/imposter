@@ -23,7 +23,7 @@ abstract class AppTheme {
         ),
       ),
 
-      fontFamily: AppFonts.appFont,
+      fontFamily: AppFonts.mainFont,
     );
   }
 }

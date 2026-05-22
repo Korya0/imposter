@@ -55,7 +55,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
             children: [
               AppTextWidget(
                 AppStrings.feedbackSubtitle,
-                style: AppTextStyles.font20W400White,
+                style: AppTextStyles.font18W400White,
               ),
               const AppGap(26),
               AppTextField(

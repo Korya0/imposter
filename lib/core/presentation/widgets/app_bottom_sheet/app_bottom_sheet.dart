@@ -116,9 +116,9 @@ class _BottomSheetHeader extends StatelessWidget {
             alignment: AlignmentDirectional.centerEnd,
             child: AppTextWidget(
               title!,
-              style: AppTextStyles.font24W700PrimaryWithSpacing4,
+              style: AppTextStyles.font24W700Primary,
             ),
-          ),
+          ), 
         AppBackButton(
           onTap: () => context.pop(),
         ),

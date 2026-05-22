@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/app_value_adjuster.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
@@ -27,11 +26,11 @@ class GameSettingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: context.p(16),
       mainAxisSize: MainAxisSize.min,
       children: [
         _GameSettingHeader(iconPath: iconPath, title: title),
         if (!isReadOnly) ...[
-          const AppGap(8),
           AppValueAdjuster(
             value: value,
             onIncrement: onIncrement,
@@ -69,9 +68,7 @@ class _GameSettingHeader extends StatelessWidget {
 
         AppTextWidget(
           title,
-          style: AppTextStyles.font30W700Background.copyWith(
-            color: AppColors.primary,
-          ),
+          style: AppTextStyles.font24W700Primary,
         ),
       ],
     );

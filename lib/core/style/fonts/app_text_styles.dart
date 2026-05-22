@@ -4,12 +4,45 @@ import 'package:imposter/core/style/theme/app_colors.dart';
 
 class AppTextStyles {
   static const TextStyle font = TextStyle(
-    fontFamily: AppFonts.appFont,
+    fontFamily: AppFonts.mainFont,
   );
-  static TextStyle font60W700Primary = font.copyWith(
+  static const TextStyle fontSecond = TextStyle(
+    fontFamily: AppFonts.secondFont,
+  );
+  static TextStyle fontSecond60W700Primary = fontSecond.copyWith(
     color: AppColors.primary,
     fontSize: 60,
     fontWeight: FontWeightHelper.w700.weight,
+  );
+
+  static TextStyle fontSecond50W700Primary = fontSecond.copyWith(
+    color: AppColors.primary,          
+    fontSize: 50,
+    fontWeight: FontWeightHelper.w700.weight,
+  );
+
+  static TextStyle font26W700Primary = font.copyWith(
+    fontSize: 26,
+    fontWeight: FontWeightHelper.w700.weight,
+    color: AppColors.primary,
+  );
+
+  static TextStyle font18W400White = font.copyWith(
+    fontSize: 18,
+    color: AppColors.white,
+    fontWeight: FontWeightHelper.w400.weight,
+  );
+
+  static TextStyle font16W700Primary = font.copyWith(
+    fontSize: 16,
+    color: AppColors.primary,
+    fontWeight: FontWeightHelper.w700.weight,
+  );
+
+  static TextStyle font26W700Secondary = font.copyWith(
+    fontSize: 26,
+    fontWeight: FontWeightHelper.w700.weight,
+    color: AppColors.secondary,
   );
 
   static TextStyle font45W700Primary = font.copyWith(
@@ -18,11 +51,10 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.w700.weight,
   );
 
-  static TextStyle font45W700SecretWord = font.copyWith(
+  static TextStyle font36W700Primary = font.copyWith(
     color: AppColors.primary,
-    fontSize: 45,
+    fontSize: 36,
     fontWeight: FontWeightHelper.w700.weight,
-    fontFamily: 'sans-serif',
   );
 
   static TextStyle font24W700Primary = font.copyWith(
@@ -67,18 +99,16 @@ class AppTextStyles {
     fontSize: 18,
   );
 
+  static TextStyle font16W700White = font.copyWith(
+    fontSize: 16,
+    color: AppColors.white,
+    fontWeight: FontWeightHelper.w700.weight,
+  );
+
   static TextStyle font18W400Primary = font.copyWith(
     fontWeight: FontWeightHelper.w400.weight,
     color: AppColors.primary,
     fontSize: 18,
-  );
-
-  static TextStyle font18W700PrimaryWithSpacing4 = font18W700Primary.copyWith(
-    wordSpacing: 4,
-  );
-
-  static TextStyle font24W700PrimaryWithSpacing4 = font24W700Primary.copyWith(
-    wordSpacing: 4,
   );
 
   static TextStyle font20W400White = font.copyWith(
@@ -116,11 +146,7 @@ class AppTextStyles {
     color: AppColors.background,
   );
 
-  static TextStyle font36W700Primary = font.copyWith(
-    fontSize: 36,
-    fontWeight: FontWeightHelper.w700.weight,
-    color: AppColors.primary,
-  );
+ 
 
   static TextStyle font28W700Primary = font.copyWith(
     fontSize: 28,
@@ -134,8 +160,8 @@ class AppTextStyles {
     color: AppColors.primary,
   );
 
-  static TextStyle font40W700Primary = font.copyWith(
-    fontSize: 40,
+  static TextStyle font30W700Primary = font.copyWith(
+    fontSize: 30,
     fontWeight: FontWeightHelper.w700.weight,
     color: AppColors.primary,
   );

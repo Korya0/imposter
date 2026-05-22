@@ -10,7 +10,7 @@ class AppInitializer {
     try {
       WidgetsFlutterBinding.ensureInitialized();
       await SystemUiConfig.setup();
-      await setupEssentialDI();
+      await setupEssentialDI();     
 
       Bloc.observer = AppBlocObserver();
 

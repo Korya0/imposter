@@ -24,8 +24,8 @@ class HowToPlayRuleWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            width: context.s(30),
-            height: context.s(30),
+            width: context.s(26),
+            height: context.s(26),
             child: CustomPaint(
               painter: QuietSketchyPainter(
                 color: AppColors.primary,
@@ -33,7 +33,7 @@ class HowToPlayRuleWidget extends StatelessWidget {
               child: Center(
                 child: Text(
                   stepNumber.toString(),
-                  style: AppTextStyles.font15W700Primary,
+                  style: AppTextStyles.font16W700Primary,
                 ),
               ),
             ),
@@ -42,7 +42,7 @@ class HowToPlayRuleWidget extends StatelessWidget {
           Expanded(
             child: AppTextWidget(
               rule,
-              style: AppTextStyles.font20W400White,
+              style: AppTextStyles.font16W700White,
               textAlign: TextAlign.start,
             ),
           ),

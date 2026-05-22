@@ -35,32 +35,7 @@ class _HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (context.isLandscape) {
-      return Row(
-        spacing: context.p(80), 
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: context.p(18),
-            children: [
-              const AppNameText(),
-              const AppLogo()
-                  .animate()
-                  .fadeIn(duration: 800.ms, curve: Curves.easeOut)
-                  .slideY(begin: 0.1, end: 0),
-            ],
-          ),
-
-          const HomeButtonsSection()
-              .animate()
-              .fadeIn(delay: 200.ms, duration: 800.ms, curve: Curves.easeOut)
-              .slideY(begin: 0.05, end: 0),
-        ],
-      );
-    }
-
+   
     return Column(
       spacing: context.p(80),
       mainAxisAlignment: MainAxisAlignment.center,

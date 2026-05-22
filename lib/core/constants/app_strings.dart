@@ -15,9 +15,9 @@ abstract class AppStrings {
 
   // Game Settings
   static const String settings = 'الإعدادات';
-  static const String numberOfPlayers = 'عدد الاعبين';
-  static const String numberOfSpies = 'عدد الجواسيس';
-  static const String numberOfMinutes = 'عدد الدقائق';
+  static const String numberOfPlayers = 'الاعبين';
+  static const String numberOfSpies = 'الجواسيس';
+  static const String numberOfMinutes = 'الدقائق';
   static const String start = 'ابدا';
 
   // Game Play - Scanning
@@ -55,7 +55,8 @@ abstract class AppStrings {
   static const String dontLetHopeDown = 'متخليش العشم ياخدك';
   static const String sendFeedback = 'إرسال';
   static const String feedbackPlaceholder = 'اكتب مقترحك هنا...';
-  static const String feedbackContactPlaceholder = 'إيميلك أو رقم تليفونك (اختياري)...';
+  static const String feedbackContactPlaceholder =
+      'إيميلك أو رقم تليفونك (اختياري)...';
   static const String feedbackSuccess = 'شكراً لمشاركتك تم الإرسال بنجاح';
   static const String feedbackError = 'حدث خطأ أثناء الإرسال، حاول مرة أخرى';
   static const String feedbackEmptyError = 'اكتب رأيك الأول عشان نقراه!';
@@ -81,5 +82,4 @@ abstract class AppStrings {
   static const String minSpiesReached = 'لازم يكون فيه جاسوس واحد على الأقل';
   static const String maxMinutesReached = '30 دقيقة ده أقصى وقت مسموح بيه';
   static const String minMinutesReached = 'أقل وقت هو دقيقة واحدة';
-
 }

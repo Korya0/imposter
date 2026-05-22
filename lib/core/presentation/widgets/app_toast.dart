@@ -1,8 +1,8 @@
-import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:imposter/core/style/theme/app_colors.dart';
-import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
+import 'package:imposter/core/style/fonts/app_text_styles.dart';
+import 'package:imposter/core/style/theme/app_colors.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:toastification/toastification.dart';
 
 enum ToastPosition { top, bottom }
@@ -19,7 +19,6 @@ class AppToast {
   }) {
     final now = DateTime.now();
 
-
     if (_lastToastTime != null &&
         _lastMessage == message &&
         now.difference(_lastToastTime!) < const Duration(seconds: 2)) {
@@ -35,7 +34,7 @@ class AppToast {
         style: ToastificationStyle.minimal,
         title: AppTextWidget(
           message,
-          style: AppTextStyles.font18W700Primary,
+          style: AppTextStyles.font16W700Primary,
         ),
         alignment: position == ToastPosition.top
             ? Alignment.topCenter

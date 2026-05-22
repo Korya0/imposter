@@ -60,116 +60,50 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
       slivers: [
         SliverFillRemaining(
           hasScrollBody: false,
-          child: context.isLandscape
-              ? Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: context.p(16),
-                    horizontal: context.p(32),
+          child: Column(
+            spacing: context.p(24),
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(
+                spacing: context.p(24),
+                children: [
+                  AppTextWidget(
+                    AppStrings.summary,
+                    style: AppTextStyles.font28W700Primary,
                   ),
-                  child: Row(
+                  Column(
+                    spacing: context.p(4),
                     children: [
-                      // Left Column: Summary and info data
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          spacing: context.p(16),
-                          children: [
-                            AppTextWidget(
-                              AppStrings.summary,
-                              style: AppTextStyles.font34W700Primary,
-                            ),
-                            Column(
-                              spacing: context.p(4),
-                              children: [
-                                _SummaryInfoRow(
-                                  label: AppStrings.word,
-                                  value: widget.secretWord,
-                                ),
-                                _SummaryInfoRow(
-                                  label: AppStrings.numberOfPlayers,
-                                  value: widget.playerCount.toString(),
-                                ),
-                                _SummaryInfoRow(
-                                  label: AppStrings.numberOfSpies,
-                                  value: widget.spyCount.toString(),
-                                ),
-                                _SummaryInfoRow(
-                                  label: AppStrings.numberOfMinutes,
-                                  value: '${widget.durationMinutes}:00',
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                      _SummaryInfoRow(
+                        label: AppStrings.word,
+                        value: widget.secretWord,
                       ),
-                      // Right Column: Another round button and Finish game button
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          spacing: context.p(24),
-                          children: [
-                            _AnotherRoundButton(
-                              controller: _redoController,
-                              onTap: widget.onAnotherRound,
-                            ),
-                            AppButton(
-                              width: double.infinity.clamp(150, 300),
-                              height: (context.height * 0.15).clamp(45.0, 60.0),
-                              title: AppStrings.finishGame,
-                              onTap: widget.onFinish,
-                            ),
-                          ],
-                        ),
+                      _SummaryInfoRow(
+                        label: AppStrings.numberOfPlayers,
+                        value: widget.playerCount.toString(),
+                      ),
+                      _SummaryInfoRow(
+                        label: AppStrings.numberOfSpies,
+                        value: widget.spyCount.toString(),
+                      ),
+                      _SummaryInfoRow(
+                        label: AppStrings.numberOfMinutes,
+                        value: '${widget.durationMinutes}:00',
                       ),
                     ],
                   ),
-                )
-              : Column(
-                  spacing: context.p(24),
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      spacing: context.p(24),
-                      children: [
-                        AppTextWidget(
-                          AppStrings.summary,
-                          style: AppTextStyles.font34W700Primary,
-                        ),
-                        Column(
-                          spacing: context.p(4),
-                          children: [
-                            _SummaryInfoRow(
-                              label: AppStrings.word,
-                              value: widget.secretWord,
-                            ),
-                            _SummaryInfoRow(
-                              label: AppStrings.numberOfPlayers,
-                              value: widget.playerCount.toString(),
-                            ),
-                            _SummaryInfoRow(
-                              label: AppStrings.numberOfSpies,
-                              value: widget.spyCount.toString(),
-                            ),
-                            _SummaryInfoRow(
-                              label: AppStrings.numberOfMinutes,
-                              value: '${widget.durationMinutes}:00',
-                            ),
-                          ],
-                        ),
-                        _AnotherRoundButton(
-                          controller: _redoController,
-                          onTap: widget.onAnotherRound,
-                        ),
-                      ],
-                    ),
-                    AppButton(
-                      width: double.infinity.clamp(150, 300),
-                      height: (context.height * 0.1).clamp(50.0, 70.0),
-                      title: AppStrings.finishGame,
-                      onTap: widget.onFinish,
-                    ),
-                  ],
-                ),
+                  _AnotherRoundButton(
+                    controller: _redoController,
+                    onTap: widget.onAnotherRound,
+                  ),
+                ],
+              ),
+              AppButton( 
+                title: AppStrings.finishGame,
+                onTap: widget.onFinish,
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -189,12 +123,10 @@ class _SummaryInfoRow extends StatelessWidget {
         spacing: context.p(16),
         mainAxisAlignment: .center,
         children: [
-          AppTextWidget('$label:', style: AppTextStyles.font28W700Primary),
+          AppTextWidget('$label:', style: AppTextStyles.font28W400Primary),
           AppTextWidget(
             value,
-            style: AppTextStyles.font28W700Primary.copyWith(
-              color: AppColors.white.withValues(alpha: 0.8),
-            ),
+            style: AppTextStyles.font28W400White,
           ),
         ],
       ),

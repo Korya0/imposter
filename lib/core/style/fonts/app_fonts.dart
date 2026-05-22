@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class AppFonts {
-  static const String appFont = 'ArefRuqaa';
+  static const String mainFont = 'ElMessiri';
+  static const String secondFont = 'ArefRuqaa';
 }
 
 enum FontWeightHelper {

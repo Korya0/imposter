@@ -15,175 +15,89 @@ class GameSettingsList extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<GameSetupCubit>();
 
-    return context.isLandscape
-        ? Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            spacing: context.p(22),
-            children: [ 
-              // Players Setting
-              BlocSelector<GameSetupCubit, GameSetupState, int>(
-                selector: (state) => state.playerCount,
-                builder: (context, playerCount) {
-                  return GameSettingItem(
-                    iconPath: AppAssets.peopleGroupSvg,
-                    title: AppStrings.numberOfPlayers,
-                    value: playerCount.toString(),
-                    onIncrement: () {
-                      if (playerCount < 12) {
-                        cubit.incrementPlayers();
-                      } else {
-                        AppToast.show(context, AppStrings.maxPlayersReached);
-                      }
-                    },
-                    onDecrement: () {
-                      if (playerCount > 3) {
-                        cubit.decrementPlayers();
-                      } else {
-                        AppToast.show(context, AppStrings.minPlayersReached);
-                      }
-                    },
-                  );
-                },
-              ),
+    return Column(
+      spacing: context.p(28),
+      children: [
+        // Players Setting
+        BlocSelector<GameSetupCubit, GameSetupState, int>(
+          selector: (state) => state.playerCount,
+          builder: (context, playerCount) {
+            return GameSettingItem(
+              iconPath: AppAssets.peopleGroupSvg,
+              title: AppStrings.numberOfPlayers,
+              value: playerCount.toString(),
+              onIncrement: () {
+                if (playerCount < 12) {
+                  cubit.incrementPlayers();
+                } else {
+                  AppToast.show(context, AppStrings.maxPlayersReached);
+                }
+              },
+              onDecrement: () {
+                if (playerCount > 3) {
+                  cubit.decrementPlayers();
+                } else {
+                  AppToast.show(context, AppStrings.minPlayersReached);
+                }
+              },
+            );
+          },
+        ),
 
-              // Spies Setting
-              BlocSelector<GameSetupCubit, GameSetupState, (int, int)>(
-                selector: (state) => (state.spyCount, state.playerCount),
-                builder: (context, data) {
-                  final spyCount = data.$1;
-                  final playerCount = data.$2;
-                  return GameSettingItem(
-                    iconPath: AppAssets.spySvg,
-                    title: AppStrings.numberOfSpies,
-                    value: spyCount.toString(),
-                    onIncrement: () {
-                      if (spyCount < playerCount ~/ 2) {
-                        cubit.incrementSpies();
-                      } else {
-                        AppToast.show(context, AppStrings.maxSpiesReached);
-                      }
-                    },
-                    onDecrement: () {
-                      if (spyCount > 1) {
-                        cubit.decrementSpies();
-                      } else {
-                        AppToast.show(context, AppStrings.minSpiesReached);
-                      }
-                    },
-                  );
-                },
-              ),
+        // Spies Setting
+        BlocSelector<GameSetupCubit, GameSetupState, (int, int)>(
+          selector: (state) => (state.spyCount, state.playerCount),
+          builder: (context, data) {
+            final spyCount = data.$1;
+            final playerCount = data.$2;
+            return GameSettingItem(
+              iconPath: AppAssets.spySvg,
+              title: AppStrings.numberOfSpies,
+              value: spyCount.toString(),
+              onIncrement: () {
+                if (spyCount < playerCount ~/ 2) {
+                  cubit.incrementSpies();
+                } else {
+                  AppToast.show(context, AppStrings.maxSpiesReached);
+                }
+              },
+              onDecrement: () {
+                if (spyCount > 1) {
+                  cubit.decrementSpies();
+                } else {
+                  AppToast.show(context, AppStrings.minSpiesReached);
+                }
+              },
+            );
+          },
+        ),
 
-              // Minutes Setting
-              BlocSelector<GameSetupCubit, GameSetupState, int>(
-                selector: (state) => state.durationMinutes,
-                builder: (context, durationMinutes) {
-                  return GameSettingItem(
-                    iconPath: AppAssets.timeOclockSvg,
-                    title: AppStrings.numberOfMinutes,
-                    value: durationMinutes.toString(),
-                    onIncrement: () {
-                      if (durationMinutes < 30) {
-                        cubit.incrementMinutes();
-                      } else {
-                        AppToast.show(context, AppStrings.maxMinutesReached);
-                      }
-                    },
-                    onDecrement: () {
-                      if (durationMinutes > 1) {
-                        cubit.decrementMinutes();
-                      } else {
-                        AppToast.show(context, AppStrings.minMinutesReached);
-                      }
-                    },
-                  );
-                },
-              ),
-            ],
-          )
-        : Column(
-            spacing: context.p(22),
-            children: [
-              // Players Setting
-              BlocSelector<GameSetupCubit, GameSetupState, int>(
-                selector: (state) => state.playerCount,
-                builder: (context, playerCount) {
-                  return GameSettingItem(
-                    iconPath: AppAssets.peopleGroupSvg,
-                    title: AppStrings.numberOfPlayers,
-                    value: playerCount.toString(),
-                    onIncrement: () {
-                      if (playerCount < 12) {
-                        cubit.incrementPlayers();
-                      } else {
-                        AppToast.show(context, AppStrings.maxPlayersReached);
-                      }
-                    },
-                    onDecrement: () {
-                      if (playerCount > 3) {
-                        cubit.decrementPlayers();
-                      } else {
-                        AppToast.show(context, AppStrings.minPlayersReached);
-                      }
-                    },
-                  );
-                },
-              ),
-
-              // Spies Setting
-              BlocSelector<GameSetupCubit, GameSetupState, (int, int)>(
-                selector: (state) => (state.spyCount, state.playerCount),
-                builder: (context, data) {
-                  final spyCount = data.$1;
-                  final playerCount = data.$2;
-                  return GameSettingItem(
-                    iconPath: AppAssets.spySvg,
-                    title: AppStrings.numberOfSpies,
-                    value: spyCount.toString(),
-                    onIncrement: () {
-                      if (spyCount < playerCount ~/ 2) {
-                        cubit.incrementSpies();
-                      } else {
-                        AppToast.show(context, AppStrings.maxSpiesReached);
-                      }
-                    },
-                    onDecrement: () {
-                      if (spyCount > 1) {
-                        cubit.decrementSpies();
-                      } else {
-                        AppToast.show(context, AppStrings.minSpiesReached);
-                      }
-                    },
-                  );
-                },
-              ),
-
-              // Minutes Setting
-              BlocSelector<GameSetupCubit, GameSetupState, int>(
-                selector: (state) => state.durationMinutes,
-                builder: (context, durationMinutes) {
-                  return GameSettingItem(
-                    iconPath: AppAssets.timeOclockSvg,
-                    title: AppStrings.numberOfMinutes,
-                    value: durationMinutes.toString(),
-                    onIncrement: () {
-                      if (durationMinutes < 30) {
-                        cubit.incrementMinutes();
-                      } else {
-                        AppToast.show(context, AppStrings.maxMinutesReached);
-                      }
-                    },
-                    onDecrement: () {
-                      if (durationMinutes > 1) {
-                        cubit.decrementMinutes();
-                      } else {
-                        AppToast.show(context, AppStrings.minMinutesReached);
-                      }
-                    },
-                  );
-                },
-              ),
-            ],
-          );
+        // Minutes Setting
+        BlocSelector<GameSetupCubit, GameSetupState, int>(
+          selector: (state) => state.durationMinutes,
+          builder: (context, durationMinutes) {
+            return GameSettingItem(
+              iconPath: AppAssets.timeOclockSvg,
+              title: AppStrings.numberOfMinutes,
+              value: durationMinutes.toString(),
+              onIncrement: () {
+                if (durationMinutes < 30) {
+                  cubit.incrementMinutes();
+                } else {
+                  AppToast.show(context, AppStrings.maxMinutesReached);
+                }
+              },
+              onDecrement: () {
+                if (durationMinutes > 1) {
+                  cubit.decrementMinutes();
+                } else {
+                  AppToast.show(context, AppStrings.minMinutesReached);
+                }
+              },
+            );
+          },
+        ),
+      ],
+    );
   }
 }

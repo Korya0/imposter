@@ -42,7 +42,7 @@ class AppValueAdjuster extends StatelessWidget {
             fit: BoxFit.scaleDown,
             child: AppTextWidget(
               value,
-              style: AppTextStyles.font40W700Primary.copyWith(
+              style: AppTextStyles.font30W700Primary.copyWith(
                 color: activeTextColor,
               ),
             ),

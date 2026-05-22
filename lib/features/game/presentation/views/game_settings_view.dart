@@ -6,8 +6,8 @@ import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/custom_scroll_scaffold.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
 import 'package:imposter/features/game/presentation/controller/game_session_cubit/game_session_cubit.dart';
+import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
 import 'package:imposter/features/game/presentation/widgets/game_settings/game_settings_list.dart';
 import 'package:imposter/features/game/presentation/widgets/game_settings/start_button.dart';
 
@@ -24,7 +24,7 @@ class GameSettingsView extends StatelessWidget {
           sliver: SliverList(
             delegate: SliverChildListDelegate([
               const GameSettingsList(),
-              const AppGap(40),
+              const AppGap(50),
               Center(
                 child: StartButton(
                   onTap: () async {

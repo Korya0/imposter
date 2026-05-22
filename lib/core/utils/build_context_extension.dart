@@ -5,8 +5,6 @@ import 'package:imposter/core/presentation/widgets/app_toast.dart';
 extension BuildContextExtension on BuildContext {
   double get width => MediaQuery.sizeOf(this).width;
   double get height => MediaQuery.sizeOf(this).height;
-  double get shortestSide => MediaQuery.sizeOf(this).shortestSide;
-  bool get isLandscape => MediaQuery.orientationOf(this) == Orientation.landscape;
 
   bool get isWeb => kIsWeb;
 
@@ -16,19 +14,19 @@ extension BuildContextExtension on BuildContext {
 
   // w: Scales widths/breadths (horizontal dimensions)
   double w(double value) =>
-      (value * (shortestSide / 375)).clamp(value * 0.8, value * 1.3);
+      (value * (width / 375)).clamp(value * 0.8, value * 1.3);
 
   // s: Scales element sizes (icons, sized custom shapes)
   double s(double value) =>
-      (value * (shortestSide / 375)).clamp(value * 0.8, value * 1.3);
+      (value * (width / 375)).clamp(value * 0.8, value * 1.3);
 
   // p: Scales spacings (paddings, margins, gaps, SizedBox spacing)
   double p(double value) =>
-      (value * (shortestSide / 375)).clamp(value * 0.8, value * 1.3);
+      (value * (width / 375)).clamp(value * 0.8, value * 1.3);
 
   // f: Scales font sizes (text size)
   double f(double value) =>
-      (value * (shortestSide / 375)).clamp(value * 0.8, value * 1.3);
+      (value * (width / 375)).clamp(value * 0.8, value * 1.3);
 
   void showAppToast(
     String message, {

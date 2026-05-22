@@ -57,39 +57,22 @@ class _GameTimerState extends State<GameTimer> with TickerProviderStateMixin {
         final timeStr =
             '${mins.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
 
-        return context.isLandscape
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                spacing: context.p(24),
-                children: [
-                  RepaintBoundary(
-                    child: AppAnalogClock(
-                      size: context.s(150),
-                      value: progress,
-                    ),
-                  ),
-                  AppTextWidget(
-                    timeStr,
-                    style: AppTextStyles.font48W400Primary,
-                  ),
-                ],
-              )
-            : Column(
-                mainAxisSize: MainAxisSize.min,
-                spacing: context.p(24),
-                children: [
-                  RepaintBoundary(
-                    child: AppAnalogClock(
-                      size: context.s(180),
-                      value: progress,
-                    ),
-                  ),
-                  AppTextWidget(
-                    timeStr,
-                    style: AppTextStyles.font48W400Primary,
-                  ),
-                ],
-              );
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: context.p(34),
+          children: [
+            RepaintBoundary(
+              child: AppAnalogClock(
+                size: context.s(150),
+                value: progress,
+              ),
+            ),
+            AppTextWidget(
+              timeStr,
+              style: AppTextStyles.font34W700Primary,
+            ),
+          ],
+        );
       },
     );
   }

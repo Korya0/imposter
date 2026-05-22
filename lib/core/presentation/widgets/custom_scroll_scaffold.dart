@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:imposter/core/presentation/widgets/app_back_button.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
-import 'package:imposter/core/presentation/widgets/custom_sliver_app_bar.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
+import 'package:imposter/core/style/theme/app_colors.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 
 class CustomScrollScaffold extends StatelessWidget {
   const CustomScrollScaffold({
@@ -48,7 +52,7 @@ class CustomScrollScaffold extends StatelessWidget {
             snap: appBarSnap,
           ),
           const SliverToBoxAdapter(
-            child: AppGap(24),
+            child: AppGap(12),
           ),
           ...slivers,
           const SliverToBoxAdapter(
@@ -56,6 +60,66 @@ class CustomScrollScaffold extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class CustomSliverAppBar extends StatelessWidget {
+  const CustomSliverAppBar({
+    super.key,
+    this.title,
+    this.actions,
+    this.onBackTap,
+    this.showBackButton,
+    this.floating = true,
+    this.snap = true,
+  });
+
+  final String? title;
+  final List<Widget>? actions;
+  final VoidCallback? onBackTap;
+  final bool? showBackButton;
+  final bool floating;
+  final bool snap;
+
+  @override
+  Widget build(BuildContext context) {
+    final canPop = showBackButton ?? GoRouter.of(context).canPop();
+
+    return SliverAppBar(
+      surfaceTintColor: Colors.transparent,
+      backgroundColor: AppColors.background,
+      floating: floating,
+      snap: snap,
+      elevation: 0,
+      centerTitle: true,
+      leadingWidth: context.w(64),
+      leading: canPop
+          ? Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Padding(
+                padding: EdgeInsets.only(right: context.p(16)),
+                child: AppBackButton(onTap: onBackTap ?? () => context.pop()),
+              ),
+            )
+          : null,
+      title: title != null
+          ? AppTextWidget(
+              title!,
+            )
+          : null,
+      actions: actions != null
+          ? [
+              Padding(
+                padding: EdgeInsets.only(right: context.p(16)),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: context.p(8),
+                  children: actions!,
+                ),
+              ),
+            ]
+          : null,
     );
   }
 }

@@ -4,7 +4,8 @@ import 'package:imposter/core/style/theme/app_colors.dart';
 
 class SystemUiConfig {
   static Future<void> setup() async {
-   
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

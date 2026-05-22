@@ -17,7 +17,7 @@ class TopicsSelectionView extends StatelessWidget {
     return CustomScrollScaffold(
       title: AppStrings.comingWithYou,
       slivers: [
-        SliverPadding( 
+        SliverPadding(
           padding: AppPadding.viewH18(context),
           sliver: const _TopicsSelectionContent(),
         ),
@@ -40,13 +40,15 @@ class _TopicsSelectionContent extends StatelessWidget {
         return switch (state) {
           GameSetupInitial() || GameSetupLoading(categories: []) =>
             const SliverToBoxAdapter(child: TopicsLoadingWidget()),
-          GameSetupError(message: final msg, categories: []) => SliverToBoxAdapter(
-            child: TopicsErrorWidget(message: msg),
-          ),
+          GameSetupError(message: final msg, categories: []) =>
+            SliverToBoxAdapter(
+              child: TopicsErrorWidget(message: msg),
+            ),
           GameSetupLoaded(categories: final cats) ||
           GameSetupLoading(categories: final cats) ||
-          GameSetupError(categories: final cats) =>
-            TopicsGridWidget(categories: cats),
+          GameSetupError(
+            categories: final cats,
+          ) => TopicsGridWidget(categories: cats),
         };
       },
     );

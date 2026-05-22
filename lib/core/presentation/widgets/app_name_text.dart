@@ -15,7 +15,7 @@ class AppNameText extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppTextWidget(
       AppStrings.spy,
-      style: textStyle ?? AppTextStyles.font60W700Primary,
+      style: textStyle ?? AppTextStyles.fontSecond60W700Primary,
     );
   }
 }

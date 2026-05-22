@@ -46,7 +46,7 @@ class TopicsGridWidget extends StatelessWidget {
               minWidth: 0,
               minHeight: 0,
               maxLines: 2,
-              style: AppTextStyles.font24W700Primary,
+              style: AppTextStyles.font26W700Primary,
               onTap: () async {
                 HapticFeedback.lightImpact();
                 context.read<GameSetupCubit>().selectCategory(category);

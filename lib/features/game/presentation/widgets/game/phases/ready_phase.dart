@@ -25,7 +25,7 @@ class ReadyPhaseWidget extends StatelessWidget {
           children: [
             AppTextWidget(
               AppStrings.ready,
-              style: AppTextStyles.font45W700Primary,
+              style: AppTextStyles.font34W700Primary,
             ),
             CustomPaint(
               painter: const SketchyCirclePainter(color: AppColors.primary),
@@ -33,7 +33,7 @@ class ReadyPhaseWidget extends StatelessWidget {
                 padding: EdgeInsets.all(context.p(24)),
                 child: SvgPicture.asset(
                   AppAssets.playSvg,
-                  height: context.s(60),
+                  height: context.s(55),
                   colorFilter: const ColorFilter.mode(
                     AppColors.primary,
                     BlendMode.srcIn,

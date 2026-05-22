@@ -51,10 +51,14 @@ class _FingerprintContent extends StatelessWidget {
         ? AppColors.primary
         : AppColors.primary.withValues(alpha: 0.8);
 
-    final childWidgets = [
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      spacing: context.p(24),
+      children:  [
       AppTextWidget(
         AppStrings.scanHere,
-        style: AppTextStyles.font32W400Primary,
+        style: AppTextStyles.font22W400Primary,
       ),
       RepaintBoundary(
             child: Padding(
@@ -72,21 +76,7 @@ class _FingerprintContent extends StatelessWidget {
             end: const Offset(1.15, 1.15),
             duration: 150.ms,
           ),
-    ];
-
-    if (context.isLandscape) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        spacing: context.p(24),
-        children: childWidgets,
-      );
-    }
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      spacing: context.p(24),
-      children: childWidgets,
+    ],
     );
   }
 }

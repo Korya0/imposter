@@ -13,49 +13,38 @@ class HomeButtonsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape = context.isLandscape;
-
-    final letsGoButton = AppButton(
-      width: isLandscape ? context.w(300) : null,
-      title: AppStrings.letsGo,
-      onTap: () {
-        context.pushNamed(AppRoutes.topicsSelection);
-      },
-    );
-
-    final howToPlayButton = AppButton(
-      title: AppStrings.howToPlay,
-      style: AppTextStyles.font32W700Secondary,
-      onTap: () {
-        context.pushNamed(AppRoutes.howToPlay);
-      },
-    );
-
-    final tellUsButton = AppButton(
-      title: AppStrings.tellUs,
-      style: AppTextStyles.font32W700Secondary,
-      onTap: () {
-        context.pushNamed(AppRoutes.feedback);
-      },
-    );
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: context.p(18),
       children: [
-        letsGoButton,
+        AppButton(
+          title: AppStrings.letsGo,
+          style: AppTextStyles.font32W700Secondary,
+
+          onTap: () {
+            context.pushNamed(AppRoutes.topicsSelection);
+          },
+        ),
         Row(
           spacing: context.p(12),
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (isLandscape)
-              SizedBox(width: context.w(144), child: howToPlayButton)
-            else
-              Expanded(child: howToPlayButton),
-            if (isLandscape)
-              SizedBox(width: context.w(144), child: tellUsButton)
-            else
-              Expanded(child: tellUsButton),
+            Expanded(
+              child: AppButton(
+                title: AppStrings.howToPlay,
+                onTap: () {
+                  context.pushNamed(AppRoutes.howToPlay);
+                },
+              ),
+            ),
+            Expanded(
+              child: AppButton(
+                title: AppStrings.tellUs,
+                onTap: () {
+                  context.pushNamed(AppRoutes.feedback);
+                },
+              ),
+            ),
           ],
         ),
       ],

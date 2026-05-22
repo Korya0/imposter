@@ -23,8 +23,6 @@ class RevealingPhaseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final buttonHeight = (context.height * 0.1).clamp(50.0, 70.0);
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -33,8 +31,6 @@ class RevealingPhaseWidget extends StatelessWidget {
         else
           _CitizenRevealView(category: categoryName, word: secretWord),
         AppButton(
-          width: double.infinity.clamp(150, 300),
-          height: buttonHeight,
           title: AppStrings.next,
           onTap: onNext,
         ),
@@ -53,7 +49,7 @@ class _SpyRevealView extends StatelessWidget {
       children: [
         AppTextWidget(
           AppStrings.youAreTheSpy,
-          style: AppTextStyles.font60W700Primary,
+          style: AppTextStyles.fontSecond50W700Primary,
         ).animate().fadeIn(duration: 800.ms).slideY(begin: -0.2, end: 0),
         AppGap(context.p(40)),
       ],
@@ -69,10 +65,10 @@ class _CitizenRevealView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppSketchyCard(
-      height: 150,
+      height: context.h(100),
       width: context.w(100),
       title: word,
-      style: AppTextStyles.font45W700SecretWord,
+      style: AppTextStyles.font34W700Primary,
     );
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/game_timer.dart';
-import 'package:imposter/core/utils/build_context_extension.dart';
 
 class TimerPhaseWidget extends StatelessWidget {
   const TimerPhaseWidget({
@@ -17,7 +16,6 @@ class TimerPhaseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final buttonHeight = (context.height * 0.1).clamp(50.0, 70.0);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -29,8 +27,6 @@ class TimerPhaseWidget extends StatelessWidget {
           ),
         ),
         AppButton(
-          width: double.infinity.clamp(150, 300),
-          height: buttonHeight,
           title: AppStrings.finishTurn,
           onTap: onFinishTurn,
         ),

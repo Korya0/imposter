@@ -67,6 +67,11 @@ flutter:
         - asset: assets/font/ArefRuqaa/ArefRuqaa-Regular.ttf
         - asset: assets/font/ArefRuqaa/ArefRuqaa-Bold.ttf
           weight: 700
+    - family: ElMessiri
+      fonts:
+        - asset: assets/font/ElMessiri/ElMessiri-Regular.ttf
+        - asset: assets/font/ElMessiri/ElMessiri-Bold.ttf
+          weight: 700
 
 flutter_launcher_icons:
   android: true
