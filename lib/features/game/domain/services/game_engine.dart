@@ -20,8 +20,17 @@ class GameEngine {
     required CategoryEntity category,
     required int playerCount,
     required int spyCount,
+    List<String> playedWordIds = const [],
   }) {
-    final word = category.words[_random.nextInt(category.words.length)];
+    var availableWords = category.words
+        .where((word) => !playedWordIds.contains(word.id))
+        .toList();
+
+    if (availableWords.isEmpty) {
+      availableWords = category.words;
+    }
+
+    final word = availableWords[_random.nextInt(availableWords.length)];
 
     final playerIndices = List.generate(playerCount, (index) => index)
       ..shuffle(_random);

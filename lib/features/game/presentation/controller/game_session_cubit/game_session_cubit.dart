@@ -11,6 +11,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   int _spyCount = 1;
   int _durationMinutes = 2;
   CategoryEntity? _category;
+  final List<String> _playedWordIds = [];
 
   void startGame({
     required int playerCount,
@@ -18,6 +19,10 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     required int durationMinutes,
     required CategoryEntity category,
   }) {
+    if (_category?.id != category.id) {
+      _playedWordIds.clear();
+    }
+
     _playerCount = playerCount;
     _spyCount = spyCount;
     _durationMinutes = durationMinutes;
@@ -27,7 +32,10 @@ class GameSessionCubit extends Cubit<GameSessionState> {
       category: category,
       playerCount: playerCount,
       spyCount: spyCount,
+      playedWordIds: _playedWordIds,
     );
+
+    _playedWordIds.add(setup.secretWord.id);
 
     emit(
       GameSessionScanning(
@@ -134,6 +142,8 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   }
 
   void reset() {
+    _playedWordIds.clear();
+    _category = null;
     emit(const GameSessionInitial());
   }
 }
