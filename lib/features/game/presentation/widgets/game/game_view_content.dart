@@ -18,10 +18,16 @@ class GameViewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final stateKey = switch (state) {
+      GameSessionScanning(currentPlayerIndex: final index) => 'scanning_$index',
+      GameSessionRevealing(currentPlayerIndex: final index) => 'revealing_$index',
+      _ => state.runtimeType,
+    };
+
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 300),
       child: Container(
-        key: ValueKey(state.runtimeType),
+        key: ValueKey(stateKey),
         child: switch (state) {
           GameSessionInitial() => const Center(
             child: AppLoadingIndicator(),
