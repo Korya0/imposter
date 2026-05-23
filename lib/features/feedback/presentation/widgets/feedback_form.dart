@@ -50,35 +50,40 @@ class _FeedbackFormState extends State<FeedbackForm> {
         builder: (context, state) {
           final isLoading = state is FeedbackLoading;
           return Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            spacing: context.p(26),
+            mainAxisAlignment: .spaceAround,
+
             children: [
-              AppTextWidget(
-                AppStrings.feedbackSubtitle,
-                style: AppTextStyles.font18W400White,
+              Column(
+                spacing: context.p(26),
+                children: [
+                  AppTextWidget(
+                    AppStrings.feedbackSubtitle,
+                    style: AppTextStyles.font18W400White,
+                  ),
+                  AppTextField(
+                    controller: _feedbackController,
+                    hintText: AppStrings.feedbackPlaceholder,
+                    maxLines: 4,
+                    enabled: !isLoading,
+                    textInputAction: TextInputAction.send,
+                    onSubmitted: isLoading
+                        ? null
+                        : (_) {
+                            unawaited(
+                              context.read<FeedbackCubit>().submitFeedback(
+                                content: _feedbackController.text,
+                              ),
+                            );
+                          },
+                  ),
+                  FeedbackSubmitButton(
+                    isLoading: isLoading,
+                    feedbackController: _feedbackController,
+                  ),
+                ],
               ),
-              const AppGap(26),
-              AppTextField(
-                controller: _feedbackController,
-                hintText: AppStrings.feedbackPlaceholder,
-                maxLines: 4,
-                enabled: !isLoading,
-                textInputAction: TextInputAction.send,
-                onSubmitted: isLoading
-                    ? null
-                    : (_) {
-                        unawaited(
-                          context.read<FeedbackCubit>().submitFeedback(
-                            content: _feedbackController.text,
-                          ),
-                        );
-                      },
-              ),
-              const AppGap(24),
-              FeedbackSubmitButton(
-                isLoading: isLoading,
-                feedbackController: _feedbackController,
-              ),
+              const AppGap(0),
             ],
           );
         },
