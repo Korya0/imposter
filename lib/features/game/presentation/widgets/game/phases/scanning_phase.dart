@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
@@ -18,14 +19,22 @@ class ScanningPhaseWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Center(
-          child: AppTextWidget(
-            playerName,
-            style: AppTextStyles.font32W400Primary,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
-          ),
+        const AppGap(0),
+
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppTextWidget(
+              AppStrings.scanHere,
+              style: AppTextStyles.font28W400Primary,
+            ),
+            AppTextWidget(
+              playerName,
+              style: AppTextStyles.font28W400Primary,
+              maxLines: 1,                         
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
         ),
         const AppGap(0),
         GameFingerprintButton(onTap: onScanTap),
