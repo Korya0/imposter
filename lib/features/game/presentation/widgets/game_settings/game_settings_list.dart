@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_divider.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/app_toast.dart';
+import 'package:imposter/core/presentation/widgets/app_value_adjuster.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
+import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_state.dart';
-import 'package:imposter/features/game/presentation/widgets/game_settings/compact_setting_card.dart';
 import 'package:imposter/features/game/presentation/widgets/game_settings/player_names_management_card.dart';
 
 class GameSettingsList extends StatelessWidget {
@@ -24,10 +26,25 @@ class GameSettingsList extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: context.p(12),
           children: [
-            AppTextWidget(
-              AppStrings.numberOfPlayers,
-              style: AppTextStyles.font22W400Primary,
+            Row(
+              spacing: context.p(12),
+              children: [
+                SvgPicture.asset(
+                  AppAssets.peopleGroupSvg,
+                  width: context.s(20),
+                  height: context.s(20),
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.primary,
+                    BlendMode.srcIn,
+                  ),
+                ),
+                AppTextWidget(
+                  AppStrings.numberOfPlayers,
+                  style: AppTextStyles.font22W400Primary,
+                ),
+              ],
             ),
+
             const PlayerNamesManagementCard(),
             const AppDivider(),
           ],
@@ -108,6 +125,54 @@ class _MinutesSettingSelector extends StatelessWidget {
           },
         );
       },
+    );
+  }
+}
+
+class CompactSettingCard extends StatelessWidget {
+  const CompactSettingCard({
+    required this.iconPath,
+    required this.title,
+    required this.value,
+    required this.onIncrement,
+    required this.onDecrement,
+    super.key,
+  });
+  final String iconPath;
+  final String title;
+  final String value;
+  final VoidCallback onIncrement;
+  final VoidCallback onDecrement;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      spacing: context.p(8),
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: context.p(12),
+          children: [
+            SvgPicture.asset(
+              iconPath,
+              width: context.s(20),
+              height: context.s(20),
+              colorFilter: const ColorFilter.mode(
+                AppColors.primary,
+                BlendMode.srcIn,
+              ),
+            ),
+            AppTextWidget(title, style: AppTextStyles.font16W700Primary),
+          ],
+        ),
+        AppValueAdjuster(
+          value: value,
+          width: context.w(30),
+          onIncrement: onIncrement,
+          onDecrement: onDecrement,
+        ),
+      ],
     );
   }
 }
