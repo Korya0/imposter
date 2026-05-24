@@ -49,7 +49,7 @@ class ImposterApp extends StatelessWidget {
             onTap: () => context.unFocus(),
             child: Center(
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 600),
+                constraints: const BoxConstraints(maxWidth: 500),
                 child: child,
               ),
             ),
