@@ -58,7 +58,8 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
   @override
   Widget build(BuildContext context) {
     final session = context.read<GameSessionCubit>();
-    final spyNames = widget.spyIndices
+    final sortedIndices = List<int>.from(widget.spyIndices)..sort();
+    final spyNames = sortedIndices
         .map((idx) => session.playerNames[idx])
         .toList();
 
