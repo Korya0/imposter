@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imposter/core/constants/app_strings.dart';
+import 'package:imposter/core/presentation/painters/sketchy_input_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_text_field.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/app_validators.dart';
@@ -148,47 +149,52 @@ class _ControlWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<GameSetupCubit>();
-    return Container(
+    return SizedBox(
       height: context.h(50),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(context.p(12)),
-      ),
-      child: Row(
-        children: [
-          // Add Button (Person +)
-          Expanded(
-            child: GestureDetector(
-              onTap: count < 12 ? cubit.addPlayer : null,
-              behavior: HitTestBehavior.opaque,
-              child: Icon(
-                Icons.person_add_alt_1_sharp,
-                color: count < 12
-                    ? AppColors.primary
-                    : AppColors.primary.withValues(alpha: 0.4),
-                size: context.s(26),
+      child: CustomPaint(
+        painter: SketchyInputPainter(
+          color: AppColors.primary,
+          fillColor: AppColors.secondaryBackground,
+          strokeWidth: 1.8,
+        ),
+        child: Row(
+          children: [
+            // Remove Button (Person -) on the left
+            Expanded(
+              child: GestureDetector(
+                onTap: count > 3 ? cubit.removePlayer : null,
+                behavior: HitTestBehavior.opaque,
+                child: Icon(
+                  Icons.person_remove_alt_1_sharp,
+                  color: count > 3
+                      ? AppColors.primary
+                      : AppColors.primary.withValues(alpha: 0.4),
+                  size: context.s(26),
+                ),
               ),
             ),
-          ),
-          // Divider Line
-          Container(
-            width: 1.5,
-            color: AppColors.primary,
-          ),
-          // Remove Button (Person -)
-          Expanded(
-            child: GestureDetector(
-              onTap: count > 3 ? cubit.removePlayer : null,
-              behavior: HitTestBehavior.opaque,
-              child: Icon(
-                Icons.person_remove_alt_1_sharp,
-                color: count > 3
-                    ? AppColors.primary
-                    : AppColors.primary.withValues(alpha: 0.4),
-                size: context.s(26),
+            // Divider Line
+            Container(
+              width: 1.5,
+              height: context.h(30),
+              color: AppColors.primary.withValues(alpha: 0.4),
+            ),
+            // Add Button (Person +) on the right
+            Expanded(
+              child: GestureDetector(
+                onTap: count < 12 ? cubit.addPlayer : null,
+                behavior: HitTestBehavior.opaque,
+                child: Icon(
+                  Icons.person_add_alt_1_sharp,
+                  color: count < 12
+                      ? AppColors.primary
+                      : AppColors.primary.withValues(alpha: 0.4),
+                  size: context.s(26),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

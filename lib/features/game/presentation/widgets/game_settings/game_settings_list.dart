@@ -5,7 +5,6 @@ import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_divider.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
-import 'package:imposter/core/presentation/widgets/app_toast.dart';
 import 'package:imposter/core/presentation/widgets/app_value_adjuster.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
@@ -76,20 +75,10 @@ class _SpiesSettingSelector extends StatelessWidget {
           iconPath: AppAssets.spySvg,
           title: AppStrings.numberOfSpies,
           value: spyCount.toString(),
-          onIncrement: () {
-            if (spyCount < playerCount ~/ 2) {
-              cubit.incrementSpies();
-            } else {
-              AppToast.show(context, AppStrings.maxSpiesReached);
-            }
-          },
-          onDecrement: () {
-            if (spyCount > 1) {
-              cubit.decrementSpies();
-            } else {
-              AppToast.show(context, AppStrings.minSpiesReached);
-            }
-          },
+          onIncrement: spyCount < playerCount ~/ 2
+              ? cubit.incrementSpies
+              : null,
+          onDecrement: spyCount > 1 ? cubit.decrementSpies : null,
         );
       },
     );
@@ -109,20 +98,8 @@ class _MinutesSettingSelector extends StatelessWidget {
           iconPath: AppAssets.timeOclockSvg,
           title: AppStrings.numberOfMinutes,
           value: durationMinutes.toString(),
-          onIncrement: () {
-            if (durationMinutes < 30) {
-              cubit.incrementMinutes();
-            } else {
-              AppToast.show(context, AppStrings.maxMinutesReached);
-            }
-          },
-          onDecrement: () {
-            if (durationMinutes > 1) {
-              cubit.decrementMinutes();
-            } else {
-              AppToast.show(context, AppStrings.minMinutesReached);
-            }
-          },
+          onIncrement: durationMinutes < 30 ? cubit.incrementMinutes : null,
+          onDecrement: durationMinutes > 1 ? cubit.decrementMinutes : null,
         );
       },
     );
@@ -134,15 +111,15 @@ class CompactSettingCard extends StatelessWidget {
     required this.iconPath,
     required this.title,
     required this.value,
-    required this.onIncrement,
-    required this.onDecrement,
+    this.onIncrement,
+    this.onDecrement,
     super.key,
   });
   final String iconPath;
   final String title;
   final String value;
-  final VoidCallback onIncrement;
-  final VoidCallback onDecrement;
+  final VoidCallback? onIncrement;
+  final VoidCallback? onDecrement;
 
   @override
   Widget build(BuildContext context) {

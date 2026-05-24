@@ -26,7 +26,7 @@ class GameSettingsView extends StatelessWidget {
           sliver: SliverList(
             delegate: SliverChildListDelegate([
               const GameSettingsList(),
-              const AppGap(50),
+              const AppGap(24),
               Center(
                 child: StartButton(
                   onTap: () async {

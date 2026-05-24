@@ -32,9 +32,9 @@ class AppValueAdjuster extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TactileSketchyIconButton(
-          icon: Icons.add_sharp,
+          icon: Icons.remove_sharp,
           color: activeBtnColor,
-          onPressed: onIncrement,
+          onPressed: onDecrement,
         ),
         SizedBox(
           width: adjusterWidth,
@@ -49,9 +49,9 @@ class AppValueAdjuster extends StatelessWidget {
           ),
         ),
         TactileSketchyIconButton(
-          icon: Icons.remove_sharp,
+          icon: Icons.add_sharp,
           color: activeBtnColor,
-          onPressed: onDecrement,
+          onPressed: onIncrement,
         ),
       ],
     );
