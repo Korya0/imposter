@@ -36,7 +36,7 @@ class _HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       spacing: context.p(80),
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Column(
           spacing: context.p(18),
@@ -44,7 +44,7 @@ class _HomeViewBody extends StatelessWidget {
             AppNameText(),
             AppLogo(),
           ],
-        ),
+        ), 
 
         const HomeButtonsSection(),
       ],

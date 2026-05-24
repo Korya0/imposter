@@ -15,10 +15,12 @@ abstract class AppStrings {
 
   // Game Settings
   static const String settings = 'الإعدادات';
-  static const String numberOfPlayers = 'الاعبين';
+  static const String numberOfPlayers = 'عددكم';
   static const String numberOfSpies = 'الجواسيس';
   static const String numberOfMinutes = 'الدقائق';
   static const String start = 'ابدا';
+  static const String playerDefaultPrefix = 'لاعب';
+  static const String playerNameHint = 'اسم اللاعب';
 
   // Game Play - Scanning
   static const String player = 'Player';
@@ -82,4 +84,9 @@ abstract class AppStrings {
   static const String minSpiesReached = 'لازم يكون فيه جاسوس واحد على الأقل';
   static const String maxMinutesReached = '30 دقيقة ده أقصى وقت مسموح بيه';
   static const String minMinutesReached = 'أقل وقت هو دقيقة واحدة';
+  static const String playerNameEmptyError = 'اسم اللاعب مطلوب';
+  static const String playerNameInvalidError =
+      'الاسم يجب أن يحتوي على حروف وأرقام فقط';
+  static const String playerNameValidationError =
+      'يرجى تصحيح أسماء اللاعبين أولاً';
 }

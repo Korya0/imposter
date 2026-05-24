@@ -7,14 +7,17 @@ class GameSessionCubit extends Cubit<GameSessionState> {
   GameSessionCubit(this._gameEngine) : super(const GameSessionInitial());
   final GameEngine _gameEngine;
 
-  int _playerCount = 3;
+  List<String> _playerNames = const [];
   int _spyCount = 1;
   int _durationMinutes = 2;
   CategoryEntity? _category;
   final List<String> _playedWordIds = [];
 
+  int get playerCount => _playerNames.length;
+  List<String> get playerNames => _playerNames;
+
   void startGame({
-    required int playerCount,
+    required List<String> playerNames,
     required int spyCount,
     required int durationMinutes,
     required CategoryEntity category,
@@ -23,14 +26,14 @@ class GameSessionCubit extends Cubit<GameSessionState> {
       _playedWordIds.clear();
     }
 
-    _playerCount = playerCount;
+    _playerNames = playerNames;
     _spyCount = spyCount;
     _durationMinutes = durationMinutes;
     _category = category;
 
     final setup = _gameEngine.prepareRound(
       category: category,
-      playerCount: playerCount,
+      playerCount: playerNames.length,
       spyCount: spyCount,
       playedWordIds: _playedWordIds,
     );
@@ -84,7 +87,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
 
     final nextIndex = index + 1;
 
-    if (nextIndex < _playerCount) {
+    if (nextIndex < playerCount) {
       emit(
         GameSessionScanning(
           currentPlayerIndex: nextIndex,
@@ -122,9 +125,10 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     emit(
       GameSessionSummary(
         secretWord: currentState.secretWord,
-        playerCount: _playerCount,
+        playerCount: playerCount,
         spyCount: _spyCount,
         durationMinutes: _durationMinutes,
+        spyIndices: currentState.spyIndices,
       ),
     );
   }
@@ -134,7 +138,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     if (cat == null) return;
 
     startGame(
-      playerCount: _playerCount,
+      playerNames: _playerNames,
       spyCount: _spyCount,
       durationMinutes: _durationMinutes,
       category: cat,

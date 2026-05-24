@@ -52,12 +52,9 @@ class CustomScrollScaffold extends StatelessWidget {
             snap: appBarSnap,
           ),
           const SliverToBoxAdapter(
-            child: AppGap(12),
+            child: AppGap(8),
           ),
           ...slivers,
-          const SliverToBoxAdapter(
-            child: AppGap(40),
-          ),
         ],
       ),
     );

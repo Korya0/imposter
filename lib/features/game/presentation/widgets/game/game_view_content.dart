@@ -34,7 +34,7 @@ class GameViewContent extends StatelessWidget {
           ),
           GameSessionScanning(currentPlayerIndex: final index) =>
             ScanningPhaseWidget(
-              playerNumber: index + 1,
+              playerName: context.read<GameSessionCubit>().playerNames[index],
               onScanTap: () =>
                   context.read<GameSessionCubit>().toggleReveal(reveal: true),
             ),
@@ -64,12 +64,14 @@ class GameViewContent extends StatelessWidget {
             playerCount: final p,
             spyCount: final s,
             durationMinutes: final d,
+            spyIndices: final spies,
           ) =>
             SummaryPhaseWidget(
               secretWord: word,
               playerCount: p,
               spyCount: s,
               durationMinutes: d,
+              spyIndices: spies,
               onAnotherRound: context
                   .read<GameSessionCubit>()
                   .prepareAnotherRound,

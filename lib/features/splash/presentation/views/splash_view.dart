@@ -1,10 +1,11 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
-import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/presentation/widgets/app_logo.dart';
 import 'package:imposter/core/presentation/widgets/app_name_text.dart';
+import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 
 class SplashView extends StatefulWidget {
@@ -25,7 +26,7 @@ class _SplashViewState extends State<SplashView> {
 
   Future<void> _initialize() async {
     await Future<void>.delayed(
-      const Duration(seconds: 2),
+      const Duration(seconds: 2), 
     );
 
     if (mounted) {
@@ -41,11 +42,11 @@ class _SplashViewState extends State<SplashView> {
             Row(
               spacing: context.p(24),
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [  
+              children: [
                 const AppNameText(),
                 AppLogo(
                   height: context.s(100),
-                ), 
+                ),
               ],
             ).animate().fadeIn(
               duration: 1500.ms,

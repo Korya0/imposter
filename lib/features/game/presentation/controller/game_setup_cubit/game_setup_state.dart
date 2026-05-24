@@ -1,3 +1,4 @@
+import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/features/game/domain/entities/category_entity.dart';
 
 sealed class GameSetupState {
@@ -7,12 +8,18 @@ sealed class GameSetupState {
     this.durationMinutes = 2,
     this.categories = const [],
     this.selectedCategory,
+    this.playerNames = const [
+      '${AppStrings.playerDefaultPrefix} 1',
+      '${AppStrings.playerDefaultPrefix} 2',
+      '${AppStrings.playerDefaultPrefix} 3',
+    ],
   });
   final int playerCount;
   final int spyCount;
   final int durationMinutes;
   final List<CategoryEntity> categories;
   final CategoryEntity? selectedCategory;
+  final List<String> playerNames;
 }
 
 class GameSetupInitial extends GameSetupState {
@@ -26,6 +33,7 @@ class GameSetupLoading extends GameSetupState {
     super.durationMinutes,
     super.categories,
     super.selectedCategory,
+    super.playerNames,
   });
 }
 
@@ -36,6 +44,7 @@ class GameSetupLoaded extends GameSetupState {
     super.playerCount,
     super.spyCount,
     super.durationMinutes,
+    super.playerNames,
   });
 }
 
@@ -47,6 +56,7 @@ class GameSetupError extends GameSetupState {
     super.durationMinutes,
     super.categories,
     super.selectedCategory,
+    super.playerNames,
   });
   final String message;
 }

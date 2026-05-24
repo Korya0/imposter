@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imposter/core/constants/app_padding.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/custom_scroll_scaffold.dart';
+import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_state.dart';
 import 'package:imposter/features/game/presentation/widgets/topics_selection_view/topics_error_widget.dart';
@@ -18,7 +18,7 @@ class TopicsSelectionView extends StatelessWidget {
       title: AppStrings.comingWithYou,
       slivers: [
         SliverPadding(
-          padding: AppPadding.viewH18(context),
+          padding: EdgeInsets.all(context.p(22)),
           sliver: const _TopicsSelectionContent(),
         ),
       ],

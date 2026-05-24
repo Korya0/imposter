@@ -39,6 +39,10 @@ class AppButton extends StatelessWidget {
       child: Container(
         width: width,
         height: height ?? context.h(65),
+        // for responsiveness 
+        constraints: BoxConstraints(
+          maxWidth: width ?? 400,
+        ),
         padding: width == null
             ? EdgeInsets.symmetric(horizontal: context.p(12))
             : null,

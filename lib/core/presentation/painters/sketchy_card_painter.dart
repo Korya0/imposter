@@ -6,7 +6,6 @@ class SketchyCardPainter extends CustomPainter {
   SketchyCardPainter({
     required this.color,
     this.showTape = true,
-    this.progress = 0.0,
   }) {
     _borderPaint = Paint()
       ..style = PaintingStyle.stroke
@@ -30,7 +29,6 @@ class SketchyCardPainter extends CustomPainter {
 
   final Color color;
   final bool showTape;
-  final double progress;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -50,26 +48,8 @@ class SketchyCardPainter extends CustomPainter {
 
     _drawCornerScribbles(canvas, size);
 
-    if (progress > 0) {
-      _drawInternalScribbles(canvas, size);
-    }
-
     if (showTape) {
       _drawSketchyTape(canvas, size);
-    }
-  }
-
-  void _drawInternalScribbles(Canvas canvas, Size size) {
-    _scribblePaint.color = color.withValues(alpha: progress * 0.15);
-
-    final lineCount = (30 * progress).toInt();
-    for (var i = 0; i < lineCount; i++) {
-      final x1 = _random.nextDouble() * size.width;
-      final y1 = _random.nextDouble() * size.height;
-      final x2 = x1 + (_random.nextDouble() - 0.5) * 40;
-      final y2 = y1 + (_random.nextDouble() - 0.5) * 40;
-
-      canvas.drawLine(Offset(x1, y1), Offset(x2, y2), _scribblePaint);
     }
   }
 
@@ -113,5 +93,5 @@ class SketchyCardPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant SketchyCardPainter oldDelegate) =>
-      oldDelegate.progress != progress;
+      oldDelegate.color != color || oldDelegate.showTape != showTape;
 }

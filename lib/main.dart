@@ -30,8 +30,8 @@ class ImposterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      // Theme & Router & localizations 
-      debugShowCheckedModeBanner: false, 
+      // Theme & Router & localizations
+      debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
       locale: const Locale(AppConstants.ar),
       supportedLocales: const [Locale(AppConstants.ar)],
@@ -42,14 +42,16 @@ class ImposterApp extends StatelessWidget {
       ],
       routerConfig: appRouter,
 
-      // Device constraints & UnFocus gesture
+      // Device constraints, UnFocus gesture & Prevent text scaling
       builder: (context, child) {
-        return GestureDetector(
-          onTap: () => context.unFocus(),
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1000),
-              child: child,
+        return context.preventTextScaling(
+          GestureDetector(
+            onTap: () => context.unFocus(),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 600),
+                child: child,
+              ),
             ),
           ),
         );

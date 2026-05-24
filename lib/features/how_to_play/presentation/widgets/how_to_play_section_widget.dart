@@ -21,36 +21,33 @@ class HowToPlaySectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: context.p(8)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AppTextWidget(
-            section.title,
-          ),
-          const AppGap(12),
-          ...List.generate(section.rules.length, (index) {
-            return HowToPlayRuleWidget(
-              rule: section.rules[index],
-              stepNumber: startingStepNumber + index,
-            );
-          }),
-          if (!isLastSection)
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: context.p(12)),
-              child: SizedBox(
-                width: double.infinity,
-                height: context.h(4),
-                child: const CustomPaint(
-                  painter: SketchyHorizontalLinePainter(
-                    color: AppColors.secondaryBackground,
-                  ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AppTextWidget(
+          section.title,
+        ),
+        const AppGap(12),
+        ...List.generate(section.rules.length, (index) {
+          return HowToPlayRuleWidget(
+            rule: section.rules[index],
+            stepNumber: startingStepNumber + index,
+          );
+        }),
+        if (!isLastSection)
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: context.p(12)),
+            child: SizedBox(
+              width: double.infinity,
+              height: context.h(4),
+              child: const CustomPaint(
+                painter: SketchyHorizontalLinePainter(
+                  color: AppColors.secondaryBackground,
                 ),
               ),
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 }

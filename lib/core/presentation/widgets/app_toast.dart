@@ -53,7 +53,7 @@ class AppToast {
         ),
         showProgressBar: false,
         closeButton: const ToastCloseButton(showType: CloseButtonShowType.none),
-        dragToClose: true,
+        dragToClose: false,
         applyBlurEffect: false,
 
         borderSide: BorderSide(color: AppColors.primary.withValues(alpha: 0.3)),

@@ -42,4 +42,13 @@ extension BuildContextExtension on BuildContext {
       currentFocus.unfocus();
     }
   }
+
+  Widget preventTextScaling(Widget child) {
+    return MediaQuery(
+      data: MediaQuery.of(this).copyWith(
+        textScaler: TextScaler.noScaling,
+      ),
+      child: child,
+    );
+  }
 }

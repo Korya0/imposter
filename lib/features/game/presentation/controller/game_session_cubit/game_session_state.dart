@@ -56,9 +56,11 @@ class GameSessionSummary extends GameSessionState {
     required this.playerCount,
     required this.spyCount,
     required this.durationMinutes,
+    required this.spyIndices,
   });
   final String secretWord;
   final int playerCount;
   final int spyCount;
   final int durationMinutes;
+  final List<int> spyIndices;
 }

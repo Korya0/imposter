@@ -65,10 +65,7 @@ class _CitizenRevealView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppSketchyCard(
-      height: context.h(100),
-      width: context.w(100),
       title: word,
-      style: AppTextStyles.font34W700Primary,
     );
   }
 }

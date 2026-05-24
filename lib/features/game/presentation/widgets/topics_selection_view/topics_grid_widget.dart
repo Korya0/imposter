@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/presentation/widgets/app_sketchy_card/app_sketchy_card.dart';
 import 'package:imposter/core/router/app_routes.dart';
-import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/domain/entities/category_entity.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
@@ -20,8 +18,8 @@ class TopicsGridWidget extends StatelessWidget {
     return SliverGrid(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: context.p(12),
-        mainAxisSpacing: context.p(12),
+        crossAxisSpacing: context.p(28),
+        mainAxisSpacing: context.p(38),
         childAspectRatio:
             (context.width.clamp(0.0, 500.0) / 2) /
             (context.height.clamp(0.0, 900.0) * 0.28),
@@ -29,38 +27,23 @@ class TopicsGridWidget extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           final category = categories[index];
-          // Subtle alternating rotation offset to make items feel physically hand-placed
-          final rotationAngle = (index % 4 == 0)
-              ? -0.015
-              : (index % 4 == 1)
-              ? 0.02
-              : (index % 4 == 2)
-              ? -0.025
-              : 0.015;
 
-          return Transform.rotate(
-            angle: rotationAngle,
-            child: AppSketchyCard(
-              key: ValueKey(category.id),
-              title: category.name,
-              minWidth: 0,
-              minHeight: 0,
-              maxLines: 2,
-              style: AppTextStyles.font26W700Primary,
-              onTap: () async {
-                HapticFeedback.lightImpact();
-                context.read<GameSetupCubit>().selectCategory(category);
-                await context.pushNamed(AppRoutes.gameSettings);
-              },
-              watermark: IgnorePointer(
-                child: SvgPicture.asset(
-                  AppAssets.getCategoryIcon(category.id),
+          return AppSketchyCard(
+            key: ValueKey(category.id),
+            title: category.name,
+            maxLines: 2,
+            onTap: () async {
+              context.read<GameSetupCubit>().selectCategory(category);
+              await context.pushNamed(AppRoutes.gameSettings);
+            },
+            watermark: IgnorePointer(
+              child: SvgPicture.asset(
+                AppAssets.getCategoryIcon(category.id),
+                width: context.s(80),
+                height: context.s(80),
+                placeholderBuilder: (context) => SizedBox(
                   width: context.s(80),
                   height: context.s(80),
-                  placeholderBuilder: (context) => SizedBox(
-                    width: context.s(80),
-                    height: context.s(80),
-                  ),
                 ),
               ),
             ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
@@ -7,11 +6,11 @@ import 'package:imposter/features/game/presentation/widgets/game/game_fingerprin
 
 class ScanningPhaseWidget extends StatelessWidget {
   const ScanningPhaseWidget({
-    required this.playerNumber,
+    required this.playerName,
     required this.onScanTap,
     super.key,
   });
-  final int playerNumber;
+  final String playerName;
   final VoidCallback onScanTap;
 
   @override
@@ -20,19 +19,12 @@ class ScanningPhaseWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Center(
-          child: Row(
-            spacing: 8,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AppTextWidget(
-                playerNumber.toString(),
-                style: AppTextStyles.font32W400Primary,
-              ),
-              AppTextWidget(
-                AppStrings.player,
-                style: AppTextStyles.font32W400Primary,
-              ),
-            ],
+          child: AppTextWidget(
+            playerName,
+            style: AppTextStyles.font32W400Primary,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
           ),
         ),
         const AppGap(0),

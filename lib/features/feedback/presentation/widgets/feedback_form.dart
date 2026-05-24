@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:imposter/core/constants/app_strings.dart';
@@ -13,6 +14,7 @@ import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/app_toast.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
+import 'package:imposter/core/utils/app_validators.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/feedback/presentation/cubit/feedback_cubit.dart';
 
@@ -57,16 +59,27 @@ class _FeedbackFormState extends State<FeedbackForm> {
               Column(
                 spacing: context.p(26),
                 children: [
-                  AppTextWidget(
-                    AppStrings.feedbackSubtitle,
-                    style: AppTextStyles.font18W400White,
+                  // wrap with size for biox
+                  SizedBox(
+                    width: context.w(300),
+                    child: AppTextWidget(
+                      AppStrings.feedbackSubtitle,
+                      style: AppTextStyles.font18W400White,
+                      textAlign: .center,
+                    ),
                   ),
-                  AppTextField(
+                  AppTextField( 
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                        AppValidators.alphanumericWithSpaces,
+                      ),
+                    ],
                     controller: _feedbackController,
                     hintText: AppStrings.feedbackPlaceholder,
-                    maxLines: 4,
+                    maxLines: 4, 
                     enabled: !isLoading,
                     textInputAction: TextInputAction.send,
+
                     onSubmitted: isLoading
                         ? null
                         : (_) {
