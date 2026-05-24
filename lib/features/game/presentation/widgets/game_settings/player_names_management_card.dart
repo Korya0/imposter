@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_text_field.dart';
-import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
-import 'package:imposter/core/presentation/widgets/tactile_sketchy_icon_button.dart';
-import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/app_validators.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
@@ -62,68 +57,40 @@ class _PlayerNamesManagementCardState extends State<PlayerNamesManagementCard> {
           mainAxisSize: MainAxisSize.min,
           spacing: context.p(14),
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Row(
-                  spacing: context.p(8),
-                  children: [
-                    SvgPicture.asset(
-                      AppAssets.peopleGroupSvg,
-                      height: context.h(24),
-                      colorFilter: const ColorFilter.mode(
-                        AppColors.primary,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    AppTextWidget(
-                      AppStrings.numberOfPlayers,
-                      style: AppTextStyles.font24W700Primary,
-                    ),
-                  ],
-                ),
-                _ActionButtonsRow(count: state.playerNames.length),
-              ],
-            ),
             ...List.generate(
-              (state.playerNames.length + 1) ~/ 2,
+              (state.playerNames.length + 2) ~/ 2,
               (rowIndex) {
                 final firstIndex = rowIndex * 2;
                 final secondIndex = rowIndex * 2 + 1;
-                final hasSecond = secondIndex < state.playerNames.length;
+                final totalItems = state.playerNames.length;
 
                 return Row(
                   spacing: context.p(12),
                   children: [
                     Expanded(
-                      child: AppTextField(
-                        controller: _controllers[firstIndex],
-                        hintText: '${AppStrings.playerNameHint} ${firstIndex + 1}',
-                        focusNode: _focusNodes[firstIndex],
-                        inputFormatters: [
-                          FilteringTextInputFormatter.allow(
-                            AppValidators.alphanumericWithSpaces,
-                          ),
-                          LengthLimitingTextInputFormatter(12),
-                        ],
+                      child: _PlayerGridItem(
+                        index: firstIndex,
+                        totalItems: totalItems,
+                        controller: firstIndex < totalItems
+                            ? _controllers[firstIndex]
+                            : null,
+                        focusNode: firstIndex < totalItems
+                            ? _focusNodes[firstIndex]
+                            : null,
                       ),
                     ),
-                    if (hasSecond)
-                      Expanded(
-                        child: AppTextField(
-                          controller: _controllers[secondIndex],
-                          hintText: '${AppStrings.playerNameHint} ${secondIndex + 1}',
-                          focusNode: _focusNodes[secondIndex],
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(
-                              AppValidators.alphanumericWithSpaces,
-                            ),
-                            LengthLimitingTextInputFormatter(12),
-                          ],
-                        ),
-                      )
-                    else
-                      const Expanded(child: SizedBox()), // Placeholder for grid alignment
+                    Expanded(
+                      child: _PlayerGridItem(
+                        index: secondIndex,
+                        totalItems: totalItems,
+                        controller: secondIndex < totalItems
+                            ? _controllers[secondIndex]
+                            : null,
+                        focusNode: secondIndex < totalItems
+                            ? _focusNodes[secondIndex]
+                            : null,
+                      ),
+                    ),
                   ],
                 );
               },
@@ -135,31 +102,94 @@ class _PlayerNamesManagementCardState extends State<PlayerNamesManagementCard> {
   }
 }
 
-class _ActionButtonsRow extends StatelessWidget {
-  const _ActionButtonsRow({required this.count});
+class _PlayerGridItem extends StatelessWidget {
+  const _PlayerGridItem({
+    required this.index,
+    required this.totalItems,
+    required this.controller,
+    required this.focusNode,
+  });
+
+  final int index;
+  final int totalItems;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+
+  @override
+  Widget build(BuildContext context) {
+    if (index < totalItems) {
+      return AppTextField(
+        iconWidget: const Icon(
+          Icons.person_2_outlined,
+          color: AppColors.primary,
+        ),
+        controller: controller!,
+        hintText: '${AppStrings.playerNameHint} ${index + 1}',
+        focusNode: focusNode,
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(
+            AppValidators.alphanumericWithSpaces,
+          ),
+          LengthLimitingTextInputFormatter(10),
+        ],
+      );
+    } else if (index == totalItems) {
+      return _ControlWidget(count: totalItems);
+    } else {
+      return const SizedBox();
+    }
+  }
+}
+
+class _ControlWidget extends StatelessWidget {
+  const _ControlWidget({required this.count});
   final int count;
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<GameSetupCubit>();
-    return Row(
-      spacing: context.p(12),
-      children: [
-        Row(
-          children: [
-            TactileSketchyIconButton(
-              icon: Icons.remove_sharp,
-              color: AppColors.primary,
-              onPressed: count > 3 ? cubit.removePlayer : null,
+    return Container(
+      height: context.h(50),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(context.p(12)),
+      ),
+      child: Row(
+        children: [
+          // Add Button (Person +)
+          Expanded(
+            child: GestureDetector(
+              onTap: count < 12 ? cubit.addPlayer : null,
+              behavior: HitTestBehavior.opaque,
+              child: Icon(
+                Icons.person_add_alt_1_sharp,
+                color: count < 12
+                    ? AppColors.primary
+                    : AppColors.primary.withValues(alpha: 0.4),
+                size: context.s(26),
+              ),
             ),
-          ],
-        ),
-        TactileSketchyIconButton(
-          icon: Icons.add_sharp,
-          color: AppColors.primary,
-          onPressed: count < 12 ? cubit.addPlayer : null,
-        ),
-      ],
+          ),
+          // Divider Line
+          Container(
+            width: 1.5,
+            color: AppColors.primary,
+          ),
+          // Remove Button (Person -)
+          Expanded(
+            child: GestureDetector(
+              onTap: count > 3 ? cubit.removePlayer : null,
+              behavior: HitTestBehavior.opaque,
+              child: Icon(
+                Icons.person_remove_alt_1_sharp,
+                color: count > 3
+                    ? AppColors.primary
+                    : AppColors.primary.withValues(alpha: 0.4),
+                size: context.s(26),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

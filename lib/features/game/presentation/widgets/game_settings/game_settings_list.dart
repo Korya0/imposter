@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
+import 'package:imposter/core/presentation/widgets/app_divider.dart';
+import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/presentation/widgets/app_toast.dart';
+import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_state.dart';
@@ -17,7 +20,18 @@ class GameSettingsList extends StatelessWidget {
     return Column(
       spacing: context.p(24),
       children: [
-        const PlayerNamesManagementCard(),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: context.p(12),
+          children: [
+            AppTextWidget(
+              AppStrings.numberOfPlayers,
+              style: AppTextStyles.font22W400Primary,
+            ),
+            const PlayerNamesManagementCard(),
+            const AppDivider(),
+          ],
+        ),
         Row(
           spacing: context.p(12),
           children: const [

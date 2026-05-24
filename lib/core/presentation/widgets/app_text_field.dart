@@ -18,6 +18,7 @@ class AppTextField extends StatelessWidget {
     this.width,
     this.focusNode,
     this.inputFormatters,
+    this.iconWidget,
   });
 
   final TextEditingController controller;
@@ -31,7 +32,7 @@ class AppTextField extends StatelessWidget {
   final double? width;
   final FocusNode? focusNode;
   final List<TextInputFormatter>? inputFormatters;
-
+  final Widget? iconWidget;
   OutlineInputBorder _border(BuildContext context, Color color, double width) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(context.p(12)),
@@ -66,6 +67,7 @@ class AppTextField extends StatelessWidget {
           hintStyle: AppTextStyles.font15W700Primary.copyWith(
             color: AppColors.primary.withValues(alpha: 0.5),
           ),
+          prefixIcon: iconWidget,
 
           filled: true,
           fillColor: AppColors.secondaryBackground,
