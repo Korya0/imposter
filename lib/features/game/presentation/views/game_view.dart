@@ -15,8 +15,8 @@ class GameView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       slivers: [
         SliverPadding(
-          padding: AppPadding.viewH18(context),
-          sliver: SliverFillRemaining( 
+          padding: AppPadding.viewH22(context),
+          sliver: SliverFillRemaining(
             child: BlocBuilder<GameSessionCubit, GameSessionState>(
               builder: (context, state) => GameViewContent(state: state),
             ),

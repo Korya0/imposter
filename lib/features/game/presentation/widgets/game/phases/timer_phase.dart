@@ -16,9 +16,8 @@ class TimerPhaseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Center(
           child: GameTimer(
@@ -26,6 +25,7 @@ class TimerPhaseWidget extends StatelessWidget {
             onTimeout: onTimeout,
           ),
         ),
+
         AppButton(
           title: AppStrings.finishTurn,
           onTap: onFinishTurn,

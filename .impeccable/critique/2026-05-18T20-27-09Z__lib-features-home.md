@@ -50,7 +50,7 @@ The Home Screen has the bones of a great culturally-authentic game, but it curre
 ## What's Working
 * **Calligraphic Elegance**: The styling uses the classic `ArefRuqaa` font beautifully for main headers and buttons, establishing an excellent Arabic cultural heritage context.
 * **Paper-Cutout Texture**: The custom `AssetImage(AppAssets.paperWebp)` button background provides a lovely physical, organic hand-made feel to interactive targets.
-* **Mobile Pass-Around Readiness**: The tap areas and padding (`AppPadding.viewH18(context)`) are generous, preventing accidental selections when passing the device.
+* **Mobile Pass-Around Readiness**: The tap areas and padding (`AppPadding.viewH22(context)`) are generous, preventing accidental selections when passing the device.
 
 ---
 

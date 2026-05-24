@@ -5,7 +5,6 @@ import 'package:imposter/core/presentation/widgets/app_loading_indicator.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/features/game/presentation/controller/game_session_cubit/game_session_cubit.dart';
 import 'package:imposter/features/game/presentation/controller/game_session_cubit/game_session_state.dart';
-import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/ready_phase.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/revealing_phase.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/scanning_phase.dart';
@@ -20,7 +19,8 @@ class GameViewContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final stateKey = switch (state) {
       GameSessionScanning(currentPlayerIndex: final index) => 'scanning_$index',
-      GameSessionRevealing(currentPlayerIndex: final index) => 'revealing_$index',
+      GameSessionRevealing(currentPlayerIndex: final index) =>
+        'revealing_$index',
       _ => state.runtimeType,
     };
 
@@ -45,9 +45,7 @@ class GameViewContent extends StatelessWidget {
             RevealingPhaseWidget(
               isSpy: spy,
               secretWord: word,
-              categoryName:
-                  context.read<GameSetupCubit>().state.selectedCategory?.name ??
-                  '',
+
               onNext: () =>
                   context.read<GameSessionCubit>().toggleReveal(reveal: false),
             ),

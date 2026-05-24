@@ -28,7 +28,7 @@ class GameSettingsView extends StatelessWidget {
       title: AppStrings.settings,
       slivers: [
         SliverPadding(
-          padding: AppPadding.viewH18(context),
+          padding: AppPadding.viewH22(context),
           sliver: SliverList(
             delegate: SliverChildListDelegate([
               // Game Settings List

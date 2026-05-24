@@ -19,7 +19,7 @@ class HomeView extends StatelessWidget {
           SliverFillRemaining(
             hasScrollBody: false,
             child: Padding(
-              padding: AppPadding.viewH18(context),
+              padding: AppPadding.viewH22(context),
               child: const _HomeViewBody(),
             ),
           ),
@@ -44,7 +44,7 @@ class _HomeViewBody extends StatelessWidget {
             AppNameText(),
             AppLogo(),
           ],
-        ), 
+        ),
 
         const HomeButtonsSection(),
       ],

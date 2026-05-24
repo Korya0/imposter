@@ -28,22 +28,31 @@ class ReadyPhaseWidget extends StatelessWidget {
               style: AppTextStyles.font34W700Primary,
             ),
             CustomPaint(
-              painter: const SketchyCirclePainter(color: AppColors.primary),
-              child: Padding(
-                padding: EdgeInsets.all(context.p(24)),
-                child: SvgPicture.asset(
-                  AppAssets.playSvg,
-                  height: context.s(55),
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.primary,
-                    BlendMode.srcIn,
+                  painter: const SketchyCirclePainter(color: AppColors.primary),
+                  child: Padding(
+                    padding: EdgeInsets.all(context.p(24)),
+                    child: SvgPicture.asset(
+                      AppAssets.playSvg,
+                      height: context.s(55),
+                      colorFilter: const ColorFilter.mode(
+                        AppColors.primary,
+                        BlendMode.srcIn,
+                      ),
+                    ),
                   ),
+                )
+                .animate(
+                  onPlay: (controller) => controller.repeat(reverse: true),
+                )
+                .scale(
+                  begin: const Offset(0.92, 0.92),
+                  end: const Offset(1.05, 1.05),
+                  duration: 1200.ms,
+                  curve: Curves.easeInOut,
                 ),
-              ),
-            ),
           ],
         ),
-      ).animate().fadeIn().scale(),
+      ),
     );
   }
 }

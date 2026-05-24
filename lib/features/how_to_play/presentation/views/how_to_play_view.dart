@@ -15,7 +15,7 @@ class HowToPlayView extends StatelessWidget {
       title: AppStrings.howToPlay,
       slivers: [
         SliverPadding(
-          padding: AppPadding.viewH18(
+          padding: AppPadding.viewH22(
             context,
           ).add(EdgeInsets.only(bottom: context.p(50))),
           sliver: SliverList(

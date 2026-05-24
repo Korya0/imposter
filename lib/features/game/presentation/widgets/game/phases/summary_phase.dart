@@ -61,47 +61,64 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
   @override
   Widget build(BuildContext context) {
     final session = context.read<GameSessionCubit>();
-    final spyNames = widget.spyIndices.map((idx) => session.playerNames[idx]).toList();
+    final spyNames = widget.spyIndices
+        .map((idx) => session.playerNames[idx])
+        .toList();
 
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(),
-      slivers: [
-        SliverFillRemaining(
-          hasScrollBody: false,
-          child: Column(
-            spacing: context.p(24),
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              AppTextWidget(AppStrings.summary, style: AppTextStyles.font28W700Primary),
-              Column(
-                spacing: context.p(6),
-                children: [
-                  AppTextWidget(
-                    AppStrings.word,
-                    style: AppTextStyles.font18W400Primary.copyWith(
-                      color: AppColors.primary.withValues(alpha: 0.6),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.maxHeight,
+            ),
+            child: IntrinsicHeight(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: context.p(16)),
+                child: Column(
+                  spacing: context.p(24),
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    AppTextWidget(
+                      AppStrings.summary,
+                      style: AppTextStyles.font28W700Primary,
                     ),
-                  ),
-                  AppTextWidget(widget.secretWord, style: AppTextStyles.fontSecond50W700Primary),
-                ],
+                    Column(
+                      spacing: context.p(6),
+                      children: [
+                        AppTextWidget(
+                          AppStrings.word,
+                          style: AppTextStyles.font18W400Primary.copyWith(
+                            color: AppColors.primary.withValues(alpha: 0.6),
+                          ),
+                        ),
+                        AppTextWidget(
+                          widget.secretWord,
+                          style: AppTextStyles.fontSecond50W700Primary,
+                        ),
+                      ],
+                    ),
+                    _CompactStatsRow(
+                      players: widget.playerCount,
+                      minutes: widget.durationMinutes,
+                    ),
+                    _SpiesListWidget(spyNames: spyNames),
+                    _AnotherRoundButton(
+                      controller: _redoController,
+                      onTap: widget.onAnotherRound,
+                    ),
+                    AppButton(
+                      title: AppStrings.finishGame,
+                      onTap: widget.onFinish,
+                    ),
+                  ],
+                ),
               ),
-              _CompactStatsRow(
-                players: widget.playerCount,
-                minutes: widget.durationMinutes,
-              ),
-              _SpiesListWidget(spyNames: spyNames),
-              _AnotherRoundButton(
-                controller: _redoController,
-                onTap: widget.onAnotherRound,
-              ),
-              AppButton(
-                title: AppStrings.finishGame,
-                onTap: widget.onFinish,
-              ),
-            ],
+            ),
           ),
-        ),
-      ],
+        );
+      },
     );
   }
 }
@@ -125,8 +142,13 @@ class _CompactStatsRow extends StatelessWidget {
           spacing: context.p(8),
           children: [
             SvgPicture.asset(
-              AppAssets.peopleGroupSvg, width: context.s(22), height: context.s(22),
-              colorFilter: const ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+              AppAssets.peopleGroupSvg,
+              width: context.s(22),
+              height: context.s(22),
+              colorFilter: const ColorFilter.mode(
+                AppColors.primary,
+                BlendMode.srcIn,
+              ),
             ),
             AppTextWidget('$players', style: AppTextStyles.font20W400White),
           ],
@@ -135,8 +157,13 @@ class _CompactStatsRow extends StatelessWidget {
           spacing: context.p(8),
           children: [
             SvgPicture.asset(
-              AppAssets.timeOclockSvg, width: context.s(22), height: context.s(22),
-              colorFilter: const ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+              AppAssets.timeOclockSvg,
+              width: context.s(22),
+              height: context.s(22),
+              colorFilter: const ColorFilter.mode(
+                AppColors.primary,
+                BlendMode.srcIn,
+              ),
             ),
             AppTextWidget('$minutes:00', style: AppTextStyles.font20W400White),
           ],
@@ -161,8 +188,13 @@ class _SpiesListWidget extends StatelessWidget {
           spacing: context.p(8),
           children: [
             SvgPicture.asset(
-              AppAssets.spySvg, width: context.s(22), height: context.s(22),
-              colorFilter: const ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+              AppAssets.spySvg,
+              width: context.s(22),
+              height: context.s(22),
+              colorFilter: const ColorFilter.mode(
+                AppColors.primary,
+                BlendMode.srcIn,
+              ),
             ),
             AppTextWidget(
               AppStrings.numberOfSpies,
@@ -176,18 +208,27 @@ class _SpiesListWidget extends StatelessWidget {
             spacing: context.p(10),
             runSpacing: context.p(10),
             alignment: WrapAlignment.center,
-            children: spyNames.map((name) => Container(
-              padding: EdgeInsets.symmetric(horizontal: context.p(16), vertical: context.p(8)),
-              decoration: BoxDecoration(
-                color: AppColors.secondaryBackground.withValues(alpha: 0.5),
-                borderRadius: BorderRadius.circular(context.p(16)),
-                border: Border.all(color: AppColors.primary, width: 1.5),
-              ),
-              child: AppTextWidget(
-                name,
-                style: AppTextStyles.font16W700Primary,
-              ),
-            )).toList(),
+            children: spyNames
+                .map(
+                  (name) => Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.p(16),
+                      vertical: context.p(8),
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.secondaryBackground.withValues(
+                        alpha: 0.5,
+                      ),
+                      borderRadius: BorderRadius.circular(context.p(16)),
+                      border: Border.all(color: AppColors.primary, width: 1.5),
+                    ),
+                    child: AppTextWidget(
+                      name,
+                      style: AppTextStyles.font16W700Primary,
+                    ),
+                  ),
+                )
+                .toList(),
           ),
         ),
       ],
@@ -232,8 +273,13 @@ class _AnotherRoundButton extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(context.p(8)),
                   child: SvgPicture.asset(
-                    AppAssets.redoSvg, width: context.s(24), height: context.s(24),
-                    colorFilter: const ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                    AppAssets.redoSvg,
+                    width: context.s(24),
+                    height: context.s(24),
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.white,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
               ),

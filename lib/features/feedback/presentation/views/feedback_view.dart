@@ -13,7 +13,7 @@ class FeedbackView extends StatelessWidget {
       title: AppStrings.tellUs,
       slivers: [
         SliverPadding(
-          padding: AppPadding.viewH18(context),
+          padding: AppPadding.viewH22(context),
           sliver: const SliverFillRemaining(
             hasScrollBody: false,
             child: FeedbackForm(),

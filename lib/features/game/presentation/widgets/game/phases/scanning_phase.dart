@@ -11,6 +11,7 @@ class ScanningPhaseWidget extends StatelessWidget {
     required this.onScanTap,
     super.key,
   });
+
   final String playerName;
   final VoidCallback onScanTap;
 
@@ -19,25 +20,26 @@ class ScanningPhaseWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        const AppGap(0),
-
         Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AppTextWidget(
+            const AppTextWidget(
               AppStrings.scanHere,
-              style: AppTextStyles.font28W400Primary,
             ),
             AppTextWidget(
               playerName,
-              style: AppTextStyles.font28W400Primary,
-              maxLines: 1,                         
+              style: AppTextStyles.font36W700Primary,
+              maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
           ],
         ),
         const AppGap(0),
-        GameFingerprintButton(onTap: onScanTap),
+        // Hold-to-scan Fingerprint button with direct stateless callback and delay
+        GameFingerprintButton(
+          onTap: () {
+            Future.delayed(const Duration(milliseconds: 400), onScanTap);
+          },
+        ),
       ],
     );
   }
