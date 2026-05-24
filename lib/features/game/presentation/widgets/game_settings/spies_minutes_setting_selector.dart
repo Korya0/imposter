@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
-import 'package:imposter/core/presentation/painters/sketchy_input_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_divider.dart';
-import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
-import 'package:imposter/core/style/fonts/app_text_styles.dart';
-import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_state.dart';
+import 'package:imposter/features/game/presentation/widgets/game_settings/game_setting_header.dart';
+import 'package:imposter/features/game/presentation/widgets/game_settings/wobbly_numeric_adjuster.dart';
 
 class SpiesMinutesSettingSelector extends StatelessWidget {
   const SpiesMinutesSettingSelector({
@@ -53,105 +49,25 @@ class SpiesSettingSelector extends StatelessWidget {
 
         return Column(
           mainAxisSize: MainAxisSize.min,
-          spacing: context.p(8),
+          spacing: context.p(16),
           children: [
             // Top: Icon + Title
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: context.p(8),
-              children: [
-                SvgPicture.asset(
-                  AppAssets.spySvg,
-                  width: context.s(18),
-                  height: context.s(18),
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.primary,
-                    BlendMode.srcIn,
-                  ),
-                ),
-                AppTextWidget(
-                  AppStrings.numberOfSpies,
-                  style: AppTextStyles.font18W400Primary,
-                ),
-              ],
+            const GameSettingHeader(
+              iconAsset: AppAssets.spySvg,
+              title: AppStrings.numberOfSpies,
             ),
 
             // Bottom: Sleek Wobbly Pill Adjuster
-            SizedBox(
-              width: context.w(130),
-              height: context.h(46),
-              child: CustomPaint(
-                painter: SketchyInputPainter(
-                  color: AppColors.primary,
-                  fillColor: AppColors.secondaryBackground,
-                  strokeWidth: 1.8,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Decrement Button
-                    CompactPillButton(
-                      icon: Icons.remove_sharp,
-                      onPressed: spyCount > 1 ? cubit.decrementSpies : null,
-                    ),
-
-                    // Central Numeric Value
-                    AppTextWidget(
-                      spyCount.toString(),
-                      style: AppTextStyles.font24W700Primary,
-                    ),
-
-                    // Increment Button
-                    CompactPillButton(
-                      icon: Icons.add_sharp,
-                      onPressed: spyCount < playerCount ~/ 2
-                          ? cubit.incrementSpies
-                          : null,
-                    ),
-                  ],
-                ),
-              ),
+            WobblyNumericAdjuster(
+              value: spyCount,
+              onDecrement: spyCount > 1 ? cubit.decrementSpies : null,
+              onIncrement: spyCount < playerCount ~/ 2
+                  ? cubit.incrementSpies
+                  : null,
             ),
           ],
         );
       },
-    );
-  }
-}
-
-class CompactPillButton extends StatelessWidget {
-  const CompactPillButton({
-    required this.icon,
-    required this.onPressed,
-    super.key,
-  });
-  final IconData icon;
-  final VoidCallback? onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    final isEnabled = onPressed != null;
-    final activeColor = isEnabled
-        ? AppColors.primary
-        : AppColors.primary.withValues(alpha: 0.3);
-
-    return GestureDetector(
-      onTap: isEnabled
-          ? () {
-              HapticFeedback.lightImpact();
-              onPressed!();
-            }
-          : null,
-      behavior: HitTestBehavior.opaque,
-      child: SizedBox(
-        width: context.w(38),
-        height: double.infinity,
-        child: Icon(
-          icon,
-          color: activeColor,
-          size: context.s(18),
-        ),
-      ),
     );
   }
 }
@@ -167,66 +83,23 @@ class MinutesSettingSelector extends StatelessWidget {
       builder: (context, durationMinutes) {
         return Column(
           mainAxisSize: MainAxisSize.min,
-          spacing: context.p(8),
+          spacing: context.p(16),
           children: [
             // Top: Icon + Title
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: context.p(8),
-              children: [
-                SvgPicture.asset(
-                  AppAssets.timeOclockSvg,
-                  width: context.s(18),
-                  height: context.s(18),
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.primary,
-                    BlendMode.srcIn,
-                  ),
-                ),
-                AppTextWidget(
-                  AppStrings.numberOfMinutes,
-                  style: AppTextStyles.font18W400Primary,
-                ),
-              ],
+            const GameSettingHeader(
+              iconAsset: AppAssets.timeOclockSvg,
+              title: AppStrings.numberOfMinutes,
             ),
 
             // Bottom: Sleek Wobbly Pill Adjuster
-            SizedBox(
-              width: context.w(130),
-              height: context.h(46),
-              child: CustomPaint(
-                painter: SketchyInputPainter(
-                  color: AppColors.primary,
-                  fillColor: AppColors.secondaryBackground,
-                  strokeWidth: 1.8,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Decrement Button
-                    CompactPillButton(
-                      icon: Icons.remove_sharp,
-                      onPressed: durationMinutes > 1
-                          ? cubit.decrementMinutes
-                          : null,
-                    ),
-
-                    // Central Numeric Value
-                    AppTextWidget(
-                      durationMinutes.toString(),
-                      style: AppTextStyles.font24W700Primary,
-                    ),
-
-                    // Increment Button
-                    CompactPillButton(
-                      icon: Icons.add_sharp,
-                      onPressed: durationMinutes < 30
-                          ? cubit.incrementMinutes
-                          : null,
-                    ),
-                  ],
-                ),
-              ),
+            WobblyNumericAdjuster(
+              value: durationMinutes,
+              onDecrement: durationMinutes > 1
+                  ? cubit.decrementMinutes
+                  : null,
+              onIncrement: durationMinutes < 30
+                  ? cubit.incrementMinutes
+                  : null,
             ),
           ],
         );

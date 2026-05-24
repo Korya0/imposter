@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/painters/sketchy_input_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_text_field.dart';
-import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
-import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/app_validators.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_state.dart';
+import 'package:imposter/features/game/presentation/widgets/game_settings/game_setting_header.dart';
 
 class PlayerNamesManagementCard extends StatefulWidget {
   const PlayerNamesManagementCard({super.key});
@@ -56,36 +54,26 @@ class _PlayerNamesManagementCardState extends State<PlayerNamesManagementCard> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GameSetupCubit, GameSetupState>(
+      buildWhen: (previous, current) =>
+          previous.playerNames.length != current.playerNames.length,
       builder: (context, state) {
         _syncControllers(state.playerNames);
         return Column(
-          //mainAxisSize: MainAxisSize.min,
-          spacing: context.p(14),
+          spacing: context.p(16),
           children: [
+            // Player Count Control Widget
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  spacing: context.p(12),
-                  children: [
-                    SvgPicture.asset(
-                      AppAssets.peopleGroupSvg,
-                      width: context.s(20),
-                      height: context.s(20),
-                      colorFilter: const ColorFilter.mode(
-                        AppColors.primary,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    AppTextWidget(
-                      AppStrings.numberOfPlayers,
-                      style: AppTextStyles.font22W400Primary,
-                    ),
-                  ],
+                const GameSettingHeader(
+                  iconAsset: AppAssets.peopleGroupSvg,
+                  title: AppStrings.numberOfPlayers,
                 ),
                 _ControlWidget(count: state.playerNames.length),
               ],
             ),
+
+            // Player Names Inputs Grid
             ...List.generate(
               (state.playerNames.length + 1) ~/ 2,
               (rowIndex) {
