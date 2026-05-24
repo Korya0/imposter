@@ -24,7 +24,7 @@ abstract class AppStrings {
 
   // Game Play - Scanning
   static const String player = 'Player';
-  static const String scanHere = 'أبصم تحت يا';
+  static const String scanHere = 'أبصم تحت';
   static const String keepHolding = 'خليك باصم...';
   static const String scanSuccess = 'تم البصم بنجاح';
 

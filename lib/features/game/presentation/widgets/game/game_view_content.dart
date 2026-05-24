@@ -59,16 +59,10 @@ class GameViewContent extends StatelessWidget {
           ),
           GameSessionSummary(
             secretWord: final word,
-            playerCount: final p,
-            spyCount: final s,
-            durationMinutes: final d,
             spyIndices: final spies,
           ) =>
             SummaryPhaseWidget(
               secretWord: word,
-              playerCount: p,
-              spyCount: s,
-              durationMinutes: d,
               spyIndices: spies,
               onAnotherRound: context
                   .read<GameSessionCubit>()

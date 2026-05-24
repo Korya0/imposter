@@ -6,7 +6,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imposter/core/constants/app_assets.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/painters/sketchy_circle_painter.dart';
+import 'package:imposter/core/presentation/painters/sketchy_input_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
+import 'package:imposter/core/presentation/widgets/app_divider.dart';
+import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
@@ -17,9 +20,6 @@ import 'package:imposter/features/game/presentation/controller/game_session_cubi
 class SummaryPhaseWidget extends StatefulWidget {
   const SummaryPhaseWidget({
     required this.secretWord,
-    required this.playerCount,
-    required this.spyCount,
-    required this.durationMinutes,
     required this.spyIndices,
     required this.onAnotherRound,
     required this.onFinish,
@@ -27,9 +27,6 @@ class SummaryPhaseWidget extends StatefulWidget {
   });
 
   final String secretWord;
-  final int playerCount;
-  final int spyCount;
-  final int durationMinutes;
   final List<int> spyIndices;
   final VoidCallback onAnotherRound;
   final VoidCallback onFinish;
@@ -65,107 +62,60 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
         .map((idx) => session.playerNames[idx])
         .toList();
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: constraints.maxHeight,
-            ),
-            child: IntrinsicHeight(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: context.p(16)),
-                child: Column(
-                  spacing: context.p(24),
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    AppTextWidget(
-                      AppStrings.summary,
-                      style: AppTextStyles.font28W700Primary,
-                    ),
-                    Column(
-                      spacing: context.p(6),
-                      children: [
-                        AppTextWidget(
-                          AppStrings.word,
-                          style: AppTextStyles.font18W400Primary.copyWith(
-                            color: AppColors.primary.withValues(alpha: 0.6),
-                          ),
-                        ),
-                        AppTextWidget(
-                          widget.secretWord,
-                          style: AppTextStyles.fontSecond50W700Primary,
-                        ),
-                      ],
-                    ),
-                    _CompactStatsRow(
-                      players: widget.playerCount,
-                      minutes: widget.durationMinutes,
-                    ),
-                    _SpiesListWidget(spyNames: spyNames),
-                    _AnotherRoundButton(
-                      controller: _redoController,
-                      onTap: widget.onAnotherRound,
-                    ),
-                    AppButton(
-                      title: AppStrings.finishGame,
-                      onTap: widget.onFinish,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _CompactStatsRow extends StatelessWidget {
-  const _CompactStatsRow({
-    required this.players,
-    required this.minutes,
-  });
-
-  final int players;
-  final int minutes;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      spacing: context.p(32),
+    return Column(
+      mainAxisAlignment: .spaceEvenly,
       children: [
-        Row(
-          spacing: context.p(8),
+        Column(
           children: [
-            SvgPicture.asset(
-              AppAssets.peopleGroupSvg,
-              width: context.s(22),
-              height: context.s(22),
-              colorFilter: const ColorFilter.mode(
-                AppColors.primary,
-                BlendMode.srcIn,
-              ),
+            // Header & Title
+            Column(
+              children: [
+                AppTextWidget(
+                  AppStrings.summary,
+                  style: AppTextStyles.font28W700Primary,
+                ),
+                const AppDivider(),
+              ],
             ),
-            AppTextWidget('$players', style: AppTextStyles.font20W400White),
+
+            // Centered Word Row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
+              children: [
+                AppTextWidget(
+                  '${AppStrings.word}: ',
+                  style: AppTextStyles.font24W700Primary,
+                ),
+                AppTextWidget(
+                  widget.secretWord,
+                  style: AppTextStyles.font30W700Primary,
+                ),
+              ],
+            ),
+
+            // Spies Section
+            _SpiesListWidget(spyNames: spyNames),
           ],
         ),
-        Row(
-          spacing: context.p(8),
+        // Redo & Finish game buttons
+        Column(
+          spacing: context.p(24),
           children: [
-            SvgPicture.asset(
-              AppAssets.timeOclockSvg,
-              width: context.s(22),
-              height: context.s(22),
-              colorFilter: const ColorFilter.mode(
-                AppColors.primary,
-                BlendMode.srcIn,
-              ),
+            const AppDivider(),
+
+            // Redo
+            _AnotherRoundButton(
+              controller: _redoController,
+              onTap: widget.onAnotherRound,
             ),
-            AppTextWidget('$minutes:00', style: AppTextStyles.font20W400White),
+
+            // finish game button
+            AppButton(
+              title: AppStrings.finishGame,
+              onTap: widget.onFinish,
+            ),
           ],
         ),
       ],
@@ -180,56 +130,41 @@ class _SpiesListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
-      spacing: context.p(12),
+      spacing: context.p(16),
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: context.p(8),
-          children: [
-            SvgPicture.asset(
-              AppAssets.spySvg,
-              width: context.s(22),
-              height: context.s(22),
-              colorFilter: const ColorFilter.mode(
-                AppColors.primary,
-                BlendMode.srcIn,
-              ),
-            ),
-            AppTextWidget(
-              AppStrings.numberOfSpies,
-              style: AppTextStyles.font18W700Primary,
-            ),
-          ],
+        const AppGap(24),
+        AppTextWidget(
+          AppStrings.numberOfSpies,
+          style: AppTextStyles.font18W700Primary,
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: context.p(24)),
-          child: Wrap(
-            spacing: context.p(10),
-            runSpacing: context.p(10),
-            alignment: WrapAlignment.center,
-            children: spyNames
-                .map(
-                  (name) => Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: context.p(16),
-                      vertical: context.p(8),
+        Wrap(
+          spacing: context.p(12),
+          runSpacing: context.p(12),
+          alignment: WrapAlignment.center,
+          children: spyNames
+              .map(
+                (name) => CustomPaint(
+                  painter: SketchyInputPainter(
+                    color: AppColors.primary,
+                    fillColor: AppColors.secondaryBackground.withValues(
+                      alpha: 0.4,
                     ),
-                    decoration: BoxDecoration(
-                      color: AppColors.secondaryBackground.withValues(
-                        alpha: 0.5,
-                      ),
-                      borderRadius: BorderRadius.circular(context.p(16)),
-                      border: Border.all(color: AppColors.primary, width: 1.5),
+                    strokeWidth: 1.8,
+                    isFocused: true,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.p(20),
+                      vertical: context.p(10),
                     ),
                     child: AppTextWidget(
                       name,
                       style: AppTextStyles.font16W700Primary,
                     ),
                   ),
-                )
-                .toList(),
-          ),
+                ),
+              )
+              .toList(),
         ),
       ],
     );
@@ -255,40 +190,38 @@ class _AnotherRoundButton extends StatelessWidget {
       },
       onTapCancel: controller.reverse,
       behavior: HitTestBehavior.opaque,
-      child: AnimatedBuilder(
-        animation: controller,
-        builder: (context, child) => Transform.scale(
-          scale: 1.0 - (controller.value * 0.05),
-          child: child,
+      child: ScaleTransition(
+        scale: Tween<double>(begin: 1, end: 0.92).animate(
+          CurvedAnimation(
+            parent: controller,
+            curve: Curves.easeInOut,
+          ),
         ),
-        child: Padding(
-          padding: EdgeInsets.all(context.p(8)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            spacing: context.p(12),
-            children: [
-              CustomPaint(
-                painter: const SketchyCirclePainter(color: AppColors.white),
-                child: Padding(
-                  padding: EdgeInsets.all(context.p(8)),
-                  child: SvgPicture.asset(
-                    AppAssets.redoSvg,
-                    width: context.s(24),
-                    height: context.s(24),
-                    colorFilter: const ColorFilter.mode(
-                      AppColors.white,
-                      BlendMode.srcIn,
-                    ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          spacing: context.p(12),
+          children: [
+            CustomPaint(
+              painter: const SketchyCirclePainter(color: AppColors.primary),
+              child: Padding(
+                padding: EdgeInsets.all(context.p(8)),
+                child: SvgPicture.asset(
+                  AppAssets.redoSvg,
+                  width: context.s(28),
+                  height: context.s(28),
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.primary,
+                    BlendMode.srcIn,
                   ),
                 ),
               ),
-              AppTextWidget(
-                AppStrings.anotherRound,
-                style: AppTextStyles.font20W400White,
-              ),
-            ],
-          ),
+            ),
+            AppTextWidget(
+              AppStrings.anotherRound,
+              style: AppTextStyles.font22W400Primary,
+            ),
+          ],
         ),
       ),
     );
