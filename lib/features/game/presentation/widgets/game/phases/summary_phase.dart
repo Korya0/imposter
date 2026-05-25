@@ -21,6 +21,7 @@ class SummaryPhaseWidget extends StatefulWidget {
   const SummaryPhaseWidget({
     required this.secretWord,
     required this.spyIndices,
+    required this.votedSpies,
     required this.onAnotherRound,
     required this.onFinish,
     super.key,
@@ -28,6 +29,7 @@ class SummaryPhaseWidget extends StatefulWidget {
 
   final String secretWord;
   final List<int> spyIndices;
+  final Map<int, List<int>> votedSpies;
   final VoidCallback onAnotherRound;
   final VoidCallback onFinish;
 
@@ -63,63 +65,72 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
         .map((idx) => session.playerNames[idx])
         .toList();
 
-    return Column(
-      mainAxisAlignment: .spaceEvenly,
-      children: [
-        Column(
-          children: [
-            // Header & Title
-            Column(
-              children: [
-                AppTextWidget(
-                  AppStrings.summary,
-                  style: AppTextStyles.font28W700Primary,
-                ),
-                const AppDivider(),
-              ],
-            ),
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        children: [
+          Column(
+            children: [
+              // Header & Title
+              Column(
+                children: [
+                  AppTextWidget(
+                    AppStrings.summary,
+                    style: AppTextStyles.font28W700Primary,
+                  ),
+                  const AppDivider(),
+                ],
+              ),
 
-            // Centered Word Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.baseline,
-              textBaseline: TextBaseline.alphabetic,
-              children: [
-                AppTextWidget(
-                  '${AppStrings.word}: ',
-                  style: AppTextStyles.font24W700Primary,
-                ),
-                AppTextWidget(
-                  widget.secretWord,
-                  style: AppTextStyles.font30W700Primary,
-                ),
-              ],
-            ),
+              // Centered Word Row
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  AppTextWidget(
+                    '${AppStrings.word}: ',
+                    style: AppTextStyles.font24W700Primary,
+                  ),
+                  AppTextWidget(
+                    widget.secretWord,
+                    style: AppTextStyles.font30W700Primary,
+                  ),
+                ],
+              ),
 
-            // Spies Section
-            _SpiesListWidget(spyNames: spyNames),
-          ],
-        ),
-        // Redo & Finish game buttons
-        Column(
-          spacing: context.p(24),
-          children: [
-            const AppDivider(),
+              // Spies Section
+              _SpiesListWidget(spyNames: spyNames),
 
-            // Redo
-            _AnotherRoundButton(
-              controller: _redoController,
-              onTap: widget.onAnotherRound,
-            ),
+              // Results Section
+              _VotingResultsWidget(
+                spyIndices: widget.spyIndices,
+                votedSpies: widget.votedSpies,
+                playerNames: session.playerNames,
+              ),
+            ],
+          ),
+          // Redo & Finish game buttons
+          Column(
+            spacing: context.p(24),
+            children: [
+              const AppDivider(),
 
-            // finish game button
-            AppButton(
-              title: AppStrings.finishGame,
-              onTap: widget.onFinish,
-            ),
-          ],
-        ),
-      ],
+              // Redo
+              _AnotherRoundButton(
+                controller: _redoController,
+                onTap: widget.onAnotherRound,
+              ),
+
+              // finish game button
+              AppButton(
+                title: AppStrings.finishGame,
+                onTap: widget.onFinish,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -225,6 +236,78 @@ class _AnotherRoundButton extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _VotingResultsWidget extends StatelessWidget {
+  const _VotingResultsWidget({
+    required this.spyIndices,
+    required this.votedSpies,
+    required this.playerNames,
+  });
+
+  final List<int> spyIndices;
+  final Map<int, List<int>> votedSpies;
+  final List<String> playerNames;
+
+  @override
+  Widget build(BuildContext context) {
+    final guessedPlayers = <String>[];
+    for (var i = 0; i < playerNames.length; i++) {
+      if (spyIndices.contains(i)) continue;
+
+      final voterVotes = votedSpies[i] ?? [];
+      final guessedAll =
+          voterVotes.length == spyIndices.length &&
+          voterVotes.every(spyIndices.contains);
+
+      if (guessedAll) {
+        guessedPlayers.add(playerNames[i]);
+      }
+    }
+
+    final hasWinners = guessedPlayers.isNotEmpty;
+
+    return Column(
+      spacing: context.p(16),
+      children: [
+        const AppGap(24),
+        AppTextWidget(
+          hasWinners ? AppStrings.playersWhoCaughtSpy : AppStrings.spyGotAway,
+          style: AppTextStyles.font18W700Primary,
+        ),
+        if (hasWinners)
+          Wrap(
+            spacing: context.p(12),
+            runSpacing: context.p(12),
+            alignment: WrapAlignment.center,
+            children: guessedPlayers
+                .map(
+                  (name) => CustomPaint(
+                    painter: SketchyInputPainter(
+                      color: AppColors.primary,
+                      fillColor: AppColors.secondaryBackground.withValues(
+                        alpha: 0.4,
+                      ),
+                      strokeWidth: 1.8,
+                      isFocused: true,
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: context.p(20),
+                        vertical: context.p(10),
+                      ),
+                      child: AppTextWidget(
+                        name,
+                        style: AppTextStyles.font16W700Primary,
+                      ),
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+      ],
     );
   }
 }

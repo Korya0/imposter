@@ -50,6 +50,15 @@ class GameSessionTimer extends GameSessionState {
   final int durationMinutes;
 }
 
+class GameSessionVoting extends GameSessionState {
+  const GameSessionVoting({
+    required this.secretWord,
+    required this.spyIndices,
+  });
+  final String secretWord;
+  final List<int> spyIndices;
+}
+
 class GameSessionSummary extends GameSessionState {
   const GameSessionSummary({
     required this.secretWord,
@@ -57,10 +66,12 @@ class GameSessionSummary extends GameSessionState {
     required this.spyCount,
     required this.durationMinutes,
     required this.spyIndices,
+    required this.votedSpies,
   });
   final String secretWord;
   final int playerCount;
   final int spyCount;
   final int durationMinutes;
   final List<int> spyIndices;
+  final Map<int, List<int>> votedSpies;
 }

@@ -36,6 +36,15 @@ abstract class AppStrings {
   static const String ready = 'كده كله تمام';
   static const String finishTurn = 'أنهي الدور';
   static const String next = 'اللي بعده';
+  static const String startVoting = 'ابدأ التصويت';
+
+  // Game Play - Voting
+  static const String whoIsTheSpy = 'مين الجاسوس؟';
+  static const String goToSummary = 'روح للملخص';
+  static const String maxSpiesSelectedWarning = 'يا معلم، أخرك تختار {} جواسيس بس!';
+  static const String playersNotFinishedVoting = 'يا ريس، فيه لاعيبة لسه مخلصتش تصويتها: {}';
+  static const String playersWhoCaughtSpy = 'الناس اللي قفشت الجاسوس';
+  static const String spyGotAway = 'الجاسوس فلت! محدش قفشه';
 
   // Game Summary
   static const String summary = 'ملخص الدور';

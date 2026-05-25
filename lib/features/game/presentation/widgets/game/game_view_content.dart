@@ -10,6 +10,7 @@ import 'package:imposter/features/game/presentation/widgets/game/phases/revealin
 import 'package:imposter/features/game/presentation/widgets/game/phases/scanning_phase.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/summary_phase.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/timer_phase.dart';
+import 'package:imposter/features/game/presentation/widgets/game/phases/voting_phase.dart';
 
 class GameViewContent extends StatelessWidget {
   const GameViewContent({required this.state, super.key});
@@ -54,16 +55,22 @@ class GameViewContent extends StatelessWidget {
           ),
           GameSessionTimer(durationMinutes: final mins) => TimerPhaseWidget(
             durationMinutes: mins,
-            onTimeout: context.read<GameSessionCubit>().finishGame,
-            onFinishTurn: context.read<GameSessionCubit>().finishGame,
+            onTimeout: context.read<GameSessionCubit>().startVoting,
+            onFinishTurn: context.read<GameSessionCubit>().startVoting,
+          ),
+          GameSessionVoting() => VotingPhaseWidget(
+            onFinishVoting: (votes) =>
+                context.read<GameSessionCubit>().finishGame(votes),
           ),
           GameSessionSummary(
             secretWord: final word,
             spyIndices: final spies,
+            votedSpies: final votes,
           ) =>
             SummaryPhaseWidget(
               secretWord: word,
               spyIndices: spies,
+              votedSpies: votes,
               onAnotherRound: context
                   .read<GameSessionCubit>()
                   .prepareAnotherRound,

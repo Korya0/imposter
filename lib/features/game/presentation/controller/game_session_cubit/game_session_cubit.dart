@@ -15,6 +15,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
 
   int get playerCount => _playerNames.length;
   List<String> get playerNames => _playerNames;
+  int get spyCount => _spyCount;
 
   void startGame({
     required List<String> playerNames,
@@ -118,9 +119,21 @@ class GameSessionCubit extends Cubit<GameSessionState> {
     );
   }
 
-  void finishGame() {
+  void startVoting() {
     final currentState = state;
     if (currentState is! GameSessionTimer) return;
+
+    emit(
+      GameSessionVoting(
+        secretWord: currentState.secretWord,
+        spyIndices: currentState.spyIndices,
+      ),
+    );
+  }
+
+  void finishGame(Map<int, List<int>> votedSpies) {
+    final currentState = state;
+    if (currentState is! GameSessionVoting) return;
 
     emit(
       GameSessionSummary(
@@ -129,6 +142,7 @@ class GameSessionCubit extends Cubit<GameSessionState> {
         spyCount: _spyCount,
         durationMinutes: _durationMinutes,
         spyIndices: currentState.spyIndices,
+        votedSpies: votedSpies,
       ),
     );
   }

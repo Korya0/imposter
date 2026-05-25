@@ -27,7 +27,7 @@ class TimerPhaseWidget extends StatelessWidget {
         ),
 
         AppButton(
-          title: AppStrings.finishTurn,
+          title: AppStrings.startVoting,
           onTap: onFinishTurn,
         ),
       ],
