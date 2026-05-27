@@ -5,7 +5,6 @@ import 'package:imposter/core/presentation/widgets/app_loading_indicator.dart';
 import 'package:imposter/core/router/app_routes.dart';
 import 'package:imposter/features/game/presentation/controller/game_session_cubit/game_session_cubit.dart';
 import 'package:imposter/features/game/presentation/controller/game_session_cubit/game_session_state.dart';
-import 'package:imposter/features/game/presentation/widgets/game/phases/ready_phase.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/revealing_phase.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/scanning_phase.dart';
 import 'package:imposter/features/game/presentation/widgets/game/phases/summary_phase.dart';
@@ -50,9 +49,6 @@ class GameViewContent extends StatelessWidget {
               onNext: () =>
                   context.read<GameSessionCubit>().toggleReveal(reveal: false),
             ),
-          GameSessionReady() => ReadyPhaseWidget(
-            onStartTimer: context.read<GameSessionCubit>().startTimer,
-          ),
           GameSessionTimer(durationMinutes: final mins) => TimerPhaseWidget(
             durationMinutes: mins,
             onTimeout: context.read<GameSessionCubit>().startVoting,

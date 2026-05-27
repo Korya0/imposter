@@ -30,15 +30,6 @@ class GameSessionRevealing extends GameSessionState {
   final bool isSpy;
 }
 
-class GameSessionReady extends GameSessionState {
-  const GameSessionReady({
-    required this.secretWord,
-    required this.spyIndices,
-  });
-  final String secretWord;
-  final List<int> spyIndices;
-}
-
 class GameSessionTimer extends GameSessionState {
   const GameSessionTimer({
     required this.secretWord,

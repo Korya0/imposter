@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/painters/sketchy_input_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
@@ -82,7 +83,18 @@ class _VotingPhaseWidgetState extends State<VotingPhaseWidget> {
             AppTextWidget(
               AppStrings.whoIsTheSpy,
               style: AppTextStyles.font28W700Primary,
-            ),
+            )
+                .animate()
+                .fadeIn(
+                  duration: const Duration(milliseconds: 350),
+                  curve: Curves.easeOut,
+                )
+                .slideY(
+                  begin: -0.15,
+                  end: 0,
+                  duration: const Duration(milliseconds: 350),
+                  curve: Curves.easeOutQuad,
+                ),
             const AppDivider(),
 
             VotingListWidget(
@@ -98,7 +110,19 @@ class _VotingPhaseWidgetState extends State<VotingPhaseWidget> {
         AppButton(
           title: AppStrings.goToSummary,
           onTap: () => _handleSubmit(session),
-        ),
+        )
+            .animate()
+            .fadeIn(
+              delay: const Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 350),
+            )
+            .slideY(
+              begin: 0.15,
+              end: 0,
+              delay: const Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 350),
+              curve: Curves.easeOutQuad,
+            ),
       ],
     );
   }
@@ -126,6 +150,7 @@ class VotingListWidget extends StatelessWidget {
       child: Column(
         children: [
           ...List.generate(playerCount, (index) {
+            final delayIndex = index.clamp(0, 4);
             return Column(
               children: [
                 VotingPlayerSection(
@@ -137,7 +162,20 @@ class VotingListWidget extends StatelessWidget {
                 ),
                 if (index < playerCount - 1) const AppDivider(),
               ],
-            );
+            )
+                .animate()
+                .fadeIn(
+                  delay: Duration(milliseconds: 150 + (delayIndex * 80)),
+                  duration: const Duration(milliseconds: 350),
+                  curve: Curves.easeOut,
+                )
+                .slideY(
+                  begin: 0.1,
+                  end: 0,
+                  delay: Duration(milliseconds: 150 + (delayIndex * 80)),
+                  duration: const Duration(milliseconds: 350),
+                  curve: Curves.easeOutCubic,
+                );
           }),
         ],
       ),

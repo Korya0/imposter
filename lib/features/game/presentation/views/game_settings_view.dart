@@ -16,6 +16,7 @@ import 'package:imposter/core/utils/app_validators.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/controller/game_session_cubit/game_session_cubit.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/features/game/presentation/widgets/game_settings/player_names_management_card.dart';
 import 'package:imposter/features/game/presentation/widgets/game_settings/spies_minutes_setting_selector.dart';
 
@@ -33,12 +34,38 @@ class GameSettingsView extends StatelessWidget {
             delegate: SliverChildListDelegate([
               // Game Settings List
               const AppGap(16),
-              const PlayerNamesManagementCard(),
+              const PlayerNamesManagementCard()
+                  .animate()
+                  .fadeIn(
+                    delay: const Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeOut,
+                  )
+                  .slideY(
+                    begin: 0.1,
+                    end: 0,
+                    delay: const Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeOutCubic,
+                  ),
               const AppGap(12),
               const AppDivider(),
               const AppGap(12),
 
-              const SpiesMinutesSettingSelector(),
+              const SpiesMinutesSettingSelector()
+                  .animate()
+                  .fadeIn(
+                    delay: const Duration(milliseconds: 420),
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeOut,
+                  )
+                  .slideY(
+                    begin: 0.1,
+                    end: 0,
+                    delay: const Duration(milliseconds: 420),
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeOutCubic,
+                  ),
               const AppGap(12),
 
               const AppDivider(),
@@ -79,7 +106,20 @@ class GameSettingsView extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+              )
+                  .animate()
+                  .fadeIn(
+                    delay: const Duration(milliseconds: 540),
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeOut,
+                  )
+                  .slideY(
+                    begin: 0.1,
+                    end: 0,
+                    delay: const Duration(milliseconds: 540),
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeOutCubic,
+                  ),
               const AppGap(40),
             ]),
           ),

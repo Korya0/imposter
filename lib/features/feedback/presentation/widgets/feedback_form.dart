@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/di/di.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
@@ -67,7 +68,20 @@ class _FeedbackFormState extends State<FeedbackForm> {
                       style: AppTextStyles.font18W400White,
                       textAlign: .center,
                     ),
-                  ),
+                  )
+                      .animate()
+                      .fadeIn(
+                        delay: const Duration(milliseconds: 300),
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeOut,
+                      )
+                      .slideY(
+                        begin: 0.15,
+                        end: 0,
+                        delay: const Duration(milliseconds: 300),
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeOutCubic,
+                      ),
                   AppTextField( 
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(
@@ -89,11 +103,37 @@ class _FeedbackFormState extends State<FeedbackForm> {
                               ),
                             );
                           },
-                  ),
+                  )
+                      .animate()
+                      .fadeIn(
+                        delay: const Duration(milliseconds: 420),
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeOut,
+                      )
+                      .slideY(
+                        begin: 0.15,
+                        end: 0,
+                        delay: const Duration(milliseconds: 420),
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeOutCubic,
+                      ),
                   FeedbackSubmitButton(
                     isLoading: isLoading,
                     feedbackController: _feedbackController,
-                  ),
+                  )
+                      .animate()
+                      .fadeIn(
+                        delay: const Duration(milliseconds: 540),
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeOut,
+                      )
+                      .slideY(
+                        begin: 0.15,
+                        end: 0,
+                        delay: const Duration(milliseconds: 540),
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeOutCubic,
+                      ),
                 ],
               ),
               const AppGap(0),

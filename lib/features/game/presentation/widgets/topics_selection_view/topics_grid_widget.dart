@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -27,27 +28,41 @@ class TopicsGridWidget extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           final category = categories[index];
+          final animationDelayIndex = index.clamp(0, 5);
 
           return AppSketchyCard(
-            key: ValueKey(category.id),
-            title: category.name,
-            maxLines: 2,
-            onTap: () async {
-              context.read<GameSetupCubit>().selectCategory(category);
-              await context.pushNamed(AppRoutes.gameSettings);
-            },
-            watermark: IgnorePointer(
-              child: SvgPicture.asset(
-                AppAssets.getCategoryIcon(category.id),
-                width: context.s(80),
-                height: context.s(80),
-                placeholderBuilder: (context) => SizedBox(
-                  width: context.s(80),
-                  height: context.s(80),
+                key: ValueKey(category.id),
+                title: category.name,
+                maxLines: 2,
+                onTap: () async {
+                  context.read<GameSetupCubit>().selectCategory(category);
+                  await context.pushNamed(AppRoutes.gameSettings);
+                },
+                watermark: IgnorePointer(
+                  child: SvgPicture.asset(
+                    AppAssets.getCategoryIcon(category.id),
+                    width: context.s(80),
+                    height: context.s(80),
+                    placeholderBuilder: (context) => SizedBox(
+                      width: context.s(80),
+                      height: context.s(80),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          );
+              )
+              .animate()
+              .fadeIn(
+                delay: Duration(milliseconds: 300 + (animationDelayIndex * 80)),
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.easeOut,
+              )
+              .slideY(
+                begin: 0.15,
+                end: 0,
+                delay: Duration(milliseconds: 300 + (animationDelayIndex * 80)),
+                duration: const Duration(milliseconds: 450),
+                curve: Curves.easeOutCubic,
+              );
         },
         childCount: categories.length,
       ),

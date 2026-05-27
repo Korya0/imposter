@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/constants/app_padding.dart';
 import 'package:imposter/core/presentation/widgets/app_logo.dart';
 import 'package:imposter/core/presentation/widgets/app_name_text.dart';
@@ -40,9 +41,33 @@ class _HomeViewBody extends StatelessWidget {
       children: [
         Column(
           spacing: context.p(18),
-          children: const [
-            AppNameText(),
-            AppLogo(),
+          children: [
+            const AppNameText()
+                .animate()
+                .fadeIn(
+                  duration: const Duration(milliseconds: 450),
+                  curve: Curves.easeOut,
+                )
+                .slideY(
+                  begin: -0.2,
+                  end: 0,
+                  duration: const Duration(milliseconds: 450),
+                  curve: Curves.easeOutQuad,
+                ),
+            const AppLogo()
+                .animate()
+                .fadeIn(
+                  delay: const Duration(milliseconds: 200),
+                  duration: const Duration(milliseconds: 450),
+                  curve: Curves.easeOut,
+                )
+                .scale(
+                  begin: const Offset(0.8, 0.8),
+                  end: const Offset(1, 1),
+                  delay: const Duration(milliseconds: 200),
+                  duration: const Duration(milliseconds: 550),
+                  curve: Curves.easeOutBack,
+                ),
           ],
         ),
 

@@ -14,6 +14,7 @@ import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/audio_player_helper.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/controller/game_session_cubit/game_session_cubit.dart';
 
@@ -71,7 +72,7 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
         children: [
           Column(
             children: [
-              // Header & Title
+              // Header, Title & Word
               Column(
                 children: [
                   AppTextWidget(
@@ -79,35 +80,71 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
                     style: AppTextStyles.font28W700Primary,
                   ),
                   const AppDivider(),
-                ],
-              ),
-
-              // Centered Word Row
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                textBaseline: TextBaseline.alphabetic,
-                children: [
-                  AppTextWidget(
-                    '${AppStrings.word}: ',
-                    style: AppTextStyles.font24W700Primary,
+                  const AppGap(12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      AppTextWidget(
+                        '${AppStrings.word}: ',
+                        style: AppTextStyles.font24W700Primary,
+                      ),
+                      AppTextWidget(
+                        widget.secretWord,
+                        style: AppTextStyles.font30W700Primary,
+                      ),
+                    ],
                   ),
-                  AppTextWidget(
-                    widget.secretWord,
-                    style: AppTextStyles.font30W700Primary,
-                  ),
                 ],
-              ),
+              )
+                  .animate()
+                  .fadeIn(
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeOut,
+                  )
+                  .slideY(
+                    begin: -0.15,
+                    end: 0,
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeOutQuad,
+                  ),
 
               // Spies Section
-              _SpiesListWidget(spyNames: spyNames),
+              _SpiesListWidget(spyNames: spyNames)
+                  .animate()
+                  .fadeIn(
+                    delay: const Duration(milliseconds: 180),
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeOut,
+                  )
+                  .slideY(
+                    begin: 0.1,
+                    end: 0,
+                    delay: const Duration(milliseconds: 180),
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeOutCubic,
+                  ),
 
               // Results Section
               _VotingResultsWidget(
                 spyIndices: widget.spyIndices,
                 votedSpies: widget.votedSpies,
                 playerNames: session.playerNames,
-              ),
+              )
+                  .animate()
+                  .fadeIn(
+                    delay: const Duration(milliseconds: 320),
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeOut,
+                  )
+                  .slideY(
+                    begin: 0.1,
+                    end: 0,
+                    delay: const Duration(milliseconds: 320),
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeOutCubic,
+                  ),
             ],
           ),
           // Redo & Finish game buttons
@@ -128,7 +165,19 @@ class _SummaryPhaseWidgetState extends State<SummaryPhaseWidget>
                 onTap: widget.onFinish,
               ),
             ],
-          ),
+          )
+              .animate()
+              .fadeIn(
+                delay: const Duration(milliseconds: 460),
+                duration: const Duration(milliseconds: 350),
+              )
+              .slideY(
+                begin: 0.15,
+                end: 0,
+                delay: const Duration(milliseconds: 460),
+                duration: const Duration(milliseconds: 350),
+                curve: Curves.easeOutQuad,
+              ),
         ],
       ),
     );

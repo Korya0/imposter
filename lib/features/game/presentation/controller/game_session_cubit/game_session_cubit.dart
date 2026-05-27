@@ -98,25 +98,13 @@ class GameSessionCubit extends Cubit<GameSessionState> {
       );
     } else {
       emit(
-        GameSessionReady(
+        GameSessionTimer(
           secretWord: word,
           spyIndices: spies,
+          durationMinutes: _durationMinutes,
         ),
       );
     }
-  }
-
-  void startTimer() {
-    final currentState = state;
-    if (currentState is! GameSessionReady) return;
-
-    emit(
-      GameSessionTimer(
-        secretWord: currentState.secretWord,
-        spyIndices: currentState.spyIndices,
-        durationMinutes: _durationMinutes,
-      ),
-    );
   }
 
   void startVoting() {

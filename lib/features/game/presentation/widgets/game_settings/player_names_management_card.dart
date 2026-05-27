@@ -10,6 +10,7 @@ import 'package:imposter/core/utils/app_validators.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_cubit.dart';
 import 'package:imposter/features/game/presentation/controller/game_setup_cubit/game_setup_state.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/features/game/presentation/widgets/game_settings/game_setting_header.dart';
 
 class PlayerNamesManagementCard extends StatefulWidget {
@@ -149,7 +150,18 @@ class _PlayerGridItem extends StatelessWidget {
           ),
           LengthLimitingTextInputFormatter(10),
         ],
-      );
+      )
+          .animate()
+          .fadeIn(
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeOut,
+          )
+          .scale(
+            begin: const Offset(0.9, 0.9),
+            end: const Offset(1, 1),
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeOutBack,
+          );
     } else {
       return const SizedBox();
     }
