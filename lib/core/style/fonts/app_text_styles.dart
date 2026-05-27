@@ -201,4 +201,10 @@ class AppTextStyles {
     fontWeight: FontWeightHelper.w700.weight,
     color: AppColors.primary,
   );
+
+  static TextStyle font10W400Primary = font.copyWith(
+    fontSize: 10,
+    fontWeight: FontWeightHelper.w400.weight,
+    color: AppColors.primary,
+  );
 }

@@ -123,7 +123,7 @@ class _AppTextFieldState extends State<AppTextField> {
             ),
             decoration: InputDecoration(
               hintText: widget.hintText,
-              hintStyle: AppTextStyles.font15W700Primary.copyWith(
+              hintStyle: AppTextStyles.font10W400Primary.copyWith(
                 color: AppColors.primary.withValues(alpha: 0.5),
               ),
               prefixIcon: widget.iconWidget,

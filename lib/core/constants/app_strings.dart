@@ -3,99 +3,74 @@ import 'dart:core';
 abstract class AppStrings {
   // Common & Home
   static const String spy = 'الجاسوس';
-  static const String howToPlay = 'أزاي تلعب';
+  static const String howToPlay = 'إزاي نلعب؟';
   static const String letsGo = 'يلا بينا';
-  static const String feedback = 'رأيك يهمنا';
-  static const String comingSoon = 'قريبا';
-  static const String close = 'إغلاق';
 
   // Category Selection
-  static const String comingWithYou = 'جايه معاك بايه ؟';
-  static const String category = 'الموضوع';
+  static const String comingWithYou = 'تحبوا نلعب في إيه؟';
 
   // Game Settings
-  static const String settings = 'الإعدادات';
-  static const String numberOfPlayers = 'عددكم';
-  static const String numberOfSpies = 'الجواسيس';
-  static const String numberOfMinutes = 'الدقائق';
-  static const String start = 'ابدا';
+  static const String settings = 'تجهيز اللعبة';
+  static const String numberOfPlayers = 'كام لاعب؟';
+  static const String numberOfSpies = 'كام جاسوس؟';
+  static const String numberOfMinutes = 'وقت الدور؟';
+  static const String start = 'يلا نبدأ';
   static const String playerDefaultPrefix = 'لاعب';
-  static const String playerNameHint = 'اسم اللاعب';
+  static const String playerNameHint = 'اكتب الاسم هنا';
 
   // Game Play - Scanning
-  static const String player = 'Player';
-  static const String scanHere = 'أبصم تحت';
-  static const String keepHolding = 'خليك باصم...';
-  static const String scanSuccess = 'تم البصم بنجاح';
+  static const String scanHere = 'خليك باصم وثبت صباعك';
 
   // Game Play - Revealing
-  static const String youAreTheSpy = 'انت الجاسوس';
-  static const String youAreNotTheSpy = 'انت مش جاسوس';
+  static const String youAreTheSpy = 'أنت الجاسوس';
 
   // Game Play - Timer
-  static const String ready = 'كده كله تمام';
-  static const String finishTurn = 'أنهي الدور';
-  static const String next = 'اللي بعده';
-  static const String startVoting = 'ابدأ التصويت';
+  static const String ready = 'جاهزين؟ يلا بينا';
+  static const String next = 'سلم للي بعدك';
+  static const String startVoting = 'يلا نختار الجاسوس';
 
   // Game Play - Voting
-  static const String whoIsTheSpy = 'مين الجاسوس؟';
-  static const String goToSummary = 'روح للملخص';
-  static const String maxSpiesSelectedWarning = 'يا معلم، أخرك تختار {} جواسيس بس!';
-  static const String playersNotFinishedVoting = 'يا ريس، فيه لاعيبة لسه مخلصتش تصويتها: {}';
-  static const String playersWhoCaughtSpy = 'الناس اللي قفشت الجاسوس';
-  static const String spyGotAway = 'الجاسوس فلت! محدش قفشه';
+  static const String whoIsTheSpy = 'مين الجاسوس في رأيكم؟';
+  static const String goToSummary = 'يلا نشوف مين كسب';
+  static const String maxSpiesSelectedWarning =
+      'يا بطل، أخرك تختار {} جواسيس بس';
+  static const String playersNotFinishedVoting =
+      'استنوا، فيه لاعيبة لسه مخلصتش تصويتها: {}';
+  static const String playersWhoCaughtSpy = 'الأبطال اللي قفشوا الجاسوس';
+  static const String spyGotAway = 'الجاسوس هرب وضحك عليكم';
 
   // Game Summary
-  static const String summary = 'ملخص الدور';
+  static const String summary = 'خلاصه الدور';
   static const String word = 'الكلمة';
-  static const String anotherRound = 'دور تاني';
-  static const String finishGame = 'أنهي اللعبة';
+  static const String anotherRound = 'دور كمان؟';
+  static const String finishGame = 'خلاص كفاية كده';
 
   // Errors
-  static const String tryAgain = 'إعادة المحاولة';
-  static const String loadingCategory = 'اسم التصنيف الافتراضي';
-  static const String errorDataParsing = 'حدث خطأ في معالجة بيانات اللعبة';
-  static const String errorStorage = 'تعذر حفظ أو استرجاع البيانات المحلية';
-  static const String errorAsset = 'ملف بيانات اللعبة غير موجود أو تالف';
-  static const String errorUnexpected =
-      'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى';
-  static const String oopsYouLost = 'أوبس تهت في الطريق؟';
-  static const String backToHome = 'الرجوع للرئيسية';
-  static const String tellUs = 'هات اللى عندك';
-  static const String dontLetHopeDown = 'متخليش العشم ياخدك';
-  static const String sendFeedback = 'إرسال';
-  static const String feedbackPlaceholder = 'اكتب مقترحك هنا...';
-  static const String feedbackContactPlaceholder =
-      'إيميلك أو رقم تليفونك (اختياري)...';
-  static const String feedbackSuccess = 'شكراً لمشاركتك تم الإرسال بنجاح';
-  static const String feedbackError = 'حدث خطأ أثناء الإرسال، حاول مرة أخرى';
-  static const String feedbackEmptyError = 'اكتب رأيك الأول عشان نقراه!';
-  static const String discardFeedbackTitle = 'تراجع عن الكتابة؟';
-  static const String discardFeedbackMessage =
-      'لو رجعت دلوقتي، كل الكلام اللي كتبته هيتمسح. متأكد إنك عايز تخرج؟';
-  static const String continueWriting = 'كمل كتابة';
-  static const String discardAndExit = 'امسح واخرج';
+  static const String tryAgain = 'جرب تاني';
+  static const String loadingCategory = 'بيحمل...';
+  static const String errorDataParsing = 'حصلت لخبطة في اللعبة.. معلش جرب تاني';
+  static const String errorStorage =
+      'مش عارفين نحفظ بياناتك.. اتأكد من المساحة';
+  static const String errorAsset = 'ملفات اللعبة فيها مشكلة.. حاول تفتحها تاني';
+  static const String errorUnexpected = 'أوبس! حصلت حاجة غريبة.. جرب تاني كده؟';
+  static const String oopsYouLost = 'أوبس! شكلك تهت في الطريق؟';
+  static const String backToHome = 'نرجع للرئيسية';
+  static const String tellUs = 'فضفض لنا';
+  static const String sendFeedback = 'ابعت';
+  static const String feedbackPlaceholder =
+      'قولنا إيه اللي عجبك أو مضايقك هنا...';
+
+  static const String feedbackSuccess = 'رأيك وصل في أمان! تسلم إيدك';
+  static const String feedbackError = 'معلش حصلت مشكلة في الإرسال.. جرب تاني؟';
+  static const String feedbackEmptyError = 'قولنا أي حاجة تفيدنا';
+
   static const String feedbackSubtitle =
-      'رأيك بيساعدنا نطور اللعبة ونخليها أحسن! اكتب مقترحك أو لو قابلتك مشكلة.';
-  static const String feedbackBusinessContact = 'تواصل لأغراض العمل';
-  static const String shareAndRate = 'شارك وقيم';
-  static const String shareApp = 'مشاركة التطبيق';
-  static const String followUsOn = 'تابع التطبيق علي';
+      'رأيك يهمنا جداً عشان نطور اللعبة! شاركنا بأفكارك أو أي مشكلة واجهتك';
   static const String noInternetError =
-      'لا يوجد اتصال بالإنترنت، يرجى التحقق من الشبكة';
+      'مفيش إنترنت! اتأكد من الواي فاي أو الباقة';
 
   // Settings Limits
-  static const String maxPlayersReached = 'وصلت لأقصى عدد لاعبين مسموح بيه';
-  static const String minPlayersReached = 'لازم 3 لاعيبة على الأقل عشان تلعبوا';
-  static const String maxSpiesReached =
-      'عدد الجواسيس مينفعش يتخطى نص عدد اللعيبة';
-  static const String minSpiesReached = 'لازم يكون فيه جاسوس واحد على الأقل';
-  static const String maxMinutesReached = '30 دقيقة ده أقصى وقت مسموح بيه';
-  static const String minMinutesReached = 'أقل وقت هو دقيقة واحدة';
-  static const String playerNameEmptyError = 'اسم اللاعب مطلوب';
-  static const String playerNameInvalidError =
-      'الاسم يجب أن يحتوي على حروف وأرقام فقط';
+  static const String playerNameEmptyError = 'لازم تكتب اسم اللاعب';
   static const String playerNameValidationError =
-      'يرجى تصحيح أسماء اللاعبين أولاً';
+      'ظبط أسماء اللاعبين الأول عشان نبدأ';
 }
