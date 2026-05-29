@@ -1,8 +1,8 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:imposter/core/presentation/painters/torn_paper_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_back_button.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
@@ -66,7 +66,7 @@ class AppBottomSheet extends StatelessWidget {
           maxHeight: height ?? MediaQuery.sizeOf(context).height * 0.8,
         ),
         child: CustomPaint(
-          painter: TornPaperPainter(color: AppColors.secondaryBackground),
+          painter: _TornPaperPainter(color: AppColors.secondaryBackground),
           child: Material(
             color: Colors.transparent,
             child: Padding(
@@ -127,3 +127,41 @@ class _BottomSheetHeader extends StatelessWidget {
   }
 }
 
+ 
+
+
+class _TornPaperPainter extends CustomPainter {
+  _TornPaperPainter({required this.color});
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (size.width <= 0 || size.height <= 0) return;
+
+    final random = Random(42);
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.fill;
+
+    final path = Path()
+      ..moveTo(0, size.height)
+      ..lineTo(size.width, size.height)
+      ..lineTo(size.width, 20);
+
+
+    var curX = size.width;
+    while (curX > 0) {
+      final step = 10.0 + random.nextDouble() * 10.0;
+      final dy = random.nextDouble() * 20.0;
+      curX -= step;
+      if (curX < 0) curX = 0;
+      path.lineTo(curX, dy);
+    }
+
+    path.close();
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}

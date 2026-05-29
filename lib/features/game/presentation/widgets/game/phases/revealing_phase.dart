@@ -3,7 +3,7 @@ import 'package:imposter/core/constants/app_padding.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
-import 'package:imposter/core/presentation/widgets/app_sketchy_card/app_sketchy_card.dart';
+import 'package:imposter/core/presentation/widgets/app_sketchy_card.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
