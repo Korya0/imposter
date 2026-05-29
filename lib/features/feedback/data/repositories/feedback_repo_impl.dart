@@ -17,16 +17,16 @@ class FeedbackRepoImpl implements IFeedbackRepository {
     try {
       await _remoteDataSource.submitFeedback(request);
       return const Success(null);
-    } on DioException catch (e) {
-      AppLogger.error('DioException in FeedbackRepository', e);
+    } on DioException catch (e, stackTrace) {
+      AppLogger.error('DioException in FeedbackRepository', e, stackTrace);
       if (e.error is SocketException ||
           e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.connectionError) {
         return const FailureResult(NetworkFailure());
       }
       return const FailureResult(ServerFailure());
-    } on Exception catch (e) {
-      AppLogger.error('Unexpected Exception in FeedbackRepository', e);
+    } on Exception catch (e, stackTrace) {
+      AppLogger.error('Unexpected Exception in FeedbackRepository', e, stackTrace);
       return const FailureResult(UnexpectedFailure());
     }
   }

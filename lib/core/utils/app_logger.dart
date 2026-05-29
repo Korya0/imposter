@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 
 class AppLogger {
@@ -18,19 +21,29 @@ class AppLogger {
   static void error(String message, [Object? error, StackTrace? stackTrace]) {
     _log('❌ ERROR', message, error, stackTrace);
 
-    /*if (!kDebugMode) {
-      try {
-        if (_canUseCrashlytics) {
-          unawaited(FirebaseCrashlytics.instance.recordError(
-            error ?? message,
-            stackTrace,
-            reason: message,
-          ));
-        }
-      } on Object catch (e) {
-        _log('💥 CRASHLYTICS_ERROR', 'Failed to send to Crashlytics: $e');
-      }
-    }*/
+    if (!kDebugMode && !kIsWeb) {
+      if (_shouldIgnoreError(error)) return;
+
+      unawaited(
+        FirebaseCrashlytics.instance.recordError(
+          error ?? message,
+          stackTrace,
+          reason: message,
+        ),
+      );
+    }
+  }
+
+  static bool _shouldIgnoreError(Object? error) {
+    if (error == null) return false;
+    final errStr = error.toString().toLowerCase();
+    return errStr.contains('socketexception') ||
+        errStr.contains('network_error') ||
+        errStr.contains('connection failed') ||
+        errStr.contains('connection timeout') ||
+        errStr.contains('cancel') ||
+        errStr.contains('handshake') ||
+        errStr.contains('host lookup');
   }
 
   static void _log(
@@ -39,10 +52,7 @@ class AppLogger {
     Object? error,
     StackTrace? stackTrace,
   ]) {
-    /* if (_canUseCrashlytics) {
-      unawaited(FirebaseCrashlytics.instance.log('[$level] $message'));
-    }*/
-
+  
     if (!kDebugMode) return;
 
     final timestamp = DateTime.now().toLocal().toString().split('.').first;

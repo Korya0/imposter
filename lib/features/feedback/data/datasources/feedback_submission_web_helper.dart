@@ -25,8 +25,8 @@ Future<void> submitFeedbackWeb(Map<String, String> formData) async {
     AppLogger.info(
       'Feedback submission triggered via JS Fetch (no-cors mode for Web).',
     );
-  } catch (e) {
-    AppLogger.error('Failed to submit feedback via JS Fetch on Web', e);
+  } catch (e, stackTrace) {
+    AppLogger.error('Failed to submit feedback via JS Fetch on Web', e, stackTrace);
     rethrow;
   }
 }

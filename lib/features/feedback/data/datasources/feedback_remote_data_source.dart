@@ -30,8 +30,8 @@ class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
       try {
         await submitFeedbackWeb(formData);
         return;
-      } on Exception catch (e) {
-        AppLogger.error('Failed to submit feedback via Web Helper', e);
+      } on Exception catch (e, stackTrace) {
+        AppLogger.error('Failed to submit feedback via Web Helper', e, stackTrace);
         // Fallback to Dio if web helper fails
       }
     }
@@ -47,8 +47,8 @@ class FeedbackRemoteDataSourceImpl implements FeedbackRemoteDataSource {
       AppLogger.info(
         'Feedback submitted successfully via Dio. Response: ${response.statusCode}',
       );
-    } on Exception catch (e) {
-      AppLogger.error('Failed to submit feedback in DataSource', e);
+    } on Exception catch (e, stackTrace) {
+      AppLogger.error('Failed to submit feedback in DataSource', e, stackTrace);
       rethrow;
     }
   }

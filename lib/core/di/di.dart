@@ -14,11 +14,18 @@ import 'package:imposter/features/feedback/data/datasources/feedback_remote_data
 import 'package:imposter/features/feedback/data/repositories/feedback_repo_impl.dart';
 import 'package:imposter/features/feedback/data/repositories/i_feedback_repository.dart';
 import 'package:imposter/features/feedback/presentation/cubit/feedback_cubit.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:imposter/core/services/config/iai_config_service.dart';
+import 'package:imposter/core/services/config/firebase_ai_config_service.dart';
 
 final GetIt sl = GetIt.instance;
 
 Future<void> setupEssentialDI() async {
   sl
+    ..registerLazySingleton<FirebaseRemoteConfig>(() => FirebaseRemoteConfig.instance)
+    ..registerLazySingleton<IAIConfigService>(
+      () => FirebaseAiConfigService(sl<FirebaseRemoteConfig>()),
+    )
     ..registerLazySingleton<Dio>(Dio.new)
     ..registerLazySingleton<AudioPlayer>(AudioPlayer.new)
     ..registerLazySingleton<GameEngine>(GameEngine.new)
