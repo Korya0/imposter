@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:imposter/core/presentation/painters/quiet_sketchy_painter.dart';
+import 'package:imposter/core/presentation/widgets/painters/quiet_sketchy_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_gap.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';

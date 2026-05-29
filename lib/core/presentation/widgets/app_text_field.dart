@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:imposter/core/presentation/painters/sketchy_input_painter.dart';
+import 'package:imposter/core/presentation/widgets/painters/sketchy_input_painter.dart';
 import 'package:imposter/core/style/fonts/app_text_styles.dart';
 import 'package:imposter/core/style/theme/app_colors.dart';
 import 'package:imposter/core/utils/build_context_extension.dart';

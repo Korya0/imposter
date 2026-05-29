@@ -19,7 +19,7 @@ void main() async {
         ? DevicePreview(builder: (context) => const ImposterApp())
         : const ImposterApp(),
   );
-
+  
   // Background initialization to avoid loading flickers
   unawaited(sl<GameSetupCubit>().init());
 }

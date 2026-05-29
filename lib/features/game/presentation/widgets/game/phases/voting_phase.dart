@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:imposter/core/constants/app_strings.dart';
-import 'package:imposter/core/presentation/painters/sketchy_input_painter.dart';
+import 'package:imposter/core/presentation/widgets/painters/sketchy_input_painter.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:imposter/core/presentation/widgets/app_divider.dart';
 import 'package:imposter/core/presentation/widgets/app_text_widget.dart';
