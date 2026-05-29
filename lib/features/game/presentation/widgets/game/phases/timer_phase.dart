@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:imposter/core/constants/app_strings.dart';
 import 'package:imposter/core/presentation/widgets/app_button.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:imposter/core/presentation/widgets/game_timer.dart';
+import 'package:imposter/features/game/presentation/widgets/game/game_timer.dart';
 
 class TimerPhaseWidget extends StatelessWidget {
   const TimerPhaseWidget({
